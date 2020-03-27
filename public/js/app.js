@@ -19507,7 +19507,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "starter-template jumbotron bg-info" }, [
-        _c("h1", [_vm._v("Welcome to Openstack")])
+        _c(
+          "h1",
+          {
+            staticClass: "text-center",
+            staticStyle: { "background-color": "yellow" }
+          },
+          [_vm._v("Welcome to Openstack")]
+        )
       ])
     ])
   }

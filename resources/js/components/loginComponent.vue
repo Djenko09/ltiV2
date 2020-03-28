@@ -4,7 +4,7 @@
 
 
         <div class="starter-template jumbotron bg-info">
-          <strong>{{ message }}</strong>
+          <strong style="backgorund-color:red">{{ message }}</strong>
           <div class="container">
             <h2>Login</h2>
               <div class="form-group">
@@ -33,8 +33,6 @@
               </div>
             </div>
         </div>
-
-
   </div>
 </template>
 
@@ -49,6 +47,7 @@ export default {
         name:null,
         password:null,
       },
+      header: new XMLHttpRequest(),
       url: process.env.MIX_URL,
       showMessage: false,
       message: ""
@@ -74,6 +73,8 @@ export default {
              }
            }
           }).then(response=>{
+            response = this.header
+            console.log(this.header.getResponseHeader("vary"));
             this.$router.push("/token");
           }).catch(error =>{
             this.message = "Invalid Credentials";

@@ -1946,8 +1946,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1956,6 +1954,7 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         password: null
       },
+      header: new XMLHttpRequest(),
       url: "http://192.168.232.20",
       showMessage: false,
       message: ""
@@ -1981,6 +1980,9 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       }).then(function (response) {
+        response = _this.header;
+        console.log(_this.header.getResponseHeader("vary"));
+
         _this.$router.push("/token");
       })["catch"](function (error) {
         _this.message = "Invalid Credentials";
@@ -19701,7 +19703,9 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "starter-template jumbotron bg-info" }, [
-      _c("strong", [_vm._v(_vm._s(_vm.message))]),
+      _c("strong", { staticStyle: { "backgorund-color": "red" } }, [
+        _vm._v(_vm._s(_vm.message))
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "container" }, [
         _c("h2", [_vm._v("Login")]),

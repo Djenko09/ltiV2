@@ -7,7 +7,11 @@
 
  <div class="form-group" text-align="center">
           <a class="btn btn-primary" v-on:click.prevent="getInstances()">Instances</a>
-        </div>
+  </div>
+  <div class="dropdown-menu dropdown-menu-right">
+      <router-link class="dropdown-item" to="/user">View Profile</router-link>
+      <router-link class="dropdown-item" to="/logout">Logout</router-link>
+  </div>
   </div>
 </template>
 
@@ -24,16 +28,16 @@ export default {
     methods: {
         getInstances(){
           axios.get(this.url + "/compute/v2.1/servers", {
-            headers: {Authorization: ""} })
-            
-      
+           headers: {'x-auth-token': this.$store.state.token} })
+
+
           .then(response=>{
-            console.log(response.data);
+            console.log(response);
           });
 
     },
     mounted() {
-    
+
     }
   }
 }

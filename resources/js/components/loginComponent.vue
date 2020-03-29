@@ -89,11 +89,9 @@ export default {
           console.log(response);
           this.user = response.data.token.user;
           this.user.token = response.headers['x-subject-token'];
-          
           console.log(this.user.token);
-
-           this.$store.commit("setToken", this.user.token); //guarda token
-
+          this.$store.commit("setToken", this.user.token); //guarda token
+          this.$router.push("/home");
            return axios.get(this.url + "/compute/v2.1/servers", {
             headers: {'x-auth-token': this.user.token} })
           .then(response=>{
@@ -102,7 +100,7 @@ export default {
         })
           .then(response => {
           this.$store.commit("setUser",  this.user);
-      
+
 
           //this.$router.push("/instancias");
         })
@@ -113,7 +111,7 @@ export default {
         });
     },
     mounted() {
-     
+
     }
   }
 };

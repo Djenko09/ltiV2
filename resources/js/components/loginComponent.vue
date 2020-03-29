@@ -47,6 +47,7 @@ export default {
         name: null,
         password: null
       },
+      header: new XMLHttpRequest(),
       url: process.env.MIX_URL,
       showMessage: false,
       message: ""
@@ -72,7 +73,7 @@ export default {
                 },
                 scope: {
                   project: {
-                    id: "811c3e6ac7fb443ab4e89bb54bf0ca77"
+                    id: "default"
                   }
                 }
               }

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 class="card-title mb-4 mt-1 jumbotron">isto é o login</h1>
-
+    
     <div class="starter-template jumbotron bg-info">
       <strong>{{ message }}</strong>
       <div class="container">
@@ -92,11 +91,6 @@ export default {
           console.log(this.user.token);
           this.$store.commit("setToken", this.user.token); //guarda token
           this.$router.push("/home");
-           return axios.get(this.url + "/compute/v2.1/servers", {
-            headers: {'x-auth-token': this.user.token} })
-          .then(response=>{
-            console.log(response);
-          });
         })
           .then(response => {
           this.$store.commit("setUser",  this.user);

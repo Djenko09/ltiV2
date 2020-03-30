@@ -10,7 +10,49 @@
           <a href="#">{{project3}}</a>
         </div>
       </div>
+       <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
     </div>
+             
+    <div> 
+      <h1>Instances</h1>
+    </div>
+    <div>
+     
+      <table class="table table-striped">
+        
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Flavor ID</th>
+            <th> Image </th>
+            
+          </tr>
+        </thead>
+
+         <tbody
+          v-for="instance in instances"
+          :key="instance.id"
+        >
+          <tr>
+            <td >{{ instance.name }}</td>
+            <td>{{ instance.status }}</td>
+            <td >
+            <div v-for="flavor in flavors" :key="flavor.id" >
+              
+              <a  v-if="flavor.id === instance.flavor.id">  {{flavor.name}} </a>
+
+            </div>
+            </td>
+         
+            <div v-for="image in images" :key="image.id">
+            <td v-if="image.id === instance.image.id"> {{image.name}} </td>
+            </div>
+
+          </tr>    
+        </tbody>
+      </table>
+      </div>
   </div>
 </template>
 
@@ -22,6 +64,10 @@ export default {
       project1:null,
       project2:null,
       project3:null,
+      instances: [],
+      images: [],
+      flavors: []
+    
     };
   },
   methods: {
@@ -35,9 +81,38 @@ export default {
         console.log(this.project1);
       })
     },
+    createInstance: function() {
+      this.$router.push("/newInstance");
+    },
+     getInstances(){
+          axios.get(this.url + "/compute/v2.1/servers/detail", {
+           headers: {'x-auth-token': this.$store.state.token} })
+
+          .then(response=>{
+           
+            this.instances = response.data.servers;
+            console.log(this.instances);
+          })
+          axios.get(this.url + "/image/v2/images",{
+          headers: {'x-auth-token': this.$store.state.token} })
+
+          .then(response=>{
+            this.images = response.data.images;
+            console.log(images);
+          })
+          axios.get(this.url + "/compute/v2.1/flavors",{
+          headers: {'x-auth-token': this.$store.state.token} })
+
+          .then(response=>{
+            this.flavors = response.data.flavors;
+            console.log(images);
+          })
+          }
+     
   },
   mounted() {
     this.getProjects();
+    this.getInstances();
   }
 };
 </script>
@@ -76,7 +151,7 @@ text-decoration: none;
 display: block;
 }
 
-/* Change color of dropdown links on hover */
+Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd;}
 
 /* Show the dropdown menu on hover */

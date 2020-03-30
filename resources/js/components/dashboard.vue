@@ -26,6 +26,7 @@
             <th>Status</th>
             <th>Flavor ID</th>
             <th> Image </th>
+            <th> Options </th>
             
           </tr>
         </thead>
@@ -48,7 +49,20 @@
             <div v-for="image in images" :key="image.id">
             <td v-if="image.id === instance.image.id"> {{image.name}} </td>
             </div>
-
+            
+            <td>
+              <!--<button
+                type="button"
+                class="btn btn-sm btn-primary"
+                v-on:click="movementDetails(movement)"
+              >Details</button>-->
+              <button
+                type="button"
+                class="btn btn-sm btn-danger"
+                v-on:click="deleteInstance(instance.id)"
+              >Delete</button>
+            </td>
+        
           </tr>    
         </tbody>
       </table>
@@ -93,13 +107,18 @@ export default {
             this.instances = response.data.servers;
             console.log(this.instances);
           })
-          axios.get(this.url + "/image/v2/images",{
+     },
+     getImages: function(){
+       axios.get(this.url + "/image/v2/images",{
           headers: {'x-auth-token': this.$store.state.token} })
 
           .then(response=>{
             this.images = response.data.images;
             console.log(images);
           })
+     },
+     getFlavors: function(){
+          
           axios.get(this.url + "/compute/v2.1/flavors",{
           headers: {'x-auth-token': this.$store.state.token} })
 
@@ -107,12 +126,22 @@ export default {
             this.flavors = response.data.flavors;
             console.log(images);
           })
-          }
+    },
+    deleteInstance: function(instance){
+      axios.delete(this.url + "/compute/v2.1/servers/" + instance, {
+           headers: {'x-auth-token': this.$store.state.token} })
+
+       
+          this.$toasted.show("Instance Deleted With Success");
+          
+    }
      
   },
   mounted() {
     this.getProjects();
     this.getInstances();
+    this.getFlavors();
+    this.getImages();
   }
 };
 </script>

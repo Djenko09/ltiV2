@@ -1966,6 +1966,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2007,27 +2021,45 @@ __webpack_require__.r(__webpack_exports__);
         _this2.instances = response.data.servers;
         console.log(_this2.instances);
       });
+    },
+    getImages: function getImages() {
+      var _this3 = this;
+
       axios.get(this.url + "/image/v2/images", {
         headers: {
           'x-auth-token': this.$store.state.token
         }
       }).then(function (response) {
-        _this2.images = response.data.images;
+        _this3.images = response.data.images;
         console.log(images);
       });
+    },
+    getFlavors: function getFlavors() {
+      var _this4 = this;
+
       axios.get(this.url + "/compute/v2.1/flavors", {
         headers: {
           'x-auth-token': this.$store.state.token
         }
       }).then(function (response) {
-        _this2.flavors = response.data.flavors;
+        _this4.flavors = response.data.flavors;
         console.log(images);
       });
+    },
+    deleteInstance: function deleteInstance(instance) {
+      axios["delete"](this.url + "/compute/v2.1/servers/" + instance, {
+        headers: {
+          'x-auth-token': this.$store.state.token
+        }
+      });
+      this.$toasted.show("Instance Deleted With Success");
     }
   },
   mounted: function mounted() {
     this.getProjects();
     this.getInstances();
+    this.getFlavors();
+    this.getImages();
   }
 });
 
@@ -2435,7 +2467,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\nbackground-color: #4CAF50;\r\ncolor: white;\r\npadding: 16px;\r\nfont-size: 16px;\r\nborder: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\nposition: relative;\r\ndisplay: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\ndisplay: none;\r\nposition: absolute;\r\nbackground-color: #f1f1f1;\r\nmin-width: 160px;\r\nbox-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\r\nz-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\ncolor: black;\r\npadding: 12px 16px;\r\ntext-decoration: none;\r\ndisplay: block;\n}\nChange color of dropdown links on hover */\r\n.dropdown-content a:hover {background-color: #ddd;}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {display: block;}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {background-color: #3e8e41;}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\nbackground-color: #4CAF50;\r\ncolor: white;\r\npadding: 16px;\r\nfont-size: 16px;\r\nborder: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\nposition: relative;\r\ndisplay: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\ndisplay: none;\r\nposition: absolute;\r\nbackground-color: #f1f1f1;\r\nmin-width: 160px;\r\nbox-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\r\nz-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\ncolor: black;\r\npadding: 12px 16px;\r\ntext-decoration: none;\r\ndisplay: block;\n}\nChange color of dropdown links on hover */\r\n.dropdown-content a:hover {background-color: #ddd;}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {display: block;}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {background-color: #3e8e41;}\r\n", ""]);
 
 // exports
 
@@ -22867,7 +22899,23 @@ var render = function() {
                         ? _c("td", [_vm._v(" " + _vm._s(image.name) + " ")])
                         : _vm._e()
                     ])
-                  })
+                  }),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-danger",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteInstance(instance.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ])
                 ],
                 2
               )
@@ -22898,7 +22946,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Flavor ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Image ")])
+        _c("th", [_vm._v(" Image ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Options ")])
       ])
     ])
   }

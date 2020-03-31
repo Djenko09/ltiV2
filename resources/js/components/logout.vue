@@ -1,22 +1,27 @@
 
 <template>
-    
+
 </template>
 
 <script>
 export default {
-    created(){
-        axios.post('api/logout')
-              .then(response => {
-               this.$store.commit('clearUserAndToken');
-               this.$toasted.show("You're logged out");
-               this.$router.push('/')
-          })
-          .catch(error => {
-              this.$store.commit('clearUserAndToken');
-              console.log(error);
-          })
-       
-    }
+
+  data: function() {
+    return {
+      //tokens:'',
+      url: process.env.MIX_URL,
+    };
+  },
+methods:{
+  logout(){
+      this.$store.commit("clearToken");
+      this.$toasted.info("Successfully logout!")
+      this.$router.push('/');
+  }
+},
+  mounted(){
+    this.logout();
+    //console.log("component mouted");
+  }
 }
 </script>

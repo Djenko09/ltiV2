@@ -14,7 +14,7 @@ export default  new Vuex.Store({
     state: {
         token: "",
         user: null,
-       
+
     },
 
     getters: {
@@ -29,7 +29,7 @@ export default  new Vuex.Store({
             window.localStorage.removeItem('user');
             window.localStorage.removeItem('token');
             axios.defaults.headers.common.Authorization = undefined;
-         
+
 
         },
         setToken: (state, token) => {
@@ -50,7 +50,7 @@ export default  new Vuex.Store({
         setUser: (state, user) => {
             state.user = user;
             window.localStorage.setItem('user', JSON.stringify(user));
-          
+
         },
         loadTokenAndUserFromSession: state => {
             state.token = "";
@@ -69,5 +69,3 @@ export default  new Vuex.Store({
         },
     }
 });
-
-

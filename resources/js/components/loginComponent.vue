@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+
     <div class="starter-template jumbotron bg-info">
       <strong>{{ message }}</strong>
       <div class="container">
@@ -36,9 +36,9 @@
 
 <script type="text/javascript">
 export default {
+
   data: function() {
     return {
-      //tokens:'',
       user: {
         token: null
       },
@@ -69,11 +69,14 @@ export default {
                     },
                     password: this.credentials.password
                   }
-                },
-                scope: {
-                  project: {
+                }
+              },
+              scope:{
+                project:{
+                  domain:{
                     id: "default"
-                  }
+                  },
+                  name: "admin"
                 }
               }
             }

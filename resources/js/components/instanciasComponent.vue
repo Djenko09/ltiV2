@@ -5,6 +5,8 @@
       <h1>ISTO É A PAGINA DPS DO LOGIN CRL</h1>
     </div>
 
+
+  
  <div class="form-group" text-align="center">
           <a class="btn btn-primary" v-on:click.prevent="getInstances()">Instances</a>
   </div>

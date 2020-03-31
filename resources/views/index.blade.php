@@ -32,6 +32,8 @@
                         <router-link v-if="this.$store.state.token" class="nav-link" to="/logout">Logout</router-link>
                     </li>
 
+                    
+
 
                 </ul>
 

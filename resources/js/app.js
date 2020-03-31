@@ -53,6 +53,9 @@ const router = new VueRouter({
 new Vue({
     el: "#app",
     router,
-    store
-
+    store,
+    created() {
+        this.$store.commit("loadTokenAndUserFromSession");
+       
+    }
 });

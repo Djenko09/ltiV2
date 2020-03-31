@@ -39948,7 +39948,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 new Vue({
   el: "#app",
   router: router,
-  store: _vuex_js__WEBPACK_IMPORTED_MODULE_2__["default"]
+  store: _vuex_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  created: function created() {
+    this.$store.commit("loadTokenAndUserFromSession");
+  }
 });
 
 /***/ }),

@@ -2121,9 +2121,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -23032,25 +23029,6 @@ var render = function() {
           [_vm._v("Instances")]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "dropdown-menu dropdown-menu-right" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "dropdown-item", attrs: { to: "/user" } },
-          [_vm._v("View Profile")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          { staticClass: "dropdown-item", attrs: { to: "/logout" } },
-          [_vm._v("Logout")]
-        )
-      ],
-      1
     )
   ])
 }

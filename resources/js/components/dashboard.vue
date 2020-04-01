@@ -16,8 +16,10 @@
       <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
       <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
       <button type="submit" class="btn btn-warning" v-on:click="getInstances()">Instances</button>
+      <button type="submit" class="btn btn-warning" v-on:click="getImagesV2()">Images</button>
     </div>
     <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
+    <images @exit-images="exitImages" v-if="btnImages"></images>
   </div>
 </template>
 
@@ -29,7 +31,8 @@ export default {
       projects: [],
       instances: [],
       images: [],
-      btnInstances: null,
+      btnInstances:null,
+      btnImages:null,
       flavors: []
     };
   },
@@ -94,10 +97,42 @@ export default {
     },
     revokeOldToken() {
       this.$store.commit("clearToken");
-    }
+    },
+    deleteInstance: function(instance) {
+      axios.delete(this.url + "/compute/v2.1/servers/" + instance, {
+        headers: { "x-auth-token": this.$store.state.token }
+      });
+
+      this.$toasted.show("Instance Deleted With Success");
+    },
+    getImages: function(){
+      axios.get(this.url + "/image/v2/images",{
+         headers: {'x-auth-token': this.$store.state.token} })
+
+         .then(response=>{
+           this.images = response.data.images;
+           console.log(images);
+         })
+    },
+    getInstances(){
+      this.btnImages = null;
+      this.btnInstances = 1;
+    },
+    getImagesV2(){
+      this.btnInstances = null;
+      this.btnImages = 1;
+    },
+    exitInstances(){
+      this.btnInstances = null;
+    },
+    exitImages(){
+      this.btnImages = null;
+    },
   },
   mounted() {
     this.getProjects();
+    this.getFlavors();
+    this.getImages();
   }
 };
 </script>

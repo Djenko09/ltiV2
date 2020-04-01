@@ -67,13 +67,18 @@ export default {
                     },
                     password: this.credentials.password
                   }
+                }
                 },
                 scope: {
                   project: {
-                    id: "default"
+                    domain: {
+                      id: "default"
+                    },
+                    name: "demo"
+                   
                   }
                 }
-              }
+              
             }
           },
           {

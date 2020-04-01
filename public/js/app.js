@@ -1959,9 +1959,6 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$router.push("/home");
       });
-    },
-    revokeOldToken: function revokeOldToken() {
-      this.$store.commit("clearToken");
     }
   },
   mounted: function mounted() {
@@ -2001,13 +1998,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
-      project1: null,
-      project2: null,
-      project3: null,
+      projects: [],
       instances: [],
       images: [],
       btnInstances: null,
@@ -2018,27 +2014,19 @@ __webpack_require__.r(__webpack_exports__);
     getProjects: function getProjects() {
       var _this = this;
 
-      axios.get(this.url + '/identity/v3/auth/projects', {
+      axios.get(this.url + "/identity/v3/auth/projects", {
         headers: {
-          'x-auth-token': this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this.project1 = response.data.projects[0].name;
-        _this.project2 = response.data.projects[1].name;
-        _this.project3 = response.data.projects[2].name;
-        console.log(_this.project1);
+        _this.projects = response.data.projects;
+        console.log(_this.projects);
       });
-    },
-    createInstance: function createInstance() {
-      this.$router.push("/newInstance");
-    },
-    getInstances: function getInstances() {
-      this.btnInstances = 1;
     },
     exitInstances: function exitInstances() {
       this.btnInstances = null;
     },
-    loginProject: function loginProject() {
+    loginProject: function loginProject(project) {
       var _this2 = this;
 
       axios.post(this.url + "/identity/v3/auth/tokens", {
@@ -2060,13 +2048,11 @@ __webpack_require__.r(__webpack_exports__);
               domain: {
                 id: "default"
               },
-              name: project
+              name: project.name
             }
           }
         }
       }).then(function (response) {
-        console.log(project);
-
         _this2.$store.commit("clearToken");
 
         _this2.user = response.data.token.user;
@@ -2075,19 +2061,22 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$store.commit("setToken", _this2.user.token); //guarda token
 
 
-        _this2.$toasted.info("Changed to " + _this2.proj_name);
+        _this2.$toasted.info("Changed to project " + project.name);
 
         _this2.$router.push("/home");
+
+        _this2.getInstances();
       });
+    },
+    getInstances: function getInstances() {
+      this.btnInstances = 1;
+    },
+    revokeOldToken: function revokeOldToken() {
+      this.$store.commit("clearToken");
     }
   },
   mounted: function mounted() {
-    //console.log(this.project1)
-    this.getProjects(); //this.getInstances();
-    //this.getFlavors();
-    //this.getImages();
-
-    console.log(this.$store.state.user);
+    this.getProjects();
   }
 });
 
@@ -2669,7 +2658,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\nbackground-color: #4CAF50;\r\ncolor: white;\r\npadding: 16px;\r\nfont-size: 16px;\r\nborder: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\nposition: relative;\r\ndisplay: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\ndisplay: none;\r\nposition: absolute;\r\nbackground-color: #f1f1f1;\r\nmin-width: 160px;\r\nbox-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\r\nz-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\ncolor: black;\r\npadding: 12px 16px;\r\ntext-decoration: none;\r\ndisplay: block;\n}\nChange color of dropdown links on hover */\r\n.dropdown-content a:hover {background-color: #ddd;}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {display: block;}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {background-color: #3e8e41;}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -23050,34 +23039,29 @@ var render = function() {
     [
       this.$store.state.token
         ? _c("div", { staticClass: "jumbotron" }, [
+            _c("h5", [_vm._v("Projects")]),
+            _vm._v(" "),
             _c(
-              "div",
-              {
-                staticClass: "dropdown",
-                staticStyle: { "background-color": "yellow" }
-              },
-              [
-                _c("button", { staticClass: "dropbtn" }, [_vm._v("Projects")]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "dropdown-content" },
+              "select",
+              _vm._l(_vm.projects, function(project) {
+                return _c(
+                  "option",
+                  {
+                    key: project.id,
+                    on: {
+                      click: function($event) {
+                        return _vm.loginProject(project)
+                      }
+                    }
+                  },
                   [
-                    _c("router-link", { attrs: { to: "/changeProject" } }, [
-                      _vm._v(_vm._s(_vm.project1))
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v(_vm._s(_vm.project2))
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v(_vm._s(_vm.project3))
-                    ])
-                  ],
-                  1
+                    _vm._v(
+                      "\n              " + _vm._s(project.name) + "\n        "
+                    )
+                  ]
                 )
-              ]
+              }),
+              0
             ),
             _vm._v(" "),
             _c(

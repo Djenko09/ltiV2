@@ -44,9 +44,6 @@ export default {
         this.$router.push("/home");
       });
     },
-    revokeOldToken(){
-      this.$store.commit("clearToken");
-    },
   },
   mounted() {
     this.loginProject();

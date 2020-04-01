@@ -4,63 +4,18 @@
       <!--  <a class="btn btn-primary"  v-on:click.prevent="getProjects()">getProjects</a>-->
 
       <h5>Projects</h5>
-     
+
          <select>
           <option v-for="project in projects" :key="project.id" v-on:click="loginProject(project)">
-           
                 {{project.name}}
           </option>
         </select>
-        
-      
+
+
       <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
+      <button type="submit" class="btn btn-warning" v-on:click="getInstances()">Instances</button>
     </div>
-
-    <div>
-      <h1>Instances</h1>
-    </div>
-    <div>
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Flavor ID</th>
-            <th>Image</th>
-            <th>Options</th>
-          </tr>
-        </thead>
-
-        <tbody v-for="instance in instances" :key="instance.id">
-          <tr>
-            <td>{{ instance.name }}</td>
-            <td>{{ instance.status }}</td>
-            <td>
-              <div v-for="flavor in flavors" :key="flavor.id">
-                <a v-if="flavor.id === instance.flavor.id">{{flavor.name}}</a>
-              </div>
-            </td>
-
-            <div v-for="image in images" :key="image.id">
-              <td v-if="image.id === instance.image.id">{{image.name}}</td>
-            </div>
-
-            <td>
-              <!--<button
-                type="button"
-                class="btn btn-sm btn-primary"
-                v-on:click="movementDetails(movement)"
-              >Details</button>-->
-              <button
-                type="button"
-                class="btn btn-sm btn-danger"
-                v-on:click="deleteInstance(instance.id)"
-              >Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
   </div>
 </template>
 
@@ -72,6 +27,7 @@ export default {
       projects: [],
       instances: [],
       images: [],
+      btnInstances:null,
       flavors: []
     };
   },
@@ -86,42 +42,9 @@ export default {
           console.log(this.projects);
         });
     },
-    createInstance: function() {
-      this.$router.push("/newInstance");
-    },
-    getInstances() {
-      axios
-        .get(this.url + "/compute/v2.1/servers/detail", {
-          headers: { "x-auth-token": this.$store.state.token }
-        })
-
-        .then(response => {
-          this.instances = response.data.servers;
-          console.log(this.instances);
-        });
-    },
-    getImages: function() {
-      axios
-        .get(this.url + "/image/v2/images", {
-          headers: { "x-auth-token": this.$store.state.token }
-        })
-
-        .then(response => {
-          this.images = response.data.images;
-          console.log(images);
-        });
-    },
-    getFlavors: function() {
-      axios
-        .get(this.url + "/compute/v2.1/flavors", {
-          headers: { "x-auth-token": this.$store.state.token }
-        })
-
-        .then(response => {
-          this.flavors = response.data.flavors;
-          console.log(images);
-        });
-    },
+    exitInstances(){
+     this.btnInstances = null;
+   },
     loginProject(project){
       axios.post(this.url + "/identity/v3/auth/tokens",{
         auth: {
@@ -156,22 +79,15 @@ export default {
         this.getInstances();
       });
     },
+    getInstances(){
+     this.btnInstances = 1;
+   },
     revokeOldToken(){
       this.$store.commit("clearToken");
     },
-    deleteInstance: function(instance) {
-      axios.delete(this.url + "/compute/v2.1/servers/" + instance, {
-        headers: { "x-auth-token": this.$store.state.token }
-      });
-
-      this.$toasted.show("Instance Deleted With Success");
-    }
   },
   mounted() {
     this.getProjects();
-    this.getInstances();
-    this.getFlavors();
-    this.getImages();
   }
 };
 </script>

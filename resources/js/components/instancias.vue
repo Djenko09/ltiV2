@@ -41,25 +41,33 @@
           </div>
 
           <td>
-            <!--<button
-            type="button"
-            class="btn btn-sm btn-primary"
-            v-on:click="movementDetails(movement)"
-            >Details</button>-->
+           <button
+                type="button"
+                class="btn btn-sm btn-success"
+                v-on:click="instanceEdit(instance)"
+              >Edit</button>
             <button
             type="button"
             class="btn btn-sm btn-danger"
-            v-on:click="deleteInstance(instance.id)"
+            v-on:click="deleteInstance(instance)"
             >Delete</button>
           </td>
 
         </tr>
+        <editInstance
+            :instance="selectedInstanceEdit"
+            @edit-canceled="cancelInstanceEdit"
+            @save-edit="saveInstanceEdit"
+            v-if="selectedInstanceEdit && selectedInstanceEdit === instance"
+          ></editInstance>
       </tbody>
     </table>
 </div>
 </template>
 
 <script type="text/javascript">
+
+import InstanceEdit from "./editInstance.vue";
 
 export default {
   data: function() {
@@ -69,7 +77,8 @@ export default {
       instances: [],
       images: [],
       flavors: [],
-      url: process.env.MIX_URL,
+      selectedInstance: null,
+      selectedInstanceEdit: null
       };
     },
     methods: {
@@ -103,16 +112,33 @@ export default {
            })
      },
      deleteInstance: function(instance){
-       axios.delete(this.url + "/compute/v2.1/servers/" + instance, {
+       axios.delete(this.url + "/compute/v2.1/servers/" + instance.id, {
             headers: {'x-auth-token': this.$store.state.token} })
 
 
            this.$toasted.show("Instance Deleted With Success");
 
      },
+      instanceEdit: function(instance) {
+      this.selectedInstance = null;
+      this.selectedInstanceEdit = instance;    
+    },
+    cancelInstanceEdit: function() {
+      this.selectedInstanceEdit = null;
+    },
+    saveInstanceEdit: function() {
+      this.selectedInstanceEdit = null;
+
+      this.$router.push("/home");
+      this.$toasted.show("Instance edit successfully!");
+    },
      exit(){
        this.$emit('exit-instance');
      },
+  },
+  components: {
+    editInstance: InstanceEdit
+
   },
   mounted() {
     this.getInstances();

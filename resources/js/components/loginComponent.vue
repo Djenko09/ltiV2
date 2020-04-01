@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="starter-template jumbotron bg-info">
       <strong>{{ message }}</strong>
       <div class="container">
@@ -36,7 +35,6 @@
 
 <script type="text/javascript">
 export default {
-
   data: function() {
     return {
       user: {
@@ -69,14 +67,11 @@ export default {
                     },
                     password: this.credentials.password
                   }
-                }
-              },
-              scope:{
-                project:{
-                  domain:{
+                },
+                scope: {
+                  project: {
                     id: "default"
-                  },
-                  name: "admin"
+                  }
                 }
               }
             }
@@ -90,14 +85,13 @@ export default {
         .then(response => {
           console.log(response);
           this.user = response.data.token.user;
-          this.user.token = response.headers['x-subject-token'];
+          this.user.token = response.headers["x-subject-token"];
           console.log(this.user.token);
           this.$store.commit("setToken", this.user.token); //guarda token
           this.$router.push("/home");
         })
-          .then(response => {
-          this.$store.commit("setUser",  this.user);
-
+        .then(response => {
+          this.$store.commit("setUser", this.user);
 
           //this.$router.push("/instancias");
         })
@@ -107,9 +101,7 @@ export default {
           console.log(error);
         });
     },
-    mounted() {
-
-    }
+    mounted() {}
   }
 };
 </script>

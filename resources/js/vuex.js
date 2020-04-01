@@ -14,7 +14,7 @@ export default  new Vuex.Store({
     state: {
         token: "",
         user: null,
-       // password: "",
+        project: null,
 
     },
 
@@ -38,12 +38,12 @@ export default  new Vuex.Store({
             window.localStorage.setItem('token', token);
             axios.defaults.headers.common.Authorization = "Bearer " + token;
         },
-        /*
-        setPassword: (state, password) => {
-            state.password = password;
-            window.localStorage.setItem('password', password);
+        
+        setProject: (state, project) => {
+            state.project = project;
+            window.localStorage.setItem('project', JSON.stringify(project));
           
-        },*/
+        },
         clearUser: state => {
             state.user = null;
             localStorage.removeItem("user");
@@ -62,8 +62,10 @@ export default  new Vuex.Store({
         loadTokenAndUserFromSession: state => {
             state.token = "";
             state.user = null;
+            state.project = null
             let token = localStorage.getItem("token");
             let user = localStorage.getItem("user");
+            let project = localStorage.getItem("project");
             if (token) {
                 state.token = token;
                 axios.defaults.headers.common.Authorization = "Bearer " + token;
@@ -72,6 +74,9 @@ export default  new Vuex.Store({
             }
             if (user) {
                 state.user = JSON.parse(user);
+            }
+            if (project){
+                state.project = JSON.parse(project);
             }
         },
     }

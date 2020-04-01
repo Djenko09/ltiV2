@@ -40,6 +40,9 @@ export default {
       user: {
         token: null
       },
+      project:{
+        
+      },
       credentials: {
         name: null,
         password: null
@@ -88,11 +91,15 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
+          console.log(response.data.token.project);
           this.user = response.data.token.user;
           this.user.token = response.headers["x-subject-token"];
+          this.project = response.data.token.project;
+        
           console.log(this.user.token);
           this.$store.commit("setToken", this.user.token); //guarda token
+          this.$store.commit("setProject", this.project); //guarda id do project para depois usar a criar volume
+          
           this.$router.push("/home");
         })
         .then(response => {

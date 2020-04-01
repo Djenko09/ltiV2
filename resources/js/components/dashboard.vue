@@ -5,12 +5,13 @@
 
       <h5>Projects</h5>
 
-         <select>
-          <option v-for="project in projects" :key="project.id" v-on:click="loginProject(project)">
-                {{project.name}}
-          </option>
-        </select>
-
+      <select>
+        <option
+          v-for="project in projects"
+          :key="project.id"
+          v-on:click="loginProject(project)"
+        >{{project.name}}</option>
+      </select>
 
       <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
       <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
@@ -28,7 +29,7 @@ export default {
       projects: [],
       instances: [],
       images: [],
-      btnInstances:null,
+      btnInstances: null,
       flavors: []
     };
   },
@@ -43,52 +44,57 @@ export default {
           console.log(this.projects);
         });
     },
-     createInstance: function() {
+    createInstance: function() {
       this.$router.push("/newInstance");
     },
-    exitInstances(){
-     this.btnInstances = null;
-   },
-    loginProject(project){
-      axios.post(this.url + "/identity/v3/auth/tokens",{
-        auth: {
-          identity: {
-            methods: ["password"],
-            password: {
-              user: {
-                name: this.$store.state.user.name,
+    exitInstances() {
+      this.btnInstances = null;
+    },
+    loginProject(project) {
+      axios
+        .post(this.url + "/identity/v3/auth/tokens", {
+          auth: {
+            identity: {
+              methods: ["password"],
+              password: {
+                user: {
+                  name: this.$store.state.user.name,
+                  domain: {
+                    name: "Default"
+                  },
+                  password: "devstack"
+                }
+              }
+            },
+            scope: {
+              project: {
                 domain: {
-                  name: "Default"
+                  id: "default"
                 },
-                password: "devstack"
+                name: project.name
               }
             }
-          },
-          scope:{
-            project:{
-              domain:{
-                id: "default"
-              },
-              name: project.name
-            }
           }
-        }
-      }).then(response=>{
-        this.$store.commit("clearToken");
-        this.user = response.data.token.user;
-        this.user.token = response.headers['x-subject-token'];
-        this.$store.commit("setToken", this.user.token); //guarda token
-        this.$toasted.info("Changed to project "+ project.name);
-        this.$router.push("/home");
-        this.getInstances();
-      });
+        })
+        .then(response => {
+          this.$store.commit("clearToken");
+          this.user = response.data.token.user;
+          this.user.token = response.headers["x-subject-token"];
+          this.$store.commit("setToken", this.user.token); //guarda token
+          this.$toasted.info("Changed to project " + project.name);
+          this.$router.push("/home");
+          this.getInstances();
+        });
     },
-    getInstances(){
-     this.btnInstances = 1;
-   },
-    revokeOldToken(){
+    getInstances() {
+      this.btnInstances = 1;
+    },
+    createVolume() {
+      this.$router.push("/newVolume");
+    },
+    revokeOldToken() {
       this.$store.commit("clearToken");
-    },
+    }
   },
   mounted() {
     this.getProjects();

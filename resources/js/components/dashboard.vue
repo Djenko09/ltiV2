@@ -13,6 +13,7 @@
 
 
       <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
+      <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
       <button type="submit" class="btn btn-warning" v-on:click="getInstances()">Instances</button>
     </div>
     <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
@@ -41,6 +42,9 @@ export default {
           this.projects = response.data.projects;
           console.log(this.projects);
         });
+    },
+     createInstance: function() {
+      this.$router.push("/newInstance");
     },
     exitInstances(){
      this.btnInstances = null;

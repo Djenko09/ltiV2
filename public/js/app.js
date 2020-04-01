@@ -1915,7 +1915,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://192.168.28.130",
       proj_name: "alt_demo"
     };
   },
@@ -1999,10 +1999,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://192.168.28.130",
       projects: [],
       instances: [],
       images: [],
@@ -2022,6 +2023,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.projects = response.data.projects;
         console.log(_this.projects);
       });
+    },
+    createInstance: function createInstance() {
+      this.$router.push("/newInstance");
     },
     exitInstances: function exitInstances() {
       this.btnInstances = null;
@@ -2110,7 +2114,7 @@ module.exports = {
   props: ["instance"],
   data: function data() {
     return {
-      url: "http://192.168.232.20"
+      url: "http://192.168.28.130"
     };
   },
   methods: {
@@ -2164,7 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20"
+      url: "http://192.168.28.130"
     };
   },
   methods: {},
@@ -2254,7 +2258,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://192.168.28.130",
       instances: [],
       images: [],
       flavors: [],
@@ -2391,7 +2395,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.232.20",
+      url: "http://192.168.28.130",
       showMessage: false,
       message: ""
     };
@@ -2470,7 +2474,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.232.20"
+      url: "http://192.168.28.130"
     };
   },
   methods: {
@@ -2561,7 +2565,7 @@ __webpack_require__.r(__webpack_exports__);
         image_id: "",
         network_id: ""
       },
-      url: "http://192.168.232.20",
+      url: "http://192.168.28.130",
       showError: false,
       successMessage: "",
       flavors: [],
@@ -2634,7 +2638,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cancel: function cancel() {
-      this.$router.push("/");
+      this.$router.push("/home");
     }
   },
   mounted: function mounted() {
@@ -2658,7 +2662,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -23085,6 +23089,20 @@ var render = function() {
                 attrs: { type: "submit" },
                 on: {
                   click: function($event) {
+                    return _vm.createVolume()
+                  }
+                }
+              },
+              [_vm._v("Create Volume")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
                     return _vm.getInstances()
                   }
                 }
@@ -40926,7 +40944,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     token: "",
-    user: null
+    user: null // password: "",
+
   },
   getters: {
     isAuthenticated: function isAuthenticated(state) {
@@ -40949,6 +40968,13 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
       window.localStorage.setItem('token', token);
       axios.defaults.headers.common.Authorization = "Bearer " + token;
     },
+
+    /*
+    setPassword: (state, password) => {
+        state.password = password;
+        window.localStorage.setItem('password', password);
+      
+    },*/
     clearUser: function clearUser(state) {
       state.user = null;
       localStorage.removeItem("user");
@@ -41002,8 +41028,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

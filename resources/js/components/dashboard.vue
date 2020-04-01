@@ -13,6 +13,7 @@
 
 
       <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
+      <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
       <button type="submit" class="btn btn-warning" v-on:click="getInstances()">Instances</button>
     </div>
     <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
@@ -41,9 +42,12 @@ export default {
           console.log(this.projects);
         });
     },
-    createInstance: function() {
+     createInstance: function() {
       this.$router.push("/newInstance");
     },
+    exitInstances(){
+     this.btnInstances = null;
+   },
     loginProject(project){
       axios.post(this.url + "/identity/v3/auth/tokens",{
         auth: {

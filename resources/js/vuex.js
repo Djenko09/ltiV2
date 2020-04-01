@@ -14,6 +14,7 @@ export default  new Vuex.Store({
     state: {
         token: "",
         user: null,
+       // password: "",
 
     },
 
@@ -37,6 +38,12 @@ export default  new Vuex.Store({
             window.localStorage.setItem('token', token);
             axios.defaults.headers.common.Authorization = "Bearer " + token;
         },
+        /*
+        setPassword: (state, password) => {
+            state.password = password;
+            window.localStorage.setItem('password', password);
+          
+        },*/
         clearUser: state => {
             state.user = null;
             localStorage.removeItem("user");

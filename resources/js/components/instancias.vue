@@ -4,7 +4,7 @@
 
     <div>
       <h1>Instances</h1>
-      <button type="submit" class="btn btn-danger"v-on:click="exit()">Close</button>
+      <button type="submit" class="btn btn-danger" v-on:click="exit()">Close</button>
     </div>
 
       <table class="table table-striped">

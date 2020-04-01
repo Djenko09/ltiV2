@@ -1974,124 +1974,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      url: "http://192.168.232.20",
-      projects: [],
-      instances: [],
-      images: [],
-      flavors: []
-    };
-  },
-  methods: {
-    getProjects: function getProjects() {
-      var _this = this;
-
-      axios.get(this.url + "/identity/v3/auth/projects", {
-        headers: {
-          "x-auth-token": this.$store.state.token
-        }
-      }).then(function (response) {
-        _this.projects = response.data.projects;
-        console.log(_this.projects);
-      });
-    },
-    createInstance: function createInstance() {
-      this.$router.push("/newInstance");
-    },
-    loginProject: function loginProject(project) {
-      var _this2 = this;
-
-      axios.post(this.url + "/identity/v3/auth/tokens", {
-        auth: {
-          identity: {
-            methods: ["password"],
-            password: {
-              user: {
-                name: this.$store.state.user.name,
-                domain: {
-                  name: "Default"
-                },
-                password: "devstack"
-              }
-            }
-          },
-          scope: {
-            project: {
-              domain: {
-                id: "default"
-              },
-              name: project.name
-            }
-          }
-        }
-      }).then(function (response) {
-        _this2.$store.commit("clearToken");
-
-        _this2.user = response.data.token.user;
-        _this2.user.token = response.headers['x-subject-token'];
-
-        _this2.$store.commit("setToken", _this2.user.token); //guarda token
-
-
-        _this2.$toasted.info("Changed to project " + project.name);
-
-        _this2.$router.push("/home");
-
-        _this2.getInstances();
-      });
-    },
-    revokeOldToken: function revokeOldToken() {
-      this.$store.commit("clearToken");
-    },
-    deleteInstance: function deleteInstance(instance) {
-      axios["delete"](this.url + "/compute/v2.1/servers/" + instance, {
-        headers: {
-          "x-auth-token": this.$store.state.token
-        }
-      });
-      this.$toasted.show("Instance Deleted With Success");
-    },
-    getInstances: function getInstances() {
-      this.btnInstances = 1;
-    },
-    exitInstances: function exitInstances() {
-      this.btnInstances = null;
-    }
-  },
-  mounted: function mounted() {
-    this.getProjects();
-    this.getInstances();
-    this.getFlavors();
-    this.getImages();
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\lti\\resources\\js\\components\\dashboard.vue: Unexpected token (45:0)\n\n\u001b[0m \u001b[90m 43 | \u001b[39m        })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 44 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 46 | \u001b[39m    createInstance\u001b[33m:\u001b[39m \u001b[36mfunction\u001b[39m() {\u001b[0m\n\u001b[0m \u001b[90m 47 | \u001b[39m      \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$router\u001b[33m.\u001b[39mpush(\u001b[32m\"/newInstance\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 48 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.parseIdentifierName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10748:18)\n    at Parser.parseIdentifier (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10726:23)\n    at Parser.parseMaybePrivateName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10079:19)\n    at Parser.parsePropertyName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10550:126)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10451:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseObjectProperty (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10512:101)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:101)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExportDefaultExpression (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12283:24)\n    at Parser.parseExport (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12185:31)\n    at Parser.parseStatementContent (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11185:27)\n    at Parser.parseStatement (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseTopLevel (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11012:10)\n    at Parser.parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12637:10)\n    at parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12688:38)\n    at parser (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)");
 
 /***/ }),
 
@@ -2647,7 +2532,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cancel: function cancel() {
-      this.$router.push("/");
+      this.$router.push("/home");
     }
   },
   mounted: function mounted() {
@@ -2671,7 +2556,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -23098,6 +22983,20 @@ var render = function() {
                 attrs: { type: "submit" },
                 on: {
                   click: function($event) {
+                    return _vm.createVolume()
+                  }
+                }
+              },
+              [_vm._v("Create Volume")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
                     return _vm.getInstances()
                   }
                 }
@@ -40939,7 +40838,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     token: "",
-    user: null
+    user: null // password: "",
+
   },
   getters: {
     isAuthenticated: function isAuthenticated(state) {
@@ -40962,6 +40862,13 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
       window.localStorage.setItem('token', token);
       axios.defaults.headers.common.Authorization = "Bearer " + token;
     },
+
+    /*
+    setPassword: (state, password) => {
+        state.password = password;
+        window.localStorage.setItem('password', password);
+      
+    },*/
     clearUser: function clearUser(state) {
       state.user = null;
       localStorage.removeItem("user");

@@ -1974,9 +1974,153 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\lti\\resources\\js\\components\\dashboard.vue: Unexpected token (45:0)\n\n\u001b[0m \u001b[90m 43 | \u001b[39m        })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 44 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 46 | \u001b[39m    createInstance\u001b[33m:\u001b[39m \u001b[36mfunction\u001b[39m() {\u001b[0m\n\u001b[0m \u001b[90m 47 | \u001b[39m      \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$router\u001b[33m.\u001b[39mpush(\u001b[32m\"/newInstance\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 48 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.parseIdentifierName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10748:18)\n    at Parser.parseIdentifier (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10726:23)\n    at Parser.parseMaybePrivateName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10079:19)\n    at Parser.parsePropertyName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10550:126)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10451:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseObjectProperty (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10512:101)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:101)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExportDefaultExpression (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12283:24)\n    at Parser.parseExport (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12185:31)\n    at Parser.parseStatementContent (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11185:27)\n    at Parser.parseStatement (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseTopLevel (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11012:10)\n    at Parser.parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12637:10)\n    at parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12688:38)\n    at parser (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: "http://192.168.232.20",
+      projects: [],
+      instances: [],
+      images: [],
+      btnInstances: null,
+      btnImages: null,
+      flavors: []
+    };
+  },
+  methods: (_methods = {
+    getProjects: function getProjects() {
+      var _this = this;
+
+      axios.get(this.url + "/identity/v3/auth/projects", {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this.projects = response.data.projects;
+        console.log(_this.projects);
+      });
+    },
+    createInstance: function createInstance() {
+      this.$router.push("/newInstance");
+    },
+    exitInstances: function exitInstances() {
+      this.btnInstances = null;
+    },
+    loginProject: function loginProject(project) {
+      var _this2 = this;
+
+      axios.post(this.url + "/identity/v3/auth/tokens", {
+        auth: {
+          identity: {
+            methods: ["password"],
+            password: {
+              user: {
+                name: this.$store.state.user.name,
+                domain: {
+                  name: "Default"
+                },
+                password: "devstack"
+              }
+            }
+          },
+          scope: {
+            project: {
+              domain: {
+                id: "default"
+              },
+              name: project.name
+            }
+          }
+        }
+      }).then(function (response) {
+        _this2.$store.commit("clearToken");
+
+        _this2.user = response.data.token.user;
+        _this2.user.token = response.headers['x-subject-token'];
+
+        _this2.$store.commit("setToken", _this2.user.token); //guarda token
+
+
+        _this2.$toasted.success("Changed to project " + project.name);
+
+        _this2.$router.push("/home");
+
+        _this2.getInstances();
+      });
+    },
+    revokeOldToken: function revokeOldToken() {
+      this.$store.commit("clearToken");
+    },
+    deleteInstance: function deleteInstance(instance) {
+      axios["delete"](this.url + "/compute/v2.1/servers/" + instance, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      });
+      this.$toasted.show("Instance Deleted With Success");
+    },
+    getImages: function getImages() {
+      var _this3 = this;
+
+      axios.get(this.url + "/image/v2/images", {
+        headers: {
+          'x-auth-token': this.$store.state.token
+        }
+      }).then(function (response) {
+        _this3.images = response.data.images;
+        console.log(images);
+      });
+    },
+    getInstances: function getInstances() {
+      this.btnImages = null;
+      this.btnInstances = 1;
+    },
+    getImagesV2: function getImagesV2() {
+      this.btnInstances = null;
+      this.btnImages = 1;
+    }
+  }, _defineProperty(_methods, "exitInstances", function exitInstances() {
+    this.btnInstances = null;
+  }), _defineProperty(_methods, "exitImages", function exitImages() {
+    this.btnImages = null;
+  }), _methods),
+  mounted: function mounted() {
+    this.getProjects();
+    this.getFlavors();
+    this.getImages();
+  }
+});
 
 /***/ }),
 
@@ -2067,6 +2211,99 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {},
   mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/images.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/images.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: "http://192.168.232.20",
+      images: []
+    };
+  },
+  methods: {
+    getImages: function getImages() {
+      var _this = this;
+
+      axios.get(this.url + "/image/v2/images", {
+        headers: {
+          'x-auth-token': this.$store.state.token
+        }
+      }).then(function (response) {
+        _this.images = response.data.images;
+        console.log(images);
+      });
+    },
+    getProjects: function getProjects() {
+      axios.get(this.url + "/identity/v3/auth/token", {
+        headers: {
+          "x-auth-token": this.$store.state.token,
+          "x-subject-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        console.log(response.data.token.project.id);
+      });
+    },
+    exit: function exit() {
+      this.$emit('exit-images');
+    }
+  },
+  mounted: function mounted() {
+    this.getImages();
+    this.getProjects();
+  }
 });
 
 /***/ }),
@@ -2556,7 +2793,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -23002,12 +23239,30 @@ var render = function() {
                 }
               },
               [_vm._v("Instances")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    return _vm.getImagesV2()
+                  }
+                }
+              },
+              [_vm._v("Images")]
             )
           ])
         : _vm._e(),
       _vm._v(" "),
       _vm.btnInstances
         ? _c("instancias", { on: { "exit-instance": _vm.exitInstances } })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.btnImages
+        ? _c("images", { on: { "exit-images": _vm.exitImages } })
         : _vm._e()
     ],
     1
@@ -23133,6 +23388,108 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/images.vue?vue&type=template&id=a28b4efa&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/images.vue?vue&type=template&id=a28b4efa&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", [
+      _c("h1", [_vm._v("Images")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "submit" },
+          on: {
+            click: function($event) {
+              return _vm.exit()
+            }
+          }
+        },
+        [_vm._v("Close")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("button", { staticClass: "btn btn-warning", attrs: { type: "submit" } }),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-striped" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.images, function(image) {
+          return _c("tbody", { key: image.id }, [
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(image.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(image.disk_format))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(image.container_format))]),
+              _vm._v(" "),
+              _vm._m(1, true)
+            ])
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Disk Format")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Container Format")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        { staticClass: "btn btn-sm btn-success", attrs: { type: "button" } },
+        [_vm._v("Edit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-sm btn-danger", attrs: { type: "button" } },
+        [_vm._v("Delete")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -40140,6 +40497,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_newInstance_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/newInstance.vue */ "./resources/js/components/newInstance.vue");
 /* harmony import */ var _components_logout_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/logout.vue */ "./resources/js/components/logout.vue");
 /* harmony import */ var _components_changeProject_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/changeProject.vue */ "./resources/js/components/changeProject.vue");
+/* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -40159,6 +40517,8 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_1___default.a, {
 
 
 
+ /// á partida pode sair daqui
+
 
 var home = Vue.component('home', _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
 var login = Vue.component('login', _components_loginComponentBackup_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
@@ -40166,7 +40526,9 @@ var logout = Vue.component('logout', _components_logout_vue__WEBPACK_IMPORTED_MO
 var instancias = Vue.component('instancias', _components_instancias_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var dashboard = Vue.component('dashboard', _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var newInstance = Vue.component('newInstance', _components_newInstance_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
-var changeProject = Vue.component('changeProject', _components_changeProject_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+var changeProject = Vue.component('changeProject', _components_changeProject_vue__WEBPACK_IMPORTED_MODULE_9__["default"]); /// á partida pode sair daqui tambem
+
+var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
 var routes = [{
   path: '/',
   component: _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -40533,6 +40895,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_homeComponent_vue_vue_type_template_id_e52ce0ba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_homeComponent_vue_vue_type_template_id_e52ce0ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/images.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/images.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _images_vue_vue_type_template_id_a28b4efa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./images.vue?vue&type=template&id=a28b4efa&scoped=true& */ "./resources/js/components/images.vue?vue&type=template&id=a28b4efa&scoped=true&");
+/* harmony import */ var _images_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./images.vue?vue&type=script&lang=js& */ "./resources/js/components/images.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _images_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _images_vue_vue_type_template_id_a28b4efa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _images_vue_vue_type_template_id_a28b4efa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "a28b4efa",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/images.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/images.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/images.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_images_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./images.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/images.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_images_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/images.vue?vue&type=template&id=a28b4efa&scoped=true&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/images.vue?vue&type=template&id=a28b4efa&scoped=true& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_images_vue_vue_type_template_id_a28b4efa_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./images.vue?vue&type=template&id=a28b4efa&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/images.vue?vue&type=template&id=a28b4efa&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_images_vue_vue_type_template_id_a28b4efa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_images_vue_vue_type_template_id_a28b4efa_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

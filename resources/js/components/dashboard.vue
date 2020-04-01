@@ -15,8 +15,10 @@
       <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
       <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
       <button type="submit" class="btn btn-warning" v-on:click="getInstances()">Instances</button>
+      <button type="submit" class="btn btn-warning" v-on:click="getImagesV2()">Images</button>
     </div>
     <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
+    <images @exit-images="exitImages" v-if="btnImages"></images>
   </div>
 </template>
 
@@ -28,6 +30,8 @@ export default {
       projects: [],
       instances: [],
       images: [],
+      btnInstances:null,
+      btnImages:null,
       flavors: []
     };
   },
@@ -77,7 +81,7 @@ export default {
         this.user = response.data.token.user;
         this.user.token = response.headers['x-subject-token'];
         this.$store.commit("setToken", this.user.token); //guarda token
-        this.$toasted.info("Changed to project "+ project.name);
+        this.$toasted.success("Changed to project "+ project.name);
         this.$router.push("/home");
         this.getInstances();
       });
@@ -92,16 +96,32 @@ export default {
 
       this.$toasted.show("Instance Deleted With Success");
     },
+    getImages: function(){
+      axios.get(this.url + "/image/v2/images",{
+         headers: {'x-auth-token': this.$store.state.token} })
+
+         .then(response=>{
+           this.images = response.data.images;
+           console.log(images);
+         })
+    },
     getInstances(){
+      this.btnImages = null;
       this.btnInstances = 1;
+    },
+    getImagesV2(){
+      this.btnInstances = null;
+      this.btnImages = 1;
     },
     exitInstances(){
       this.btnInstances = null;
     },
+    exitImages(){
+      this.btnImages = null;
+    },
   },
   mounted() {
     this.getProjects();
-    this.getInstances();
     this.getFlavors();
     this.getImages();
   }

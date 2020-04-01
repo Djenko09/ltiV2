@@ -76,7 +76,7 @@ export default {
                   domain:{
                     id: "default"
                   },
-                  name: "admin"
+                  name: "demo"
                 }
               }
             }

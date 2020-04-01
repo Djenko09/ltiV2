@@ -15,7 +15,7 @@ Vue.use(Toasted, {
 
 import store from "./vuex.js";
 
-import loginComponent from "./components/loginComponent";
+import loginComponent from "./components/loginComponentBackup.vue";
 import homeComponent from "./components/homeComponent.vue";
 import instanciasComponent from "./components/instancias.vue";
 import dashboardComponent from "./components/dashboard.vue";

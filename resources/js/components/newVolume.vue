@@ -20,7 +20,7 @@
     <div class="form-group">
       <a
         class="btn btn-success"
-        v-on:click.prevent="createVolume(volume, project_id)"
+        v-on:click.prevent="createVolume(volume)"
       >Create Volume</a>
       <a class="btn btn-danger" v-on:click.prevent="cancel()">Cancel</a>
     </div>
@@ -44,15 +44,14 @@ export default {
       successMessage: "",
       flavors: [],
       images: [],
-      networks: [],
-      project_id: ""
+      networks: []
     };
   },
   methods: {
-    createVolume: function(volume, project_id) {
+    createVolume: function(volume) {
       axios
         .post(
-          this.url + "/volume/v3/" + project_id +"/volumes",
+          this.url + "/volume/v3/" + this.$store.state.project +"/volumes",
           {
             
     "volume": {
@@ -85,26 +84,13 @@ export default {
          
         });
     },
-    getProjectID() {
-      axios
-        .get(this.url + "/identity/v3/auth/tokens", {
-          headers: {
-            "x-auth-token": this.$store.state.token,
-            "x-subject-token": this.$store.state.token
-          }
-        })
-        .then(response => {
-          this.project_id = response.data.token.project.id;
-          console.log(this.project_id);
-        });
-    },
+   
     cancel: function() {
       this.$router.push("/home");
     }
   },
 
   mounted() {
-    this.getProjectID();
   }
 };
 </script>

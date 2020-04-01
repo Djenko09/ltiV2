@@ -17,9 +17,11 @@
       <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
       <button type="submit" class="btn btn-warning" v-on:click="getInstances()">Instances</button>
       <button type="submit" class="btn btn-warning" v-on:click="getImagesV2()">Images</button>
+      <button type="submit" class="btn btn-warning" v-on:click="getVolumes()">Volumes</button>
     </div>
     <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
     <images @exit-images="exitImages" v-if="btnImages"></images>
+    <volumes @exit-volumes="exitVolumes" v-if="btnVolumes"></volumes>
   </div>
 </template>
 
@@ -33,7 +35,9 @@ export default {
       images: [],
       btnInstances:null,
       btnImages:null,
-      flavors: []
+      btnVolumes: null,
+      flavors: [],
+      project_id: ""
     };
   },
   methods: {
@@ -52,6 +56,20 @@ export default {
     },
     exitInstances() {
       this.btnInstances = null;
+    },
+     getProjectID() {
+      axios
+        .get(this.url + "/identity/v3/auth/tokens", {
+          headers: {
+            "x-auth-token": this.$store.state.token,
+            "x-subject-token": this.$store.state.token
+          }
+        })
+        .then(response => {
+          this.project_id = response.data.token.project.id;
+           this.$store.commit("setProject", this.project_id);
+          console.log(this.project_id);
+        });
     },
     loginProject(project) {
       axios
@@ -81,9 +99,11 @@ export default {
         })
         .then(response => {
           this.$store.commit("clearToken");
+          this.$store.commit("clearProject");
           this.user = response.data.token.user;
           this.user.token = response.headers["x-subject-token"];
           this.$store.commit("setToken", this.user.token); //guarda token
+          this.$store.commit("setProject", project.id); //guarda id do projecto 
           this.$toasted.info("Changed to project " + project.name);
           this.$router.push("/home");
           this.getInstances();
@@ -122,16 +142,24 @@ export default {
       this.btnInstances = null;
       this.btnImages = 1;
     },
+    getVolumes(){
+      this.btnInstances = null;
+      this.btnVolumes = 1;
+    },
     exitInstances(){
       this.btnInstances = null;
     },
     exitImages(){
       this.btnImages = null;
     },
+    exitVolumes(){
+      this.btnVolumes = null;
+    },
   },
   mounted() {
     this.getProjects();
-    this.getFlavors();
+    this.getProjectID();
+    //this.getFlavors();
     this.getImages();
   }
 };

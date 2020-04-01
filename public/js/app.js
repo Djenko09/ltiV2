@@ -1937,6 +1937,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1946,7 +1948,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       images: [],
       btnInstances: null,
       btnImages: null,
-      flavors: []
+      btnVolumes: null,
+      flavors: [],
+      project_id: ""
     };
   },
   methods: (_methods = {
@@ -1968,8 +1972,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     exitInstances: function exitInstances() {
       this.btnInstances = null;
     },
-    loginProject: function loginProject(project) {
+    getProjectID: function getProjectID() {
       var _this2 = this;
+
+      axios.get(this.url + "/identity/v3/auth/tokens", {
+        headers: {
+          "x-auth-token": this.$store.state.token,
+          "x-subject-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this2.project_id = response.data.token.project.id;
+
+        _this2.$store.commit("setProject", _this2.project_id);
+
+        console.log(_this2.project_id);
+      });
+    },
+    loginProject: function loginProject(project) {
+      var _this3 = this;
 
       axios.post(this.url + "/identity/v3/auth/tokens", {
         auth: {
@@ -1995,19 +2015,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }
       }).then(function (response) {
-        _this2.$store.commit("clearToken");
+        _this3.$store.commit("clearToken");
 
-        _this2.user = response.data.token.user;
-        _this2.user.token = response.headers["x-subject-token"];
+        _this3.$store.commit("clearProject");
 
-        _this2.$store.commit("setToken", _this2.user.token); //guarda token
+        _this3.user = response.data.token.user;
+        _this3.user.token = response.headers["x-subject-token"];
+
+        _this3.$store.commit("setToken", _this3.user.token); //guarda token
 
 
-        _this2.$toasted.info("Changed to project " + project.name);
+        _this3.$store.commit("setProject", project.id); //guarda id do projecto 
 
-        _this2.$router.push("/home");
 
-        _this2.getInstances();
+        _this3.$toasted.info("Changed to project " + project.name);
+
+        _this3.$router.push("/home");
+
+        _this3.getInstances();
       });
     },
     getInstances: function getInstances() {
@@ -2028,14 +2053,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$toasted.show("Instance Deleted With Success");
     },
     getImages: function getImages() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get(this.url + "/image/v2/images", {
         headers: {
           'x-auth-token': this.$store.state.token
         }
       }).then(function (response) {
-        _this3.images = response.data.images;
+        _this4.images = response.data.images;
         console.log(images);
       });
     }
@@ -2045,14 +2070,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }), _defineProperty(_methods, "getImagesV2", function getImagesV2() {
     this.btnInstances = null;
     this.btnImages = 1;
+  }), _defineProperty(_methods, "getVolumes", function getVolumes() {
+    this.btnInstances = null;
+    this.btnVolumes = 1;
   }), _defineProperty(_methods, "exitInstances", function exitInstances() {
     this.btnInstances = null;
   }), _defineProperty(_methods, "exitImages", function exitImages() {
     this.btnImages = null;
+  }), _defineProperty(_methods, "exitVolumes", function exitVolumes() {
+    this.btnVolumes = null;
   }), _methods),
   mounted: function mounted() {
     this.getProjects();
-    this.getFlavors();
+    this.getProjectID(); //this.getFlavors();
+
     this.getImages();
   }
 });
@@ -2769,15 +2800,14 @@ __webpack_require__.r(__webpack_exports__);
       successMessage: "",
       flavors: [],
       images: [],
-      networks: [],
-      project_id: ""
+      networks: []
     };
   },
   methods: {
-    createVolume: function createVolume(volume, project_id) {
+    createVolume: function createVolume(volume) {
       var _this = this;
 
-      axios.post(this.url + "/volume/v3/" + project_id + "/volumes", {
+      axios.post(this.url + "/volume/v3/" + this.$store.state.project + "/volumes", {
         "volume": {
           "size": volume.size,
           "availability_zone": null,
@@ -2805,25 +2835,121 @@ __webpack_require__.r(__webpack_exports__);
         _this.$toasted.show("Volume Created");
       });
     },
-    getProjectID: function getProjectID() {
-      var _this2 = this;
-
-      axios.get(this.url + "/identity/v3/auth/tokens", {
-        headers: {
-          "x-auth-token": this.$store.state.token,
-          "x-subject-token": this.$store.state.token
-        }
-      }).then(function (response) {
-        _this2.project_id = response.data.token.project.id;
-        console.log(_this2.project_id);
-      });
-    },
     cancel: function cancel() {
       this.$router.push("/home");
     }
   },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/volumes.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/volumes.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _editInstance_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editInstance.vue */ "./resources/js/components/editInstance.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: "http://192.168.28.130",
+      volumes: [],
+      images: [],
+      flavors: [],
+      selectedInstance: null,
+      selectedInstanceEdit: null
+    };
+  },
+  methods: {
+    getVolumes: function getVolumes() {
+      var _this = this;
+
+      axios.get(this.url + "/volume/v3/" + this.$store.state.project + "/volumes/detail", {
+        headers: {
+          'x-auth-token': this.$store.state.token
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _this.volumes = response.data.volumes;
+      });
+    },
+
+    /* getImages: function(){
+       axios.get(this.url + "/image/v2/images",{
+          headers: {'x-auth-token': this.$store.state.token} })
+            .then(response=>{
+            this.images = response.data.images;
+            console.log(images);
+          })
+     },
+      deleteInstance: function(instance){
+      axios.delete(this.url + "/compute/v2.1/servers/" + instance.id, {
+           headers: {'x-auth-token': this.$store.state.token} })
+              this.$toasted.show("Instance Deleted With Success");
+      },
+     instanceEdit: function(instance) {
+     this.selectedInstance = null;
+     this.selectedInstanceEdit = instance;    
+    },
+    cancelInstanceEdit: function() {
+     this.selectedInstanceEdit = null;
+    },
+    saveInstanceEdit: function() {
+     this.selectedInstanceEdit = null;
+       this.$router.push("/home");
+     this.$toasted.show("Instance edit successfully!");
+    },*/
+    exit: function exit() {
+      this.$emit('exit-volumes');
+    }
+  },
+
+  /* components: {
+     editInstance: InstanceEdit
+  
+   },*/
   mounted: function mounted() {
-    this.getProjectID();
+    this.getVolumes(); //this.getImages();
   }
 });
 
@@ -2841,7 +2967,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -23273,6 +23399,20 @@ var render = function() {
                 }
               },
               [_vm._v("Images")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    return _vm.getVolumes()
+                  }
+                }
+              },
+              [_vm._v("Volumes")]
             )
           ])
         : _vm._e(),
@@ -23283,6 +23423,10 @@ var render = function() {
       _vm._v(" "),
       _vm.btnImages
         ? _c("images", { on: { "exit-images": _vm.exitImages } })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.btnVolumes
+        ? _c("volumes", { on: { "exit-volumes": _vm.exitVolumes } })
         : _vm._e()
     ],
     1
@@ -24166,7 +24310,7 @@ var render = function() {
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.createVolume(_vm.volume, _vm.project_id)
+              return _vm.createVolume(_vm.volume)
             }
           }
         },
@@ -24190,6 +24334,82 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/volumes.vue?vue&type=template&id=40fb899e&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/volumes.vue?vue&type=template&id=40fb899e& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", [
+      _c("h1", [_vm._v("Volumes")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "submit" },
+          on: {
+            click: function($event) {
+              return _vm.exit()
+            }
+          }
+        },
+        [_vm._v("Close")]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-striped" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.volumes, function(volume) {
+          return _c("tbody", { key: volume.id }, [
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(volume.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(volume.size) + " GiB")])
+            ])
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Size")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Options ")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -40646,6 +40866,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_logout_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/logout.vue */ "./resources/js/components/logout.vue");
 /* harmony import */ var _components_newVolume_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/newVolume.vue */ "./resources/js/components/newVolume.vue");
 /* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
+/* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -40667,6 +40888,7 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_1___default.a, {
 
 
 
+
 var home = Vue.component('home', _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
 var login = Vue.component('login', _components_loginComponentBackup_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 var logout = Vue.component('logout', _components_logout_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
@@ -40675,6 +40897,7 @@ var dashboard = Vue.component('dashboard', _components_dashboard_vue__WEBPACK_IM
 var newInstance = Vue.component('newInstance', _components_newInstance_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var newVolume = Vue.component('newVolume', _components_newVolume_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+var volumes = Vue.component('volumes', _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
 var routes = [{
   path: '/',
   component: _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -41391,6 +41614,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/volumes.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/volumes.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./volumes.vue?vue&type=template&id=40fb899e& */ "./resources/js/components/volumes.vue?vue&type=template&id=40fb899e&");
+/* harmony import */ var _volumes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./volumes.vue?vue&type=script&lang=js& */ "./resources/js/components/volumes.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _volumes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/volumes.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/volumes.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/volumes.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_volumes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./volumes.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/volumes.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_volumes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/volumes.vue?vue&type=template&id=40fb899e&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/volumes.vue?vue&type=template&id=40fb899e& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./volumes.vue?vue&type=template&id=40fb899e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/volumes.vue?vue&type=template&id=40fb899e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/vuex.js":
 /*!******************************!*\
   !*** ./resources/js/vuex.js ***!
@@ -41441,7 +41733,11 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
     },
     setProject: function setProject(state, project) {
       state.project = project;
-      window.localStorage.setItem('project', JSON.stringify(project));
+      window.localStorage.setItem('project', project);
+    },
+    clearProject: function clearProject(state) {
+      state.project = null;
+      localStorage.removeItem("project");
     },
     clearUser: function clearUser(state) {
       state.user = null;
@@ -41473,10 +41769,6 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 
       if (user) {
         state.user = JSON.parse(user);
-      }
-
-      if (project) {
-        state.project = JSON.parse(project);
       }
     }
   }

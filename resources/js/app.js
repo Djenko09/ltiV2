@@ -23,7 +23,7 @@ import newInstanceComponent from "./components/newInstance.vue";
 import logoutComponent from "./components/logout.vue";
 import newVolumeComponent from "./components/newVolume.vue";
 import imagesComponent from "./components/images.vue";
-
+import volumesComponent from "./components/volumes.vue";
 
 
 const home = Vue.component('home', homeComponent);
@@ -32,10 +32,9 @@ const logout = Vue.component('logout', logoutComponent);
 const instancias = Vue.component('instancias', instanciasComponent);
 const dashboard = Vue.component('dashboard', dashboardComponent);
 const newInstance = Vue.component('newInstance', newInstanceComponent);
-
 const newVolume = Vue.component('newVolume', newVolumeComponent);
-
 const images = Vue.component('images', imagesComponent);
+const volumes = Vue.component('volumes', volumesComponent);
 
 
 

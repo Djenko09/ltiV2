@@ -41,8 +41,12 @@ export default  new Vuex.Store({
         
         setProject: (state, project) => {
             state.project = project;
-            window.localStorage.setItem('project', JSON.stringify(project));
+            window.localStorage.setItem('project', project);
           
+        },
+        clearProject: state => {
+            state.project = null;
+            localStorage.removeItem("project");
         },
         clearUser: state => {
             state.user = null;
@@ -75,9 +79,7 @@ export default  new Vuex.Store({
             if (user) {
                 state.user = JSON.parse(user);
             }
-            if (project){
-                state.project = JSON.parse(project);
-            }
+         
         },
     }
 });

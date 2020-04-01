@@ -27,7 +27,6 @@ export default {
       projects: [],
       instances: [],
       images: [],
-      btnInstances:null,
       flavors: []
     };
   },
@@ -42,9 +41,9 @@ export default {
           console.log(this.projects);
         });
     },
-    exitInstances(){
-     this.btnInstances = null;
-   },
+    createInstance: function() {
+      this.$router.push("/newInstance");
+    },
     loginProject(project){
       axios.post(this.url + "/identity/v3/auth/tokens",{
         auth: {
@@ -79,15 +78,28 @@ export default {
         this.getInstances();
       });
     },
-    getInstances(){
-     this.btnInstances = 1;
-   },
     revokeOldToken(){
       this.$store.commit("clearToken");
+    },
+    deleteInstance: function(instance) {
+      axios.delete(this.url + "/compute/v2.1/servers/" + instance, {
+        headers: { "x-auth-token": this.$store.state.token }
+      });
+
+      this.$toasted.show("Instance Deleted With Success");
+    },
+    getInstances(){
+      this.btnInstances = 1;
+    },
+    exitInstances(){
+      this.btnInstances = null;
     },
   },
   mounted() {
     this.getProjects();
+    this.getInstances();
+    this.getFlavors();
+    this.getImages();
   }
 };
 </script>

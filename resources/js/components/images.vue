@@ -4,7 +4,7 @@
     <h1>Images</h1>
     <button type="submit" class="btn btn-danger" v-on:click="exit()">Close</button>
   </div>
-  <button type="submit" class="btn btn-warning"></button>
+  <button type="submit" class="btn btn-warning">Upload image</button>
   <table class="table table-striped">
 
     <thead class="thead-dark">

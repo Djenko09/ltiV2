@@ -1940,7 +1940,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.130",
+      url: "http://192.168.232.20",
       projects: [],
       instances: [],
       images: [],
@@ -2087,7 +2087,7 @@ module.exports = {
   props: ["instance"],
   data: function data() {
     return {
-      url: "http://192.168.28.130"
+      url: "http://192.168.232.20"
     };
   },
   methods: {
@@ -2141,7 +2141,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.130"
+      url: "http://192.168.232.20"
     };
   },
   methods: {},
@@ -2204,7 +2204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.130",
+      url: "http://192.168.232.20",
       images: []
     };
   },
@@ -2324,7 +2324,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.130",
+      url: "http://192.168.232.20",
       instances: [],
       images: [],
       flavors: [],
@@ -2461,7 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.28.130",
+      url: "http://192.168.232.20",
       showMessage: false,
       message: ""
     };
@@ -2540,7 +2540,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.28.130"
+      url: "http://192.168.232.20"
     };
   },
   methods: {
@@ -2631,7 +2631,7 @@ __webpack_require__.r(__webpack_exports__);
         image_id: "",
         network_id: ""
       },
-      url: "http://192.168.28.130",
+      url: "http://192.168.232.20",
       showError: false,
       successMessage: "",
       flavors: [],
@@ -2764,7 +2764,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         size: ""
       },
-      url: "http://192.168.28.130",
+      url: "http://192.168.232.20",
       showError: false,
       successMessage: "",
       flavors: [],
@@ -23448,7 +23448,11 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("button", { staticClass: "btn btn-warning", attrs: { type: "submit" } }),
+    _c(
+      "button",
+      { staticClass: "btn btn-warning", attrs: { type: "submit" } },
+      [_vm._v("Upload image")]
+    ),
     _vm._v(" "),
     _c(
       "table",
@@ -41502,8 +41506,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

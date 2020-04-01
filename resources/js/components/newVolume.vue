@@ -19,9 +19,9 @@
 
     <div class="form-group">
       <a
-        class="btn btn-primary"
+        class="btn btn-success"
         v-on:click.prevent="createVolume(volume, project_id)"
-      >Create Instance</a>
+      >Create Volume</a>
       <a class="btn btn-danger" v-on:click.prevent="cancel()">Cancel</a>
     </div>
   </div>
@@ -81,7 +81,7 @@ export default {
         .then(response => {
           console.log(response);
           this.$router.push("/home");
-          this.$toasted.show("Instance Created");
+          this.$toasted.show("Volume Created");
          
         });
     },

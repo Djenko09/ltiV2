@@ -45,7 +45,7 @@
     </div>
 
     <div class="form-group">
-      <a class="btn btn-primary" v-on:click.prevent="createInstance()">Create Instance</a>
+      <a class="btn btn-success" v-on:click.prevent="createInstance()">Create Instance</a>
       <a class="btn btn-danger" v-on:click.prevent="cancel()">Cancel</a>
     </div>
   </div>

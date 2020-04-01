@@ -2802,7 +2802,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$router.push("/home");
 
-        _this.$toasted.show("Instance Created");
+        _this.$toasted.show("Volume Created");
       });
     },
     getProjectID: function getProjectID() {
@@ -24034,7 +24034,7 @@ var render = function() {
       _c(
         "a",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn btn-success",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -24162,7 +24162,7 @@ var render = function() {
       _c(
         "a",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn btn-success",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -24170,7 +24170,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("Create Instance")]
+        [_vm._v("Create Volume")]
       ),
       _vm._v(" "),
       _c(

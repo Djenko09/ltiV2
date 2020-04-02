@@ -45,6 +45,7 @@ const routes = [
     { path: '/instancias', component: instancias, name: "instancias"},
     { path: '/home', component: dashboard, name: "dashboard"},
     { path: '/newInstance', component: newInstance, name: "newInstance"},
+    { path: '/volumes', component: volumes, name: "volumes"},
     { path: '/logout', component: logout, name:"logout"},
     { path: '/newVolume', component: newVolume, name:"newVolume"},
 

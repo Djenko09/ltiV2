@@ -99,16 +99,15 @@
             <li v-else class="nav-item active">
               <router-link class="nav-link" to="/logout">Logout</router-link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+            <li v-if="this.$store.state.token" class="nav-item">
+              <a v-html="this.$store.state.user.name" class="nav-link" href="#"></a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
+            <li v-if="this.$store.state.token" class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a v-html="this.$store.state.projectName" href="#"></span>
+                <!--<a class="dropdown-item" href="#">Another action</a>-->
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
@@ -130,6 +129,9 @@
 			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 			  crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+</script>
 
 
 </body>

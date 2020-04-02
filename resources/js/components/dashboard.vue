@@ -4,7 +4,6 @@
       <!--  <a class="btn btn-primary"  v-on:click.prevent="getProjects()">getProjects</a>-->
 
       <h5>Projects</h5>
-
       <select>
         <option
           v-for="project in projects"
@@ -12,12 +11,6 @@
           v-on:click="loginProject(project)"
         >{{project.name}}</option>
       </select>
-
-      <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
-      <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
-      <button type="submit" class="btn btn-warning" v-on:click="getInstances()">Instances</button>
-      <button type="submit" class="btn btn-warning" v-on:click="getImagesV2()">Images</button>
-      <button type="submit" class="btn btn-warning" v-on:click="getVolumes()">Volumes</button>
     </div>
     <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
     <images @exit-images="exitImages" v-if="btnImages"></images>
@@ -37,7 +30,8 @@ export default {
       btnImages:null,
       btnVolumes: null,
       flavors: [],
-      project_id: ""
+      project_id: "",
+      project_name:""
     };
   },
   methods: {
@@ -48,6 +42,7 @@ export default {
         })
         .then(response => {
           this.projects = response.data.projects;
+          this.$store.commit("setProjects", this.projects);
           console.log(this.projects);
         });
     },
@@ -67,7 +62,9 @@ export default {
         })
         .then(response => {
           this.project_id = response.data.token.project.id;
-           this.$store.commit("setProject", this.project_id);
+          this.project_name = response.data.token.project.name;
+          this.$store.commit("setProject", this.project_id);
+          this.$store.commit("setProjectName", this.project_name);
           console.log(this.project_id);
         });
     },
@@ -83,7 +80,7 @@ export default {
                   domain: {
                     name: "Default"
                   },
-                  password: "paulo"
+                  password: "devstack"
                 }
               }
             },
@@ -103,10 +100,9 @@ export default {
           this.user = response.data.token.user;
           this.user.token = response.headers["x-subject-token"];
           this.$store.commit("setToken", this.user.token); //guarda token
-          this.$store.commit("setProject", project.id); //guarda id do projecto 
+          this.$store.commit("setProject", project.id); //guarda id do projecto
           this.$toasted.info("Changed to project " + project.name);
           this.$router.push("/home");
-          this.getInstances();
         });
     },
     getInstances() {
@@ -136,17 +132,14 @@ export default {
     },
     getInstances(){
       this.btnImages = null;
-      this.btnVolumes = null;
       this.btnInstances = 1;
     },
     getImagesV2(){
       this.btnInstances = null;
-      this.btnVolumes = null;
       this.btnImages = 1;
     },
     getVolumes(){
       this.btnInstances = null;
-      this.btnImages = null;
       this.btnVolumes = 1;
     },
     exitInstances(){

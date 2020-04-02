@@ -83,7 +83,7 @@ export default {
                   domain: {
                     name: "Default"
                   },
-                  password: "devstack"
+                  password: "paulo"
                 }
               }
             },
@@ -136,14 +136,17 @@ export default {
     },
     getInstances(){
       this.btnImages = null;
+      this.btnVolumes = null;
       this.btnInstances = 1;
     },
     getImagesV2(){
       this.btnInstances = null;
+      this.btnVolumes = null;
       this.btnImages = 1;
     },
     getVolumes(){
       this.btnInstances = null;
+      this.btnImages = null;
       this.btnVolumes = 1;
     },
     exitInstances(){

@@ -2232,11 +2232,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
-      images: []
+      images: [],
+      file: ''
     };
   },
   methods: {
@@ -2252,14 +2257,25 @@ __webpack_require__.r(__webpack_exports__);
         console.log(images);
       });
     },
-    getProjects: function getProjects() {
-      axios.get(this.url + "/identity/v3/auth/token", {
+    handleFileUpload: function handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+    },
+    submitFile: function submitFile() {
+      var formData = new FormData();
+      formData.append('file', this.file);
+      axios.post(this.url + "/image/v2/images", {
+        container_format: "bare",
+        disk_format: "raw",
+        name: "xp",
+        id: "b2173dd3-7ad6-4362-baa6-a68bce3567cb"
+      }, {
         headers: {
-          "x-auth-token": this.$store.state.token,
-          "x-subject-token": this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response.data.token.project.id);
+        console.log('Success');
+      })["catch"](function (error) {
+        console.log('Error');
       });
     },
     exit: function exit() {
@@ -2422,6 +2438,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     exit: function exit() {
       this.$emit('exit-instance');
+    },
+    createInstance: function createInstance() {
+      this.$router.push("/newInstance");
     }
   },
   components: {
@@ -2892,7 +2911,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.130",
+      url: "http://192.168.232.20",
       volumes: [],
       images: [],
       flavors: [],
@@ -2929,7 +2948,7 @@ __webpack_require__.r(__webpack_exports__);
       },
      instanceEdit: function(instance) {
      this.selectedInstance = null;
-     this.selectedInstanceEdit = instance;    
+     this.selectedInstanceEdit = instance;
     },
     cancelInstanceEdit: function() {
      this.selectedInstanceEdit = null;
@@ -23574,35 +23593,41 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c("h1", [_vm._v("Images")]),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", [
+        _vm._v("File\r\n    "),
+        _c("input", {
+          ref: "file",
+          staticClass: "form-control",
+          attrs: { type: "file", id: "file", placeholder: "Upload Image" },
+          on: {
+            change: function($event) {
+              return _vm.handleFileUpload()
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "btn btn-danger",
-          attrs: { type: "submit" },
           on: {
             click: function($event) {
-              return _vm.exit()
+              return _vm.submitFile()
             }
           }
         },
-        [_vm._v("Close")]
+        [_vm._v("Submit")]
       )
     ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn btn-warning", attrs: { type: "submit" } },
-      [_vm._v("Upload image")]
-    ),
     _vm._v(" "),
     _c(
       "table",
       { staticClass: "table table-striped" },
       [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _vm._l(_vm.images, function(image) {
           return _c("tbody", { key: image.id }, [
@@ -23613,7 +23638,7 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(image.container_format))]),
               _vm._v(" "),
-              _vm._m(1, true)
+              _vm._m(2, true)
             ])
           ])
         })
@@ -23623,6 +23648,12 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Images")])])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -23680,29 +23711,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c("h1", [_vm._v("Instances")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "submit" },
-          on: {
-            click: function($event) {
-              return _vm.exit()
-            }
-          }
-        },
-        [_vm._v("Close")]
-      )
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "table",
       { staticClass: "table table-striped" },
       [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _vm._l(_vm.instances, function(instance) {
           return _c(
@@ -23786,10 +23801,30 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-warning",
+        attrs: { type: "submit" },
+        on: {
+          click: function($event) {
+            return _vm.createInstance()
+          }
+        }
+      },
+      [_vm._v("Create Instance")]
     )
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Instances")])])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -24360,29 +24395,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c("h1", [_vm._v("Volumes")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "submit" },
-          on: {
-            click: function($event) {
-              return _vm.exit()
-            }
-          }
-        },
-        [_vm._v("Close")]
-      )
-    ]),
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "table",
       { staticClass: "table table-striped" },
       [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _vm._l(_vm.volumes, function(volume) {
           return _c("tbody", { key: volume.id }, [
@@ -24395,10 +24414,30 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-warning",
+        attrs: { type: "submit" },
+        on: {
+          click: function($event) {
+            return _vm.createVolume()
+          }
+        }
+      },
+      [_vm._v("Create Volume")]
     )
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Volumes")])])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -40871,7 +40910,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_newVolume_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/newVolume.vue */ "./resources/js/components/newVolume.vue");
 /* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
 /* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
+
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
@@ -40910,7 +40950,7 @@ var routes = [{
   component: login,
   name: "login"
 }, {
-  path: '/instancias',
+  path: '/instances',
   component: instancias,
   name: "instancias"
 }, {
@@ -40929,6 +40969,14 @@ var routes = [{
   path: '/newVolume',
   component: newVolume,
   name: "newVolume"
+}, {
+  path: '/images',
+  component: images,
+  name: "images"
+}, {
+  path: '/volumes',
+  component: volumes,
+  name: "volumes"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes
@@ -40939,6 +40987,11 @@ new Vue({
   store: _vuex_js__WEBPACK_IMPORTED_MODULE_2__["default"],
   created: function created() {
     this.$store.commit("loadTokenAndUserFromSession");
+  },
+  methods: {
+    show: function show() {
+      $('#sidebar').toggleClass('active');
+    }
   }
 });
 

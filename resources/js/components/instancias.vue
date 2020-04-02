@@ -4,7 +4,6 @@
 
     <div>
       <h1>Instances</h1>
-      <button type="submit" class="btn btn-danger" v-on:click="exit()">Close</button>
     </div>
 
       <table class="table table-striped">
@@ -62,6 +61,7 @@
           ></editInstance>
       </tbody>
     </table>
+    <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
 </div>
 </template>
 
@@ -121,7 +121,7 @@ export default {
      },
       instanceEdit: function(instance) {
       this.selectedInstance = null;
-      this.selectedInstanceEdit = instance;    
+      this.selectedInstanceEdit = instance;
     },
     cancelInstanceEdit: function() {
       this.selectedInstanceEdit = null;
@@ -134,6 +134,9 @@ export default {
     },
      exit(){
        this.$emit('exit-instance');
+     },
+     createInstance: function() {
+       this.$router.push("/newInstance");
      },
   },
   components: {

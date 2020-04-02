@@ -4,7 +4,6 @@
 
     <div>
       <h1>Volumes</h1>
-      <button type="submit" class="btn btn-danger" v-on:click="exit()">Close</button>
     </div>
 
       <table class="table table-striped">
@@ -24,11 +23,12 @@
         <tr>
           <td>{{ volume.name }}</td>
           <td>{{ volume.size }} GiB</td>
-         
+
        </tr>
-     
+
       </tbody>
     </table>
+    <button type="submit" class="btn btn-warning" v-on:click="createVolume()">Create Volume</button>
 </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
            .then(response=>{
             console.log(response.data);
              this.volumes = response.data.volumes;
-            
+
            })
       },
      /* getImages: function(){
@@ -78,7 +78,7 @@ export default {
      },
       instanceEdit: function(instance) {
       this.selectedInstance = null;
-      this.selectedInstanceEdit = instance;    
+      this.selectedInstanceEdit = instance;
     },
     cancelInstanceEdit: function() {
       this.selectedInstanceEdit = null;

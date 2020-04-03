@@ -25,6 +25,8 @@ import logoutComponent from "./components/logout.vue";
 import newVolumeComponent from "./components/newVolume.vue";
 import imagesComponent from "./components/images.vue";
 import volumesComponent from "./components/volumes.vue";
+import keyPairsComponent from "./components/keyPairs.vue";
+import keyPairsDetailComponent from "./components/keyPairsDetail.vue";
 
 
 const home = Vue.component('home', homeComponent);
@@ -36,6 +38,8 @@ const newInstance = Vue.component('newInstance', newInstanceComponent);
 const newVolume = Vue.component('newVolume', newVolumeComponent);
 const images = Vue.component('images', imagesComponent);
 const volumes = Vue.component('volumes', volumesComponent);
+const keyPairs = Vue.component('keyPairs', keyPairsComponent);
+const keyPairsDetail = Vue.component('keyPairsDetail', keyPairsDetailComponent);
 
 
 
@@ -50,6 +54,8 @@ const routes = [
     { path: '/logout', component: logout, name:"logout"},
     { path: '/newVolume', component: newVolume, name:"newVolume"},
     { path: '/images', component: images, name:"images"},
+    { path: '/keyPairs', component: keyPairs, name:"keyPairs"},
+    { path: '/keyPairsDetail', component: keyPairsDetail, name:"keyPairsDetail"},
 
 ];
 

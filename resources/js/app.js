@@ -1,4 +1,5 @@
 require('./bootstrap');
+//import 'bootstrap';
 
 window.Vue = require('vue');
 
@@ -42,11 +43,14 @@ const volumes = Vue.component('volumes', volumesComponent);
 const routes = [
     { path: '/', component: homeComponent },
     { path: '/login', component: login, name: "login" },
-    { path: '/instancias', component: instancias, name: "instancias"},
+    { path: '/instances', component: instancias, name: "instancias"},
     { path: '/home', component: dashboard, name: "dashboard"},
     { path: '/newInstance', component: newInstance, name: "newInstance"},
+    { path: '/volumes', component: volumes, name: "volumes"},
     { path: '/logout', component: logout, name:"logout"},
     { path: '/newVolume', component: newVolume, name:"newVolume"},
+    { path: '/images', component: images, name:"images"},
+    { path: '/volumes', component: volumes, name:"volumes"},
 
 ];
 
@@ -64,5 +68,10 @@ new Vue({
     created() {
         this.$store.commit("loadTokenAndUserFromSession");
 
-    }
+    },
+    methods: {
+      show(){
+        $('#sidebar').toggleClass('active');
+      },
+}
 });

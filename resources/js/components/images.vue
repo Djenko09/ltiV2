@@ -2,9 +2,13 @@
 <div>
   <div>
     <h1>Images</h1>
-    <button type="submit" class="btn btn-danger" v-on:click="exit()">Close</button>
   </div>
-  <button type="submit" class="btn btn-warning">Upload image</button>
+  <div class="form-group">
+    <label>File
+    <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload()" placeholder="Upload Image" >
+    </label>
+    <button v-on:click="submitFile()">Submit</button>
+  </div>
   <table class="table table-striped">
 
     <thead class="thead-dark">
@@ -37,6 +41,7 @@
     </tr>
   </tbody>
   </table>
+
 </div>
 </template>
 
@@ -47,26 +52,38 @@ export default {
     return{
       url: process.env.MIX_URL,
       images:[],
+      file:'',
     }
   },
   methods:{
     getImages: function(){
       axios.get(this.url + "/image/v2/images",{
-         headers: {'x-auth-token': this.$store.state.token,}
-       })
-
-         .then(response=>{
+         headers: {'x-auth-token': this.$store.state.token}
+       }).then(response=>{
            this.images = response.data.images;
            console.log(images);
          })
     },
-    getProjects(){
-      axios.get(this.url + "/identity/v3/auth/token",{
-        headers: {"x-auth-token": this.$store.state.token,
-      "x-subject-token": this.$store.state.token}
-      }).then(response =>{
-        console.log(response.data.token.project.id)
-      });
+
+    handleFileUpload(){
+      this.file=this.$refs.file.files[0];
+    },
+    submitFile(){
+      let formData = new FormData();
+      formData.append('file',this.file);
+      axios.post(this.url + "/image/v2/images",
+      {
+        container_format:"bare",
+        disk_format:"raw",
+        name:"xp",
+        id:"b2173dd3-7ad6-4362-baa6-a68bce3567cb"
+      },{
+        headers : {"x-auth-token": this.$store.state.token}
+      }).then(response=>{
+        console.log('Success');
+      }).catch(error=>{
+        console.log('Error');
+      })
     },
     exit(){
       this.$emit('exit-images');

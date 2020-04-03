@@ -4,7 +4,6 @@
 
     <div>
       <h1>Instances</h1>
-      <button type="submit" class="btn btn-danger" v-on:click="exit()">Close</button>
     </div>
 
       <table class="table table-striped">
@@ -25,9 +24,12 @@
         :key="instance.id"
         >
         <tr>
-          <td v-if="instance.name">{{ instance.name }}</td>
+          <td v-if="instance.name">{{ instance.name}}</td>
           <td v-else>Nada...</td>
-          <td>{{ instance.status }}</td>
+          <td class="bg-danger" v-if="instance.status === 'ERROR'"> {{instance.status}}</td>
+          <td class="bg-warning" v-if="instance.status === 'SHUTOFF'"> {{instance.status}}</td>
+          <td class="bg-info" v-if="instance.status === 'PAUSED'"> {{instance.status}}</td>
+          <td class="bg-success" v-if="instance.status === 'ACTIVE'"> {{instance.status}}</td>
           <td >
             <div v-for="flavor in flavors" :key="flavor.id" >
 
@@ -62,6 +64,7 @@
           ></editInstance>
       </tbody>
     </table>
+    <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
 </div>
 </template>
 
@@ -121,7 +124,7 @@ export default {
      },
       instanceEdit: function(instance) {
       this.selectedInstance = null;
-      this.selectedInstanceEdit = instance;    
+      this.selectedInstanceEdit = instance;
     },
     cancelInstanceEdit: function() {
       this.selectedInstanceEdit = null;
@@ -134,6 +137,9 @@ export default {
     },
      exit(){
        this.$emit('exit-instance');
+     },
+     createInstance: function() {
+       this.$router.push("/newInstance");
      },
   },
   components: {

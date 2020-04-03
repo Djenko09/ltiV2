@@ -1,4 +1,4 @@
-<template>
+ogin<template>
   <div>
     <div class="starter-template jumbotron bg-info">
       <strong>{{ message }}</strong>
@@ -41,7 +41,7 @@ export default {
         token: null
       },
       project:{
-        
+
       },
       credentials: {
         name: null,
@@ -78,10 +78,10 @@ export default {
                       id: "default"
                     },
                     name: "demo"
-                   
+
                   }
                 }
-              
+
             }
           },
           {
@@ -95,11 +95,11 @@ export default {
           this.user = response.data.token.user;
           this.user.token = response.headers["x-subject-token"];
           this.project = response.data.token.project;
-        
+
           console.log(this.user.token);
           this.$store.commit("setToken", this.user.token); //guarda token
           this.$store.commit("setProject", this.project); //guarda id do project para depois usar a criar volume
-          
+
           this.$router.push("/home");
         })
         .then(response => {

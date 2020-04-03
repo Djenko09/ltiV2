@@ -42,8 +42,8 @@ export default {
         })
         .then(response => {
           this.projects = response.data.projects;
-          this.$store.commit("setProjects", this.projects);
-          console.log(this.projects);
+          this.$store.commit("setProjectNames", this.projects);
+          console.log(this.$store.state.projectNames);
         });
     },
     createInstance: function() {

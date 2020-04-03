@@ -1958,9 +1958,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         _this.projects = response.data.projects;
 
-        _this.$store.commit("setProjects", _this.projects);
+        _this.$store.commit("setProjectNames", _this.projects);
 
-        console.log(_this.projects);
+        console.log(_this.$store.state.projectNames);
       });
     },
     createInstance: function createInstance() {
@@ -2588,6 +2588,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _keyPairsDetail_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keyPairsDetail.vue */ "./resources/js/components/keyPairsDetail.vue");
+//
+//
 //
 //
 //
@@ -24428,64 +24430,66 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-striped" },
-      [
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._l(_vm.keypairs, function(keypairs) {
-          return _c(
-            "tbody",
-            { key: keypairs.id },
-            [
-              _c("tr", [
-                _c("td", [_vm._v(_vm._s(keypairs.keypair.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(keypairs.keypair.public_key))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(keypairs.keypair.fingerprint))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-success",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.keyPairsDetail(keypairs)
-                        }
-                      }
-                    },
-                    [_vm._v("Details")]
-                  ),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c(
+        "table",
+        { staticClass: "table table-striped" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.keypairs, function(keypairs) {
+            return _c(
+              "tbody",
+              { key: keypairs.id },
+              [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(keypairs.keypair.name))]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-danger",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("Delete Key Pair")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _vm.selectedkeyPairsDetail &&
-              _vm.selectedkeyPairsDetail === keypairs
-                ? _c("detailKeyPairs", {
-                    attrs: { keypairs: _vm.selectedkeyPairsDetail },
-                    on: { "edit-canceled": _vm.cancelkeyPairsDetail }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
-        })
-      ],
-      2
-    )
+                  _c("td", [_vm._v(_vm._s(keypairs.keypair.public_key))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(keypairs.keypair.fingerprint))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-success",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.keyPairsDetail(keypairs)
+                          }
+                        }
+                      },
+                      [_vm._v("Details")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-danger",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("Delete Key Pair")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm.selectedkeyPairsDetail &&
+                _vm.selectedkeyPairsDetail === keypairs
+                  ? _c("detailKeyPairs", {
+                      attrs: { keypairs: _vm.selectedkeyPairsDetail },
+                      on: { "edit-canceled": _vm.cancelkeyPairsDetail }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
+          })
+        ],
+        2
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -42913,7 +42917,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
     token: "",
     user: null,
     project: null,
-    projectName: null
+    projectName: null,
+    projectNames: []
   },
   getters: {
     isAuthenticated: function isAuthenticated(state) {
@@ -42943,6 +42948,10 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
     setProjectName: function setProjectName(state, projectName) {
       state.projectName = projectName;
       window.localStorage.setItem('projectName', projectName);
+    },
+    setProjectNames: function setProjectNames(state, projectNames) {
+      state.projectNames = projectNames;
+      window.localStorage.setItem('projectNames', projectNames);
     },
     clearProject: function clearProject(state) {
       state.project = null;

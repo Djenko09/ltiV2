@@ -71,10 +71,10 @@
 
 
     <div  v-if="this.$store.state.token" class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">OpenStack<router-link to="/home" class="navbar-brand"><img src="https://pbs.twimg.com/profile_images/810981601253261312/V1zRfeKR_400x400.jpg" alt="some text" width=60 height=40></router-link></div>
+      <div class="sidebar-heading"><router-link to="/home" class="navbar-brand"><img src="{{URL::asset('/images/logo.png')}}" alt="some text" width=200 height=100/></router-link></div>
       <div class="list-group list-group-flush">
         <p>
-        <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseProject" role="button" aria-expanded="false" aria-controls="multiCollapseProject"
+        <a class="list-group-item list-group-item-action btn-outline-secondary  dropdown-toggle" data-toggle="collapse" href="#multiCollapseProject" role="button" aria-expanded="false" aria-controls="multiCollapseProject"
         role="button" aria-pressed="true">Project</a>
         </p>
         <div class="row">
@@ -258,24 +258,26 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li v-if="!this.$store.state.token" class="nav-item active">
-              <router-link class="nav-link" to="/login">Login</router-link>
-            </li>
-            <li v-else class="nav-item active">
-              <router-link class="nav-link" to="/logout">Logout</router-link>
-            </li>
             <li v-if="this.$store.state.token" class="nav-item">
               <a v-html="this.$store.state.user.name" class="nav-link" href="#"></a>
+                <i class="fa fa-user" aria-hidden="true"></i>
             </li>
             <li v-if="this.$store.state.token" class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a v-html="this.$store.state.projectName" href="#"></span>
-                <!--<a class="dropdown-item" href="#">Another action</a>-->
-                <div class="dropdown-divider"></div>
+                <div v-for="projectName in this.$store.state.projectNames" :key="projectName.name">
+                    <router-link to="''/changeProj', projectName.name" class="dropdown-item" v-html="projectName.name" style="text-align:center" href="#"></router-link>
+                </div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
+
+            </li>
+            <li v-if="!this.$store.state.token" class="nav-item active">
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
+            <li v-else class="nav-item active">
+              <router-link class="nav-link" to="/logout">Logout</router-link>
             </li>
           </ul>
         </div>

@@ -14,8 +14,8 @@ export default  new Vuex.Store({
     state: {
         token: "",
         user: null,
-        project: null,
-
+        project:null,
+        projectName:null,
     },
 
     getters: {
@@ -38,11 +38,16 @@ export default  new Vuex.Store({
             window.localStorage.setItem('token', token);
             axios.defaults.headers.common.Authorization = "Bearer " + token;
         },
-        
+
         setProject: (state, project) => {
             state.project = project;
             window.localStorage.setItem('project', project);
-          
+
+        },
+        setProjectName: (state, projectName) => {
+            state.projectName = projectName;
+            window.localStorage.setItem('projectName', projectName);
+
         },
         clearProject: state => {
             state.project = null;
@@ -79,7 +84,7 @@ export default  new Vuex.Store({
             if (user) {
                 state.user = JSON.parse(user);
             }
-         
+
         },
     }
 });

@@ -74,6 +74,7 @@
         <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light">Instances</router-link>
         <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light">Images</router-link>
         <router-link to="/volumes"href="#" class="list-group-item list-group-item-action bg-light">Volumes</router-link>
+        <router-link to="/keypairs"href="#" class="list-group-item list-group-item-action bg-light">Key Pairs</router-link>
         <!--<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>-->

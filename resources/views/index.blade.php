@@ -68,7 +68,7 @@
   <div class="d-flex" id="app">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <div  v-if="this.$store.state.token" class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">OpenStack<router-link to="/home" class="navbar-brand"><img src="https://pbs.twimg.com/profile_images/810981601253261312/V1zRfeKR_400x400.jpg" alt="some text" width=60 height=40></router-link></div>
       <div class="list-group list-group-flush">
         <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light">Instances</router-link>

@@ -2355,6 +2355,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -41409,10 +41410,6 @@ var routes = [{
   path: '/images',
   component: images,
   name: "images"
-}, {
-  path: '/volumes',
-  component: volumes,
-  name: "volumes"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes

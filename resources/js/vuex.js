@@ -16,7 +16,6 @@ export default  new Vuex.Store({
         user: null,
         project:null,
         projectName:null,
-
     },
 
     getters: {

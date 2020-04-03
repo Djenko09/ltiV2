@@ -50,7 +50,6 @@ const routes = [
     { path: '/logout', component: logout, name:"logout"},
     { path: '/newVolume', component: newVolume, name:"newVolume"},
     { path: '/images', component: images, name:"images"},
-    { path: '/volumes', component: volumes, name:"volumes"},
 
 ];
 

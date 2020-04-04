@@ -1899,6 +1899,87 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/changeProj.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/changeProj.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['projectName'],
+  data: function data() {
+    return {
+      url: "http://192.168.232.20",
+      project_name: null,
+      user: {
+        token: null
+      },
+      project: {}
+    };
+  },
+  methods: {
+    loginProject: function loginProject() {
+      var _this = this;
+
+      axios.post(this.url + "/identity/v3/auth/tokens", {
+        auth: {
+          identity: {
+            methods: ["password"],
+            password: {
+              user: {
+                name: this.$store.state.user.name,
+                domain: {
+                  name: "Default"
+                },
+                password: "devstack"
+              }
+            }
+          },
+          scope: {
+            project: {
+              domain: {
+                id: "default"
+              },
+              name: this.projectName
+            }
+          }
+        }
+      }).then(function (response) {
+        _this.$store.commit("clearToken");
+
+        _this.$store.commit("clearProject");
+
+        _this.user = response.data.token.user;
+        _this.user.token = response.headers["x-subject-token"];
+
+        _this.$store.commit("setToken", _this.user.token); //guarda token
+
+
+        _this.$store.commit("setProject", _this.project); //guarda id do projecto
+
+
+        _this.$toasted.success("Changed to project " + _this.projectName);
+
+        _this.$router.push("/home");
+
+        console.log("SUCESS");
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.loginProject();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard.vue?vue&type=script&lang=js& ***!
@@ -1912,6 +1993,10 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -1988,51 +2073,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(_this2.project_id);
       });
     },
-    loginProject: function loginProject(project) {
-      var _this3 = this;
 
-      axios.post(this.url + "/identity/v3/auth/tokens", {
-        auth: {
-          identity: {
-            methods: ["password"],
-            password: {
-              user: {
-                name: this.$store.state.user.name,
+    /*loginProject(project) {
+      axios
+        .post(this.url + "/identity/v3/auth/tokens", {
+          auth: {
+            identity: {
+              methods: ["password"],
+              password: {
+                user: {
+                  name: this.$store.state.user.name,
+                  domain: {
+                    name: "Default"
+                  },
+                  password: "devstack"
+                }
+              }
+            },
+            scope: {
+              project: {
                 domain: {
-                  name: "Default"
+                  id: "default"
                 },
-                password: "devstack"
+                name: project.name
               }
             }
-          },
-          scope: {
-            project: {
-              domain: {
-                id: "default"
-              },
-              name: project.name
-            }
           }
-        }
-      }).then(function (response) {
-        _this3.$store.commit("clearToken");
-
-        _this3.$store.commit("clearProject");
-
-        _this3.user = response.data.token.user;
-        _this3.user.token = response.headers["x-subject-token"];
-
-        _this3.$store.commit("setToken", _this3.user.token); //guarda token
-
-
-        _this3.$store.commit("setProject", project.id); //guarda id do projecto
-
-
-        _this3.$toasted.info("Changed to project " + project.name);
-
-        _this3.$router.push("/home");
-      });
-    },
+        })
+        .then(response => {
+          this.$store.commit("clearToken");
+          this.$store.commit("clearProject");
+          this.user = response.data.token.user;
+          this.user.token = response.headers["x-subject-token"];
+          this.$store.commit("setToken", this.user.token); //guarda token
+          this.$store.commit("setProject", project.id); //guarda id do projecto
+          this.$toasted.info("Changed to project " + project.name);
+          this.$router.push("/home");
+        });
+    },*/
     getInstances: function getInstances() {
       this.btnInstances = 1;
     },
@@ -2051,14 +2129,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$toasted.show("Instance Deleted With Success");
     },
     getImages: function getImages() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios.get(this.url + "/image/v2/images", {
         headers: {
           'x-auth-token': this.$store.state.token
         }
       }).then(function (response) {
-        _this4.images = response.data.images;
+        _this3.images = response.data.images;
         console.log(images);
       });
     }
@@ -3376,7 +3454,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -23713,6 +23791,30 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/changeProj.vue?vue&type=template&id=7ac75538&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/changeProj.vue?vue&type=template&id=7ac75538& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("p", [_vm._v(_vm._s(_vm.projectName))])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard.vue?vue&type=template&id=57220a4e&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard.vue?vue&type=template&id=57220a4e& ***!
@@ -23728,48 +23830,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      this.$store.state.token
-        ? _c("div", { staticClass: "jumbotron" }, [
-            _c("h5", [_vm._v("Projects")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              _vm._l(_vm.projects, function(project) {
-                return _c(
-                  "option",
-                  {
-                    key: project.id,
-                    on: {
-                      click: function($event) {
-                        return _vm.loginProject(project)
-                      }
-                    }
-                  },
-                  [_vm._v(_vm._s(project.name))]
-                )
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.btnInstances
-        ? _c("instancias", { on: { "exit-instance": _vm.exitInstances } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.btnImages
-        ? _c("images", { on: { "exit-images": _vm.exitImages } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.btnVolumes
-        ? _c("volumes", { on: { "exit-volumes": _vm.exitVolumes } })
-        : _vm._e()
-    ],
-    1
-  )
+  return _c("div", [
+    this.$store.state.token
+      ? _c("div", { staticClass: "jumbotron" }, [
+          _c("h1", [_vm._v("Hey pandeleiros!")]),
+          _vm._v(" "),
+          _c("h2", { staticStyle: { "text-align": "right" } }, [
+            _vm._v(" Se quiserem mudar de proj é ali em cima ^^^")
+          ]),
+          _vm._v(" "),
+          _c("h3", [_vm._v(":DDDDDDDD")])
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41767,6 +41840,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
 /* harmony import */ var _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/keyPairs.vue */ "./resources/js/components/keyPairs.vue");
 /* harmony import */ var _components_keyPairsDetail_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/keyPairsDetail.vue */ "./resources/js/components/keyPairsDetail.vue");
+/* harmony import */ var _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/changeProj.vue */ "./resources/js/components/changeProj.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
 
 
@@ -41776,10 +41850,11 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_1___default.a, {
   theme: "bubble",
-  position: "top-center",
+  position: "top-right",
   duration: 5000,
   type: 'success'
 });
+
 
 
 
@@ -41803,6 +41878,7 @@ var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MO
 var volumes = Vue.component('volumes', _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
 var keyPairs = Vue.component('keyPairs', _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
 var keyPairsDetail = Vue.component('keyPairsDetail', _components_keyPairsDetail_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
+var changeProj = Vue.component('changeProj', _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
 var routes = [{
   path: '/',
   component: _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -41846,6 +41922,11 @@ var routes = [{
   path: '/keyPairsDetail',
   component: keyPairsDetail,
   name: "keyPairsDetail"
+}, {
+  path: '/changeProj',
+  props: true,
+  component: changeProj,
+  name: "changeProj"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes
@@ -41895,6 +41976,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/changeProj.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/changeProj.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _changeProj_vue_vue_type_template_id_7ac75538___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./changeProj.vue?vue&type=template&id=7ac75538& */ "./resources/js/components/changeProj.vue?vue&type=template&id=7ac75538&");
+/* harmony import */ var _changeProj_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./changeProj.vue?vue&type=script&lang=js& */ "./resources/js/components/changeProj.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _changeProj_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _changeProj_vue_vue_type_template_id_7ac75538___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _changeProj_vue_vue_type_template_id_7ac75538___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/changeProj.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/changeProj.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/changeProj.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_changeProj_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./changeProj.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/changeProj.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_changeProj_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/changeProj.vue?vue&type=template&id=7ac75538&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/changeProj.vue?vue&type=template&id=7ac75538& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_changeProj_vue_vue_type_template_id_7ac75538___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./changeProj.vue?vue&type=template&id=7ac75538& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/changeProj.vue?vue&type=template&id=7ac75538&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_changeProj_vue_vue_type_template_id_7ac75538___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_changeProj_vue_vue_type_template_id_7ac75538___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

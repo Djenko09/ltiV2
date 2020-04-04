@@ -2,19 +2,23 @@
   <div>
     <div v-if="this.$store.state.token" class="jumbotron">
       <!--  <a class="btn btn-primary"  v-on:click.prevent="getProjects()">getProjects</a>-->
-
-      <h5>Projects</h5>
+      <h1>Hey pandeleiros!</h1>
+      <h2 style="text-align:right"> Se quiserem mudar de proj é ali em cima ^^^</h2>
+      <h3>:DDDDDDDD</h3>
+    <!--  <h5>Projects</h5>
       <select>
         <option
           v-for="project in projects"
           :key="project.id"
           v-on:click="loginProject(project)"
         >{{project.name}}</option>
-      </select>
+      </select>-->
+
     </div>
+    <!--
     <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
     <images @exit-images="exitImages" v-if="btnImages"></images>
-    <volumes @exit-volumes="exitVolumes" v-if="btnVolumes"></volumes>
+    <volumes @exit-volumes="exitVolumes" v-if="btnVolumes"></volumes>-->
   </div>
 </template>
 
@@ -68,7 +72,7 @@ export default {
           console.log(this.project_id);
         });
     },
-    loginProject(project) {
+    /*loginProject(project) {
       axios
         .post(this.url + "/identity/v3/auth/tokens", {
           auth: {
@@ -104,7 +108,7 @@ export default {
           this.$toasted.info("Changed to project " + project.name);
           this.$router.push("/home");
         });
-    },
+    },*/
     getInstances() {
       this.btnInstances = 1;
     },

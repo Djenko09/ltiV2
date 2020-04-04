@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
     theme: "bubble",
-    position: "top-center",
+    position: "top-right",
     duration: 5000,
     type: 'success'
 });
@@ -27,6 +27,7 @@ import imagesComponent from "./components/images.vue";
 import volumesComponent from "./components/volumes.vue";
 import keyPairsComponent from "./components/keyPairs.vue";
 import keyPairsDetailComponent from "./components/keyPairsDetail.vue";
+import changeProjComponent from "./components/changeProj.vue";
 
 
 const home = Vue.component('home', homeComponent);
@@ -40,6 +41,7 @@ const images = Vue.component('images', imagesComponent);
 const volumes = Vue.component('volumes', volumesComponent);
 const keyPairs = Vue.component('keyPairs', keyPairsComponent);
 const keyPairsDetail = Vue.component('keyPairsDetail', keyPairsDetailComponent);
+const changeProj = Vue.component('changeProj', changeProjComponent);
 
 
 
@@ -56,6 +58,8 @@ const routes = [
     { path: '/images', component: images, name:"images"},
     { path: '/keyPairs', component: keyPairs, name:"keyPairs"},
     { path: '/keyPairsDetail', component: keyPairsDetail, name:"keyPairsDetail"},
+    { path: '/changeProj',  props: true, component: changeProj, name:"changeProj"},
+
 
 ];
 

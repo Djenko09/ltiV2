@@ -263,13 +263,13 @@
                 <i class="fa fa-user" aria-hidden="true"></i>
             </li>
             <li v-if="this.$store.state.token" class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-html="this.$store.state.projectName">
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <div v-for="projectName in this.$store.state.projectNames" :key="projectName.name">
-                    <router-link to="''/changeProj', projectName.name" class="dropdown-item" v-html="projectName.name" style="text-align:center" href="#"></router-link>
+                <div v-for="project in this.$store.state.projectNames" :key="project.id">
+                    <router-link :to="{name: 'changeProj', params: {projectName: project.name}}" class="dropdown-item" v-html="project.name" style="text-align:center" href="#"></router-link>
                 </div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <!--<a class="dropdown-item" href="#">Something else here</a>-->
               </div>
 
             </li>

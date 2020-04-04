@@ -1,17 +1,24 @@
 <template>
-
+  <p>{{projectName}}</p>
 </template>
 
 <script type="text/javascript">
 export default {
+  props:['projectName'],
   data: function() {
     return {
       url: process.env.MIX_URL,
-      project_name:"",
-    };
+      project_name: null,
+      user:{
+        token: null
+      },
+      project:{
+
+      },
+    }
   },
   methods: {
-    loginProject(project) {
+    loginProject() {
       axios
         .post(this.url + "/identity/v3/auth/tokens", {
           auth: {
@@ -32,7 +39,7 @@ export default {
                 domain: {
                   id: "default"
                 },
-                name: project
+                name: this.projectName
               }
             }
           }
@@ -43,15 +50,16 @@ export default {
           this.user = response.data.token.user;
           this.user.token = response.headers["x-subject-token"];
           this.$store.commit("setToken", this.user.token); //guarda token
-          this.$store.commit("setProject", project.id); //guarda id do projecto
-          this.$toasted.info("Changed to project " + project.name);
+          this.$store.commit("setProject", this.project); //guarda id do projecto
+          this.$toasted.success("Changed to project " + this.projectName);
           this.$router.push("/home");
+          console.log("SUCESS")
         });
     },
 
   },
   mounted() {
-    this.loginProject(ProjectName.name);
+    this.loginProject();
   }
 };
 </script>

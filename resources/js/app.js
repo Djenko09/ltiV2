@@ -16,7 +16,7 @@ Vue.use(Toasted, {
 
 import store from "./vuex.js";
 
-import loginComponent from "./components/loginComponentBackup.vue";
+import loginComponent from "./components/loginComponentBackuo.vue";
 import homeComponent from "./components/homeComponent.vue";
 import instanciasComponent from "./components/instancias.vue";
 import dashboardComponent from "./components/dashboard.vue";
@@ -28,6 +28,8 @@ import volumesComponent from "./components/volumes.vue";
 import keyPairsComponent from "./components/keyPairs.vue";
 import keyPairsDetailComponent from "./components/keyPairsDetail.vue";
 import changeProjComponent from "./components/changeProj.vue";
+import serverGroupComponent from "./components/serverGroups.vue";
+import newServerGroupComponent from "./components/createServerGroup.vue";
 
 
 const home = Vue.component('home', homeComponent);
@@ -42,6 +44,8 @@ const volumes = Vue.component('volumes', volumesComponent);
 const keyPairs = Vue.component('keyPairs', keyPairsComponent);
 const keyPairsDetail = Vue.component('keyPairsDetail', keyPairsDetailComponent);
 const changeProj = Vue.component('changeProj', changeProjComponent);
+const serverGroup = Vue.component('serverGroup', serverGroupComponent);
+const newServerGroup = Vue.component('newServerGroup', newServerGroupComponent);
 
 
 
@@ -59,6 +63,8 @@ const routes = [
     { path: '/keyPairs', component: keyPairs, name:"keyPairs"},
     { path: '/keyPairsDetail', component: keyPairsDetail, name:"keyPairsDetail"},
     { path: '/changeProj',  props: true, component: changeProj, name:"changeProj"},
+    { path: '/serverGroup', component: serverGroup, name:"serverGroup"},
+    { path: '/createServerGroup', component: newServerGroup, name:"newServerGroup"},
 
 
 ];

@@ -9,9 +9,9 @@
     </label>
     <button v-on:click="submitFile()">Submit</button>
   </div>
-  <table class="table table-striped">
+  <table class="table table-hover">
 
-    <thead class="thead-dark">
+    <thead>
       <tr>
         <th>Name</th>
         <th>Disk Format</th>

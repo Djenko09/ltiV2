@@ -1,14 +1,76 @@
 <template>
 <div>
 
-
+  <br>
     <div>
       <h1>Instances</h1>
     </div>
+    <br>
+    <div>
+      <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalInstances">Create Instance</button>
+    </div>
+      <br>
+      <div class="modal" id="myModalInstances">
+        <div class="modal-dialog">
+          <div class="modal-content">
 
-      <table class="table table-striped">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Create Instance</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
 
-        <thead class="thead-dark">
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" v-model="instance.name" id="name" />
+              </div>
+
+              <div class="form-group">
+                <label for="image">Image</label>
+                <select class="form-control" id="image" name="image" v-model="instance.image_id">
+                  <option value selected>Choose a image</option>
+                  <option v-for="image in images" :key="image.id" v-bind:value="image.id">{{ image.name }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="flavor">Flavor</label>
+                <select class="form-control" id="flavor" name="flavor" v-model="instance.flavor_id">
+                  <option value selected>Choose a flavor</option>
+                  <option
+                    v-for="flavor in flavors"
+                    :key="flavor.id"
+                    v-bind:value="flavor.id"
+                  >{{ flavor.name}} ||| VCPUS:{{flavor.vcpus}} ||| RAM:{{flavor.ram}}MB ||| DISK:{{flavor.disk}}GB</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="flavor">Network</label>
+                <select class="form-control" id="flavor" name="flavor" v-model="instance.network_id">
+                  <option value selected>Choose a network</option>
+                  <option
+                    v-for="network_id in networks"
+                    :key="network_id.id"
+                    v-bind:value="network_id.id"
+                  >{{ network_id.name}}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning" data-dismiss="modal" v-on:click="createInstance()" >Create</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <table class="table table-hover">
+
+        <thead>
           <tr>
             <th>Name</th>
             <th>Status</th>
@@ -64,7 +126,6 @@
           ></editInstance>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-warning" v-on:click="createInstance()">Create Instance</button>
 </div>
 </template>
 
@@ -78,6 +139,13 @@ export default {
     return{
       url: process.env.MIX_URL,
       instances: [],
+      instance: {
+        name: "",
+        flavor_id: "",
+        image_id: "",
+        network_id: ""
+      },
+      networks: [],
       images: [],
       flavors: [],
       selectedInstance: null,
@@ -114,6 +182,16 @@ export default {
              console.log(images);
            })
      },
+     getNetworks: function() {
+       axios
+         .get(this.url + ":9696/v2.0/networks", {
+           headers: { "x-auth-token": this.$store.state.token }
+         })
+         .then(response => {
+           this.networks = response.data.networks;
+           console.log(this.networks);
+         });
+     },
      deleteInstance: function(instance){
        axios.delete(this.url + "/compute/v2.1/servers/" + instance.id, {
             headers: {'x-auth-token': this.$store.state.token} })
@@ -121,6 +199,40 @@ export default {
 
            this.$toasted.show("Instance Deleted With Success");
 
+     },
+     createInstance: function() {
+       axios
+         .post(
+           this.url + "/compute/v2.1/servers",
+           {
+             server: {
+               flavorRef: this.instance.flavor_id,
+               name: this.instance.name,
+
+               networks: [
+                 {
+                   uuid: this.instance.network_id
+                 }
+               ],
+
+               imageRef: this.instance.image_id,
+
+               availability_zone: "nova"
+             }
+           },
+           {
+             headers: {
+               "Content-Type": "application/json",
+                "x-auth-token": this.$store.state.token
+             }
+           }
+         )
+         .then(response => {
+           console.log(response);
+           this.$router.push("/home");
+           this.$toasted.show("Instance Created");
+
+         });
      },
       instanceEdit: function(instance) {
       this.selectedInstance = null;
@@ -138,9 +250,6 @@ export default {
      exit(){
        this.$emit('exit-instance');
      },
-     createInstance: function() {
-       this.$router.push("/newInstance");
-     },
   },
   components: {
     editInstance: InstanceEdit
@@ -150,6 +259,7 @@ export default {
     this.getInstances();
     this.getFlavors();
     this.getImages();
+    this.getNetworks();
   }
 }
 </script>

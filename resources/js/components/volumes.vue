@@ -4,8 +4,8 @@
       <h1>Volumes</h1>
     </div>
 
-    <table class="table table-striped">
-      <thead class="thead-dark">
+    <table class="table table-hover">
+      <thead>
         <tr>
           <th>Name</th>
           <th>Size</th>

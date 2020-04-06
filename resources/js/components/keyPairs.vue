@@ -14,6 +14,7 @@
     <thead class="thead-dark">
       <tr>
         <th>Name</th>
+        <th>Type</th>
         <th>Public Key</th>
         <th>Fingerprint</th>
         <th>Options</th>
@@ -26,6 +27,7 @@
     >
     <tr>
       <td>{{ keypairs.keypair.name }}</td>
+      <td>{{ keypairs.keypair.type }}</td>
       <td>{{ keypairs.keypair.public_key}}</td>
       <td>{{ keypairs.keypair.fingerprint}}</td>
       <td>
@@ -62,20 +64,21 @@ export default {
       url: process.env.MIX_URL,
       keypairs:[],
       file:'',
+      selectedkeyPairsDetail: null,
+      
     }
   },
   methods:{
     getKeyPairs: function(){
       axios.get(this.url + "/compute/v2.1/os-keypairs",{
-         headers: {'x-auth-token': this.$store.state.token}
+         headers: {
+             'x-auth-token': this.$store.state.token,
+             'x-openstack-nova-api-version': '2.2'
+             }
        }).then(response=>{
            this.keypairs = response.data.keypairs;
            console.log(keypairs);
          })
-    },
-
-    handleFileUpload(){
-      this.file=this.$refs.file.files[0];
     },
     createKeyPair(){
       let formData = new FormData();
@@ -95,7 +98,8 @@ export default {
       })
     },
     keyPairsDetail: function(keypairs) {
-      this.selectedkeyPairsDetail = null;
+        this.$router.push("/keyPairsDetail");
+        this.selectedkeyPairsDetail = keypairs;
     },
     exit(){
       this.$emit('exit-images');

@@ -1935,7 +1935,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       projects: [],
       instances: [],
       images: [],
@@ -2116,7 +2116,7 @@ module.exports = {
   props: ["instance"],
   data: function data() {
     return {
-      url: "http://192.168.232.20"
+      url: "http://127.0.0.1"
     };
   },
   methods: {
@@ -2180,7 +2180,7 @@ module.exports = {
   props: ["volume"],
   data: function data() {
     return {
-      url: "http://192.168.232.20"
+      url: "http://127.0.0.1"
     };
   },
   methods: {
@@ -2239,7 +2239,7 @@ module.exports = {
   props: ["volume"],
   data: function data() {
     return {
-      url: "http://192.168.232.20"
+      url: "http://127.0.0.1"
     };
   },
   methods: {
@@ -2291,7 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20"
+      url: "http://127.0.0.1"
     };
   },
   methods: {},
@@ -2359,7 +2359,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       images: [],
       file: ''
     };
@@ -2494,7 +2494,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       instances: [],
       images: [],
       flavors: [],
@@ -2641,13 +2641,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       keypairs: [],
-      file: ''
+      file: '',
+      selectedkeyPairsDetail: null
     };
   },
   methods: {
@@ -2656,15 +2659,13 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.url + "/compute/v2.1/os-keypairs", {
         headers: {
-          'x-auth-token': this.$store.state.token
+          'x-auth-token': this.$store.state.token,
+          'x-openstack-nova-api-version': '2.2'
         }
       }).then(function (response) {
         _this.keypairs = response.data.keypairs;
         console.log(keypairs);
       });
-    },
-    handleFileUpload: function handleFileUpload() {
-      this.file = this.$refs.file.files[0];
     },
     createKeyPair: function createKeyPair() {
       var formData = new FormData();
@@ -2685,7 +2686,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     keyPairsDetail: function keyPairsDetail(keypairs) {
-      this.selectedkeyPairsDetail = null;
+      this.$router.push("/keyPairsDetail");
+      this.selectedkeyPairsDetail = keypairs;
     },
     exit: function exit() {
       this.$emit('exit-images');
@@ -2706,11 +2708,9 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keyPairsDetail.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -2746,11 +2746,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
+module.exports = {
+  props: ["keypairs"],
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       keypair: [],
       file: ''
     };
@@ -2761,7 +2761,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.url + "/compute/v2.1/os-keypairs/Key_SSH", {
         headers: {
-          'x-auth-token': this.$store.state.token
+          'x-auth-token': this.$store.state.token,
+          'x-openstack-nova-api-version': '2.2'
         }
       }).then(function (response) {
         _this.keypair = response.data.keypair;
@@ -2776,7 +2777,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getKeyPairDetail();
     this.getProjects();
   }
-});
+};
 
 /***/ }),
 
@@ -2836,7 +2837,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       showMessage: false,
       message: ""
     };
@@ -2915,7 +2916,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.232.20"
+      url: "http://127.0.0.1"
     };
   },
   methods: {
@@ -3006,7 +3007,7 @@ __webpack_require__.r(__webpack_exports__);
         image_id: "",
         network_id: ""
       },
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       showError: false,
       successMessage: "",
       flavors: [],
@@ -3139,7 +3140,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         size: ""
       },
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       showError: false,
       successMessage: "",
       flavors: [],
@@ -3278,7 +3279,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.20",
+      url: "http://127.0.0.1",
       volumes: [],
       images: [],
       flavors: [],
@@ -24442,6 +24443,8 @@ var render = function() {
               _c("tr", [
                 _c("td", [_vm._v(_vm._s(keypairs.keypair.name))]),
                 _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(keypairs.keypair.type))]),
+                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(keypairs.keypair.public_key))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(keypairs.keypair.fingerprint))]),
@@ -24503,6 +24506,8 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Type")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Public Key")]),
         _vm._v(" "),
         _c("th", [_vm._v("Fingerprint")]),
@@ -24536,32 +24541,25 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-striped" },
-      [
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._l(_vm.keypair, function(keypair) {
-          return _c("tbody", { key: keypair.id }, [
-            _c("tr", [
-              _c("td", [_vm._v(_vm._s(keypair.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(keypair.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(keypair.public_key))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(keypair.fingerprint))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(keypair.user_id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(keypair.created_at))])
-            ])
-          ])
-        })
-      ],
-      2
-    )
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("tbody", { attrs: { "this.keypair": "" } }, [
+        _c("tr", [
+          _c("td", [_vm._v(_vm._s(_vm.keypair.name))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.keypair.id))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.keypair.public_key))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.keypair.fingerprint))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.keypair.user_id))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(_vm.keypair.created_at))])
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -42477,14 +42475,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/keyPairsDetail.vue ***!
   \****************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _keyPairsDetail_vue_vue_type_template_id_590a4036_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keyPairsDetail.vue?vue&type=template&id=590a4036&scoped=true& */ "./resources/js/components/keyPairsDetail.vue?vue&type=template&id=590a4036&scoped=true&");
 /* harmony import */ var _keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./keyPairsDetail.vue?vue&type=script&lang=js& */ "./resources/js/components/keyPairsDetail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -42514,13 +42513,15 @@ component.options.__file = "resources/js/components/keyPairsDetail.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/keyPairsDetail.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./keyPairsDetail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keyPairsDetail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_keyPairsDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -43003,8 +43004,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

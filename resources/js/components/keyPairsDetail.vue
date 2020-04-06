@@ -17,8 +17,7 @@
     </thead>
 
     <tbody
-    v-for="keypair in keypair"
-    :key="keypair.id"
+    this.keypair
     >
     <tr>
       <td>{{ keypair.name }}</td>
@@ -34,8 +33,9 @@
 </div>
 </template>
 
-<script>
-export default {
+<script type="text/javascript">
+module.exports = {
+  props: ["keypairs"],
 
   data: function(){
     return{
@@ -47,7 +47,10 @@ export default {
   methods:{
     getKeyPairDetail: function(){
       axios.get(this.url + "/compute/v2.1/os-keypairs/Key_SSH",{
-         headers: {'x-auth-token': this.$store.state.token}
+         headers: {
+             'x-auth-token': this.$store.state.token,
+             'x-openstack-nova-api-version': '2.2'
+             }
        }).then(response=>{
            this.keypair = response.data.keypair;
            console.log(keypair);

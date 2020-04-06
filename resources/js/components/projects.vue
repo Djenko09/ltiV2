@@ -86,7 +86,7 @@ export default {
                   domain: {
                     name: "Default"
                   },
-                  password: "paulo"
+                  password: "devstack"
                 }
               }
             },

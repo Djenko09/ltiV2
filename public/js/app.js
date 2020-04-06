@@ -2432,12 +2432,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.196.100",
       floatingIPs: [],
-      instances: []
+      instances: [],
+      networks: [],
+      network: {
+        id: ""
+      },
+      description: ""
     };
   },
   methods: {
@@ -2453,22 +2470,57 @@ __webpack_require__.r(__webpack_exports__);
         console.log(_this.floatingIPs);
       });
     },
-    getInstances: function getInstances() {
+    getNetworks: function getNetworks() {
       var _this2 = this;
+
+      axios.get(this.url + ":9696/v2.0/networks", {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this2.networks = response.data.networks;
+        console.log(_this2.networks);
+      });
+    },
+    getInstances: function getInstances() {
+      var _this3 = this;
 
       axios.get(this.url + "/compute/v2.1/servers/detail", {
         headers: {
-          'x-auth-token': this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this2.instances = response.data.servers;
-        console.log(_this2.instances);
+        _this3.instances = response.data.servers;
+        console.log(_this3.instances);
+      });
+    },
+    allocateIP: function allocateIP() {
+      var _this4 = this;
+
+      axios.post(this.url + ":9696/v2.0/floatingips", {
+        floatingip: {
+          floating_network_id: this.network.id,
+          project_id: this.$store.state.project,
+          description: this.description
+        }
+      }, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        console.log(response);
+
+        _this4.$toasted.show("Floating IP Allocated");
+
+        _this4.getFloatingIPs();
       });
     }
   },
   mounted: function mounted() {
+    this.getNetworks();
     this.getFloatingIPs();
     this.getInstances();
+    this.getNetworks();
   }
 });
 
@@ -2931,7 +2983,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _keyPairsDetail_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keyPairsDetail.vue */ "./resources/js/components/keyPairsDetail.vue");
 //
 //
 //
@@ -3035,20 +3086,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.196.100",
       keypairs: [],
       keypairAMostar: [],
-      file: '',
-      selectedkeyPairsDetail: null
+      file: ''
     };
   },
   methods: {
@@ -3099,9 +3143,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('exit-images');
     }
   },
-  components: {
-    detailKeyPairs: _keyPairsDetail_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
+  components: {},
   mounted: function mounted() {
     this.getKeyPairs();
   }
@@ -3827,6 +3869,169 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getProjects();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/routers.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/routers.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: "http://192.168.196.100",
+      routers: [],
+      router: {
+        network_id: "",
+        name: ""
+      },
+      networks: []
+    };
+  },
+  methods: {
+    getRouters: function getRouters() {
+      var _this = this;
+
+      axios.get(this.url + ":9696/v2.0/routers", {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this.routers = response.data.routers;
+        console.log(_this.routers);
+      });
+    },
+    getNetworks: function getNetworks() {
+      var _this2 = this;
+
+      axios.get(this.url + ":9696/v2.0/networks", {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this2.networks = response.data.networks;
+        console.log(_this2.networks);
+      });
+    },
+    createRouter: function createRouter() {
+      var _this3 = this;
+
+      axios.post(this.url + ":9696/v2.0/routers", {
+        router: {
+          name: this.router.name,
+          external_gateway_info: {
+            network_id: this.router.network_id
+          }
+        }
+      }, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this3.$toasted.show("Router Created!");
+
+        _this3.getRouters();
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getRouters();
+    this.getNetworks();
   }
 });
 
@@ -42643,7 +42848,96 @@ var render = function() {
         _c("div", { staticClass: "modal-content" }, [
           _vm._m(2),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "network" } }, [_vm._v("Pool")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.network.id,
+                      expression: "network.id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.network,
+                        "id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.networks, function(network) {
+                  return _c(
+                    "option",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: network["router:external"] == 1,
+                          expression: "network['router:external'] == 1"
+                        }
+                      ],
+                      key: network.id,
+                      domProps: { value: network.id }
+                    },
+                    [_vm._v(_vm._s(network.name))]
+                  )
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "description" } }, [
+                _vm._v("Description")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.description,
+                    expression: "description"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "description",
+                  placeholder: "eg: teste floating ip"
+                },
+                domProps: { value: _vm.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.description = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
             _c(
@@ -42675,7 +42969,7 @@ var render = function() {
             _c("tr", [
               _c("td", [_vm._v(_vm._s(floatingIP.floating_ip_address))]),
               _vm._v(" "),
-              _c("td", [_vm._v(" " + _vm._s(floatingIP.description) + " ")]),
+              _c("td", [_vm._v(_vm._s(floatingIP.description))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(floatingIP.fixed_ip_address))]),
               _vm._v(" "),
@@ -42683,13 +42977,13 @@ var render = function() {
               _vm._v(" "),
               floatingIP.status === "DOWN"
                 ? _c("td", { staticClass: "bg-warning" }, [
-                    _vm._v(" " + _vm._s(floatingIP.status))
+                    _vm._v(_vm._s(floatingIP.status))
                   ])
                 : _vm._e(),
               _vm._v(" "),
               floatingIP.status === "ACTIVE"
                 ? _c("td", { staticClass: "bg-success" }, [
-                    _vm._v(" " + _vm._s(floatingIP.status))
+                    _vm._v(_vm._s(floatingIP.status))
                   ])
                 : _vm._e()
             ])
@@ -42722,7 +43016,7 @@ var staticRenderFns = [
             "data-target": "#myModalInstances"
           }
         },
-        [_vm._v("Allocate IP ")]
+        [_vm._v("Allocate IP")]
       )
     ])
   },
@@ -42753,11 +43047,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Mapped Fixed IP Address")]),
+        _c("th", [_vm._v("Mapped Fixed IP Address")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" pool ")]),
+        _c("th", [_vm._v("pool")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Status ")])
+        _c("th", [_vm._v("Status")])
       ])
     ])
   }
@@ -43579,55 +43873,42 @@ var render = function() {
           _vm._m(3),
           _vm._v(" "),
           _vm._l(_vm.keypairs, function(keypairs) {
-            return _c(
-              "tbody",
-              { key: keypairs.id },
-              [
-                _c("tr", [
-                  _c("td", [_vm._v(_vm._s(keypairs.keypair.name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(keypairs.keypair.type))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-sm btn-success",
-                        attrs: {
-                          type: "button",
-                          "data-toggle": "modal",
-                          "data-target": "#myModals"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.keyPairsDetail(keypairs.keypair)
-                          }
-                        }
-                      },
-                      [_vm._v("Details")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-sm btn-danger",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("Delete Key Pair")]
-                    )
-                  ])
-                ]),
+            return _c("tbody", { key: keypairs.id }, [
+              _c("tr", [
+                _c("td", [_vm._v(_vm._s(keypairs.keypair.name))]),
                 _vm._v(" "),
-                _vm.selectedkeyPairsDetail &&
-                _vm.selectedkeyPairsDetail === keypairs
-                  ? _c("detailKeyPairs", {
-                      attrs: { keypairs: _vm.selectedkeyPairsDetail },
-                      on: { "edit-canceled": _vm.cancelkeyPairsDetail }
-                    })
-                  : _vm._e()
-              ],
-              1
-            )
+                _c("td", [_vm._v(_vm._s(keypairs.keypair.type))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-success",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#myModals"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.keyPairsDetail(keypairs.keypair)
+                        }
+                      }
+                    },
+                    [_vm._v("Details")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-danger",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Delete Key Pair")]
+                  )
+                ])
+              ])
+            ])
           })
         ],
         2
@@ -44663,6 +44944,253 @@ var staticRenderFns = [
         _c("th", [_vm._v(" Enabled ")]),
         _vm._v(" "),
         _c("th", [_vm._v(" Actions ")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/routers.vue?vue&type=template&id=2aec9ecf&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/routers.vue?vue&type=template&id=2aec9ecf& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myModalInstances" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.router.name,
+                    expression: "router.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "name",
+                  placeholder: "eg: my router"
+                },
+                domProps: { value: _vm.router.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.router, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "network" } }, [_vm._v("Pool")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.router.network_id,
+                      expression: "router.network_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.router,
+                        "network_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.networks, function(network) {
+                  return _c(
+                    "option",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: network["router:external"] == 1,
+                          expression: "network['router:external'] == 1"
+                        }
+                      ],
+                      key: network.id,
+                      domProps: { value: network.id }
+                    },
+                    [_vm._v(_vm._s(network.name))]
+                  )
+                }),
+                0
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.createRouter()
+                  }
+                }
+              },
+              [_vm._v("Create")]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-hover" },
+      [
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._l(_vm.routers, function(router) {
+          return _c("tbody", { key: router.id }, [
+            _c(
+              "tr",
+              [
+                _c("td", [_vm._v(_vm._s(router.name))]),
+                _vm._v(" "),
+                router.status === "INACTIVE"
+                  ? _c("td", { staticClass: "bg-danger" }, [
+                      _vm._v(" " + _vm._s(router.status))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                router.status === "ACTIVE"
+                  ? _c("td", { staticClass: "bg-success" }, [
+                      _vm._v(" " + _vm._s(router.status))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                router.admin_state_up == 1
+                  ? _c("td", [_vm._v(" UP ")])
+                  : _c("td", [_vm._v(" DOWN ")]),
+                _vm._v(" "),
+                _vm._l(router.availability_zones, function(zone) {
+                  return _c("td", { key: zone }, [_vm._v(" " + _vm._s(zone))])
+                })
+              ],
+              2
+            )
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Routers")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-dark",
+          attrs: {
+            type: "submit",
+            "data-toggle": "modal",
+            "data-target": "#myModalInstances"
+          }
+        },
+        [_vm._v("Create Router")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Router")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Status ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Admin State ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Availability Zones")])
       ])
     ])
   }
@@ -61764,12 +62292,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
 /* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
 /* harmony import */ var _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/keyPairs.vue */ "./resources/js/components/keyPairs.vue");
-/* harmony import */ var _components_keyPairsDetail_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/keyPairsDetail.vue */ "./resources/js/components/keyPairsDetail.vue");
-/* harmony import */ var _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/changeProj.vue */ "./resources/js/components/changeProj.vue");
-/* harmony import */ var _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/serverGroups.vue */ "./resources/js/components/serverGroups.vue");
-/* harmony import */ var _components_projects_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/projects.vue */ "./resources/js/components/projects.vue");
-/* harmony import */ var _components_networks_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/networks.vue */ "./resources/js/components/networks.vue");
-/* harmony import */ var _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/floatingIPs.vue */ "./resources/js/components/floatingIPs.vue");
+/* harmony import */ var _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/changeProj.vue */ "./resources/js/components/changeProj.vue");
+/* harmony import */ var _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/serverGroups.vue */ "./resources/js/components/serverGroups.vue");
+/* harmony import */ var _components_projects_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/projects.vue */ "./resources/js/components/projects.vue");
+/* harmony import */ var _components_networks_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/networks.vue */ "./resources/js/components/networks.vue");
+/* harmony import */ var _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/floatingIPs.vue */ "./resources/js/components/floatingIPs.vue");
+/* harmony import */ var _components_routers_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/routers.vue */ "./resources/js/components/routers.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
 
 
@@ -61816,12 +62344,12 @@ var newVolume = Vue.component('newVolume', _components_newVolume_vue__WEBPACK_IM
 var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
 var volumes = Vue.component('volumes', _components_volumes_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
 var keyPairs = Vue.component('keyPairs', _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
-var keyPairsDetail = Vue.component('keyPairsDetail', _components_keyPairsDetail_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
-var changeProj = Vue.component('changeProj', _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
-var serverGroup = Vue.component('serverGroup', _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
-var projects = Vue.component('projects', _components_projects_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
-var networks = Vue.component('networks', _components_networks_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
-var floatingIPs = Vue.component('floatingIPs', _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
+var changeProj = Vue.component('changeProj', _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+var serverGroup = Vue.component('serverGroup', _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
+var projects = Vue.component('projects', _components_projects_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+var networks = Vue.component('networks', _components_networks_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+var floatingIPs = Vue.component('floatingIPs', _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
+var routers = Vue.component('routers', _components_routers_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
 var routes = [{
   path: '/',
   component: _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -61862,10 +62390,6 @@ var routes = [{
   component: keyPairs,
   name: "keyPairs"
 }, {
-  path: '/keyPairsDetail',
-  component: keyPairsDetail,
-  name: "keyPairsDetail"
-}, {
   path: '/changeProj',
   props: true,
   component: changeProj,
@@ -61886,6 +62410,10 @@ var routes = [{
   path: '/floatingIPs',
   component: floatingIPs,
   name: "floatingIPs"
+}, {
+  path: '/routers',
+  component: routers,
+  name: "routers"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes
@@ -62655,17 +63183,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/keyPairsDetail.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/keyPairsDetail.vue ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\laragon\\www\\ltiV2\\resources\\js\\components\\keyPairsDetail.vue'");
-
-/***/ }),
-
 /***/ "./resources/js/components/loginComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/loginComponent.vue ***!
@@ -63093,6 +63610,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_projects_vue_vue_type_template_id_49700cc5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_projects_vue_vue_type_template_id_49700cc5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/routers.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/routers.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _routers_vue_vue_type_template_id_2aec9ecf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routers.vue?vue&type=template&id=2aec9ecf& */ "./resources/js/components/routers.vue?vue&type=template&id=2aec9ecf&");
+/* harmony import */ var _routers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routers.vue?vue&type=script&lang=js& */ "./resources/js/components/routers.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _routers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _routers_vue_vue_type_template_id_2aec9ecf___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _routers_vue_vue_type_template_id_2aec9ecf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/routers.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/routers.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/routers.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_routers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./routers.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/routers.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_routers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/routers.vue?vue&type=template&id=2aec9ecf&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/routers.vue?vue&type=template&id=2aec9ecf& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_routers_vue_vue_type_template_id_2aec9ecf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./routers.vue?vue&type=template&id=2aec9ecf& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/routers.vue?vue&type=template&id=2aec9ecf&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_routers_vue_vue_type_template_id_2aec9ecf___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_routers_vue_vue_type_template_id_2aec9ecf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

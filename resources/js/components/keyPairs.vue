@@ -94,11 +94,6 @@
         >Delete Key Pair</button>
       </td>
     </tr>
-    <detailKeyPairs
-            :keypairs="selectedkeyPairsDetail"
-            @edit-canceled="cancelkeyPairsDetail"
-            v-if="selectedkeyPairsDetail && selectedkeyPairsDetail === keypairs"
-          ></detailKeyPairs>
   </tbody>
   </table>
   </div>
@@ -108,7 +103,6 @@
 
 <script type="text/javascript">
 
-import KeyPairsDetails from "./keyPairsDetail.vue";
 
 export default {
 
@@ -118,8 +112,6 @@ export default {
       keypairs:[],
       keypairAMostar:[],
       file:'',
-      selectedkeyPairsDetail: null,
-      
     }
   },
   methods:{
@@ -166,7 +158,6 @@ export default {
     }
   },
   components: {
-    detailKeyPairs: KeyPairsDetails
 
   },
   mounted(){

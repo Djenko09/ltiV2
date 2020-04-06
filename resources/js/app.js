@@ -35,7 +35,6 @@ import newVolumeComponent from "./components/newVolume.vue";
 import imagesComponent from "./components/images.vue";
 import volumesComponent from "./components/volumes.vue";
 import keyPairsComponent from "./components/keyPairs.vue";
-import keyPairsDetailComponent from "./components/keyPairsDetail.vue";
 import changeProjComponent from "./components/changeProj.vue";
 import serverGroupComponent from "./components/serverGroups.vue";
 import projectsComponent from "./components/projects.vue";
@@ -53,7 +52,6 @@ const newVolume = Vue.component('newVolume', newVolumeComponent);
 const images = Vue.component('images', imagesComponent);
 const volumes = Vue.component('volumes', volumesComponent);
 const keyPairs = Vue.component('keyPairs', keyPairsComponent);
-const keyPairsDetail = Vue.component('keyPairsDetail', keyPairsDetailComponent);
 const changeProj = Vue.component('changeProj', changeProjComponent);
 const serverGroup = Vue.component('serverGroup', serverGroupComponent);
 const projects = Vue.component('projects', projectsComponent);
@@ -75,7 +73,6 @@ const routes = [
     { path: '/newVolume', component: newVolume, name:"newVolume"},
     { path: '/images', component: images, name:"images"},
     { path: '/keyPairs', component: keyPairs, name:"keyPairs"},
-    { path: '/keyPairsDetail', component: keyPairsDetail, name:"keyPairsDetail"},
     { path: '/changeProj',  props: true, component: changeProj, name:"changeProj"},
     { path: '/serverGroup', component: serverGroup, name:"serverGroup"},
     { path: '/projects', component: projects, name:"projects"},

@@ -90,6 +90,9 @@ export default  new Vuex.Store({
             if (user) {
                 state.user = JSON.parse(user);
             }
+            if(project){
+                state.project = project;
+            }
 
         },
     }

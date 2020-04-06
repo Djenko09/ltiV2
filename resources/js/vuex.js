@@ -16,6 +16,7 @@ export default  new Vuex.Store({
         user: null,
         project:null,
         projectName:null,
+        projectNames:[],
     },
 
     getters: {
@@ -47,6 +48,11 @@ export default  new Vuex.Store({
         setProjectName: (state, projectName) => {
             state.projectName = projectName;
             window.localStorage.setItem('projectName', projectName);
+
+        },
+        setProjectNames: (state, projectNames) => {
+            state.projectNames = projectNames;
+            window.localStorage.setItem('projectNames', projectNames);
 
         },
         clearProject: state => {
@@ -83,6 +89,9 @@ export default  new Vuex.Store({
             }
             if (user) {
                 state.user = JSON.parse(user);
+            }
+            if(project){
+                state.project = project;
             }
 
         },

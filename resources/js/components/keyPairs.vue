@@ -9,9 +9,10 @@
     </label>
     <button v-on:click="createKeyPair()">Create Key Pair</button>
   </div>
-  <table class="table table-striped">
+  <div class="container-fluid">
+  <table class="table table-hover">
 
-    <thead class="thead-dark">
+    <thead>
       <tr>
         <th>Name</th>
         <th>Type</th>
@@ -49,6 +50,7 @@
           ></detailKeyPairs>
   </tbody>
   </table>
+  </div>
 
 </div>
 </template>

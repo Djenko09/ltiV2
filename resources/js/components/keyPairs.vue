@@ -9,6 +9,34 @@
     </label>
     <button v-on:click="createKeyPair()">Create Key Pair</button>
   </div>
+  <div class="modal" id="myModals">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Create Security Group</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nameServerGroup">{{keypairAMostar.name}}</label>
+          </div>
+          <div class="form-group">
+
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal" >Create</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <div class="container-fluid">
   <table class="table table-hover">
 
@@ -35,7 +63,8 @@
         <button
         type="button"
         class="btn btn-sm btn-success"
-        v-on:click="keyPairsDetail(keypairs)"
+        data-toggle="modal" data-target="#myModals"
+        v-on:click="keyPairsDetail(keypairs.keypair)"
         >Details</button>
         <button
         type="button"
@@ -65,6 +94,7 @@ export default {
     return{
       url: process.env.MIX_URL,
       keypairs:[],
+      keypairAMostar:[],
       file:'',
       selectedkeyPairsDetail: null,
       
@@ -100,8 +130,7 @@ export default {
       })
     },
     keyPairsDetail: function(keypairs) {
-        this.$router.push("/keyPairsDetail");
-        this.selectedkeyPairsDetail = keypairs;
+      this.keypairAMostar = keypairs
     },
     exit(){
       this.$emit('exit-images');

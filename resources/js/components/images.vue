@@ -1,14 +1,47 @@
 <template>
 <div>
+  <br>
   <div>
     <h1>Images</h1>
   </div>
+  <br>
   <div class="form-group">
-    <label>File
+    <!--<label>File
     <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload()" placeholder="Upload Image" >
     </label>
-    <button v-on:click="submitFile()">Submit</button>
+    <button v-on:click="submitFile()">Submit</button>-->
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalImages">New Image</button>
+
   </div>
+  <br>
+
+  <div class="modal" id="myModalImages">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Create Security Group</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" class="form-control"  placeholder="A name for the iamge" name="name" v-model="images.name"></input>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal" v-on:click="submitFile()" >Create</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <table class="table table-hover">
 
     <thead>
@@ -51,7 +84,10 @@ export default {
   data: function(){
     return{
       url: process.env.MIX_URL,
-      images:[],
+      images:{
+        name:null,
+        id:null,
+      },
       file:'',
     }
   },
@@ -75,8 +111,7 @@ export default {
       {
         container_format:"bare",
         disk_format:"raw",
-        name:"xp",
-        id:"b2173dd3-7ad6-4362-baa6-a68bce3567cb"
+        name:this.images.name,
       },{
         headers : {"x-auth-token": this.$store.state.token}
       }).then(response=>{

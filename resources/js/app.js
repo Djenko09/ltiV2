@@ -16,7 +16,7 @@ Vue.use(Toasted, {
 
 import store from "./vuex.js";
 
-import loginComponent from "./components/loginComponentBackuo.vue";
+import loginComponent from "./components/loginComponent.vue";
 import homeComponent from "./components/homeComponent.vue";
 import instanciasComponent from "./components/instancias.vue";
 import dashboardComponent from "./components/dashboard.vue";
@@ -29,10 +29,9 @@ import keyPairsComponent from "./components/keyPairs.vue";
 import keyPairsDetailComponent from "./components/keyPairsDetail.vue";
 import changeProjComponent from "./components/changeProj.vue";
 import serverGroupComponent from "./components/serverGroups.vue";
-import newServerGroupComponent from "./components/createServerGroup.vue";
 import projectsComponent from "./components/projects.vue";
 import networksComponent from "./components/networks.vue";
-
+import floatingIPsComponent from "./components/floatingIPs.vue";
 
 const home = Vue.component('home', homeComponent);
 const login = Vue.component('login', loginComponent);
@@ -47,9 +46,10 @@ const keyPairs = Vue.component('keyPairs', keyPairsComponent);
 const keyPairsDetail = Vue.component('keyPairsDetail', keyPairsDetailComponent);
 const changeProj = Vue.component('changeProj', changeProjComponent);
 const serverGroup = Vue.component('serverGroup', serverGroupComponent);
-const newServerGroup = Vue.component('newServerGroup', newServerGroupComponent);
 const projects = Vue.component('projects', projectsComponent);
 const networks = Vue.component('networks', networksComponent);
+const floatingIPs = Vue.component('floatingIPs', floatingIPsComponent);
+
 
 
 
@@ -68,9 +68,9 @@ const routes = [
     { path: '/keyPairsDetail', component: keyPairsDetail, name:"keyPairsDetail"},
     { path: '/changeProj',  props: true, component: changeProj, name:"changeProj"},
     { path: '/serverGroup', component: serverGroup, name:"serverGroup"},
-    { path: '/createServerGroup', component: newServerGroup, name:"newServerGroup"},
     { path: '/projects', component: projects, name:"projects"},
     { path: '/networks', component: networks, name:"networks"},
+    { path: '/floatingIPs', component: floatingIPs, name:"floatingIPs"},
 
 
 

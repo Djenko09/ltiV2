@@ -1,36 +1,25 @@
 ogin<template>
-  <div>
-    <div class="starter-template jumbotron bg-info">
-      <strong>{{ message }}</strong>
-      <div class="container">
-        <h2>Login</h2>
-        <div class="form-group">
-          <label for="inputName">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="credentials.name"
-            name="email"
-            id="inputEmail"
-            placeholder="Your username"
-          />
+  <div class="container login-container">
+            <div class="row">
+                <div class="col-md-12 login-form-1">
+                  <div>
+                       <img class="center" v-bind:src="'/images/logologin.png'" width=100 height=200/>
+                   </div>
+                   <br>
+                   <br>
+                   <br>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Email *"   v-model="credentials.name" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Your Password *" v-model="credentials.password" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" v-on:click.prevent="login()"/>
+                        </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            v-model="credentials.password"
-            name="password"
-            id="inputPassword"
-          />
-        </div>
-        <div class="form-group" text-align="center">
-          <a class="btn btn-primary" v-on:click.prevent="login()">Login</a>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script type="text/javascript">
@@ -117,3 +106,55 @@ export default {
   }
 };
 </script>
+<style media="screen">
+.login-container{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.login-logo{
+  position: relative;
+  margin-left: -41.5%;
+}
+.login-logo img{
+  position: absolute;
+  width: 20%;
+  margin-top: 19%;
+  background: #282726;
+  border-radius: 4.5rem;
+  padding: 5%;
+}
+.login-form-1{
+  padding: 9%;
+  background:#ffffff;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+  text-align: center;
+  margin-bottom:12%;
+  color:#000000;
+}
+.btnSubmit{
+  font-weight: 600;
+  width: 50%;
+  color: #ffffff;
+  background-color: #c41616;
+  border: none;
+  border-radius: 1.5rem;
+  padding:2%;
+}
+.btnForgetPwd{
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btnForgetPwd:hover{
+  text-decoration:none;
+  color:#fff;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>

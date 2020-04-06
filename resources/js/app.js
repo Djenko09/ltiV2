@@ -30,6 +30,7 @@ import keyPairsDetailComponent from "./components/keyPairsDetail.vue";
 import changeProjComponent from "./components/changeProj.vue";
 import serverGroupComponent from "./components/serverGroups.vue";
 import newServerGroupComponent from "./components/createServerGroup.vue";
+import projectsComponent from "./components/projects.vue";
 
 
 const home = Vue.component('home', homeComponent);
@@ -46,6 +47,7 @@ const keyPairsDetail = Vue.component('keyPairsDetail', keyPairsDetailComponent);
 const changeProj = Vue.component('changeProj', changeProjComponent);
 const serverGroup = Vue.component('serverGroup', serverGroupComponent);
 const newServerGroup = Vue.component('newServerGroup', newServerGroupComponent);
+const projects = Vue.component('projects', projectsComponent);
 
 
 
@@ -65,6 +67,7 @@ const routes = [
     { path: '/changeProj',  props: true, component: changeProj, name:"changeProj"},
     { path: '/serverGroup', component: serverGroup, name:"serverGroup"},
     { path: '/createServerGroup', component: newServerGroup, name:"newServerGroup"},
+    { path: '/projects', component: projects, name:"projects"},
 
 
 ];

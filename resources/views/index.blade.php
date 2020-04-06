@@ -218,7 +218,7 @@
             <div class="collapse multi-collapse" id="multiCollapseIdentity">
               <div>
                 <router-link v-if="this.$store.state.user.name == 'admin'"to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Domains</router-link>
-                <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Projects</router-link>
+                <router-link to="/projects" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Projects</router-link>
                 <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Users</router-link>
                 <router-link v-if="this.$store.state.user.name == 'admin'"to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Groups</router-link>
                 <router-link v-if="this.$store.state.user.name == 'admin'"to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Roles</router-link>

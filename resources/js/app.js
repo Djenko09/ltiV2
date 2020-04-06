@@ -31,6 +31,7 @@ import changeProjComponent from "./components/changeProj.vue";
 import serverGroupComponent from "./components/serverGroups.vue";
 import newServerGroupComponent from "./components/createServerGroup.vue";
 import projectsComponent from "./components/projects.vue";
+import networksComponent from "./components/networks.vue";
 
 
 const home = Vue.component('home', homeComponent);
@@ -48,6 +49,7 @@ const changeProj = Vue.component('changeProj', changeProjComponent);
 const serverGroup = Vue.component('serverGroup', serverGroupComponent);
 const newServerGroup = Vue.component('newServerGroup', newServerGroupComponent);
 const projects = Vue.component('projects', projectsComponent);
+const networks = Vue.component('networks', networksComponent);
 
 
 
@@ -68,6 +70,8 @@ const routes = [
     { path: '/serverGroup', component: serverGroup, name:"serverGroup"},
     { path: '/createServerGroup', component: newServerGroup, name:"newServerGroup"},
     { path: '/projects', component: projects, name:"projects"},
+    { path: '/networks', component: networks, name:"networks"},
+
 
 
 ];

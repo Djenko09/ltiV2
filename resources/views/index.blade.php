@@ -121,7 +121,7 @@
                   <div class="collapse multi-collapse" id="multiCollapseNetwork">
                     <div>
                       <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Network Topology</router-link>
-                      <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Networks</router-link>
+                      <router-link to="/networks" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Networks</router-link>
                       <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Routers</router-link>
                       <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Security Groups</router-link>
                       <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Floating Ips</router-link>

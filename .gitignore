@@ -47,3 +47,4 @@ my-app/build/webpack.base.conf.js
 my-app/build/webpack.dev.conf.js
 my-app/build/webpack.prod.conf.js
 public/js/app.js
+*.rar

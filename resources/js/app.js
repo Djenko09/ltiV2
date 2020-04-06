@@ -6,6 +6,15 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import moment from 'moment';
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY HH:mm:ss')
+  }
+});
+
+
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
     theme: "bubble",

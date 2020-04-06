@@ -14,10 +14,16 @@
   @yield('extrastyles')
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 
+  
+
 <style media="screen">
   body {
     overflow-x: hidden;
   }
+
+  .form-control {
+  height: auto !important;
+}
 
   #sidebar-wrapper {
     min-height: 100vh;

@@ -32,7 +32,7 @@ import serverGroupComponent from "./components/serverGroups.vue";
 import newServerGroupComponent from "./components/createServerGroup.vue";
 import projectsComponent from "./components/projects.vue";
 import networksComponent from "./components/networks.vue";
-
+import floatingIPsComponent from "./components/floatingIPs.vue";
 
 const home = Vue.component('home', homeComponent);
 const login = Vue.component('login', loginComponent);
@@ -50,6 +50,8 @@ const serverGroup = Vue.component('serverGroup', serverGroupComponent);
 const newServerGroup = Vue.component('newServerGroup', newServerGroupComponent);
 const projects = Vue.component('projects', projectsComponent);
 const networks = Vue.component('networks', networksComponent);
+const floatingIPs = Vue.component('floatingIPs', floatingIPsComponent);
+
 
 
 
@@ -71,6 +73,7 @@ const routes = [
     { path: '/createServerGroup', component: newServerGroup, name:"newServerGroup"},
     { path: '/projects', component: projects, name:"projects"},
     { path: '/networks', component: networks, name:"networks"},
+    { path: '/floatingIPs', component: floatingIPs, name:"floatingIPs"},
 
 
 

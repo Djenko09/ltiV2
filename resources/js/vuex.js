@@ -37,7 +37,7 @@ export default  new Vuex.Store({
         setToken: (state, token) => {
             state.token = token;
             window.localStorage.setItem('token', token);
-            axios.defaults.headers.common.Authorization = "Bearer " + token;
+            axios.defaults.headers.common.Authorization = token;
         },
 
         setProject: (state, project) => {
@@ -83,7 +83,7 @@ export default  new Vuex.Store({
             let project = localStorage.getItem("project");
             if (token) {
                 state.token = token;
-                axios.defaults.headers.common.Authorization = "Bearer " + token;
+                axios.defaults.headers.common.Authorization = token;
             } else {
                 axios.defaults.headers.common.Authorization = undefined;
             }

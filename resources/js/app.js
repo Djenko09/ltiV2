@@ -6,6 +6,15 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import moment from 'moment';
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY HH:mm:ss')
+  }
+});
+
+
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
     theme: "bubble",
@@ -26,12 +35,12 @@ import newVolumeComponent from "./components/newVolume.vue";
 import imagesComponent from "./components/images.vue";
 import volumesComponent from "./components/volumes.vue";
 import keyPairsComponent from "./components/keyPairs.vue";
-import keyPairsDetailComponent from "./components/keyPairsDetail.vue";
 import changeProjComponent from "./components/changeProj.vue";
 import serverGroupComponent from "./components/serverGroups.vue";
 import projectsComponent from "./components/projects.vue";
 import networksComponent from "./components/networks.vue";
 import floatingIPsComponent from "./components/floatingIPs.vue";
+import routersComponent from "./components/routers.vue";
 
 const home = Vue.component('home', homeComponent);
 const login = Vue.component('login', loginComponent);
@@ -43,13 +52,12 @@ const newVolume = Vue.component('newVolume', newVolumeComponent);
 const images = Vue.component('images', imagesComponent);
 const volumes = Vue.component('volumes', volumesComponent);
 const keyPairs = Vue.component('keyPairs', keyPairsComponent);
-const keyPairsDetail = Vue.component('keyPairsDetail', keyPairsDetailComponent);
 const changeProj = Vue.component('changeProj', changeProjComponent);
 const serverGroup = Vue.component('serverGroup', serverGroupComponent);
 const projects = Vue.component('projects', projectsComponent);
 const networks = Vue.component('networks', networksComponent);
 const floatingIPs = Vue.component('floatingIPs', floatingIPsComponent);
-
+const routers = Vue.component('routers', routersComponent);
 
 
 
@@ -65,12 +73,14 @@ const routes = [
     { path: '/newVolume', component: newVolume, name:"newVolume"},
     { path: '/images', component: images, name:"images"},
     { path: '/keyPairs', component: keyPairs, name:"keyPairs"},
-    { path: '/keyPairsDetail', component: keyPairsDetail, name:"keyPairsDetail"},
     { path: '/changeProj',  props: true, component: changeProj, name:"changeProj"},
     { path: '/serverGroup', component: serverGroup, name:"serverGroup"},
     { path: '/projects', component: projects, name:"projects"},
     { path: '/networks', component: networks, name:"networks"},
     { path: '/floatingIPs', component: floatingIPs, name:"floatingIPs"},
+    { path: '/routers', component: routers, name:"routers"},
+
+    
 
 
 

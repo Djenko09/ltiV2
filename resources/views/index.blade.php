@@ -14,10 +14,16 @@
   @yield('extrastyles')
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 
+  
+
 <style media="screen">
   body {
     overflow-x: hidden;
   }
+
+  .form-control {
+  height: auto !important;
+}
 
   #sidebar-wrapper {
     min-height: 100vh;
@@ -122,7 +128,7 @@
                     <div>
                       <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Network Topology</router-link>
                       <router-link to="/networks" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Networks</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Routers</router-link>
+                      <router-link to="/routers" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Routers</router-link>
                       <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Security Groups</router-link>
                       <router-link to="/floatingIPs" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Floating Ips</router-link>
                     </div>

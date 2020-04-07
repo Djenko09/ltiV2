@@ -15,23 +15,49 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Create Security Group</h4>
+          <h4 class="modal-title">Key Pair Detail</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body">
-          <div class="form-group">
-            <label for="nameServerGroup">{{keypairAMostar.name}}</label>
-          </div>
-          <div class="form-group">
+          
+            <div class="container">
+                <label for="nameKeyPair">Name:</label>
+                <div for="nameKeyPair" class="form-control">{{keypairAMostar.name}}</div>
+            </div>
 
-          </div>
+            <div class="container">
+                <label for="idKeyPair">ID:</label>
+                <div for="idKeyPair" class="form-control">{{keypairAMostar.id}}</div>
+            </div>
+
+            <div class="container">
+                <label for="public_keyKeyPair">Public Key:</label>
+                <a for="public_keyKeyPair" class="text-break form-control">{{keypairAMostar.public_key}}</a>
+            </div>
+
+            <div class="container">
+                <label for="fingerprintKeyPair">Fingerprint:</label>
+                <div for="fingerprintKeyPair" class="form-control">{{keypairAMostar.fingerprint}}</div>
+            </div>
+
+            <div class="container">
+                <label for="user_idKeyPair">User ID:</label>
+                <div for="user_idKeyPair" class="form-control">{{keypairAMostar.user_id}}</div>
+            </div>
+
+            <div class="container">
+                <label for="created_atKeyPair">Created At:</label>
+                <div for="created_atKeyPair" class="form-control">{{keypairAMostar.created_at | formatDate}}</div>
+            </div>
+
+    
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal" >Create</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal" >Close</button>
         </div>
 
       </div>
@@ -43,8 +69,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Public Key</th>
-        <th>Fingerprint</th>
+        <th>Type</th>
         <th>Options</th>
       </tr>
     </thead>
@@ -55,8 +80,7 @@
     >
     <tr>
       <td>{{ keypairs.keypair.name }}</td>
-      <td>{{ keypairs.keypair.public_key}}</td>
-      <td>{{ keypairs.keypair.fingerprint}}</td>
+      <td>{{ keypairs.keypair.type }}</td>
       <td>
         <button
         type="button"
@@ -70,11 +94,6 @@
         >Delete Key Pair</button>
       </td>
     </tr>
-    <detailKeyPairs
-            :keypairs="selectedkeyPairsDetail"
-            @edit-canceled="cancelkeyPairsDetail"
-            v-if="selectedkeyPairsDetail && selectedkeyPairsDetail === keypairs"
-          ></detailKeyPairs>
   </tbody>
   </table>
   </div>
@@ -84,7 +103,6 @@
 
 <script type="text/javascript">
 
-import KeyPairsDetails from "./keyPairsDetail.vue";
 
 export default {
 
@@ -99,15 +117,14 @@ export default {
   methods:{
     getKeyPairs: function(){
       axios.get(this.url + "/compute/v2.1/os-keypairs",{
-         headers: {'x-auth-token': this.$store.state.token}
+         headers: {
+             'x-auth-token': this.$store.state.token,
+             'x-openstack-nova-api-version': '2.2'
+             }
        }).then(response=>{
            this.keypairs = response.data.keypairs;
-           console.log(keypairs);
+           console.log(this.keypairs);
          })
-    },
-
-    handleFileUpload(){
-      this.file=this.$refs.file.files[0];
     },
     createKeyPair(){
       let formData = new FormData();
@@ -126,20 +143,25 @@ export default {
         console.log('Error');
       })
     },
-    keyPairsDetail: function(keypairs) {
-      this.keypairAMostar = keypairs
+    keyPairsDetail: function(keypair) {
+      axios.get(this.url + "/compute/v2.1/os-keypairs/" + keypair.name,{
+         headers: {
+             'x-auth-token': this.$store.state.token,
+             'x-openstack-nova-api-version': '2.2'
+             }
+       }).then(response=>{
+           this.keypairAMostar = response.data.keypair;
+         })
     },
     exit(){
       this.$emit('exit-images');
     }
   },
   components: {
-    detailKeyPairs: KeyPairsDetails
 
   },
   mounted(){
     this.getKeyPairs();
-    this.getProjects();
   }
 
 }

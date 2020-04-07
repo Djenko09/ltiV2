@@ -68,6 +68,8 @@
           <th>Mapped Fixed IP Address</th>
           <th>pool</th>
           <th>Status</th>
+          <th> Options </th>
+
         </tr>
       </thead>
 
@@ -80,6 +82,20 @@
 
           <td class="bg-warning" v-if="floatingIP.status === 'DOWN'">{{floatingIP.status}}</td>
           <td class="bg-success" v-if="floatingIP.status === 'ACTIVE'">{{floatingIP.status}}</td>
+
+          <td>
+           <button
+                type="button"
+                class="btn btn-sm btn-success"
+               
+              >Associate</button>
+            <button
+            type="button"
+            class="btn btn-sm btn-danger"
+            v-on:click="deleteFloatingIP(floatingIP)"
+            >Delete</button>
+          </td>
+
         </tr>
       </tbody>
     </table>
@@ -151,7 +167,21 @@ export default {
            this.getFloatingIPs();
 
          });
-    }
+    },
+    deleteFloatingIP(floatingIP){
+        axios.delete(this.url + ":9696/v2.0/floatingips/" + floatingIP.id, {
+            headers: {'x-auth-token': this.$store.state.token} 
+            })
+            .then(response => {
+           console.log(response);
+           this.$toasted.show("Floating IP Deleted With Success");
+           this.getFloatingIPs();
+
+         });
+          
+        
+     },
+    
   },
 
   mounted() {

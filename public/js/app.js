@@ -2015,8 +2015,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2677,14 +2675,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.196.100",
       images: {
+        id: null,
         name: null,
-        id: null
+        disk_format: null,
+        container_formart: null,
+        min_disk: null,
+        min_ram: null,
+        "protected": null,
+        tags: [],
+        visibility: null
       },
+      disk_formats: ['ami', "ari", "aki", "vhd", "vhdx", "vmdk", "raw", "qcow2", "vdi", "ploop", "iso"],
+      image: {
+        name: "",
+        disk_format: "",
+        container_format: "bare",
+        min_disk: null,
+        min_ram: null,
+        "protected": false,
+        tags: [],
+        visibility: "shared"
+      },
+      imageId: null,
       file: ''
     };
   },
@@ -2701,24 +2757,68 @@ __webpack_require__.r(__webpack_exports__);
         console.log(images);
       });
     },
-    handleFileUpload: function handleFileUpload() {
-      this.file = this.$refs.file.files[0];
+    handleFileUpload: function handleFileUpload(e) {
+      this.file = e.target.files[0];
+      console.log(event.target.files[0]);
     },
-    submitFile: function submitFile() {
-      var formData = new FormData();
-      formData.append('file', this.file);
+    createImage: function createImage() {
+      var _this2 = this;
+
       axios.post(this.url + "/image/v2/images", {
-        container_format: "bare",
-        disk_format: "raw",
-        name: this.images.name
+        "name": this.image.name,
+        "disk_format": this.image.disk_format,
+        "container_format": this.image.container_format,
+        "min_disk": parseInt(this.image.min_disk),
+        "min_ram": parseInt(this.image.min_ram),
+        "protected": this.image["protected"],
+        "tags": this.image.tags,
+        "visibility": this.image.visibility
       }, {
         headers: {
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log('Success');
+        _this2.imageId = response.data.id;
+        _this2.image.name = undefined;
+        console.log(_this2.imageId);
+
+        _this2.submitfile();
+
+        _this2.getImages();
       })["catch"](function (error) {
         console.log('Error');
+      });
+    },
+    submitfile: function submitfile() {
+      var _this3 = this;
+
+      delete axios.defaults.headers.common["Authorization"];
+      axios.put(this.url + "/image/v2/images/" + this.imageId + "/file", this.file, {
+        headers: {
+          "Content-Type": "application/octet-stream",
+          'X-Auth-Token': this.$store.state.token
+        }
+      }).then(function (response) {
+        console.log("UploadSucess!");
+
+        _this3.getImages();
+      })["catch"](function (error) {
+        console.log('Error');
+      });
+    },
+    deleteImage: function deleteImage(image) {
+      var _this4 = this;
+
+      axios["delete"](this.url + "/image/v2/images/" + image, {
+        headers: {
+          'X-Auth-Token': this.$store.state.token
+        }
+      }).then(function (response) {
+        _this4.$toasted.info("Image deleted");
+
+        _this4.getImages();
+      })["catch"](function (error) {
+        _this4.$toasted.error("Error deleting image");
       });
     },
     exit: function exit() {
@@ -2727,7 +2827,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getImages();
-    this.getProjects();
   }
 });
 
@@ -2921,7 +3020,7 @@ __webpack_require__.r(__webpack_exports__);
     getFlavors: function getFlavors() {
       var _this3 = this;
 
-      axios.get(this.url + "/compute/v2.1/flavors", {
+      axios.get(this.url + "/compute/v2.1/flavors/detail", {
         headers: {
           'x-auth-token': this.$store.state.token
         }
@@ -4587,7 +4686,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -42618,17 +42717,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    this.$store.state.token
-      ? _c("div", { staticClass: "jumbotron" }, [
-          _c("h1", [_vm._v("Hey pandeleiros!")]),
-          _vm._v(" "),
-          _c("h2", { staticStyle: { "text-align": "right" } }, [
-            _vm._v(" Se quiserem mudar de proj é ali em cima ^^^")
-          ]),
-          _vm._v(" "),
-          _c("h3", [_vm._v(":DDDDDDDD")])
-        ])
-      : _vm._e()
+    this.$store.state.token ? _c("div", { staticClass: "jumbotron" }) : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -43247,67 +43336,230 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalImages" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.images.name,
-                    expression: "images.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "A name for the iamge",
-                  name: "name"
-                },
-                domProps: { value: _vm.images.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+    _c(
+      "div",
+      {
+        staticClass: "modal fade bd-example-modal-xl",
+        attrs: { id: "myModalImages" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-xl" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("form", { attrs: { action: "index.html", method: "post" } }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.image.name,
+                        expression: "image.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      required: "",
+                      type: "text",
+                      placeholder: "A name for the image",
+                      name: "name"
+                    },
+                    domProps: { value: _vm.image.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.image, "name", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.images, "name", $event.target.value)
-                  }
-                }
-              })
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "Disk_format" } }, [
+                    _vm._v("Disk Format *")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.image.disk_format,
+                          expression: "image.disk_format"
+                        }
+                      ],
+                      staticClass: "form-control text-capitalize",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.image,
+                            "disk_format",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v("Choose a format")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "iso" } }, [
+                        _vm._v("ISO - Optical Disk Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ami" } }, [
+                        _vm._v("Ami - Amazon Kernel Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ari" } }, [
+                        _vm._v("ARI - Amazon Ramdisk Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "aki" } }, [
+                        _vm._v("AKI - Amazon Kernel Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "vhd" } }, [
+                        _vm._v("VHD - Virtual Hard Disk")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "vmdk" } }, [
+                        _vm._v("VMDK - Virtual Machine Disk")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "raw" } }, [
+                        _vm._v("RAW")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "qcow2" } }, [
+                        _vm._v("QCOW2 - QEMU Emulator")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "vdi" } }, [
+                        _vm._v("VDI - Virtual Disk Image ")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ploop" } }, [
+                        _vm._v("PLOOP - Virtuozzo/Parallels Loopback Disk")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-inline" }, [
+                  _c("label", { attrs: { for: "disk" } }, [
+                    _vm._v("Minimum Disk ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.image.min_disk,
+                        expression: "image.min_disk"
+                      }
+                    ],
+                    staticClass: "form-control mb-2 mr-sm-2 mb-sm-0",
+                    attrs: { required: "", type: "number", name: "disk" },
+                    domProps: { value: _vm.image.min_disk },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.image, "min_disk", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { required: "", for: "ram" } }, [
+                    _vm._v("Minimum RAM ")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.image.min_ram,
+                        expression: "image.min_ram"
+                      }
+                    ],
+                    staticClass: "form-control mb-2 mr-sm-2 mb-sm-0",
+                    attrs: { type: "number", placeholder: "1", name: "ram" },
+                    domProps: { value: _vm.image.min_ram },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.image, "min_ram", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("input", {
+                  ref: "file",
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "file",
+                    id: "file",
+                    placeholder: "Upload Image"
+                  },
+                  on: { change: _vm.handleFileUpload }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c("input", {
+                    staticClass: "btn btn-warning",
+                    attrs: {
+                      type: "submit",
+                      "data-dismiss": "modal",
+                      value: "Create"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.createImage()
+                      }
+                    }
+                  })
+                ])
+              ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
-                on: {
-                  click: function($event) {
-                    return _vm.submitFile()
-                  }
-                }
-              },
-              [_vm._v("Create")]
-            )
           ])
         ])
-      ])
-    ]),
+      ]
+    ),
     _vm._v(" "),
     _c(
       "table",
       { staticClass: "table table-hover" },
       [
-        _vm._m(3),
+        _vm._m(4),
         _vm._v(" "),
         _vm._l(_vm.images, function(image) {
           return _c("tbody", { key: image.id }, [
@@ -43318,7 +43570,40 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(image.container_format))]),
               _vm._v(" "),
-              _vm._m(4, true)
+              image.status === "active"
+                ? _c("td", { staticClass: "bg-success" }, [
+                    _vm._v(_vm._s(image.status))
+                  ])
+                : _c("td", { staticClass: "bg-danger" }, [
+                    _vm._v(_vm._s(image.status))
+                  ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(image.visibility))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-success",
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Edit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-danger",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteImage(image.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete ")]
+                )
+              ])
             ])
           ])
         })
@@ -43346,7 +43631,7 @@ var staticRenderFns = [
           attrs: {
             type: "button",
             "data-toggle": "modal",
-            "data-target": "#myModalImages"
+            "data-target": ".bd-example-modal-xl"
           }
         },
         [_vm._v("New Image")]
@@ -43358,9 +43643,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [
-        _vm._v("Create Security Group")
-      ]),
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create a new Image")]),
       _vm._v(" "),
       _c(
         "button",
@@ -43376,6 +43659,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        attrs: {
+          type: "checkbox",
+          id: "protected1",
+          name: "protected1",
+          value: "true"
+        }
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "protected1" } }, [_vm._v("Yes")]),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        attrs: {
+          type: "checkbox",
+          id: "protected2",
+          name: "protected2",
+          value: "false"
+        }
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "protected2" } }, [_vm._v("No")]),
+      _c("br")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
@@ -43384,26 +43697,12 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Container Format")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status ")])
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Visibility")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        { staticClass: "btn btn-sm btn-success", attrs: { type: "button" } },
-        [_vm._v("Edit")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-sm btn-danger", attrs: { type: "button" } },
-        [_vm._v("Delete")]
-      )
     ])
   }
 ]
@@ -64141,7 +64440,7 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
     setToken: function setToken(state, token) {
       state.token = token;
       window.localStorage.setItem('token', token);
-      axios.defaults.headers.common.Authorization = "Bearer " + token;
+      axios.defaults.headers.common.Authorization = token;
     },
     setProject: function setProject(state, project) {
       state.project = project;
@@ -64182,7 +64481,7 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 
       if (token) {
         state.token = token;
-        axios.defaults.headers.common.Authorization = "Bearer " + token;
+        axios.defaults.headers.common.Authorization = token;
       } else {
         axios.defaults.headers.common.Authorization = undefined;
       }

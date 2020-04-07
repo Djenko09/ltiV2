@@ -10,13 +10,13 @@
     <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload()" placeholder="Upload Image" >
     </label>
     <button v-on:click="submitFile()">Submit</button>-->
-    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalImages">New Image</button>
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target=".bd-example-modal-xl">New Image</button>
 
   </div>
   <br>
 
-  <div class="modal" id="myModalImages">
-    <div class="modal-dialog">
+  <div class="modal fade bd-example-modal-xl" id="myModalImages">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
 
         <!-- Modal Header -->
@@ -27,47 +27,48 @@
 
         <!-- Modal body -->
         <div class="modal-body">
+          <form class="" action="index.html" method="post">
+
+
           <div class="form-group">
             <label for="name">Name *</label>
-            <input type="text" class="form-control"  placeholder="A name for the image" name="name" v-model="image.name"></input>
-          </div>
-          <div class="form-group">
-            <label for="Disk_format">Disk Format *</label>
-              <select class="form-control text-capitalize" v-model="image.disk_format">
-               <option v-model="image.disk_format" value="ami">ami axd</option>
-               <option v-model="image.disk_format">ari</option>
-               <option v-model="image.disk_format">aki</option>
-               <option v-model="image.disk_format">vhd</option>
-               <option v-model="image.disk_format">vhdx</option>
-               <option v-model="image.disk_format">vmdk</option>
-               <option v-model="image.disk_format">raw</option>
-               <option v-model="image.disk_format">qcow2</option>
-               <option v-model="image.disk_format">vdi</option>
-               <option v-model="image.disk_format">ploop</option>
-               <option v-model="image.disk_format">iso</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="disk">Minimum Disk *</label>
-            <input type="number" name="disk"  v-model="image.min_disk">
-          </div>
-          <div class="form-group">
-            <label for="ram">Minimum RAM *</label>
-            <input type="number" name="ram"  v-model="image.min_ram">
-          </div>
-          <div class="form-group">
-            <input type="checkbox" id="protected1" name="protected1" value=true>
-            <label for="protected1">Yes</label><br>
-            <input type="checkbox" id="protected2" name="protected2" value=false>
-            <label for="protected2">No</label><br>
-          </div>
-          <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload" placeholder="Upload Image" >
-          </label>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal" v-on:click="createImage()">Create</button>
+            <input required type="text" class="form-control"  placeholder="A name for the image" name="name" v-model="image.name"></input>
+            </div>
+            <div class="form-group">
+              <label for="Disk_format">Disk Format *</label>
+                <select required class="form-control text-capitalize" v-model="image.disk_format">
+                <option value selected>Choose a format</option>
+                 <option value="iso">ISO - Optical Disk Image</option>
+                 <option value="ami">Ami - Amazon Kernel Image</option>
+                 <option value="ari">ARI - Amazon Ramdisk Image</option>
+                 <option value="aki">AKI - Amazon Kernel Image</option>
+                 <option value="vhd">VHD - Virtual Hard Disk</option>
+                 <option value="vmdk">VMDK - Virtual Machine Disk</option>
+                 <option value="raw">RAW</option>
+                 <option value="qcow2">QCOW2 - QEMU Emulator</option>
+                 <option value="vdi">VDI - Virtual Disk Image </option>
+                 <option value="ploop">PLOOP - Virtuozzo/Parallels Loopback Disk</option>
+              </select>
+            </div>
+            <div class="form-inline">
+              <label for="disk">Minimum Disk </label>
+              <input required class="form-control mb-2 mr-sm-2 mb-sm-0" type="number" name="disk"  v-model="image.min_disk">
+              <label required for="ram">Minimum RAM </label>
+              <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="number" placeholder="1" name="ram"  v-model="image.min_ram">
+            </div>
+            <div class="form-group">
+              <input type="checkbox" id="protected1" name="protected1" value=true>
+              <label for="protected1">Yes</label><br>
+              <input type="checkbox" id="protected2" name="protected2" value=false>
+              <label for="protected2">No</label><br>
+            </div>
+            <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload" placeholder="Upload Image" >
+            </label>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-warning" data-dismiss="modal" v-on:click="createImage()" value="Create">
+            </div>
+          </form>
         </div>
 
       </div>
@@ -138,9 +139,9 @@ export default {
         'ami',"ari","aki","vhd", "vhdx","vmdk","raw","qcow2","vdi","ploop","iso"
       ],
       image:{
-        name:"undefined",
-        disk_format:"iso",
-        container_formart:"bare",
+        name:"",
+        disk_format:"",
+        container_format:"bare",
         min_disk:null,
         min_ram:null,
         protected:false,
@@ -170,6 +171,7 @@ export default {
       {
         "name":this.image.name,
         "disk_format":this.image.disk_format,
+        "container_format":this.image.container_format,
         "min_disk":parseInt(this.image.min_disk),
         "min_ram":parseInt(this.image.min_ram),
         "protected":this.image.protected,
@@ -180,6 +182,7 @@ export default {
         headers : {"x-auth-token": this.$store.state.token}
       }).then(response=>{
         this.imageId= response.data.id
+        this.image.name = undefined;
         console.log(this.imageId)
         this.submitfile();
         this.getImages();

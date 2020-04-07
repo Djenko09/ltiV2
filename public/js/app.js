@@ -2444,6 +2444,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2513,6 +2529,21 @@ __webpack_require__.r(__webpack_exports__);
         _this4.$toasted.show("Floating IP Allocated");
 
         _this4.getFloatingIPs();
+      });
+    },
+    deleteFloatingIP: function deleteFloatingIP(floatingIP) {
+      var _this5 = this;
+
+      axios["delete"](this.url + ":9696/v2.0/floatingips/" + floatingIP.id, {
+        headers: {
+          'x-auth-token': this.$store.state.token
+        }
+      }).then(function (response) {
+        console.log(response);
+
+        _this5.$toasted.show("Floating IP Deleted With Success");
+
+        _this5.getFloatingIPs();
       });
     }
   },
@@ -3091,11 +3122,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.196.100",
       keypairs: [],
+      newKeypair: {
+        name: "",
+        type: ""
+      },
       keypairAMostar: [],
       file: ''
     };
@@ -3115,25 +3178,33 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createKeyPair: function createKeyPair() {
-      var formData = new FormData();
-      formData.append('file', this.file);
-      axios.post(this.url + "/image/v2/images", {
-        container_format: "bare",
-        disk_format: "raw",
-        name: "xp",
-        id: "b2173dd3-7ad6-4362-baa6-a68bce3567cb"
+      var _this2 = this;
+
+      axios.post(this.url + "/compute/v2.1/os-keypairs", {
+        keypair: {
+          name: this.newKeypair.name,
+          type: this.newKeypair.type
+        }
       }, {
         headers: {
-          "x-auth-token": this.$store.state.token
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token,
+          "x-openstack-nova-api-version": "2.2"
         }
       }).then(function (response) {
-        console.log('Success');
+        console.log(response);
+
+        _this2.getKeyPairs();
+
+        _this2.$router.push("/keypairs");
+
+        _this2.$toasted.show("Key Pair Created");
       })["catch"](function (error) {
         console.log('Error');
       });
     },
     keyPairsDetail: function keyPairsDetail(keypair) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get(this.url + "/compute/v2.1/os-keypairs/" + keypair.name, {
         headers: {
@@ -3141,7 +3212,26 @@ __webpack_require__.r(__webpack_exports__);
           'x-openstack-nova-api-version': '2.2'
         }
       }).then(function (response) {
-        _this2.keypairAMostar = response.data.keypair;
+        _this3.keypairAMostar = response.data.keypair;
+      })["catch"](function (error) {
+        console.log('Error');
+      });
+    },
+    keyPairsDelete: function keyPairsDelete(keypair) {
+      var _this4 = this;
+
+      axios["delete"](this.url + "/compute/v2.1/os-keypairs/" + keypair.name, {
+        headers: {
+          'x-auth-token': this.$store.state.token
+        }
+      }).then(function (response) {
+        _this4.getKeyPairs();
+
+        _this4.$router.push("/keypairs");
+
+        _this4.$toasted.show("Key Pair Deleted");
+      })["catch"](function (error) {
+        console.log('Error');
       });
     },
     exit: function exit() {
@@ -42990,7 +43080,32 @@ var render = function() {
                 ? _c("td", { staticClass: "bg-success" }, [
                     _vm._v(_vm._s(floatingIP.status))
                   ])
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-success",
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Associate")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-danger",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteFloatingIP(floatingIP)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete")]
+                )
+              ])
             ])
           ])
         })
@@ -43056,7 +43171,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("pool")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")])
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Options ")])
       ])
     ])
   }
@@ -43746,146 +43863,244 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", [
-        _vm._v("Key Pairs\r\n    "),
-        _c("input", {
-          ref: "file",
-          staticClass: "form-control",
-          attrs: { type: "file", id: "file", placeholder: "Upload Image" },
-          on: {
-            change: function($event) {
-              return _vm.handleFileUpload()
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.createKeyPair()
-            }
-          }
-        },
-        [_vm._v("Create Key Pair")]
-      )
-    ]),
+    _c("br"),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModals" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "container" }, [
-              _c("label", { attrs: { for: "nameKeyPair" } }, [_vm._v("Name:")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-control", attrs: { for: "nameKeyPair" } },
-                [_vm._v(_vm._s(_vm.keypairAMostar.name))]
-              )
-            ]),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { id: "myModalKeyPairsDetail" } },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(2),
             _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("label", { attrs: { for: "idKeyPair" } }, [_vm._v("ID:")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-control", attrs: { for: "idKeyPair" } },
-                [_vm._v(_vm._s(_vm.keypairAMostar.id))]
-              )
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("label", { attrs: { for: "public_keyKeyPair" } }, [
-                _vm._v("Public Key:")
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "container" }, [
+                _c("label", { attrs: { for: "nameKeyPair" } }, [
+                  _vm._v("Name:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-control",
+                    attrs: { for: "nameKeyPair" }
+                  },
+                  [_vm._v(_vm._s(_vm.keypairAMostar.name))]
+                )
               ]),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "text-break form-control",
-                  attrs: { for: "public_keyKeyPair" }
-                },
-                [_vm._v(_vm._s(_vm.keypairAMostar.public_key))]
-              )
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("label", { attrs: { for: "fingerprintKeyPair" } }, [
-                _vm._v("Fingerprint:")
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("label", { attrs: { for: "idKeyPair" } }, [_vm._v("ID:")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form-control", attrs: { for: "idKeyPair" } },
+                  [_vm._v(_vm._s(_vm.keypairAMostar.id))]
+                )
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("label", { attrs: { for: "public_keyKeyPair" } }, [
+                  _vm._v("Public Key:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-break form-control",
+                    attrs: { for: "public_keyKeyPair" }
+                  },
+                  [_vm._v(_vm._s(_vm.keypairAMostar.public_key))]
+                )
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("label", { attrs: { for: "fingerprintKeyPair" } }, [
+                  _vm._v("Fingerprint:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-control",
+                    attrs: { for: "fingerprintKeyPair" }
+                  },
+                  [_vm._v(_vm._s(_vm.keypairAMostar.fingerprint))]
+                )
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("label", { attrs: { for: "user_idKeyPair" } }, [
+                  _vm._v("User ID:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-control",
+                    attrs: { for: "user_idKeyPair" }
+                  },
+                  [_vm._v(_vm._s(_vm.keypairAMostar.user_id))]
+                )
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("label", { attrs: { for: "created_atKeyPair" } }, [
+                  _vm._v("Created At:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-control",
+                    attrs: { for: "created_atKeyPair" }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm._f("formatDate")(_vm.keypairAMostar.created_at)
+                      )
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(3)
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { id: "myModalCreateKeyPairs" } },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "container" }, [
+                _c("label", { attrs: { for: "nameKeyPair" } }, [
+                  _vm._v("Name:")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newKeypair.name,
+                      expression: "newKeypair.name"
+                    }
+                  ],
                   staticClass: "form-control",
-                  attrs: { for: "fingerprintKeyPair" }
-                },
-                [_vm._v(_vm._s(_vm.keypairAMostar.fingerprint))]
-              )
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("label", { attrs: { for: "user_idKeyPair" } }, [
-                _vm._v("User ID:")
+                  attrs: { type: "text", id: "name" },
+                  domProps: { value: _vm.newKeypair.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.newKeypair, "name", $event.target.value)
+                    }
+                  }
+                })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "form-control",
-                  attrs: { for: "user_idKeyPair" }
-                },
-                [_vm._v(_vm._s(_vm.keypairAMostar.user_id))]
-              )
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group container" }, [
+                _c("label", { attrs: { for: "keyPairType" } }, [
+                  _vm._v("Type:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newKeypair.type,
+                        expression: "newKeypair.type"
+                      }
+                    ],
+                    staticClass: "form-control text-capitalize",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.newKeypair,
+                          "type",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "ssh" } }, [
+                      _vm._v("SSH Key")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "x509" } }, [
+                      _vm._v("X509 Certificate")
+                    ])
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("label", { attrs: { for: "created_atKeyPair" } }, [
-                _vm._v("Created At:")
-              ]),
-              _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
               _c(
-                "div",
+                "button",
                 {
-                  staticClass: "form-control",
-                  attrs: { for: "created_atKeyPair" }
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function($event) {
+                      return _vm.createKeyPair()
+                    }
+                  }
                 },
-                [
-                  _vm._v(
-                    _vm._s(_vm._f("formatDate")(_vm.keypairAMostar.created_at))
-                  )
-                ]
+                [_vm._v("Create Key Pair")]
               )
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(2)
+          ])
         ])
-      ])
-    ]),
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "container-fluid" }, [
       _c(
         "table",
         { staticClass: "table table-hover" },
         [
-          _vm._m(3),
+          _vm._m(5),
           _vm._v(" "),
           _vm._l(_vm.keypairs, function(keypairs) {
             return _c("tbody", { key: keypairs.id }, [
@@ -43902,7 +44117,7 @@ var render = function() {
                       attrs: {
                         type: "button",
                         "data-toggle": "modal",
-                        "data-target": "#myModals"
+                        "data-target": "#myModalKeyPairsDetail"
                       },
                       on: {
                         click: function($event) {
@@ -43917,7 +44132,12 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-sm btn-danger",
-                      attrs: { type: "button" }
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.keyPairsDelete(keypairs.keypair)
+                        }
+                      }
                     },
                     [_vm._v("Delete Key Pair")]
                   )
@@ -43937,6 +44157,25 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [_c("h1", [_vm._v("Key Pairs")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-dark",
+          attrs: {
+            type: "submit",
+            "data-toggle": "modal",
+            "data-target": "#myModalCreateKeyPairs"
+          }
+        },
+        [_vm._v("Create Key Pair")]
+      )
+    ])
   },
   function() {
     var _vm = this
@@ -43967,6 +44206,23 @@ var staticRenderFns = [
           attrs: { type: "button", "data-dismiss": "modal" }
         },
         [_vm._v("Close")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Key Pair")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
       )
     ])
   },

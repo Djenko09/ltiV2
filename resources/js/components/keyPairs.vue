@@ -26,26 +26,31 @@
                 <label for="nameKeyPair">Name:</label>
                 <div for="nameKeyPair" class="form-control">{{keypairAMostar.name}}</div>
             </div>
+            <br>
 
             <div class="container">
                 <label for="idKeyPair">ID:</label>
                 <div for="idKeyPair" class="form-control">{{keypairAMostar.id}}</div>
             </div>
+            <br>
 
             <div class="container">
                 <label for="public_keyKeyPair">Public Key:</label>
                 <a for="public_keyKeyPair" class="text-break form-control">{{keypairAMostar.public_key}}</a>
             </div>
+            <br>
 
             <div class="container">
                 <label for="fingerprintKeyPair">Fingerprint:</label>
                 <div for="fingerprintKeyPair" class="form-control">{{keypairAMostar.fingerprint}}</div>
             </div>
+            <br>
 
             <div class="container">
                 <label for="user_idKeyPair">User ID:</label>
                 <div for="user_idKeyPair" class="form-control">{{keypairAMostar.user_id}}</div>
             </div>
+            <br>
 
             <div class="container">
                 <label for="created_atKeyPair">Created At:</label>

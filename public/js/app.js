@@ -3086,6 +3086,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -43785,6 +43790,8 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
             _c("div", { staticClass: "container" }, [
               _c("label", { attrs: { for: "idKeyPair" } }, [_vm._v("ID:")]),
               _vm._v(" "),
@@ -43794,6 +43801,8 @@ var render = function() {
                 [_vm._v(_vm._s(_vm.keypairAMostar.id))]
               )
             ]),
+            _vm._v(" "),
+            _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "container" }, [
               _c("label", { attrs: { for: "public_keyKeyPair" } }, [
@@ -43810,6 +43819,8 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
             _c("div", { staticClass: "container" }, [
               _c("label", { attrs: { for: "fingerprintKeyPair" } }, [
                 _vm._v("Fingerprint:")
@@ -43825,6 +43836,8 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
             _c("div", { staticClass: "container" }, [
               _c("label", { attrs: { for: "user_idKeyPair" } }, [
                 _vm._v("User ID:")
@@ -43839,6 +43852,8 @@ var render = function() {
                 [_vm._v(_vm._s(_vm.keypairAMostar.user_id))]
               )
             ]),
+            _vm._v(" "),
+            _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "container" }, [
               _c("label", { attrs: { for: "created_atKeyPair" } }, [

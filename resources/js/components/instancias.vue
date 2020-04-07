@@ -174,7 +174,7 @@ export default {
       },
       getFlavors: function(){
 
-           axios.get(this.url + "/compute/v2.1/flavors",{
+           axios.get(this.url + "/compute/v2.1/flavors/detail",{
            headers: {'x-auth-token': this.$store.state.token} })
 
            .then(response=>{

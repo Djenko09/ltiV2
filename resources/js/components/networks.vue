@@ -7,10 +7,10 @@
     </div>
     <br>
     <div>
-      <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalInstances">Create Network</button>
+      <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalNetworks">Create Network</button>
     </div>
       <br>
-      <div class="modal" id="myModalInstances">
+      <div class="modal" id="myModalNetworks">
         <div class="modal-dialog">
           <div class="modal-content">
 

@@ -10,11 +10,12 @@
         type="submit"
         class="btn btn-outline-dark"
         data-toggle="modal"
-        data-target="#myModalInstances"
+        data-target="#myModalFloatingIP"
       >Allocate IP</button>
     </div>
     <br />
-    <div class="modal" id="myModalInstances">
+    <div class="modal" id="myModalFloatingIP">
+      <!-- formulario para criar um ip flutuante-->
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -28,11 +29,12 @@
             <div class="form-group">
               <label for="network">Pool</label>
               <select class="form-control" v-model="network.id">
-                <option  
+                <option
                   v-for="network in networks"
                   :key="network.id"
                   v-bind:value="network.id"
-                v-show="network['router:external'] == 1">{{ network.name}}</option>
+                  v-show="network['router:external'] == 1"
+                >{{ network.name}}</option>
               </select>
             </div>
 
@@ -68,8 +70,7 @@
           <th>Mapped Fixed IP Address</th>
           <th>pool</th>
           <th>Status</th>
-          <th> Options </th>
-
+          <th>Options</th>
         </tr>
       </thead>
 
@@ -84,21 +85,63 @@
           <td class="bg-success" v-if="floatingIP.status === 'ACTIVE'">{{floatingIP.status}}</td>
 
           <td>
-           <button
-                type="button"
-                class="btn btn-sm btn-success"
-               
-              >Associate</button>
             <button
-            type="button"
-            class="btn btn-sm btn-danger"
-            v-on:click="deleteFloatingIP(floatingIP)"
+              v-show="floatingIP.fixed_ip_address == null "
+              type="button"
+              class="btn btn-sm btn-success"
+              data-toggle="modal"
+              data-target="#myAssociateIP"
+              v-on:click="saveFloatingID(floatingIP.id)"
+            >Associate</button>
+            <button
+              v-show="floatingIP.port_id != null"
+              type="button"
+              class="btn btn-sm btn-warning"
+              v-on:click="disassociateFloatingIP(floatingIP.id)"
+            >Disassociate</button>
+            <button
+              type="button"
+              class="btn btn-sm btn-danger"
+              v-on:click="deleteFloatingIP(floatingIP)"
             >Delete</button>
           </td>
-
         </tr>
       </tbody>
     </table>
+    <div class="modal" id="myAssociateIP">
+      <!-- formulario para associar o IP a uma VM -->
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Associate IP</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="instance">Port</label>
+              <select class="form-control" v-model="instance.ip">
+                <option
+                  v-for="instance in instances"
+                  :key="instance.id"
+                  v-bind:value="instance.addresses.private[0].addr"
+                >{{ instance.name}} : {{instance.addresses.private[0].addr}}</option>
+              </select>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-dismiss="modal"
+              v-on:click="associateIP(instance.ip)"
+            >Associate IP</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -110,9 +153,14 @@ export default {
       floatingIPs: [],
       instances: [],
       networks: [],
-    network: { id: ""},
+      network: { id: "" },
       description: "",
-
+      ports: [],
+      port_id: "",
+      float_ID: "",
+      instance: {
+        ip: ""
+      }
     };
   },
   methods: {
@@ -148,40 +196,90 @@ export default {
         });
     },
     allocateIP() {
-      axios.post(
-        this.url + ":9696/v2.0/floatingips",
-        {
-          floatingip: {
-            floating_network_id: this.network.id,
-            project_id: this.$store.state.project,
-            description: this.description
+      axios
+        .post(
+          this.url + ":9696/v2.0/floatingips",
+          {
+            floatingip: {
+              floating_network_id: this.network.id,
+              project_id: this.$store.state.project,
+              description: this.description
+            }
+          },
+          {
+            headers: { "x-auth-token": this.$store.state.token }
           }
-        },
-        {
-          headers: { "x-auth-token": this.$store.state.token }
-        }
-      )
-      .then(response => {
-           console.log(response);
-           this.$toasted.show("Floating IP Allocated");
-           this.getFloatingIPs();
-
-         });
+        )
+        .then(response => {
+          console.log(response);
+          this.$toasted.show("Floating IP Allocated");
+          this.getFloatingIPs();
+        });
     },
-    deleteFloatingIP(floatingIP){
-        axios.delete(this.url + ":9696/v2.0/floatingips/" + floatingIP.id, {
-            headers: {'x-auth-token': this.$store.state.token} 
-            })
-            .then(response => {
-           console.log(response);
-           this.$toasted.show("Floating IP Deleted With Success");
-           this.getFloatingIPs();
+    saveFloatingID(id) {
+      this.float_ID = id;
+    },
+    associateIP(ip) {
+      axios
+        .get(this.url + ":9696/v2.0/ports", {
+          headers: { "x-auth-token": this.$store.state.token }
+        })
 
-         });
+        .then(response => {
+          this.ports = response.data.ports;
+          console.log(this.float_ID);
+          for (const port of this.ports) {
+            //console.log(ip);
+            if (port.fixed_ips[0].ip_address == ip) {
+              console.log(port.id);
+              this.port_id = port.id;
+              axios.put(this.url + ":9696/v2.0/floatingips/" + this.float_ID, 
+              {
+                floatingip: {
+                  port_id: this.port_id,
+                  
+                }
+              }
+              ,{
+                headers: { "x-auth-token": this.$store.state.token }
+              }).then(response => {
+                   
+          this.$toasted.show("FloatingIP associated to Instance with IP:" +ip);
+           this.getFloatingIPs();
           
-        
-     },
-    
+              });
+            }
+          }
+       
+        });
+      
+    },
+      disassociateFloatingIP(id) {
+        axios.put(this.url + ":9696/v2.0/floatingips/" + id, 
+              {
+                floatingip: {
+                  port_id: null,
+             
+                }
+              }
+              ,{
+                headers: { "x-auth-token": this.$store.state.token }
+              }).then(response => {
+                  this.$toasted.show("FloatingIP disassociated");
+                  this.getFloatingIPs();
+              });   
+    },
+    deleteFloatingIP(floatingIP) {
+      axios
+        .delete(this.url + ":9696/v2.0/floatingips/" + floatingIP.id, {
+          headers: { "x-auth-token": this.$store.state.token }
+        })
+        .then(response => {
+          console.log(response);
+          this.$toasted.show("Floating IP Deleted With Success");
+          this.getFloatingIPs();
+        });
+    }
   },
 
   mounted() {
@@ -189,6 +287,7 @@ export default {
     this.getFloatingIPs();
     this.getInstances();
     this.getNetworks();
+   
   }
 };
 </script>

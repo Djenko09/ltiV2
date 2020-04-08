@@ -7,10 +7,10 @@
     </div>
     <br>
     <div>
-      <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalInstances">Create Router</button>
+      <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalRouters">Create Router</button>
     </div>
       <br>
-      <div class="modal" id="myModalInstances">
+      <div class="modal" id="myModalRouters">
         <div class="modal-dialog">
           <div class="modal-content">
 

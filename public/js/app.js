@@ -4396,12 +4396,195 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
-      securityGroups: []
+      securityGroups: [],
+      securityGroupRules: [],
+      securityGroupId: null,
+      securityGroupRule: {
+        remote_group_id: "",
+        direction: "",
+        protocol: "any",
+        ethertype: "ipv4",
+        port_range_max: null,
+        port_range_min: null,
+        security_group_id: null,
+        remote_ip_prefix: "",
+        description: "",
+        rule: "",
+
+        /* variaveis a para nao enviar daqui para baixo */
+        remote: "",
+        port: "port",
+        portSelected: ""
+      }
     };
+  },
+  computed: {
+    inputOptions: function inputOptions() {
+      return this.securityGroupRule.rule;
+    }
   },
   methods: {
     getSecurityGroups: function getSecurityGroups() {
@@ -4413,7 +4596,82 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.securityGroups = response.data.security_groups;
+        console.log(_this.securityGroups);
       });
+    },
+    deleteSecurityGroup: function deleteSecurityGroup(securityGroup) {
+      var _this2 = this;
+
+      axios["delete"](this.url + ":9696/v2.0/security-groups/" + securityGroup, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this2.getSecurityGroups();
+
+        _this2.$toasted.success("Security group deleted with success!");
+      })["catch"](function (error) {
+        if (error.response.status == 409) {
+          _this2.$toasted.error("Can't delete! Security group in use!");
+        }
+      });
+    },
+    getSecurityGroupRules: function getSecurityGroupRules(securityGroupId) {
+      var _this3 = this;
+
+      axios.get(this.url + ":9696/v2.0/security-groups/" + securityGroupId, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this3.securityGroupId = securityGroupId;
+        _this3.securityGroupRules = response.data.security_group.security_group_rules;
+        console.log(_this3.securityGroupRules);
+      });
+    },
+    createSecurityGroupRule: function createSecurityGroupRule() {
+      axios.post(this.url + ":9696/v2.0/security-group-rules", {
+        security_group_rule: {
+          direction: this.securityGroupRule.direction,
+          description: this.securityGroupRule.description,
+          port_range_min: this.securityGroupRule.port_range_min,
+          ethertype: this.securityGroupRule.ethertype,
+          port_range_max: this.securityGroupRule.port_range_max,
+          protocol: this.securityGroupRule.protocol,
+          security_group_id: this.securityGroupId
+        }
+      }, {
+        headers: {
+          'X-Auth-Token': this.$store.state.token
+        }
+      });
+    },
+    onChangeRule: function onChangeRule(event) {
+      this.securityGroupRule.rule = event.target.value;
+
+      if (this.securityGroupRule.rule == 'tcp') {
+        this.securityGroupRule.protocol = 'tcp';
+      } else if (this.securityGroupRule.rule == 'udp') {
+        this.securityGroupRule.protocol = 'udp';
+      }
+    },
+    onChangeRemote: function onChangeRemote(event) {
+      this.securityGroupRule.remote = event.target.value;
+      s;
+    },
+    onChangePort: function onChangePort(event) {
+      this.securityGroupRule.port = event.target.value;
+
+      if (this.securityGroupRule.port === 'all') {
+        this.securityGroupRule.port_range_max = 65535;
+        this.securityGroupRule.port_range_min = 0;
+      }
+    },
+    onChangePortV2: function onChangePortV2(event) {
+      this.securityGroupRule.port_range_max = event.target.value;
+      this.securityGroupRule.port_range_min = event.target.value;
+      console.log("RANGE MAX : " + this.securityGroupRule.port_range_max);
+      console.log("RANGE MIN : " + this.securityGroupRule.port_range_min);
     }
   },
   mounted: function mounted() {
@@ -4898,6 +5156,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n.login-container{\r\n  margin-top: 5%;\r\n  margin-bottom: 5%;\n}\n.login-logo{\r\n  position: relative;\r\n  margin-left: -41.5%;\n}\n.login-logo img{\r\n  position: absolute;\r\n  width: 20%;\r\n  margin-top: 19%;\r\n  background: #282726;\r\n  border-radius: 4.5rem;\r\n  padding: 5%;\n}\n.login-form-1{\r\n  padding: 9%;\r\n  background:#ffffff;\r\n  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);\n}\n.login-form-1 h3{\r\n  text-align: center;\r\n  margin-bottom:12%;\r\n  color:#000000;\n}\n.btnSubmit{\r\n  font-weight: 600;\r\n  width: 50%;\r\n  color: #ffffff;\r\n  background-color: #c41616;\r\n  border: none;\r\n  border-radius: 1.5rem;\r\n  padding:2%;\n}\n.btnForgetPwd{\r\n  color: #fff;\r\n  font-weight: 600;\r\n  text-decoration: none;\n}\n.btnForgetPwd:hover{\r\n  text-decoration:none;\r\n  color:#fff;\n}\n.center {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 50%;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.btn-create[data-v-2f81c23f]{\r\n  position: relative;\r\n  left: 1000px\n}\n.far[data-v-2f81c23f]{\r\n  width: 1px;\r\n  height: 1px;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -42285,6 +42562,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -46116,17 +46423,730 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade bd-example-modal-xl",
+        attrs: { id: "myModalManageSecurity" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-xl" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("h4", { staticClass: "modal-title" }, [
+                _vm._v(
+                  "Manage Security Group Rules (" +
+                    _vm._s(_vm.securityGroupId) +
+                    ")"
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("×")]
+              )
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c(
+                "table",
+                { staticClass: "table table-hover" },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._l(_vm.securityGroupRules, function(securityGroupRule) {
+                    return _c("tbody", { key: securityGroupRule.id }, [
+                      _c("tr", [
+                        _c("td", [_vm._v(_vm._s(securityGroupRule.direction))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(securityGroupRule.ethertype))]),
+                        _vm._v(" "),
+                        securityGroupRule.protocol === null
+                          ? _c("td", [_vm._v("Any")])
+                          : _c("td", [
+                              _vm._v(_vm._s(securityGroupRule.protocol))
+                            ]),
+                        _vm._v(" "),
+                        securityGroupRule.port_range_max === null &&
+                        securityGroupRule.port_range_min === null
+                          ? _c("td", [_vm._v("Any")])
+                          : _c("td", [
+                              _vm._v(
+                                _vm._s(securityGroupRule.port_range_min) +
+                                  " - " +
+                                  _vm._s(securityGroupRule.port_range_max)
+                              )
+                            ]),
+                        _vm._v(" "),
+                        securityGroupRule.remote_ip_prefix === null
+                          ? _c("td", { staticClass: "text-center" }, [
+                              _vm._v("-----")
+                            ])
+                          : _c("td", [
+                              _vm._v(_vm._s(securityGroupRule.remote_ip_prefix))
+                            ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(securityGroupRule.security_group_id))
+                        ]),
+                        _vm._v(" "),
+                        securityGroupRule.description === null
+                          ? _c("td", { staticClass: "text-center" }, [
+                              _vm._v("-----")
+                            ])
+                          : _c("td", [
+                              _vm._v(_vm._s(securityGroupRule.description))
+                            ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteImage(_vm.image.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete Rule")]
+                          )
+                        ])
+                      ])
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade bd-example-modal-xl",
+        attrs: {
+          id: "createModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "createModal",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-xl", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "policy" } }, [_vm._v("Rule")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.securityGroupRule.rule,
+                          expression: "securityGroupRule.rule"
+                        }
+                      ],
+                      staticClass: "form-control text-capitalize",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "rule",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function($event) {
+                            return _vm.onChangeRule($event)
+                          }
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v("Choose a rule")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "custom" } }, [
+                        _vm._v("Custom TCP Rule")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "custom" } }, [
+                        _vm._v("Custom UDP Rule")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "custom" } }, [
+                        _vm._v("Custom ICMP Rule")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "icmp" } }, [
+                        _vm._v("All ICMP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("All TCP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "udp" } }, [
+                        _vm._v("All UDP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "udp" } }, [
+                        _vm._v("DNS")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("HTTP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("HTTPS")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("IMAP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("IMAPS")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("LDAP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("MYSQL")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("POP3")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("POP3S")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("RDP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("SMTP")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [
+                        _vm._v("SMTPS")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "tcp" } }, [_vm._v("SSH")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "description" } }, [
+                    _vm._v("Description:")
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.securityGroupRule.description,
+                        expression: "securityGroupRule.description"
+                      }
+                    ],
+                    attrs: { id: "w3mission", rows: "4", cols: "50" },
+                    domProps: { value: _vm.securityGroupRule.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.securityGroupRule,
+                          "description",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Direction:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.securityGroupRule.direction,
+                          expression: "securityGroupRule.direction"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.securityGroupRule,
+                            "direction",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "ingress" } }, [
+                        _vm._v("Ingress")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "egress" } }, [
+                        _vm._v("Egress")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.securityGroupRule.rule === "custom"
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Open Port")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.securityGroupRule.port,
+                              expression: "securityGroupRule.port"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.securityGroupRule,
+                                  "port",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                              function($event) {
+                                return _vm.onChangePort($event)
+                              }
+                            ]
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "port" } }, [
+                            _vm._v("Port")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "portRange" } }, [
+                            _vm._v("Port Range")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "all" } }, [
+                            _vm._v("All ports")
+                          ])
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.securityGroupRule.port === "port" &&
+                _vm.securityGroupRule.rule === "custom"
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-control-plaintext",
+                          attrs: { type: "text", readonly: "" }
+                        },
+                        [_vm._v("Port:")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.securityGroupRule.portSelected,
+                            expression: "securityGroupRule.portSelected"
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.securityGroupRule.portSelected },
+                        on: {
+                          change: function($event) {
+                            return _vm.onChangePortV2($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "portSelected",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.securityGroupRule.port === "portRange"
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-control-plaintext",
+                          attrs: { type: "text", readonly: "" }
+                        },
+                        [_vm._v("From Port")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.securityGroupRule.port_range_min,
+                            expression: "securityGroupRule.port_range_min"
+                          }
+                        ],
+                        staticClass: "form-group",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.securityGroupRule.port_range_min
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "port_range_min",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-control-plaintext",
+                          attrs: { type: "text", readonly: "" }
+                        },
+                        [_vm._v("To Port")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.securityGroupRule.port_range_max,
+                            expression: "securityGroupRule.port_range_max"
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.securityGroupRule.port_range_max
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "port_range_max",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Remote")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.securityGroupRule.remote,
+                          expression: "securityGroupRule.remote"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "remote",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function($event) {
+                            return _vm.onChangeRemote($event)
+                          }
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "cidr" } }, [
+                        _vm._v("CIDR")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "secur" } }, [
+                        _vm._v("Security Group")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.securityGroupRule.remote === "secur"
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "securityGroup" } }, [
+                        _vm._v("Security Group")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.securityGroupRule.security_group_id,
+                              expression: "securityGroupRule.security_group_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.securityGroupRule,
+                                "security_group_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.securityGroups, function(securityGroup) {
+                          return _c("option", {
+                            key: securityGroup.id,
+                            attrs: { value: "option" }
+                          })
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: "etherType" } }, [
+                        _vm._v("EtherType")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.securityGroupRule.ethertype,
+                              expression: "securityGroupRule.ethertype"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.securityGroupRule,
+                                "ethertype",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "ipv4" } }, [
+                            _vm._v("IPv4")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "ipv6" } }, [
+                            _vm._v("IPv6")
+                          ])
+                        ]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "CIDR" } }, [_vm._v("CIDR")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.securityGroupRule.remote_ip_prefix,
+                        expression: "securityGroupRule.remote_ip_prefix"
+                      }
+                    ],
+                    attrs: {
+                      type: "text",
+                      name: "CIDR",
+                      palceholder: "0.0.0.0/0"
+                    },
+                    domProps: { value: _vm.securityGroupRule.remote_ip_prefix },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.securityGroupRule,
+                          "remote_ip_prefix",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.createSecurityGroupRule()
+                      }
+                    }
+                  },
+                  [_vm._v("Save changes")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(4),
     _c("br"),
     _vm._v(" "),
     _c(
       "table",
       { staticClass: "table table-hover" },
       [
-        _vm._m(1),
+        _vm._m(5),
         _vm._v(" "),
         _vm._l(_vm.securityGroups, function(securityGroup) {
-          return _c("tbody", { key: securityGroup.tenant_id }, [
+          return _c("tbody", { key: securityGroup.project_id }, [
             _c("tr", [
               _c("td", [_vm._v(_vm._s(securityGroup.name))]),
               _vm._v(" "),
@@ -46139,14 +47159,34 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-sm btn-outline-dark",
-                    attrs: { type: "button" },
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": ".bd-example-modal-xl"
+                    },
                     on: {
                       click: function($event) {
-                        return _vm.deleteImage(_vm.image.id)
+                        return _vm.getSecurityGroupRules(securityGroup.id)
                       }
                     }
                   },
                   [_vm._v("Manage Rules")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-warning",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteSecurityGroup(
+                          securityGroup.security_group_id
+                        )
+                      }
+                    }
+                  },
+                  [_vm._v("Delete Rule")]
                 )
               ])
             ])
@@ -46158,6 +47198,86 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn-create btn btn-outline-dark",
+          attrs: { "data-toggle": "modal", "data-target": "#createModal" }
+        },
+        [_c("i", { staticClass: "far fa-plus-square" }), _vm._v("Create")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Direction")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ether Type")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ip Protocol")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Port Range")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Remote Ip Prefix")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Remote Security Group")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c("input", {
+        staticClass: "btn btn-warning",
+        attrs: {
+          type: "submit",
+          "data-dismiss": "modal",
+          "data-target": ".bd-example-modal-xl",
+          value: "Close"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title", attrs: { id: "createModal" } }, [
+        _vm._v("Create new rule")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -64685,14 +65805,17 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/securityGroups.vue ***!
   \****************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _securityGroups_vue_vue_type_template_id_2f81c23f_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./securityGroups.vue?vue&type=template&id=2f81c23f&scoped=true& */ "./resources/js/components/securityGroups.vue?vue&type=template&id=2f81c23f&scoped=true&");
 /* harmony import */ var _securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./securityGroups.vue?vue&type=script&lang=js& */ "./resources/js/components/securityGroups.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& */ "./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -64700,7 +65823,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _securityGroups_vue_vue_type_template_id_2f81c23f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _securityGroups_vue_vue_type_template_id_2f81c23f_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -64722,13 +65845,29 @@ component.options.__file = "resources/js/components/securityGroups.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/securityGroups.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./securityGroups.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/securityGroups.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& ***!
+  \*************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

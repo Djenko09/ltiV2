@@ -487,7 +487,7 @@ export default {
           this.console_url = response.data.console.url;
           console.log(this.console_url);
           window.open(this.console_url);
-          win.focus();
+         // win.focus();
         });
     },
     alert1(instance) {

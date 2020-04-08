@@ -48,7 +48,7 @@
 
 <script type="text/javascript">
 
-import InstanceEdit from "./editInstance.vue";
+
 
 export default {
   data: function() {

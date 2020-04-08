@@ -164,8 +164,7 @@ export default {
          })
     },
     createKeyPair(){
-      axios
-         .post(
+      axios.post(
            this.url + "/compute/v2.1/os-keypairs",
            {
              keypair: {

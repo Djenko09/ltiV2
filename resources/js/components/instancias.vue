@@ -74,7 +74,7 @@
           <tr>
             <th>Name</th>
             <th>Status</th>
-            <th>Flavor ID</th>
+            <th>Flavor</th>
             <th> Image </th>
             <th> Options </th>
 

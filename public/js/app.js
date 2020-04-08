@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['projectName'],
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       project_name: null,
       user: {
         token: null
@@ -2018,7 +2018,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       projects: [],
       instances: [],
       images: [],
@@ -2192,7 +2192,7 @@ module.exports = {
   props: ["instance"],
   data: function data() {
     return {
-      url: "http://192.168.196.100"
+      url: "http://192.168.232.20"
     };
   },
   methods: {
@@ -2256,7 +2256,7 @@ module.exports = {
   props: ["volume"],
   data: function data() {
     return {
-      url: "http://192.168.196.100"
+      url: "http://192.168.232.20"
     };
   },
   methods: {
@@ -2315,7 +2315,7 @@ module.exports = {
   props: ["volume"],
   data: function data() {
     return {
-      url: "http://192.168.196.100"
+      url: "http://192.168.232.20"
     };
   },
   methods: {
@@ -2354,6 +2354,55 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2461,14 +2510,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       floatingIPs: [],
       instances: [],
       networks: [],
       network: {
         id: ""
       },
-      description: ""
+      description: "",
+      ports: [],
+      port_id: "",
+      float_ID: "",
+      instance: {
+        ip: ""
+      }
     };
   },
   methods: {
@@ -2529,19 +2584,83 @@ __webpack_require__.r(__webpack_exports__);
         _this4.getFloatingIPs();
       });
     },
-    deleteFloatingIP: function deleteFloatingIP(floatingIP) {
+    saveFloatingID: function saveFloatingID(id) {
+      this.float_ID = id;
+    },
+    associateIP: function associateIP(ip) {
       var _this5 = this;
+
+      axios.get(this.url + ":9696/v2.0/ports", {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this5.ports = response.data.ports;
+        console.log(_this5.float_ID);
+
+        var _iterator = _createForOfIteratorHelper(_this5.ports),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var port = _step.value;
+
+            //console.log(ip);
+            if (port.fixed_ips[0].ip_address == ip) {
+              console.log(port.id);
+              _this5.port_id = port.id;
+              axios.put(_this5.url + ":9696/v2.0/floatingips/" + _this5.float_ID, {
+                floatingip: {
+                  port_id: _this5.port_id
+                }
+              }, {
+                headers: {
+                  "x-auth-token": _this5.$store.state.token
+                }
+              }).then(function (response) {
+                _this5.$toasted.show("FloatingIP associated to Instance with IP:" + ip);
+
+                _this5.getFloatingIPs();
+              });
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      });
+    },
+    disassociateFloatingIP: function disassociateFloatingIP(id) {
+      var _this6 = this;
+
+      axios.put(this.url + ":9696/v2.0/floatingips/" + id, {
+        floatingip: {
+          port_id: null
+        }
+      }, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this6.$toasted.show("FloatingIP disassociated");
+
+        _this6.getFloatingIPs();
+      });
+    },
+    deleteFloatingIP: function deleteFloatingIP(floatingIP) {
+      var _this7 = this;
 
       axios["delete"](this.url + ":9696/v2.0/floatingips/" + floatingIP.id, {
         headers: {
-          'x-auth-token': this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
         console.log(response);
 
-        _this5.$toasted.show("Floating IP Deleted With Success");
+        _this7.$toasted.show("Floating IP Deleted With Success");
 
-        _this5.getFloatingIPs();
+        _this7.getFloatingIPs();
       });
     }
   },
@@ -2577,7 +2696,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100"
+      url: "http://192.168.232.20"
     };
   },
   methods: {},
@@ -2717,7 +2836,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       images: {
         id: null,
         name: null,
@@ -2977,7 +3096,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       instances: [],
       instance: {
         name: "",
@@ -3252,7 +3371,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       keypairs: [],
       newKeypair: {
         name: "",
@@ -3390,7 +3509,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       showMessage: false,
       message: ""
     };
@@ -3473,7 +3592,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.196.100"
+      url: "http://192.168.232.20"
     };
   },
   methods: {
@@ -3617,7 +3736,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       networks: [],
       network: {
         name: "",
@@ -3749,7 +3868,7 @@ __webpack_require__.r(__webpack_exports__);
         image_id: "",
         network_id: ""
       },
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       showError: false,
       successMessage: "",
       flavors: [],
@@ -3882,7 +4001,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         size: ""
       },
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       showError: false,
       successMessage: "",
       flavors: [],
@@ -3993,7 +4112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       projects: [],
       active_prj: this.$store.state.project,
       user: {
@@ -4168,7 +4287,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       routers: [],
       router: {
         network_id: "",
@@ -4319,7 +4438,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       servers: [],
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       serversGroup: {
         name: null,
         policy: null
@@ -4523,7 +4642,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.100",
+      url: "http://192.168.232.20",
       volumes: [],
       volume: {
         name: "",
@@ -43027,7 +43146,7 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalInstances" } }, [
+    _c("div", { staticClass: "modal", attrs: { id: "myModalFloatingIP" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
           _vm._m(2),
@@ -43175,10 +43294,49 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: floatingIP.fixed_ip_address == null,
+                        expression: "floatingIP.fixed_ip_address == null "
+                      }
+                    ],
                     staticClass: "btn btn-sm btn-success",
-                    attrs: { type: "button" }
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#myAssociateIP"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.saveFloatingID(floatingIP.id)
+                      }
+                    }
                   },
                   [_vm._v("Associate")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: floatingIP.port_id != null,
+                        expression: "floatingIP.port_id != null"
+                      }
+                    ],
+                    staticClass: "btn btn-sm btn-warning",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.disassociateFloatingIP(floatingIP.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Disassociate")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -43200,7 +43358,88 @@ var render = function() {
         })
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myAssociateIP" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "instance" } }, [_vm._v("Port")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.instance.ip,
+                      expression: "instance.ip"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.instance,
+                        "ip",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.instances, function(instance) {
+                  return _c(
+                    "option",
+                    {
+                      key: instance.id,
+                      domProps: { value: instance.addresses.private[0].addr }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(instance.name) +
+                          " : " +
+                          _vm._s(instance.addresses.private[0].addr)
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.associateIP(_vm.instance.ip)
+                  }
+                }
+              },
+              [_vm._v("Associate IP")]
+            )
+          ])
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -43222,7 +43461,7 @@ var staticRenderFns = [
           attrs: {
             type: "submit",
             "data-toggle": "modal",
-            "data-target": "#myModalInstances"
+            "data-target": "#myModalFloatingIP"
           }
         },
         [_vm._v("Allocate IP")]
@@ -43262,8 +43501,25 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Options ")])
+        _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Associate IP")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]
@@ -44702,7 +44958,7 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalInstances" } }, [
+    _c("div", { staticClass: "modal", attrs: { id: "myModalNetworks" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
           _vm._m(2),
@@ -44977,7 +45233,7 @@ var staticRenderFns = [
           attrs: {
             type: "submit",
             "data-toggle": "modal",
-            "data-target": "#myModalInstances"
+            "data-target": "#myModalNetworks"
           }
         },
         [_vm._v("Create Network")]
@@ -45550,7 +45806,7 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalInstances" } }, [
+    _c("div", { staticClass: "modal", attrs: { id: "myModalRouters" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
           _vm._m(2),
@@ -45724,7 +45980,7 @@ var staticRenderFns = [
           attrs: {
             type: "submit",
             "data-toggle": "modal",
-            "data-target": "#myModalInstances"
+            "data-target": "#myModalRouters"
           }
         },
         [_vm._v("Create Router")]
@@ -64517,8 +64773,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

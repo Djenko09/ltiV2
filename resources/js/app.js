@@ -25,6 +25,7 @@ Vue.use(Toasted, {
 
 import store from "./vuex.js";
 
+
 import loginComponent from "./components/loginComponent.vue";
 import homeComponent from "./components/homeComponent.vue";
 import instanciasComponent from "./components/instancias.vue";
@@ -41,6 +42,7 @@ import projectsComponent from "./components/projects.vue";
 import networksComponent from "./components/networks.vue";
 import floatingIPsComponent from "./components/floatingIPs.vue";
 import routersComponent from "./components/routers.vue";
+import securityGroupsComponent from "./components/securityGroups.vue";
 
 const home = Vue.component('home', homeComponent);
 const login = Vue.component('login', loginComponent);
@@ -58,7 +60,7 @@ const projects = Vue.component('projects', projectsComponent);
 const networks = Vue.component('networks', networksComponent);
 const floatingIPs = Vue.component('floatingIPs', floatingIPsComponent);
 const routers = Vue.component('routers', routersComponent);
-
+const securityGroups = Vue.component('securityGroups', securityGroupsComponent);
 
 
 
@@ -79,10 +81,7 @@ const routes = [
     { path: '/networks', component: networks, name:"networks"},
     { path: '/floatingIPs', component: floatingIPs, name:"floatingIPs"},
     { path: '/routers', component: routers, name:"routers"},
-
-    
-
-
+    { path: '/securityGroups', component: securityGroups, name:"securityGroups"}
 
 ];
 

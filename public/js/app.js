@@ -2164,66 +2164,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/editInstance.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/editInstance.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-module.exports = {
-  props: ["instance"],
-  data: function data() {
-    return {
-      url: "http://192.168.232.20"
-    };
-  },
-  methods: {
-    saveInstance: function saveInstance(instance) {
-      var _this = this;
-
-      axios.put(this.url + "/compute/v2.1/servers/" + instance.id, {
-        server: {
-          name: instance.name
-        }
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": this.$store.state.token
-        }
-      }).then(function (response) {
-        console.log(response);
-
-        _this.$emit("save-edit");
-      })["catch"](function (error) {
-        console.error(error);
-      });
-    },
-    cancelEdit: function cancelEdit() {
-      this.$emit("edit-canceled");
-    }
-  }
-};
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/editVolume.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/editVolume.vue?vue&type=script&lang=js& ***!
@@ -2960,7 +2900,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _editInstance_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editInstance.vue */ "./resources/js/components/editInstance.vue");
 //
 //
 //
@@ -3092,13 +3031,80 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
       instances: [],
       instance: {
+        id: "",
         name: "",
         flavor_id: "",
         image_id: "",
@@ -3107,8 +3113,7 @@ __webpack_require__.r(__webpack_exports__);
       networks: [],
       images: [],
       flavors: [],
-      selectedInstance: null,
-      selectedInstanceEdit: null
+      console_url: ""
     };
   },
   methods: {
@@ -3117,7 +3122,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.url + "/compute/v2.1/servers/detail", {
         headers: {
-          'x-auth-token': this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
         _this.instances = response.data.servers;
@@ -3129,7 +3134,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.url + "/image/v2/images", {
         headers: {
-          'x-auth-token': this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
         _this2.images = response.data.images;
@@ -3141,7 +3146,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.url + "/compute/v2.1/flavors/detail", {
         headers: {
-          'x-auth-token': this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
         _this3.flavors = response.data.flavors;
@@ -3161,15 +3166,22 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteInstance: function deleteInstance(instance) {
+      var _this5 = this;
+
       axios["delete"](this.url + "/compute/v2.1/servers/" + instance.id, {
         headers: {
-          'x-auth-token': this.$store.state.token
+          "x-auth-token": this.$store.state.token
         }
+      }).then(function (response) {
+        console.log(response);
+
+        _this5.$toasted.show("Instance Deleted With Success");
+
+        _this5.getInstances();
       });
-      this.$toasted.show("Instance Deleted With Success");
     },
     createInstance: function createInstance() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.post(this.url + "/compute/v2.1/servers", {
         server: {
@@ -3189,29 +3201,187 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response);
 
-        _this5.$router.push("/home");
+        _this6.$toasted.show("Instance Created");
 
-        _this5.$toasted.show("Instance Created");
+        _this6.getInstances();
       });
     },
     instanceEdit: function instanceEdit(instance) {
-      this.selectedInstance = null;
-      this.selectedInstanceEdit = instance;
+      this.instance.id = instance.id;
+      this.instance.name = instance.name;
     },
-    cancelInstanceEdit: function cancelInstanceEdit() {
-      this.selectedInstanceEdit = null;
+    sendInstanceEdit: function sendInstanceEdit() {
+      var _this7 = this;
+
+      axios.put(this.url + "/compute/v2.1/servers/" + this.instance.id, {
+        server: {
+          name: this.instance.name
+        }
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this7.$toasted.show("Instance edit successfully!");
+
+        _this7.getInstances();
+      });
     },
-    saveInstanceEdit: function saveInstanceEdit() {
-      this.selectedInstanceEdit = null;
-      this.$router.push("/home");
-      this.$toasted.show("Instance edit successfully!");
+    pauseInstance: function pauseInstance(instance) {
+      var _this8 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        pause: null
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this8.$toasted.show("Instance Paused!");
+
+        _this8.getInstances();
+      });
     },
-    exit: function exit() {
-      this.$emit('exit-instance');
+    resumeInstance: function resumeInstance(instance) {
+      var _this9 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        unpause: null
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this9.$toasted.show("Instance Paused!");
+
+        setTimeout(2222);
+
+        _this9.getInstances();
+      });
+    },
+    suspendInstance: function suspendInstance(instance) {
+      var _this10 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        suspend: null
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this10.$toasted.show("Instance Suspensed!");
+
+        _this10.getInstances();
+      });
+    },
+    resumeSuspend: function resumeSuspend(instance) {
+      var _this11 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        resume: null
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this11.$toasted.show("Instance Active!");
+
+        _this11.getInstances();
+      });
+    },
+    rebootInstance: function rebootInstance(instance) {
+      var _this12 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        reboot: {
+          type: "SOFT"
+        }
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this12.$toasted.show("Instance rebooting!");
+
+        _this12.getInstances();
+      });
+    },
+    shutdown: function shutdown(instance) {
+      var _this13 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        "os-stop": null
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this13.$toasted.show("Instance off!");
+
+        _this13.getInstances();
+      });
+    },
+    startInstance: function startInstance(instance) {
+      var _this14 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        "os-start": null
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this14.$toasted.show("Instance started!");
+      });
+    },
+    viewconsole: function viewconsole(instance) {
+      var _this15 = this;
+
+      axios.post(this.url + "/compute/v2.1/servers/" + instance.id + "/action", {
+        "os-getVNCConsole": {
+          type: "novnc"
+        }
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this15.console_url = response.data.console.url;
+        console.log(_this15.console_url);
+        window.open(_this15.console_url); // win.focus();
+      });
+    },
+    alert1: function alert1(instance) {
+      var x;
+      var r = confirm("You Selected '" + instance.name + "'. Please confirm your selection. Restarted instances losing all unsaved data to persistent storage!");
+
+      if (r == true) {
+        x = "você pressionou OK!";
+        this.rebootInstance(instance);
+      } else {
+        x = "Você pressionou Cancelar!";
+      }
+    },
+    alertShutDown: function alertShutDown(instance) {
+      var x;
+      var r = confirm("You Selected '" + instance.name + "'. Please confirm your selection. Instance will be shut down");
+
+      if (r == true) {
+        x = "você pressionou OK!";
+        this.shutdown(instance);
+      } else {
+        x = "Você pressionou Cancelar!";
+      }
     }
-  },
-  components: {
-    editInstance: _editInstance_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mounted: function mounted() {
     this.getInstances();
@@ -3733,19 +3903,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
       networks: [],
       network: {
-        name: "",
+        name: ""
+      },
+      subnet: {
         network_id: "",
-        sub_name: "",
-        address: "",
+        name: "",
         version: 0,
+        subnetpool_id: "",
         gatewayIP: ""
-      }
+      },
+      subnets: [],
+      subnetPools: []
     };
   },
   methods: {
@@ -3771,183 +3987,76 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       });
-      axios.post(this.url + ":9696/v2.0/subnets", {
-        subnet: {
-          name: this.network.sub_name,
-          ip_version: 4,
-          // this.network.version,
-          network_id: this.network.network_id,
-          cidr: this.network.address,
-          gateway_ip: this.network.gatewayIP
-        }
-      }, {
-        headers: {
-          "x-auth-token": this.$store.state.token
-        }
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.getNetworks();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newInstance.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newInstance.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      title: "Create Instance",
-      // user: this.$store.state.user,
-      instance: {
-        name: "",
-        flavor_id: "",
-        image_id: "",
-        network_id: ""
-      },
-      url: "http://192.168.232.20",
-      showError: false,
-      successMessage: "",
-      flavors: [],
-      images: [],
-      networks: []
-    };
-  },
-  methods: {
-    createInstance: function createInstance() {
-      var _this = this;
-
-      axios.post(this.url + "/compute/v2.1/servers", {
-        server: {
-          flavorRef: this.instance.flavor_id,
-          name: this.instance.name,
-          networks: [{
-            uuid: this.instance.network_id
-          }],
-          imageRef: this.instance.image_id,
-          availability_zone: "nova"
-        }
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": this.$store.state.token
-        }
-      }).then(function (response) {
-        console.log(response);
-
-        _this.$router.push("/home");
-
-        _this.$toasted.show("Instance Created");
-      });
     },
-    getFlavors: function getFlavors() {
+    createSubnet: function createSubnet(id) {
+      this.subnet.network_id = id;
+    },
+    sendCreateSubnet: function sendCreateSubnet(version) {
       var _this2 = this;
 
-      axios.get(this.url + "/compute/v2.1/flavors/detail", {
+      axios.post(this.url + ":9696/v2.0/subnets", {
+        subnet: {
+          name: this.subnet.name,
+          ip_version: version,
+          network_id: this.subnet.network_id,
+          subnetpool_id: this.subnet.subnetpool_id
+        }
+      }, {
         headers: {
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response.data.flavors);
-        _this2.flavors = response.data.flavors;
-        console.log(_this2.flavors);
+        _this2.$toasted.show("Subnet  " + response.data.subnet.cidr + " created! The gateway is " + response.data.subnet.gateway_ip);
+
+        _this2.getSubnets();
+
+        _this2.getNetworks();
       });
     },
-    getImages: function getImages() {
+    deleteNetwork: function deleteNetwork(id) {
       var _this3 = this;
 
-      axios.get(this.url + "/image/v2/images", {
+      axios["delete"](this.url + ":9696/v2.0/networks/" + id, {
         headers: {
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this3.images = response.data.images;
-        console.log(_this3.images);
+        _this3.$toasted.show("Network Deleted!");
+
+        _this3.getSubnets();
+
+        _this3.getNetworks();
       });
     },
-    getNetworks: function getNetworks() {
+    getSubnetPools: function getSubnetPools() {
       var _this4 = this;
 
-      axios.get(this.url + ":9696/v2.0/networks", {
+      axios.get(this.url + ":9696/v2.0/subnetpools", {
         headers: {
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this4.networks = response.data.networks;
-        console.log(_this4.networks);
+        _this4.subnetPools = response.data.subnetpools;
+        console.log(_this4.subnetPools);
       });
     },
-    cancel: function cancel() {
-      this.$router.push("/home");
+    getSubnets: function getSubnets() {
+      var _this5 = this;
+
+      axios.get(this.url + ":9696/v2.0/subnets", {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this5.subnets = response.data.subnets;
+        console.log(_this5.subnets);
+      });
     }
   },
   mounted: function mounted() {
-    this.getFlavors();
-    this.getImages();
     this.getNetworks();
+    this.getSubnets();
+    this.getSubnetPools();
   }
 });
 
@@ -4059,7 +4168,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _editInstance_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editInstance.vue */ "./resources/js/components/editInstance.vue");
 //
 //
 //
@@ -4108,7 +4216,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4284,12 +4391,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
       routers: [],
       router: {
+        id: "",
         network_id: "",
         name: ""
       },
@@ -4339,6 +4500,39 @@ __webpack_require__.r(__webpack_exports__);
         _this3.$toasted.show("Router Created!");
 
         _this3.getRouters();
+      });
+    },
+    editRouter: function editRouter(id) {
+      this.router.id = id;
+    },
+    sendEditRouter: function sendEditRouter() {
+      var _this4 = this;
+
+      axios.put(this.url + ":9696/v2.0/routers/" + this.router.id, {
+        router: {
+          name: this.router.name
+        }
+      }, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this4.$toasted.show("Router Edited!");
+
+        _this4.getRouters();
+      });
+    },
+    deleteRouter: function deleteRouter(id) {
+      var _this5 = this;
+
+      axios["delete"](this.url + ":9696/v2.0/routers/" + id, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this5.$toasted.show("Router Deleted!");
+
+        _this5.getRouters();
       });
     }
   },
@@ -4555,27 +4749,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
       securityGroups: [],
+      securityGroup: {
+        name: null,
+        description: null,
+        stateful: true
+      },
+      securityGroupsOptions: [],
       securityGroupRules: [],
       securityGroupId: null,
       securityGroupRule: {
-        remote_group_id: "",
-        direction: "",
+        remote_group_id: null,
+        direction: null,
         protocol: "any",
         ethertype: "ipv4",
         port_range_max: null,
         port_range_min: null,
         security_group_id: null,
-        remote_ip_prefix: "",
+        remote_ip_prefix: null,
         description: "",
-        rule: "",
+        rule: null,
 
         /* variaveis a para nao enviar daqui para baixo */
-        remote: "",
+        remote: "cidr",
         port: "port",
         portSelected: ""
       }
@@ -4596,6 +4837,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.securityGroups = response.data.security_groups;
+        _this.securityGroupsOptions = response.data.security_groups;
         console.log(_this.securityGroups);
       });
     },
@@ -4607,29 +4849,48 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this2.getSecurityGroups();
-
         _this2.$toasted.success("Security group deleted with success!");
+
+        _this2.getSecurityGroups();
       })["catch"](function (error) {
         if (error.response.status == 409) {
           _this2.$toasted.error("Can't delete! Security group in use!");
         }
       });
     },
-    getSecurityGroupRules: function getSecurityGroupRules(securityGroupId) {
+    deleteSecurityGroupRule: function deleteSecurityGroupRule(securityGroupRuleId) {
       var _this3 = this;
+
+      axios["delete"](this.url + ":9696/v2.0/security-group-rules/" + securityGroupRuleId, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this3.$toasted.success("Security group rule deleted with success!");
+
+        _this3.getSecurityGroupRules(_this3.securityGroupId);
+      })["catch"](function (error) {
+        if (error.response.status == 409) {
+          _this3.$toasted.error("Can't delete! Security group in use!");
+        }
+      });
+    },
+    getSecurityGroupRules: function getSecurityGroupRules(securityGroupId) {
+      var _this4 = this;
 
       axios.get(this.url + ":9696/v2.0/security-groups/" + securityGroupId, {
         headers: {
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this3.securityGroupId = securityGroupId;
-        _this3.securityGroupRules = response.data.security_group.security_group_rules;
-        console.log(_this3.securityGroupRules);
+        _this4.securityGroupId = securityGroupId;
+        _this4.securityGroupRules = response.data.security_group.security_group_rules;
+        console.log(_this4.securityGroupRules);
       });
     },
     createSecurityGroupRule: function createSecurityGroupRule() {
+      var _this5 = this;
+
       axios.post(this.url + ":9696/v2.0/security-group-rules", {
         security_group_rule: {
           direction: this.securityGroupRule.direction,
@@ -4638,21 +4899,100 @@ __webpack_require__.r(__webpack_exports__);
           ethertype: this.securityGroupRule.ethertype,
           port_range_max: this.securityGroupRule.port_range_max,
           protocol: this.securityGroupRule.protocol,
+          remote_ip_prefix: this.securityGroupRule.remote_ip_prefix,
+          remote_group_id: this.securityGroupRule.remote_group_id,
           security_group_id: this.securityGroupId
         }
       }, {
         headers: {
           'X-Auth-Token': this.$store.state.token
         }
+      }).then(function (response) {
+        _this5.$toasted.success('Rule created with success');
+
+        _this5.getSecurityGroupRules(_this5.securityGroupId);
+
+        _this5.securityGroupRule.length = 0;
+      });
+    },
+    createSecurityGroup: function createSecurityGroup() {
+      var _this6 = this;
+
+      axios.post(this.url + ":9696/v2.0/security-groups", {
+        security_group: {
+          name: this.securityGroup.name,
+          description: this.securityGroup.description,
+          stateful: this.securityGroup.stateful
+        }
+      }, {
+        headers: {
+          'X-Auth-Token': this.$store.state.token
+        }
+      }).then(function (response) {
+        _this6.getSecurityGroups();
+
+        _this6.$toasted.success("Security Group created!");
       });
     },
     onChangeRule: function onChangeRule(event) {
       this.securityGroupRule.rule = event.target.value;
 
-      if (this.securityGroupRule.rule == 'tcp') {
+      if (this.securityGroupRule.rule == 'customTCP') {
         this.securityGroupRule.protocol = 'tcp';
-      } else if (this.securityGroupRule.rule == 'udp') {
+      } else if (this.securityGroupRule.rule == 'customUDP') {
         this.securityGroupRule.protocol = 'udp';
+      } else if (this.securityGroupRule.rule == 'customICMP') {
+        this.securityGroupRule.protocol = 'icmp';
+      } else if (this.securityGroupRule.rule == 'icmp') {
+        this.securityGroupRule.protocol = 'icmp';
+      } else if (this.securityGroupRule.rule == 'dns') {
+        this.securityGroupRule.protocol = 'udp';
+        this.securityGroupRule.port_range_min = 53;
+        this.securityGroupRule.port_range_max = 53;
+      } else if (this.securityGroupRule.rule == 'http') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 80;
+        this.securityGroupRule.port_range_max = 80;
+      } else if (this.securityGroupRule.rule == 'https') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 443;
+        this.securityGroupRule.port_range_max = 443;
+      } else if (this.securityGroupRule.rule == 'imap') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 220;
+        this.securityGroupRule.port_range_max = 220;
+      } else if (this.securityGroupRule.rule == 'imaps') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 993;
+        this.securityGroupRule.port_range_max = 993;
+      } else if (this.securityGroupRule.rule == 'ldap') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 389;
+        this.securityGroupRule.port_range_max = 389;
+      } else if (this.securityGroupRule.rule == 'mysql') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 3306;
+        this.securityGroupRule.port_range_max = 3306;
+      } else if (this.securityGroupRule.rule == 'pop3') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 110;
+        this.securityGroupRule.port_range_max = 110;
+      } else if (this.securityGroupRule.rule == 'pop3s') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 995;
+        this.securityGroupRule.port_range_max = 995;
+      } else if (this.securityGroupRule.rule == 'smtp') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 336;
+        this.securityGroupRule.port_range_max = 336;
+      } else if (this.securityGroupRule.rule == 'smtps') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 465;
+        this.securityGroupRule.port_range_max = 465;
+      } else if (this.securityGroupRule.rule == 'ssh') {
+        this.securityGroupRule.protocol = 'tcp';
+        this.securityGroupRule.port_range_min = 22;
+        this.securityGroupRule.port_range_max = 22;
       }
     },
     onChangeRemote: function onChangeRemote(event) {
@@ -4661,11 +5001,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     onChangePort: function onChangePort(event) {
       this.securityGroupRule.port = event.target.value;
-
-      if (this.securityGroupRule.port === 'all') {
-        this.securityGroupRule.port_range_max = 65535;
-        this.securityGroupRule.port_range_min = 0;
-      }
     },
     onChangePortV2: function onChangePortV2(event) {
       this.securityGroupRule.port_range_max = event.target.value;
@@ -43226,88 +43561,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/editInstance.vue?vue&type=template&id=4a73750a&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/editInstance.vue?vue&type=template&id=4a73750a& ***!
-  \***************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "jumbotron jumbotron-fluid bg-info" }, [
-    _c("h2", [_vm._v("Edit instance: " + _vm._s(_vm.instance.name))]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "name" } }, [_vm._v("Instance Name")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.instance.name,
-            expression: "instance.name"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text", id: "name" },
-        domProps: { value: _vm.instance.name },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.instance, "name", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.saveInstance(_vm.instance)
-            }
-          }
-        },
-        [_vm._v("Save")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-danger",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.cancelEdit()
-            }
-          }
-        },
-        [_vm._v("Cancel")]
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/editVolume.vue?vue&type=template&id=6e611f62&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/editVolume.vue?vue&type=template&id=6e611f62& ***!
@@ -44606,110 +44859,339 @@ var render = function() {
         _vm._m(3),
         _vm._v(" "),
         _vm._l(_vm.instances, function(instance) {
-          return _c(
-            "tbody",
-            { key: instance.id },
-            [
-              _c(
-                "tr",
-                [
-                  instance.name
-                    ? _c("td", [_vm._v(_vm._s(instance.name))])
-                    : _c("td", [_vm._v("Nada...")]),
-                  _vm._v(" "),
-                  instance.status === "ERROR"
-                    ? _c("td", { staticClass: "bg-danger" }, [
-                        _vm._v(" " + _vm._s(instance.status))
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  instance.status === "SHUTOFF"
-                    ? _c("td", { staticClass: "bg-warning" }, [
-                        _vm._v(" " + _vm._s(instance.status))
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  instance.status === "PAUSED"
-                    ? _c("td", { staticClass: "bg-info" }, [
-                        _vm._v(" " + _vm._s(instance.status))
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  instance.status === "ACTIVE"
-                    ? _c("td", { staticClass: "bg-success" }, [
-                        _vm._v(" " + _vm._s(instance.status))
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    _vm._l(_vm.flavors, function(flavor) {
-                      return _c("div", { key: flavor.id }, [
-                        flavor.id === instance.flavor.id
-                          ? _c("a", [_vm._v("  " + _vm._s(flavor.name) + " ")])
-                          : _vm._e()
-                      ])
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.images, function(image) {
-                    return _c("div", { key: image.id }, [
-                      image.id === instance.image.id
-                        ? _c("td", [_vm._v(" " + _vm._s(image.name) + " ")])
+          return _c("tbody", { key: instance.id }, [
+            _c(
+              "tr",
+              [
+                instance.name
+                  ? _c("td", [_vm._v(_vm._s(instance.name))])
+                  : _c("td", [_vm._v("Nada...")]),
+                _vm._v(" "),
+                instance.status === "ERROR"
+                  ? _c("td", { staticClass: "bg-danger" }, [
+                      _vm._v(_vm._s(instance.status))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                instance.status === "SHUTOFF"
+                  ? _c("td", { staticClass: "bg-warning" }, [
+                      _vm._v(_vm._s(instance.status))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                instance.status === "PAUSED"
+                  ? _c("td", { staticClass: "bg-info" }, [
+                      _vm._v(_vm._s(instance.status))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                instance.status === "SUSPENDED"
+                  ? _c("td", { staticClass: "bg-info" }, [
+                      _vm._v(_vm._s(instance.status))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                instance.status === "ACTIVE"
+                  ? _c("td", { staticClass: "bg-success" }, [
+                      _vm._v(_vm._s(instance.status))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  _vm._l(_vm.flavors, function(flavor) {
+                    return _c("div", { key: flavor.id }, [
+                      flavor.id === instance.flavor.id
+                        ? _c("a", [_vm._v(_vm._s(flavor.name))])
                         : _vm._e()
                     ])
                   }),
+                  0
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.images, function(image) {
+                  return _c("div", { key: image.id }, [
+                    image.id === instance.image.id
+                      ? _c("td", [_vm._v(_vm._s(image.name))])
+                      : _vm._e()
+                  ])
+                }),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: instance.status == "ACTIVE",
+                          expression: "instance.status == 'ACTIVE'"
+                        }
+                      ],
+                      staticClass: "btn btn-sm btn-info",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.viewconsole(instance)
+                        }
+                      }
+                    },
+                    [_vm._v("Console")]
+                  ),
                   _vm._v(" "),
-                  _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteInstance(instance)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  ),
+                  _vm._v(" "),
+                  _c("select", [
+                    _c("option", { attrs: { selected: "" } }, [
+                      _vm._v("*more options*")
+                    ]),
+                    _vm._v(" "),
                     _c(
-                      "button",
+                      "option",
                       {
-                        staticClass: "btn btn-sm btn-success",
-                        attrs: { type: "button" },
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: instance.status == "ACTIVE",
+                            expression: "instance.status == 'ACTIVE'"
+                          }
+                        ],
+                        on: {
+                          click: function($event) {
+                            return _vm.pauseInstance(instance)
+                          }
+                        }
+                      },
+                      [_vm._v("Pause Instance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: instance.status == "ACTIVE",
+                            expression: "instance.status == 'ACTIVE'"
+                          }
+                        ],
+                        on: {
+                          click: function($event) {
+                            return _vm.suspendInstance(instance)
+                          }
+                        }
+                      },
+                      [_vm._v("Suspend Instance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: instance.status == "PAUSED",
+                            expression: "instance.status == 'PAUSED' "
+                          }
+                        ],
+                        on: {
+                          click: function($event) {
+                            return _vm.resumeInstance(instance)
+                          }
+                        }
+                      },
+                      [_vm._v("Resume Instance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: instance.status == "SUSPENDED",
+                            expression: "instance.status == 'SUSPENDED'"
+                          }
+                        ],
+                        on: {
+                          click: function($event) {
+                            return _vm.resumeSuspend(instance)
+                          }
+                        }
+                      },
+                      [_vm._v("Resume Instance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: instance.status == "ACTIVE",
+                            expression: "instance.status == 'ACTIVE'"
+                          }
+                        ],
+                        on: {
+                          click: function($event) {
+                            return _vm.alert1(instance)
+                          }
+                        }
+                      },
+                      [_vm._v("Reboot Instance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: instance.status == "ACTIVE",
+                            expression: "instance.status == 'ACTIVE'"
+                          }
+                        ],
+                        on: {
+                          click: function($event) {
+                            return _vm.alertShutDown(instance)
+                          }
+                        }
+                      },
+                      [_vm._v("Shutdown Instance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: instance.status == "SHUTOFF",
+                            expression: "instance.status == 'SHUTOFF'"
+                          }
+                        ],
+                        on: {
+                          click: function($event) {
+                            return _vm.startInstance(instance)
+                          }
+                        }
+                      },
+                      [_vm._v("Start Instance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#myModalInstanceEdit"
+                        },
                         on: {
                           click: function($event) {
                             return _vm.instanceEdit(instance)
                           }
                         }
                       },
-                      [_vm._v("Edit")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-sm btn-danger",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteInstance(instance)
-                          }
-                        }
-                      },
-                      [_vm._v("Delete")]
+                      [_vm._v("Edit Instance")]
                     )
                   ])
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _vm.selectedInstanceEdit && _vm.selectedInstanceEdit === instance
-                ? _c("editInstance", {
-                    attrs: { instance: _vm.selectedInstanceEdit },
-                    on: {
-                      "edit-canceled": _vm.cancelInstanceEdit,
-                      "save-edit": _vm.saveInstanceEdit
-                    }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
+                ])
+              ],
+              2
+            )
+          ])
         })
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myModalInstanceEdit" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v("\n            Edit Instance:\n            "),
+              _c("b", [_vm._v(_vm._s(_vm.instance.name))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("×")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [
+                _vm._v("Instance Name")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.instance.name,
+                    expression: "instance.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "name" },
+                domProps: { value: _vm.instance.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.instance, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function($event) {
+                      return _vm.sendInstanceEdit()
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -44765,11 +45247,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Flavor ID")]),
+        _c("th", [_vm._v("Flavor")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Image ")]),
+        _c("th", [_vm._v("Image")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Options ")])
+        _c("th", [_vm._v("Options")])
       ])
     ])
   }
@@ -45372,158 +45854,6 @@ var render = function() {
                   }
                 }
               })
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("h3", [_vm._v(" Subnet ")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Subnet Name")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.network.sub_name,
-                    expression: "network.sub_name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "sub_name",
-                  placeholder: "eg: my subnet"
-                },
-                domProps: { value: _vm.network.sub_name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.network, "sub_name", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "flavor" } }, [_vm._v("Network")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.network.network_id,
-                      expression: "network.network_id"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "network_id", name: "network_id" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.network,
-                        "network_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "" } }, [
-                    _vm._v("Choose a network for your subnet")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.networks, function(network_id) {
-                    return _c(
-                      "option",
-                      {
-                        key: network_id.id,
-                        domProps: { value: network_id.id }
-                      },
-                      [_vm._v(_vm._s(network_id.name))]
-                    )
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [
-                _vm._v("Subnet Address")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.network.address,
-                    expression: "network.address"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "address",
-                  placeholder: "eg: 192.168.1.0/24"
-                },
-                domProps: { value: _vm.network.address },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.network, "address", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Gateway IP")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.network.gatewayIP,
-                    expression: "network.gatewayIP"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "address",
-                  placeholder: "eg: 192.168.1.254"
-                },
-                domProps: { value: _vm.network.gatewayIP },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.network, "gatewayIP", $event.target.value)
-                  }
-                }
-              })
             ])
           ]),
           _vm._v(" "),
@@ -45559,31 +45889,72 @@ var render = function() {
               [
                 _c("td", [_vm._v(_vm._s(network.name))]),
                 _vm._v(" "),
-                _c("td"),
+                _vm._l(_vm.subnets, function(subnet) {
+                  return _c("div", { key: subnet.id }, [
+                    subnet.network_id === network.id
+                      ? _c("td", [
+                          _c("b", [_vm._v(_vm._s(subnet.name))]),
+                          _vm._v(" " + _vm._s(subnet.cidr))
+                        ])
+                      : _vm._e()
+                  ])
+                }),
                 _vm._v(" "),
                 network.shared == 0
-                  ? _c("td", [_vm._v(" NO ")])
-                  : _c("td", [_vm._v(" Yes ")]),
+                  ? _c("td", [_vm._v("NO")])
+                  : _c("td", [_vm._v("Yes")]),
                 _vm._v(" "),
                 network.status === "ERROR"
                   ? _c("td", { staticClass: "bg-danger" }, [
-                      _vm._v(" " + _vm._s(network.status))
+                      _vm._v(_vm._s(network.status))
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 network.status === "ACTIVE"
                   ? _c("td", { staticClass: "bg-success" }, [
-                      _vm._v(" " + _vm._s(network.status))
+                      _vm._v(_vm._s(network.status))
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 network.admin_state_up == 1
-                  ? _c("td", [_vm._v(" UP ")])
-                  : _c("td", [_vm._v(" DOWN ")]),
+                  ? _c("td", [_vm._v("UP")])
+                  : _c("td", [_vm._v("DOWN")]),
                 _vm._v(" "),
-                _vm._l(network.availability_zones, function(zone) {
-                  return _c("td", { key: zone }, [_vm._v(" " + _vm._s(zone))])
-                })
+                _c("td", [_vm._v("nova")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-success",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#myModalSubnet"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.createSubnet(network.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Create Subnet")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteNetwork(network.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
               ],
               2
             )
@@ -45591,7 +45962,171 @@ var render = function() {
         })
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myModalSubnet" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Subnet")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.subnet.name,
+                    expression: "subnet.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "name",
+                  placeholder: "eg: my network"
+                },
+                domProps: { value: _vm.subnet.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.subnet, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "flavor" } }, [_vm._v("Pool")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.subnet.subnetpool_id,
+                      expression: "subnet.subnetpool_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "subnetpool_id", name: "subnetpool_id" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.subnet,
+                        "subnetpool_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "", selected: "" } }, [
+                    _vm._v("Choose a pool")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.subnetPools, function(pool) {
+                    return _c(
+                      "option",
+                      { key: pool.id, domProps: { value: pool.id } },
+                      [
+                        _vm._v(
+                          _vm._s(pool.name) +
+                            " (" +
+                            _vm._s(pool.prefixes[0]) +
+                            ")"
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "version" } }, [
+                _vm._v("IP version (IPv4 or IPv6)")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.subnet.version,
+                      expression: "subnet.version"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "version", name: "version" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.subnet,
+                        "version",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "4", selected: "" } }, [
+                    _vm._v("IPv4")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "6" } }, [_vm._v("IPv6")])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.sendCreateSubnet(_vm.subnet.version)
+                  }
+                }
+              },
+              [_vm._v("Create")]
+            )
+          ])
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -45647,283 +46182,36 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Subnets Associated")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Shared")]),
+        _c("th", [_vm._v("Shared")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Status ")]),
+        _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Admin State ")]),
+        _c("th", [_vm._v("Admin State")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Availability Zones")])
+        _c("th", [_vm._v("Availability Zones")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Subnet")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newInstance.vue?vue&type=template&id=c8e7da4c&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newInstance.vue?vue&type=template&id=c8e7da4c& ***!
-  \**************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "jumbotron bg-info" }, [
-    _c("h2", [_vm._v(_vm._s(_vm.title))]),
-    _vm._v(" "),
-    _vm.showError
-      ? _c("div", { staticClass: "alert alert-danger" }, [
-          _c(
-            "button",
-            {
-              staticClass: "close-btn",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.showError = false
-                }
-              }
-            },
-            [_vm._v("×")]
-          ),
-          _vm._v(" "),
-          _c("strong", [_vm._v(_vm._s(_vm.successMessage))])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.instance.name,
-            expression: "instance.name"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text", id: "name" },
-        domProps: { value: _vm.instance.name },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.instance, "name", $event.target.value)
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "image" } }, [_vm._v("Image")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.instance.image_id,
-              expression: "instance.image_id"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { id: "image", name: "image" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.$set(
-                _vm.instance,
-                "image_id",
-                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-              )
-            }
-          }
-        },
-        [
-          _c("option", { attrs: { value: "", selected: "" } }, [
-            _vm._v("Choose a image")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.images, function(image) {
-            return _c(
-              "option",
-              { key: image.id, domProps: { value: image.id } },
-              [_vm._v(_vm._s(image.name))]
-            )
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "flavor" } }, [_vm._v("Flavor")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.instance.flavor_id,
-              expression: "instance.flavor_id"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { id: "flavor", name: "flavor" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.$set(
-                _vm.instance,
-                "flavor_id",
-                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-              )
-            }
-          }
-        },
-        [
-          _c("option", { attrs: { value: "", selected: "" } }, [
-            _vm._v("Choose a flavor")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.flavors, function(flavor) {
-            return _c(
-              "option",
-              { key: flavor.id, domProps: { value: flavor.id } },
-              [
-                _vm._v(
-                  _vm._s(flavor.name) +
-                    " ||| VCPUS:" +
-                    _vm._s(flavor.vcpus) +
-                    " ||| RAM:" +
-                    _vm._s(flavor.ram) +
-                    "MB ||| DISK:" +
-                    _vm._s(flavor.disk) +
-                    "GB"
-                )
-              ]
-            )
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "flavor" } }, [_vm._v("Network")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.instance.network_id,
-              expression: "instance.network_id"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { id: "flavor", name: "flavor" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.$set(
-                _vm.instance,
-                "network_id",
-                $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-              )
-            }
-          }
-        },
-        [
-          _c("option", { attrs: { value: "", selected: "" } }, [
-            _vm._v("Choose a network")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.networks, function(network_id) {
-            return _c(
-              "option",
-              { key: network_id.id, domProps: { value: network_id.id } },
-              [_vm._v(_vm._s(network_id.name))]
-            )
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.createInstance()
-            }
-          }
-        },
-        [_vm._v("Create Instance")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-danger",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.cancel()
-            }
-          }
-        },
-        [_vm._v("Cancel")]
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46314,23 +46602,57 @@ var render = function() {
                 _vm._v(" "),
                 router.status === "INACTIVE"
                   ? _c("td", { staticClass: "bg-danger" }, [
-                      _vm._v(" " + _vm._s(router.status))
+                      _vm._v(_vm._s(router.status))
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 router.status === "ACTIVE"
                   ? _c("td", { staticClass: "bg-success" }, [
-                      _vm._v(" " + _vm._s(router.status))
+                      _vm._v(_vm._s(router.status))
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 router.admin_state_up == 1
-                  ? _c("td", [_vm._v(" UP ")])
-                  : _c("td", [_vm._v(" DOWN ")]),
+                  ? _c("td", [_vm._v("UP")])
+                  : _c("td", [_vm._v("DOWN")]),
                 _vm._v(" "),
                 _vm._l(router.availability_zones, function(zone) {
-                  return _c("td", { key: zone }, [_vm._v(" " + _vm._s(zone))])
-                })
+                  return _c("td", { key: zone }, [_vm._v(_vm._s(zone))])
+                }),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-success",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#myModalRouterEdit"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.editRouter(router.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Edit Router")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteRouter(router.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
               ],
               2
             )
@@ -46338,7 +46660,63 @@ var render = function() {
         })
       ],
       2
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myModalRouterEdit" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.router.name,
+                    expression: "router.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "name",
+                  placeholder: "eg: my network"
+                },
+                domProps: { value: _vm.router.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.router, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function($event) {
+                      return _vm.sendEditRouter()
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -46392,12 +46770,31 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Status ")]),
+        _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Admin State ")]),
+        _c("th", [_vm._v("Admin State")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Availability Zones")])
+        _c("th", [_vm._v("Availability Zones")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Edit Router")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]
@@ -46513,7 +46910,9 @@ var render = function() {
                               attrs: { type: "button" },
                               on: {
                                 click: function($event) {
-                                  return _vm.deleteImage(_vm.image.id)
+                                  return _vm.deleteSecurityGroupRule(
+                                    securityGroupRule.id
+                                  )
                                 }
                               }
                             },
@@ -46600,15 +46999,15 @@ var render = function() {
                         _vm._v("Choose a rule")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "custom" } }, [
+                      _c("option", { attrs: { value: "customTCP" } }, [
                         _vm._v("Custom TCP Rule")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "custom" } }, [
+                      _c("option", { attrs: { value: "customUDP" } }, [
                         _vm._v("Custom UDP Rule")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "custom" } }, [
+                      _c("option", { attrs: { value: "customICMP" } }, [
                         _vm._v("Custom ICMP Rule")
                       ]),
                       _vm._v(" "),
@@ -46624,55 +47023,51 @@ var render = function() {
                         _vm._v("All UDP")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "udp" } }, [
+                      _c("option", { attrs: { value: "dns" } }, [
                         _vm._v("DNS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "http" } }, [
                         _vm._v("HTTP")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "https" } }, [
                         _vm._v("HTTPS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "imap" } }, [
                         _vm._v("IMAP")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "imaps" } }, [
                         _vm._v("IMAPS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "ldap" } }, [
                         _vm._v("LDAP")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "mysql" } }, [
                         _vm._v("MYSQL")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "pop3" } }, [
                         _vm._v("POP3")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "pop3s" } }, [
                         _vm._v("POP3S")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
-                        _vm._v("RDP")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "smtp" } }, [
                         _vm._v("SMTP")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [
+                      _c("option", { attrs: { value: "smtps" } }, [
                         _vm._v("SMTPS")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "tcp" } }, [_vm._v("SSH")])
+                      _c("option", { attrs: { value: "ssh" } }, [_vm._v("SSH")])
                     ]
                   )
                 ]),
@@ -46756,7 +47151,8 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm.securityGroupRule.rule === "custom"
+                _vm.securityGroupRule.rule === "customTCP" ||
+                _vm.securityGroupRule.rule === "customUDP"
                   ? _c("div", { staticClass: "form-group" }, [
                       _c("label", [_vm._v("Open Port")]),
                       _vm._v(" "),
@@ -46814,8 +47210,77 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
+                _vm.securityGroupRule.rule === "customICMP"
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Type (-1 - 255)")]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.securityGroupRule.port_range_min,
+                            expression: "securityGroupRule.port_range_min"
+                          }
+                        ],
+                        attrs: { type: "text", name: "" },
+                        domProps: {
+                          value: _vm.securityGroupRule.port_range_min
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "port_range_min",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.securityGroupRule.rule === "customICMP"
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Code (-1 - 255)")]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.securityGroupRule.port_range_min,
+                            expression: "securityGroupRule.port_range_min"
+                          }
+                        ],
+                        attrs: { type: "text", name: "" },
+                        domProps: {
+                          value: _vm.securityGroupRule.port_range_min
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "port_range_min",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _vm.securityGroupRule.port === "port" &&
-                _vm.securityGroupRule.rule === "custom"
+                (_vm.securityGroupRule.rule === "customTCP" ||
+                  _vm.securityGroupRule.rule === "customUDP")
                   ? _c("div", { staticClass: "form-group" }, [
                       _c(
                         "label",
@@ -46998,8 +47463,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.securityGroupRule.security_group_id,
-                              expression: "securityGroupRule.security_group_id"
+                              value: _vm.securityGroupRule.remote_group_id,
+                              expression: "securityGroupRule.remote_group_id"
                             }
                           ],
                           staticClass: "form-control",
@@ -47015,7 +47480,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.securityGroupRule,
-                                "security_group_id",
+                                "remote_group_id",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
@@ -47023,11 +47488,17 @@ var render = function() {
                             }
                           }
                         },
-                        _vm._l(_vm.securityGroups, function(securityGroup) {
-                          return _c("option", {
-                            key: securityGroup.id,
-                            attrs: { value: "option" }
-                          })
+                        _vm._l(_vm.securityGroupsOptions, function(
+                          securityGroupOption
+                        ) {
+                          return _c(
+                            "option",
+                            {
+                              key: securityGroupOption.name,
+                              domProps: { value: securityGroupOption.id }
+                            },
+                            [_vm._v(_vm._s(securityGroupOption.name))]
+                          )
                         }),
                         0
                       ),
@@ -47081,53 +47552,58 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "CIDR" } }, [_vm._v("CIDR")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.securityGroupRule.remote_ip_prefix,
-                        expression: "securityGroupRule.remote_ip_prefix"
-                      }
-                    ],
-                    attrs: {
-                      type: "text",
-                      name: "CIDR",
-                      palceholder: "0.0.0.0/0"
-                    },
-                    domProps: { value: _vm.securityGroupRule.remote_ip_prefix },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                _vm.securityGroupRule.remote === "cidr"
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "CIDR" } }, [_vm._v("CIDR")]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.securityGroupRule.remote_ip_prefix,
+                            expression: "securityGroupRule.remote_ip_prefix"
+                          }
+                        ],
+                        attrs: {
+                          type: "text",
+                          name: "CIDR",
+                          palceholder: "0.0.0.0/0"
+                        },
+                        domProps: {
+                          value: _vm.securityGroupRule.remote_ip_prefix
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.securityGroupRule,
+                              "remote_ip_prefix",
+                              $event.target.value
+                            )
+                          }
                         }
-                        _vm.$set(
-                          _vm.securityGroupRule,
-                          "remote_ip_prefix",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ])
+                      })
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-warning",
-                    attrs: { type: "button" },
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button", "data-dismiss": "modal" },
                     on: {
                       click: function($event) {
                         return _vm.createSecurityGroupRule()
                       }
                     }
                   },
-                  [_vm._v("Save changes")]
+                  [_vm._v("Create Rule")]
                 )
               ])
             ])
@@ -47136,14 +47612,123 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(4),
+    _c("div", { staticClass: "modal", attrs: { id: "modalSecurityGroup" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "nameSecurityGroup" } }, [
+                _vm._v("Name *")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.securityGroup.name,
+                    expression: "securityGroup.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder: "A name for the server Group",
+                  name: "name"
+                },
+                domProps: { value: _vm.securityGroup.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.securityGroup, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "description" } }, [
+                _vm._v("Description")
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.securityGroup.description,
+                    expression: "securityGroup.description"
+                  }
+                ],
+                attrs: { name: "name", rows: "4", cols: "45" },
+                domProps: { value: _vm.securityGroup.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.securityGroup,
+                      "description",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.createSecurityGroup()
+                  }
+                }
+              },
+              [_vm._v("Create Security Group")]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(5),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-dark",
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": "#modalSecurityGroup"
+        },
+        on: {
+          click: function($event) {
+            return _vm.createSecurityGroup()
+          }
+        }
+      },
+      [_vm._v("Create Security Group")]
+    ),
+    _c("br"),
     _c("br"),
     _vm._v(" "),
     _c(
       "table",
       { staticClass: "table table-hover" },
       [
-        _vm._m(5),
+        _vm._m(6),
         _vm._v(" "),
         _vm._l(_vm.securityGroups, function(securityGroup) {
           return _c("tbody", { key: securityGroup.project_id }, [
@@ -47176,17 +47761,15 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-sm btn-warning",
+                    staticClass: "btn btn-sm btn-danger",
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.deleteSecurityGroup(
-                          securityGroup.security_group_id
-                        )
+                        return _vm.deleteSecurityGroup(securityGroup.id)
                       }
                     }
                   },
-                  [_vm._v("Delete Rule")]
+                  [_vm._v("Delete")]
                 )
               ])
             ])
@@ -47211,7 +47794,7 @@ var staticRenderFns = [
           staticClass: "btn-create btn btn-outline-dark",
           attrs: { "data-toggle": "modal", "data-target": "#createModal" }
         },
-        [_c("i", { staticClass: "far fa-plus-square" }), _vm._v("Create")]
+        [_vm._v("Create")]
       )
     ])
   },
@@ -47275,6 +47858,25 @@ var staticRenderFns = [
           }
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("Create Security Group")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
       )
     ])
   },
@@ -47553,9 +48155,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [
-        _vm._v("Create Security Group")
-      ]),
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Server Group")]),
       _vm._v(" "),
       _c(
         "button",
@@ -64396,19 +64996,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/homeComponent.vue */ "./resources/js/components/homeComponent.vue");
 /* harmony import */ var _components_instancias_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/instancias.vue */ "./resources/js/components/instancias.vue");
 /* harmony import */ var _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/dashboard.vue */ "./resources/js/components/dashboard.vue");
-/* harmony import */ var _components_newInstance_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/newInstance.vue */ "./resources/js/components/newInstance.vue");
-/* harmony import */ var _components_logout_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/logout.vue */ "./resources/js/components/logout.vue");
-/* harmony import */ var _components_newVolume_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/newVolume.vue */ "./resources/js/components/newVolume.vue");
-/* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
-/* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
-/* harmony import */ var _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/keyPairs.vue */ "./resources/js/components/keyPairs.vue");
-/* harmony import */ var _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/changeProj.vue */ "./resources/js/components/changeProj.vue");
-/* harmony import */ var _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/serverGroups.vue */ "./resources/js/components/serverGroups.vue");
-/* harmony import */ var _components_projects_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/projects.vue */ "./resources/js/components/projects.vue");
-/* harmony import */ var _components_networks_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/networks.vue */ "./resources/js/components/networks.vue");
-/* harmony import */ var _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/floatingIPs.vue */ "./resources/js/components/floatingIPs.vue");
-/* harmony import */ var _components_routers_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/routers.vue */ "./resources/js/components/routers.vue");
-/* harmony import */ var _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/securityGroups.vue */ "./resources/js/components/securityGroups.vue");
+/* harmony import */ var _components_logout_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/logout.vue */ "./resources/js/components/logout.vue");
+/* harmony import */ var _components_newVolume_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/newVolume.vue */ "./resources/js/components/newVolume.vue");
+/* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
+/* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
+/* harmony import */ var _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/keyPairs.vue */ "./resources/js/components/keyPairs.vue");
+/* harmony import */ var _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/changeProj.vue */ "./resources/js/components/changeProj.vue");
+/* harmony import */ var _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/serverGroups.vue */ "./resources/js/components/serverGroups.vue");
+/* harmony import */ var _components_projects_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/projects.vue */ "./resources/js/components/projects.vue");
+/* harmony import */ var _components_networks_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/networks.vue */ "./resources/js/components/networks.vue");
+/* harmony import */ var _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/floatingIPs.vue */ "./resources/js/components/floatingIPs.vue");
+/* harmony import */ var _components_routers_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/routers.vue */ "./resources/js/components/routers.vue");
+/* harmony import */ var _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/securityGroups.vue */ "./resources/js/components/securityGroups.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
 
 
@@ -64445,24 +65044,22 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_2___default.a, {
 
 
 
-
 var home = Vue.component('home', _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var login = Vue.component('login', _components_loginComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-var logout = Vue.component('logout', _components_logout_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+var logout = Vue.component('logout', _components_logout_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
 var instancias = Vue.component('instancias', _components_instancias_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var dashboard = Vue.component('dashboard', _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
-var newInstance = Vue.component('newInstance', _components_newInstance_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-var newVolume = Vue.component('newVolume', _components_newVolume_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
-var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
-var volumes = Vue.component('volumes', _components_volumes_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
-var keyPairs = Vue.component('keyPairs', _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
-var changeProj = Vue.component('changeProj', _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
-var serverGroup = Vue.component('serverGroup', _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
-var projects = Vue.component('projects', _components_projects_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
-var networks = Vue.component('networks', _components_networks_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
-var floatingIPs = Vue.component('floatingIPs', _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
-var routers = Vue.component('routers', _components_routers_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
-var securityGroups = Vue.component('securityGroups', _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_20__["default"]);
+var newVolume = Vue.component('newVolume', _components_newVolume_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+var volumes = Vue.component('volumes', _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+var keyPairs = Vue.component('keyPairs', _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
+var changeProj = Vue.component('changeProj', _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
+var serverGroup = Vue.component('serverGroup', _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+var projects = Vue.component('projects', _components_projects_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
+var networks = Vue.component('networks', _components_networks_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+var floatingIPs = Vue.component('floatingIPs', _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+var routers = Vue.component('routers', _components_routers_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
+var securityGroups = Vue.component('securityGroups', _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
 var routes = [{
   path: '/',
   component: _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -64478,10 +65075,6 @@ var routes = [{
   path: '/home',
   component: dashboard,
   name: "dashboard"
-}, {
-  path: '/newInstance',
-  component: newInstance,
-  name: "newInstance"
 }, {
   path: '/volumes',
   component: volumes,
@@ -64734,78 +65327,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_57220a4e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_57220a4e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/editInstance.vue":
-/*!**************************************************!*\
-  !*** ./resources/js/components/editInstance.vue ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _editInstance_vue_vue_type_template_id_4a73750a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editInstance.vue?vue&type=template&id=4a73750a& */ "./resources/js/components/editInstance.vue?vue&type=template&id=4a73750a&");
-/* harmony import */ var _editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editInstance.vue?vue&type=script&lang=js& */ "./resources/js/components/editInstance.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _editInstance_vue_vue_type_template_id_4a73750a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _editInstance_vue_vue_type_template_id_4a73750a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/editInstance.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/editInstance.vue?vue&type=script&lang=js&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/editInstance.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./editInstance.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/editInstance.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/editInstance.vue?vue&type=template&id=4a73750a&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/editInstance.vue?vue&type=template&id=4a73750a& ***!
-  \*********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_template_id_4a73750a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./editInstance.vue?vue&type=template&id=4a73750a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/editInstance.vue?vue&type=template&id=4a73750a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_template_id_4a73750a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editInstance_vue_vue_type_template_id_4a73750a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -65525,75 +66046,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/newInstance.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/newInstance.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _newInstance_vue_vue_type_template_id_c8e7da4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./newInstance.vue?vue&type=template&id=c8e7da4c& */ "./resources/js/components/newInstance.vue?vue&type=template&id=c8e7da4c&");
-/* harmony import */ var _newInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./newInstance.vue?vue&type=script&lang=js& */ "./resources/js/components/newInstance.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _newInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _newInstance_vue_vue_type_template_id_c8e7da4c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _newInstance_vue_vue_type_template_id_c8e7da4c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/newInstance.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/newInstance.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/newInstance.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_newInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./newInstance.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newInstance.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_newInstance_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/newInstance.vue?vue&type=template&id=c8e7da4c&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/newInstance.vue?vue&type=template&id=c8e7da4c& ***!
-  \********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newInstance_vue_vue_type_template_id_c8e7da4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./newInstance.vue?vue&type=template&id=c8e7da4c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newInstance.vue?vue&type=template&id=c8e7da4c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newInstance_vue_vue_type_template_id_c8e7da4c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newInstance_vue_vue_type_template_id_c8e7da4c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/newVolume.vue":
 /*!***********************************************!*\
   !*** ./resources/js/components/newVolume.vue ***!
@@ -65805,15 +66257,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/securityGroups.vue ***!
   \****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _securityGroups_vue_vue_type_template_id_2f81c23f_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./securityGroups.vue?vue&type=template&id=2f81c23f&scoped=true& */ "./resources/js/components/securityGroups.vue?vue&type=template&id=2f81c23f&scoped=true&");
 /* harmony import */ var _securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./securityGroups.vue?vue&type=script&lang=js& */ "./resources/js/components/securityGroups.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _securityGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& */ "./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&");
+/* empty/unused harmony star reexport *//* harmony import */ var _securityGroups_vue_vue_type_style_index_0_id_2f81c23f_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true& */ "./resources/js/components/securityGroups.vue?vue&type=style&index=0&id=2f81c23f&lang=css&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -65845,7 +66296,7 @@ component.options.__file = "resources/js/components/securityGroups.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/securityGroups.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

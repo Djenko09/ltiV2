@@ -42,6 +42,7 @@ import networksComponent from "./components/networks.vue";
 import floatingIPsComponent from "./components/floatingIPs.vue";
 import routersComponent from "./components/routers.vue";
 import securityGroupsComponent from "./components/securityGroups.vue";
+import containersComponent from "./components/containers.vue";  //parte 2 projeto
 
 const home = Vue.component('home', homeComponent);
 const login = Vue.component('login', loginComponent);
@@ -59,6 +60,8 @@ const networks = Vue.component('networks', networksComponent);
 const floatingIPs = Vue.component('floatingIPs', floatingIPsComponent);
 const routers = Vue.component('routers', routersComponent);
 const securityGroups = Vue.component('securityGroups', securityGroupsComponent);
+const containers = Vue.component('containers', containersComponent);
+
 
 
 
@@ -78,7 +81,9 @@ const routes = [
     { path: '/networks', component: networks, name:"networks"},
     { path: '/floatingIPs', component: floatingIPs, name:"floatingIPs"},
     { path: '/routers', component: routers, name:"routers"},
-    { path: '/securityGroups', component: securityGroups, name:"securityGroups"}
+    { path: '/securityGroups', component: securityGroups, name:"securityGroups"},
+    { path: '/containers', component: containers, name:"containers"}
+    
 
 ];
 

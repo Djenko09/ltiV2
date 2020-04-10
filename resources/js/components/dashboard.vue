@@ -1,22 +1,9 @@
 <template>
   <div>
     <div v-if="this.$store.state.token" class="jumbotron">
-      <!--  <a class="btn btn-primary"  v-on:click.prevent="getProjects()">getProjects</a>-->
-  
-    <!--  <h5>Projects</h5>
-      <select>
-        <option
-          v-for="project in projects"
-          :key="project.id"
-          v-on:click="loginProject(project)"
-        >{{project.name}}</option>
-      </select>-->
-
+     
     </div>
-    <!--
-    <instancias @exit-instance="exitInstances" v-if="btnInstances"></instancias>
-    <images @exit-images="exitImages" v-if="btnImages"></images>
-    <volumes @exit-volumes="exitVolumes" v-if="btnVolumes"></volumes>-->
+
   </div>
 </template>
 
@@ -37,7 +24,7 @@ export default {
     };
   },
   methods: {
-    getProjects() {
+    getProjects() { // funcão que obtem os 
       axios
         .get(this.url + "/identity/v3/auth/projects", {
           headers: { "x-auth-token": this.$store.state.token }

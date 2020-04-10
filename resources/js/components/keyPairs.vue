@@ -95,6 +95,8 @@
   </div>
   <!-- FIM - Criar Key Pairs -->
 
+
+<!-- tabela que lista as keypairs -->
   <div class="container-fluid">
   <table class="table table-hover">
 
@@ -118,7 +120,7 @@
         type="button"
         class="btn btn-sm btn-success"
         data-toggle="modal" data-target="#myModalKeyPairsDetail"
-        v-on:click="keyPairsDetail(keypairs.keypair)"
+        v-on:click="keyPairsDetail(keypairs.keypair)"  
         >Details</button>
         <button
         type="button"
@@ -128,7 +130,7 @@
       </td>
     </tr>
   </tbody>
-  </table>
+  </table>   <!--  FIM tabela que lista as keypairs -->
   </div>
 
 </div>
@@ -152,7 +154,7 @@ export default {
     }
   },
   methods:{
-    getKeyPairs: function(){
+    getKeyPairs: function(){ //funcao que obtem as keypairs
       axios.get(this.url + "/compute/v2.1/os-keypairs",{
          headers: {
              'x-auth-token': this.$store.state.token,
@@ -163,7 +165,7 @@ export default {
            console.log(this.keypairs);
          })
     },
-    createKeyPair(){
+    createKeyPair(){ //funcao para criar as keyspairs
       axios
          .post(
            this.url + "/compute/v2.1/os-keypairs",
@@ -190,7 +192,7 @@ export default {
         console.log('Error');
       });
     },  
-    keyPairsDetail: function(keypair) {
+    keyPairsDetail: function(keypair) { //funcao que obtem as keypairs detalhadas
       axios.get(this.url + "/compute/v2.1/os-keypairs/" + keypair.name,{
          headers: {
              'x-auth-token': this.$store.state.token,
@@ -202,7 +204,7 @@ export default {
         console.log('Error');
       });
     },
-    keyPairsDelete: function(keypair) {
+    keyPairsDelete: function(keypair) { //funcao que elimina a keypair
       axios.delete(this.url + "/compute/v2.1/os-keypairs/" + keypair.name,{
          headers: {
              'x-auth-token': this.$store.state.token
@@ -222,7 +224,7 @@ export default {
   components: {
 
   },
-  mounted(){
+  mounted(){ //a pagina ao ser carregada executa as seguintes funcoes
     this.getKeyPairs();
   }
 

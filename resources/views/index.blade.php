@@ -97,6 +97,7 @@
                     <div>
                       <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Overview</router-link>
                       <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Instances</router-link>
+                      <router-link to="/containers" href="#" class="list-group-item list-group-item-action bg-info" style="text-align:right">Containers</router-link>
                       <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Images</router-link>
                       <router-link to="/keyPairs" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Key Pairs</router-link>
                       <router-link to="/serverGroup" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Server Groups</router-link>

@@ -13,8 +13,8 @@ export default {
     };
   },
 methods:{
-  logout(){
-      this.$store.commit("clearToken");
+  logout(){ 
+      this.$store.commit("clearToken");  ///limpa o token
       this.$toasted.info("Successfully logout!")
       this.$router.push('/');
   }

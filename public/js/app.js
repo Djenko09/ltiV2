@@ -4953,7 +4953,7 @@ __webpack_require__.r(__webpack_exports__);
       securityGroups: [],
       securityGroup: {
         name: null,
-        description: null,
+        description: "",
         stateful: true
       },
       securityGroupsOptions: [],

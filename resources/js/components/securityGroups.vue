@@ -244,7 +244,7 @@ export default {
     securityGroups:[],
     securityGroup:{
       name:null,
-      description:null,
+      description:"",
       stateful:true,
     },
     securityGroupsOptions:[],

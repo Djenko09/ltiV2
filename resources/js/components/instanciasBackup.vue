@@ -14,102 +14,93 @@
       >Create Instance</button>
     </div>
     <br />
-    <div class="modal fade bd-example-modal-xl" id="myModalInstances">
-      <div class="modal-dialog modal-xl">
+    <div class="modal" id="myModalInstances">
+      <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <div class="navbars">
-              <a v-on:click="modalChange(details)">Details</a>
-              <a v-on:click="modalChange(source)">Source</a>
-              <a v-on:click="modalChange(flavor)">Flavor</a>
-              <a v-on:click="modalChange(network)">Networks</a>
-              <a v-on:click="modalChange(networksPorts)">Network Ports</a>
-              <a v-on:click="modalChange(security)">Security Groups</a>
-              <a v-on:click="modalChange(key)">Key pair</a>
-              <a v-on:click="modalChange(server)">Server Groups</a>
-            </div>
+            <div class="navbar">
+  <a href="#home">Home</a>
+  <div class="subnav">
+    <button class="subnavbtn">About <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="#company">Company</a>
+      <a href="#team">Team</a>
+      <a href="#careers">Careers</a>
+    </div>
+  </div>
+  <div class="subnav">
+    <button class="subnavbtn">Services <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="#bring">Bring</a>
+      <a href="#deliver">Deliver</a>
+      <a href="#package">Package</a>
+      <a href="#express">Express</a>
+    </div>
+  </div>
+  <div class="subnav">
+    <button class="subnavbtn">Partners <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="#link1">Link 1</a>
+      <a href="#link2">Link 2</a>
+      <a href="#link3">Link 3</a>
+      <a href="#link4">Link 4</a>
+    </div>
+  </div>
+  <a href="#contact">Contact</a>
+</div>
           </div>
 
           <!-- Modal body -->
           <div class="modal-body">
-            <div v-if="this.modalContent == this.details" class="form-group">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" v-model="instance.name" id="name" />
-              </div>
-              <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" v-model="instance.description" id="name" />
-              </div>
-              <div class="form-group">
-                <label for="AvailabilityZone">Availability Zone</label><br>
-                <select class="form-control"  v-model="instance.availability_zone">
-                    <option v-for="availabilityZone in availability_zones" :value="availabilityZone.zoneName">{{availabilityZone.zoneName}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="count">Count</label>
-                <input type="number" class="form-control">
-              </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" v-model="instance.name" id="name" />
             </div>
-            <div v-if="this.modalContent == this.source"class="form-group">
-              <div class="form-group">
-                <label for="image">Image</label>
-                <select class="form-control" id="image" name="image" v-model="instance.image_id">
-                  <option value selected>Choose a image</option>
-                  <option
-                    v-for="image in images"
-                    :key="image.id"
-                    v-bind:value="image.id"
-                  >{{ image.name }}</option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label for="name">Description</label>
+              <input type="text" class="form-control" v-model="instance.description" id="name" />
             </div>
-            <div v-if="this.modalContent == this.flavor" class="form-group">
-              <div class="form-group">
-                <label for="flavor">Flavor</label>
-                <select class="form-control" id="flavor" name="flavor" v-model="instance.flavor_id">
-                  <option value selected>Choose a flavor</option>
-                  <option
-                    v-for="flavor in flavors"
-                    :key="flavor.id"
-                    v-bind:value="flavor.id"
-                  >{{ flavor.name}} ||| VCPUS:{{flavor.vcpus}} ||| RAM:{{flavor.ram}}MB ||| DISK:{{flavor.disk}}GB</option>
-                </select>
-              </div>
+
+            <div class="form-group">
+              <label for="image">Image</label>
+              <select class="form-control" id="image" name="image" v-model="instance.image_id">
+                <option value selected>Choose a image</option>
+                <option
+                  v-for="image in images"
+                  :key="image.id"
+                  v-bind:value="image.id"
+                >{{ image.name }}</option>
+              </select>
             </div>
-            <div v-if="this.modalContent == this.network" class="form-group">
-              <div class="form-group">
-                <label for="flavor">Network</label>
-                <select class="form-control" id="flavor" name="flavor" v-model="instance.network_id">
-                  <option value selected>Choose a network</option>
-                  <option
-                    v-for="network_id in networks"
-                    :key="network_id.id"
-                    v-bind:value="network_id.id"
-                  >{{ network_id.name}}</option>
-                </select>
-              </div>
+
+            <div class="form-group">
+              <label for="flavor">Flavor</label>
+              <select class="form-control" id="flavor" name="flavor" v-model="instance.flavor_id">
+                <option value selected>Choose a flavor</option>
+                <option
+                  v-for="flavor in flavors"
+                  :key="flavor.id"
+                  v-bind:value="flavor.id"
+                >{{ flavor.name}} ||| VCPUS:{{flavor.vcpus}} ||| RAM:{{flavor.ram}}MB ||| DISK:{{flavor.disk}}GB</option>
+              </select>
             </div>
-            <div v-if="this.modalContent == this.network" class="form-group">
-              <h1>NETWORK</h1>
+
+            <div class="form-group">
+              <label for="flavor">Network</label>
+              <select class="form-control" id="flavor" name="flavor" v-model="instance.network_id">
+                <option value selected>Choose a network</option>
+                <option
+                  v-for="network_id in networks"
+                  :key="network_id.id"
+                  v-bind:value="network_id.id"
+                >{{ network_id.name}}</option>
+              </select>
             </div>
-            <div v-if="this.modalContent == this.networksPorts" class="form-group">
-              <h1>NETWORK</h1>
-            </div>
-            <div v-if="this.modalContent == this.security" class="form-group">
-              <h1>Security groups</h1>
-            </div>
-            <div v-if="this.modalContent == this.key" class="form-group">
-              <h1>key</h1>
-            </div>
-            <div v-if="this.modalContent == this.server" class="form-group">
-              <h1>Server groups</h1>
-            </div>
-          </div><!-- Fim do BODY contente -->
+          </div>
+
+          <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button"   class="btn btn-danger" data-dismiss="modal" name="button">Close</button>
             <button
               type="button"
               class="btn btn-warning"
@@ -118,8 +109,8 @@
             >Create</button>
           </div>
         </div>
-        </div>
       </div>
+    </div>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -243,7 +234,6 @@ export default {
     return {
       url: process.env.MIX_URL,
       instances: [],
-      availability_zones:[],
       instance: {
         availability_zone:"",
         description: "",
@@ -256,17 +246,7 @@ export default {
       networks: [],
       images: [],
       flavors: [],
-      console_url: "",
-      //para as vistas do modal*/
-      modalContent:"details",
-      details:"details",
-      source:"source",
-      flavor:"flavor",
-      network:"net",
-      networksPorts:"netports",
-      security:"security",
-      key:"key",
-      server:"server"
+      console_url: ""
     };
   },
   methods: {
@@ -571,17 +551,6 @@ export default {
       } else {
         x = "Você pressionou Cancelar!";
       }
-    },
-    modalChange(value){ //muda conteudo do modal de criar instancia
-      this.modalContent = value
-      console.log(this.modalContent);
-    },
-    getAvailabilityZones(){ // Obter Availability Zones
-      axios.get(this.url + "/compute/v2.1/os-availability-zone",{
-          headers: { "x-auth-token": this.$store.state.token }
-      }).then(response =>{
-        this.availability_zones = response.data.availabilityZoneInfo
-      })
     }
   },
 
@@ -590,7 +559,6 @@ export default {
     this.getFlavors();
     this.getImages();
     this.getNetworks();
-    this.getAvailabilityZones();
   }
 };
 </script>
@@ -602,16 +570,13 @@ font-family: Arial, Helvetica, sans-serif;
 margin: 0;
 }
 
-.navbars {
+.navbar {
 overflow: hidden;
-background-color: black;
-color:white;
-width: 100%;
+background-color: #333;
 }
 
-.navbars a {
+.navbar a {
 float: left;
-margin-left:20px;
 font-size: 16px;
 color: white;
 text-align: center;
@@ -635,15 +600,15 @@ font-family: inherit;
 margin: 0;
 }
 
-.navbars a:hover, .subnav:hover .subnavbtn {
-background-color: #FFBF00;
+.navbar a:hover, .subnav:hover .subnavbtn {
+background-color: red;
 }
 
 .subnav-content {
 display: none;
 position: absolute;
 left: 0;
-background-color: white;
+background-color: red;
 width: 100%;
 z-index: 1;
 }

@@ -3098,12 +3098,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
       instances: [],
+      availability_zones: [],
       instance: {
+        availability_zone: "",
+        description: "",
         id: "",
         name: "",
         flavor_id: "",
@@ -3113,7 +3157,17 @@ __webpack_require__.r(__webpack_exports__);
       networks: [],
       images: [],
       flavors: [],
-      console_url: ""
+      console_url: "",
+      //para as vistas do modal*/
+      modalContent: "details",
+      details: "details",
+      source: "source",
+      flavor: "flavor",
+      network: "net",
+      networksPorts: "netports",
+      security: "security",
+      key: "key",
+      server: "server"
     };
   },
   methods: {
@@ -3381,6 +3435,23 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         x = "Você pressionou Cancelar!";
       }
+    },
+    modalChange: function modalChange(value) {
+      //muda conteudo do modal de criar instancia
+      this.modalContent = value;
+      console.log(this.modalContent);
+    },
+    getAvailabilityZones: function getAvailabilityZones() {
+      var _this16 = this;
+
+      // Obter Availability Zones
+      axios.get(this.url + "/compute/v2.1/os-availability-zone", {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this16.availability_zones = response.data.availabilityZoneInfo;
+      });
     }
   },
   mounted: function mounted() {
@@ -3388,6 +3459,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getFlavors();
     this.getImages();
     this.getNetworks();
+    this.getAvailabilityZones();
   }
 });
 
@@ -5472,6 +5544,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n<style>\r\nbody {\r\nfont-family: Arial, Helvetica, sans-serif;\r\nmargin: 0;\n}\n.navbars {\r\noverflow: hidden;\r\nbackground-color: black;\r\ncolor:white;\r\nwidth: 100%;\n}\n.navbars a {\r\nfloat: left;\r\nmargin-left:20px;\r\nfont-size: 16px;\r\ncolor: white;\r\ntext-align: center;\r\npadding: 14px 16px;\r\ntext-decoration: none;\n}\n.subnav {\r\nfloat: left;\r\noverflow: hidden;\n}\n.subnav .subnavbtn {\r\nfont-size: 16px;\r\nborder: none;\r\noutline: none;\r\ncolor: white;\r\npadding: 14px 16px;\r\nbackground-color: inherit;\r\nfont-family: inherit;\r\nmargin: 0;\n}\n.navbars a:hover, .subnav:hover .subnavbtn {\r\nbackground-color: #FFBF00;\n}\n.subnav-content {\r\ndisplay: none;\r\nposition: absolute;\r\nleft: 0;\r\nbackground-color: white;\r\nwidth: 100%;\r\nz-index: 1;\n}\n.subnav-content a {\r\nfloat: left;\r\ncolor: white;\r\ntext-decoration: none;\n}\n.subnav-content a:hover {\r\nbackground-color: #eee;\r\ncolor: black;\n}\n.subnav:hover .subnav-content {\r\ndisplay: block;\n}\r\n", ""]);
 
 // exports
 
@@ -42867,6 +42958,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./instancias.vue?vue&type=style&index=0&media=screen&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loginComponent.vue?vue&type=style&index=0&media=screen&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loginComponent.vue?vue&type=style&index=0&media=screen&lang=css& ***!
@@ -44627,230 +44748,488 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalInstances" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
+    _c(
+      "div",
+      {
+        staticClass: "modal fade bd-example-modal-xl",
+        attrs: { id: "myModalInstances" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-xl" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("div", { staticClass: "navbars" }, [
+                _c(
+                  "a",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.instance.name,
-                    expression: "instance.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "name" },
-                domProps: { value: _vm.instance.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.details)
+                      }
                     }
-                    _vm.$set(_vm.instance, "name", $event.target.value)
-                  }
-                }
-              })
+                  },
+                  [_vm._v("Details")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.source)
+                      }
+                    }
+                  },
+                  [_vm._v("Source")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.flavor)
+                      }
+                    }
+                  },
+                  [_vm._v("Flavor")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.network)
+                      }
+                    }
+                  },
+                  [_vm._v("Networks")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.networksPorts)
+                      }
+                    }
+                  },
+                  [_vm._v("Network Ports")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.security)
+                      }
+                    }
+                  },
+                  [_vm._v("Security Groups")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.key)
+                      }
+                    }
+                  },
+                  [_vm._v("Key pair")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.modalChange(_vm.server)
+                      }
+                    }
+                  },
+                  [_vm._v("Server Groups")]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "image" } }, [_vm._v("Image")]),
+            _c("div", { staticClass: "modal-body" }, [
+              this.modalContent == this.details
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.instance.name,
+                            expression: "instance.name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", id: "name" },
+                        domProps: { value: _vm.instance.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.instance, "name", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "description" } }, [
+                        _vm._v("Description")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.instance.description,
+                            expression: "instance.description"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", id: "name" },
+                        domProps: { value: _vm.instance.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.instance,
+                              "description",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "AvailabilityZone" } }, [
+                        _vm._v("Availability Zone")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.instance.availability_zone,
+                              expression: "instance.availability_zone"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.instance,
+                                "availability_zone",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.availability_zones, function(
+                          availabilityZone
+                        ) {
+                          return _c(
+                            "option",
+                            { domProps: { value: availabilityZone.zoneName } },
+                            [_vm._v(_vm._s(availabilityZone.zoneName))]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.source
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "image" } }, [
+                        _vm._v("Image")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.instance.image_id,
+                              expression: "instance.image_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "image", name: "image" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.instance,
+                                "image_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "", selected: "" } }, [
+                            _vm._v("Choose a image")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.images, function(image) {
+                            return _c(
+                              "option",
+                              { key: image.id, domProps: { value: image.id } },
+                              [_vm._v(_vm._s(image.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.flavor
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "flavor" } }, [
+                        _vm._v("Flavor")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.instance.flavor_id,
+                              expression: "instance.flavor_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "flavor", name: "flavor" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.instance,
+                                "flavor_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "", selected: "" } }, [
+                            _vm._v("Choose a flavor")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.flavors, function(flavor) {
+                            return _c(
+                              "option",
+                              {
+                                key: flavor.id,
+                                domProps: { value: flavor.id }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(flavor.name) +
+                                    " ||| VCPUS:" +
+                                    _vm._s(flavor.vcpus) +
+                                    " ||| RAM:" +
+                                    _vm._s(flavor.ram) +
+                                    "MB ||| DISK:" +
+                                    _vm._s(flavor.disk) +
+                                    "GB"
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.network
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "flavor" } }, [
+                        _vm._v("Network")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.instance.network_id,
+                              expression: "instance.network_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { id: "flavor", name: "flavor" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.instance,
+                                "network_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "", selected: "" } }, [
+                            _vm._v("Choose a network")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.networks, function(network_id) {
+                            return _c(
+                              "option",
+                              {
+                                key: network_id.id,
+                                domProps: { value: network_id.id }
+                              },
+                              [_vm._v(_vm._s(network_id.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.network
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("h1", [_vm._v("NETWORK")])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.networksPorts
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("h1", [_vm._v("NETWORK")])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.security
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("h1", [_vm._v("Security groups")])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.key
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("h1", [_vm._v("key")])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.modalContent == this.server
+                ? _c("div", { staticClass: "form-group" }, [
+                    _c("h1", [_vm._v("Server groups")])
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: {
+                    type: "button",
+                    "data-dismiss": "modal",
+                    name: "button"
+                  }
+                },
+                [_vm._v("Close")]
+              ),
               _vm._v(" "),
               _c(
-                "select",
+                "button",
                 {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.instance.image_id,
-                      expression: "instance.image_id"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "image", name: "image" },
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button", "data-dismiss": "modal" },
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.instance,
-                        "image_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
+                    click: function($event) {
+                      return _vm.createInstance()
                     }
                   }
                 },
-                [
-                  _c("option", { attrs: { value: "", selected: "" } }, [
-                    _vm._v("Choose a image")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.images, function(image) {
-                    return _c(
-                      "option",
-                      { key: image.id, domProps: { value: image.id } },
-                      [_vm._v(_vm._s(image.name))]
-                    )
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "flavor" } }, [_vm._v("Flavor")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.instance.flavor_id,
-                      expression: "instance.flavor_id"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "flavor", name: "flavor" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.instance,
-                        "flavor_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "" } }, [
-                    _vm._v("Choose a flavor")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.flavors, function(flavor) {
-                    return _c(
-                      "option",
-                      { key: flavor.id, domProps: { value: flavor.id } },
-                      [
-                        _vm._v(
-                          _vm._s(flavor.name) +
-                            " ||| VCPUS:" +
-                            _vm._s(flavor.vcpus) +
-                            " ||| RAM:" +
-                            _vm._s(flavor.ram) +
-                            "MB ||| DISK:" +
-                            _vm._s(flavor.disk) +
-                            "GB"
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "flavor" } }, [_vm._v("Network")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.instance.network_id,
-                      expression: "instance.network_id"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "flavor", name: "flavor" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.instance,
-                        "network_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "" } }, [
-                    _vm._v("Choose a network")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.networks, function(network_id) {
-                    return _c(
-                      "option",
-                      {
-                        key: network_id.id,
-                        domProps: { value: network_id.id }
-                      },
-                      [_vm._v(_vm._s(network_id.name))]
-                    )
-                  })
-                ],
-                2
+                [_vm._v("Create")]
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
-                on: {
-                  click: function($event) {
-                    return _vm.createInstance()
-                  }
-                }
-              },
-              [_vm._v("Create")]
-            )
           ])
         ])
-      ])
-    ]),
+      ]
+    ),
     _vm._v(" "),
     _c(
       "table",
@@ -45224,17 +45603,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Instance")]),
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "count" } }, [_vm._v("Count")]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
-      )
+      _c("input", { staticClass: "form-control", attrs: { type: "number" } })
     ])
   },
   function() {
@@ -65694,7 +66066,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _instancias_vue_vue_type_template_id_b862fcd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./instancias.vue?vue&type=template&id=b862fcd4& */ "./resources/js/components/instancias.vue?vue&type=template&id=b862fcd4&");
 /* harmony import */ var _instancias_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./instancias.vue?vue&type=script&lang=js& */ "./resources/js/components/instancias.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _instancias_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./instancias.vue?vue&type=style&index=0&media=screen&lang=css& */ "./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -65702,7 +66076,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _instancias_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _instancias_vue_vue_type_template_id_b862fcd4___WEBPACK_IMPORTED_MODULE_0__["render"],
   _instancias_vue_vue_type_template_id_b862fcd4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -65731,6 +66105,22 @@ component.options.__file = "resources/js/components/instancias.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./instancias.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/instancias.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css& ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./instancias.vue?vue&type=style&index=0&media=screen&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_instancias_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

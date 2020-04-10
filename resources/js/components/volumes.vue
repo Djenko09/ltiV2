@@ -13,6 +13,7 @@
       >Create Volume</button>
     </div>
     <br />
+    <!-- Fomulario para criar volume -->
     <div class="modal" id="myModalVolumes">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -58,7 +59,11 @@
           </div>
         </div>
       </div>
+
+       <!-- FIM Fomulario para criar volume -->
     </div>
+
+     <!--tabela que lista os volumes -->
     <table class="table table-hover">
       <thead>
         <tr>
@@ -93,14 +98,16 @@
           <td v-if="volume.encrypted == false">NO</td>
           <td v-else>YES</td>
           <td>
-            <button
+            <!-- botão que chama o formulario de editar volume passando o volume(id,name,size) -->
+            <button 
               type="button"
               class="btn btn-sm btn-success"
               data-toggle="modal"
               data-target="#myModalVolumeEdit"
               v-on:click="volumeEdit(volume)"
             >Edit</button>
-            <button
+             <!-- botão que chama o formulario de editar size volume passando o volume(id,name,size) -->
+            <button 
               type="button"
               class="btn btn-sm btn-warning"
               data-toggle="modal"
@@ -115,9 +122,9 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>  <!-- FIM tabela que lista os volumes -->
     <div class="modal" id="myModalVolumeEdit">
-      <!-- [INICIO] Formulario para editar router-->
+      <!-- [INICIO] Formulario para editar volume-->
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -147,7 +154,7 @@
                 data-dismiss="modal"
                 v-on:click="sendVolumeEdit()"
               >Edit</button>
-              <!--[FIM] Formulario para editar router -->
+              <!--[FIM] Formulario para editar volume -->
             </div>
           </div>
         </div>
@@ -177,7 +184,7 @@
                 type="button"
                 class="btn btn-warning"
                 data-dismiss="modal"
-                v-on:click="sendSizeEdit()"
+                v-on:click="sendSizeEdit()"  
               >Edit Size</button>
               <!--[FIM] Formulario para editar size volume -->
             </div>
@@ -205,7 +212,7 @@ export default {
     };
   },
   methods: {
-    getVolumes() {
+    getVolumes() {   //função para obter os volumes relativos ao projecto atual
       axios
         .get(
           this.url +
@@ -222,7 +229,7 @@ export default {
           this.volumes = response.data.volumes;
         });
     },
-    getImages: function() {
+    getImages: function() {   //função para obter as imagens
       axios
         .get(this.url + "/image/v2/images", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -233,7 +240,7 @@ export default {
           console.log(images);
         });
     },
-    deleteVolume: function(volume) {
+    deleteVolume: function(volume) { //eliminar volume
       axios.delete(
         this.url +
           "/volume/v3/" +
@@ -247,7 +254,7 @@ export default {
 
       this.$toasted.show("Volume Deleted With Success");
     },
-    createVolume: function() {
+    createVolume: function() {  //criar volume
       if (this.volume.image_id == "") {
         //se a imagem não for passada
         axios
@@ -316,12 +323,12 @@ export default {
           });
       }
     },
-    volumeEdit: function(volume) {
+    volumeEdit: function(volume) {  //guarda id, tamanho e nome do volume
       this.volume.id = volume.id;
       this.volume.name = volume.name;
       this.volume.size = volume.size;
     },
-    sendVolumeEdit() {
+    sendVolumeEdit() { //função que edita o volume
       axios
         .put(
           this.url +
@@ -348,7 +355,7 @@ export default {
           this.getVolumes();
         });
     },
-    sendSizeEdit: function() {
+    sendSizeEdit: function() { //função que edita o tamanho do volume
          axios
         .post(this.url + "/volume/v3/"+this.$store.state.project +"/volumes/" + this.volume.id + "/action",
           {
@@ -370,7 +377,7 @@ export default {
     }
   },
 
-  mounted() {
+  mounted() { //a pagina ao ser carregada executa as seguintes funcoes
     this.getVolumes();
     this.getImages();
   }

@@ -1,5 +1,6 @@
-ogin<template>
+<template>
   <div class="container login-container">
+  
             <div class="row">
                 <div class="col-md-12 login-form-1">
                   <div>
@@ -8,6 +9,7 @@ ogin<template>
                    <br>
                    <br>
                    <br>
+                   <!-- formulario para LOG IN -->
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Your Email *"   v-model="credentials.name" />
                         </div>
@@ -43,7 +45,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    login() {  //funcao de login
       axios
         .post(
           this.url + "/identity/v3/auth/tokens",

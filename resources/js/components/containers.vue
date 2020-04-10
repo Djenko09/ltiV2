@@ -13,6 +13,8 @@
       >Create Container</button>
     </div>
     <br />
+
+    <!-- formulario para criar um CONTAINER -->
     <div class="modal" id="myModalContainers">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -63,7 +65,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>   <!-- FIM formulario para criar um CONTAINER -->
+
+      <!-- tabela que lista os  containers-->
     <table class="table table-hover">
       <thead>
         <tr>
@@ -91,7 +95,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>   <!-- FIM  tabela que lista os  containers-->
   </div>
 </template>
 
@@ -111,7 +115,7 @@ export default {
     };
   },
   methods: {
-    getContainers() {
+    getContainers() {   //funcao que obtem os containers
       axios
         .get(this.url + "/container/v1/containers", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -122,7 +126,7 @@ export default {
           this.containers = response.data.containers;
         });
     },
-    getImages: function() {
+    getImages: function() {  //funcao que obtem as imagens
       axios
         .get(this.url + "/image/v2/images", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -133,7 +137,7 @@ export default {
           console.log(images);
         });
     },
-    createContainer: function() {
+    createContainer: function() { //funcao que cria container
       axios
         .post(
           this.url + "/container/v1/containers",
@@ -161,7 +165,7 @@ export default {
         });
     },
 
-    deleteContainer: function(container) {
+    deleteContainer: function(container) { //funcao que elimina um container
       axios.delete(this.url + "/container/v1/containers/" +container.uuid, {
         headers: { "x-auth-token": this.$store.state.token }
       }) .then(response => {
@@ -174,7 +178,7 @@ export default {
     }
   },
 
-  mounted() {
+  mounted() { //a pagina ao ser carregada executa as seguintes funcoes
     this.getContainers();
     this.getImages();
   }

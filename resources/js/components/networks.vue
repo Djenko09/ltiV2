@@ -49,6 +49,8 @@
         </div>
       </div>
     </div>
+
+<!-- tabela que lista as redes -->
     <table class="table table-hover">
       <thead>
         <tr>
@@ -76,6 +78,8 @@
           <td v-else>DOWN</td>
           <td>nova</td>
           <td>
+
+             <!-- botão que chama o formulario de editar cria sub rede passando o id da rede -->
             <button
               type="button"
               class="btn btn-sm btn-success"
@@ -92,6 +96,7 @@
         </tr>
       </tbody>
     </table>
+    <!-- FIM tabela que lista as redes -->
     <div class="modal" id="myModalSubnet">    <!-- [INICIO] Formulario para criar Sub rede -->
       <div class="modal-dialog">
         <div class="modal-content">
@@ -176,7 +181,7 @@ export default {
     };
   },
   methods: {
-    getNetworks: function() {
+    getNetworks: function() { //funcao que obtem as redes
       axios
         .get(this.url + ":9696/v2.0/networks", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -186,7 +191,7 @@ export default {
           console.log(this.networks);
         });
     },
-    createNetwork() {
+    createNetwork() { //funcao para criar rede
       axios.post(
         this.url + ":9696/v2.0/networks",
         {
@@ -199,10 +204,10 @@ export default {
         }
       );
     },
-    createSubnet(id) {
+    createSubnet(id) { //funcao que guarda o id da REDE
       this.subnet.network_id = id;
     },
-    sendCreateSubnet(version) {
+    sendCreateSubnet(version) { //funcao que criar a subRede
       axios
         .post(
           this.url + ":9696/v2.0/subnets",
@@ -224,7 +229,7 @@ export default {
           this.getNetworks();
         });
     },
-    deleteNetwork(id){
+    deleteNetwork(id){ //funcao que elimina uma rede
         axios
         .delete(
           this.url + ":9696/v2.0/networks/" +id,
@@ -239,7 +244,7 @@ export default {
         });
 
     },
-    getSubnetPools() {
+    getSubnetPools() { //funcoa que obtem as pools
       axios
         .get(this.url + ":9696/v2.0/subnetpools", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -249,7 +254,7 @@ export default {
           console.log(this.subnetPools);
         });
     },
-    getSubnets() {
+    getSubnets() { //funcao que obtem as subnets
       axios
         .get(this.url + ":9696/v2.0/subnets", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -261,7 +266,7 @@ export default {
     }
   },
 
-  mounted() {
+  mounted() { //a pagina ao ser carregada executa as seguintes funcoes
     this.getNetworks();
     this.getSubnets();
     this.getSubnetPools();

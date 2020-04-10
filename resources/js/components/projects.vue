@@ -7,7 +7,7 @@
     </div>
     <br>
   
-    
+    <!-- tabela que listas os projetos -->
       <table class="table table-hover">
 
         <thead>
@@ -36,13 +36,15 @@
     
 
           <td v-if="active_prj != project.id">
-              <button type="submit" class="btn btn-outline-dark" v-on:click="changeProject(project)">Define as Active Project</button>
+            <!-- botão para mudar de projeto -->
+              <button type="submit" class="btn btn-outline-dark" v-on:click="changeProject(project)">Define as Active Project</button> 
            
           </td>
 
         </tr>
       </tbody>
-    </table>
+    </table>  
+    <!-- FIM tabela que listas os projetos -->
 </div>
 </template>
 
@@ -65,7 +67,7 @@ export default {
       };
     },
     methods: {
-      getProjects() {
+      getProjects() { //funcão que obtem os projetos
       axios
         .get(this.url + "/identity/v3/auth/projects", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -74,7 +76,7 @@ export default {
           this.projects = response.data.projects;
         });
     },
-     changeProject(project) {
+     changeProject(project) { //funcao que muda de projeto
       axios
         .post(this.url + "/identity/v3/auth/tokens", {
           auth: {
@@ -86,7 +88,7 @@ export default {
                   domain: {
                     name: "Default"
                   },
-                  password: "devstack"
+                  password: "devstack"   /////
                 }
               }
             },
@@ -115,7 +117,7 @@ export default {
       
 
   },
-  mounted() {
+  mounted() { //a pagina ao ser carregada executa as seguintes funcoes
     this.getProjects();
   }
 }

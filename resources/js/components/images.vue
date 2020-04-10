@@ -6,10 +6,7 @@
     </div>
     <br />
     <div class="form-group">
-      <!--<label>File
-    <input type="file" class="form-control" id="file" ref="file" v-on:change="handleFileUpload()" placeholder="Upload Image" >
-    </label>
-      <button v-on:click="submitFile()">Submit</button>-->
+      
       <button
         type="button"
         class="btn btn-outline-dark"
@@ -18,7 +15,7 @@
       >New Image</button>
     </div>
     <br />
-
+  <!-- formulario para criar imagem -->
     <div class="modal fade bd-example-modal-xl" id="myModalImages">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -129,13 +126,15 @@
                   v-on:click="createImage()"
                   value="Create"
                 />
-              </div>
+              </div>   
             </form>
           </div>
         </div>
-      </div>
-    </div>
+      </div>   
+    </div><!-- FIM formulario para criar imagem -->
 
+
+<!-- tabela que mostra as imagens -->
     <table class="table table-hover">
       <thead>
         <tr>
@@ -170,7 +169,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>   <!-- FIM tabela que mostra as imagens -->
   </div>
 </template>
 
@@ -179,17 +178,7 @@ export default {
   data: function() {
     return {
       url: process.env.MIX_URL,
-      images: [
-        /*  id:null,
-        name:null,
-        disk_format:null,
-        container_formart:null,
-        min_disk:null,
-        min_ram:null,
-        protected:null,
-        tags:[],
-        visibility:null,*/
-      ],
+      images: [],
       disk_formats: [
         "ami",
         "ari",
@@ -218,7 +207,7 @@ export default {
     };
   },
   methods: {
-    getImages: function() {
+    getImages: function() {   //função que obtem as imagens
       axios
         .get(this.url + "/image/v2/images", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -233,7 +222,7 @@ export default {
       this.file = e.target.files[0];
       console.log(event.target.files[0]);
     },
-    createImage() {
+    createImage() {  //função para criar imagemn 
 
       if(this.image.protected === "true"){
         this.image.protected = true;
@@ -269,7 +258,7 @@ export default {
           console.log("Error");
         });
     },
-    submitfile() {
+    submitfile() {  //funcao para subtmeter o ficheiro da imagem
       delete axios.defaults.headers.common["Authorization"];
       axios
         .put(
@@ -290,7 +279,7 @@ export default {
           console.log("Error");
         });
     },
-    deleteImage(image) {
+    deleteImage(image) { //funcao que apaga uma imagem
       axios
         .delete(this.url + "/image/v2/images/" + image, {
           headers: {
@@ -309,7 +298,7 @@ export default {
       this.$emit("exit-images");
     }
   },
-  mounted() {
+  mounted() {   //a pagina ao ser carregada executa as seguintes funcoes
     this.getImages();
   }
 };

@@ -11,7 +11,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div><br>
         <div class=""><br>
-          <button class="btn-create btn btn-outline-dark" data-toggle="modal" data-target="#createModal"></i>Create</button>
+          <button class="btn-create btn btn-outline-dark" data-toggle="modal" data-target="#createModal">Create</button>
         </div>
 
 
@@ -46,11 +46,11 @@
               <td class="text-center" v-if="securityGroupRule.remote_ip_prefix === null">-----</td>
               <td v-else>{{ securityGroupRule.remote_ip_prefix}}</td>
               <td>{{ securityGroupRule.security_group_id}}</td>
-              <td class="text-center"v-if="securityGroupRule.description === null">-----</td>
+              <td class="text-center" v-if="securityGroupRule.description === null">-----</td>
               <td v-else>{{ securityGroupRule.description}}</td>
               <td>
                 <button
-                type="button"class="btn btn-sm btn-danger" v-on:click="deleteSecurityGroupRule(securityGroupRule.id)">Delete Rule</button>
+                type="button" class="btn btn-sm btn-danger" v-on:click="deleteSecurityGroupRule(securityGroupRule.id)">Delete Rule</button>
               </td>
             </tr>
           </tbody>
@@ -117,11 +117,11 @@
               <option value="all">All ports</option>
             </select>
           </div>
-          <div v-if="securityGroupRule.rule === 'customICMP'"class="form-group">  <!-- CHANGE port -->
+          <div v-if="securityGroupRule.rule === 'customICMP'" class="form-group">  <!-- CHANGE port -->
             <label>Type (-1 - 255)</label><br>
             <input type="text" name="" v-model="securityGroupRule.port_range_min">
           </div>
-          <div v-if="securityGroupRule.rule === 'customICMP'"class="form-group">  <!-- CHANGE port -->
+          <div v-if="securityGroupRule.rule === 'customICMP'" class="form-group">  <!-- CHANGE port -->
             <label>Code (-1 - 255)</label><br>
             <input type="text" name="" v-model="securityGroupRule.port_range_min">
           </div>
@@ -179,7 +179,7 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="nameSecurityGroup">Name *</label>
-          <input type="text" class="form-control"  placeholder="A name for the server Group" name="name" v-model="securityGroup.name"></input>
+          <input type="text" class="form-control"  placeholder="A name for the server Group" name="name" v-model="securityGroup.name"/>
         </div>
         <div class="form-group">
           <label for="description">Description</label>
@@ -199,7 +199,8 @@
     <h1>Security Groups</h1>
   </div><br>
     <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#modalSecurityGroup" v-on:click="createSecurityGroup()">Create Security Group</button><br><br>
-  <table class="table table-hover">
+ <!-- tabela que lista os security groups-->
+ <table class="table table-hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -231,7 +232,7 @@
       </td>
     </tr>
   </tbody>
-  </table>
+  </table>  <!-- FIM tabela que lista os security groups-->
 </div>
 </template>
 
@@ -436,7 +437,7 @@ createSecurityGroup(){
 
 
 },
-mounted(){
+mounted(){  //a pagina ao ser carregada executa as seguintes funcoes
   this.getSecurityGroups();
 }
 

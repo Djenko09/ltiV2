@@ -57,11 +57,13 @@
               class="btn btn-warning"
               data-dismiss="modal"
               v-on:click="allocateIP()"
-            >Allocate IP</button>
+            >Allocate IP</button>   
           </div>
         </div>
       </div>
-    </div>
+    </div> <!--  FIM formulario para criar um ip flutuante-->
+
+    <!-- tabela que mostra os ips flutuantes -->
     <table class="table table-hover">
       <thead>
         <tr>
@@ -107,9 +109,11 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> <!--  FIM tabela que msotra os ips fluntuantes-->
+
+      <!-- formulario para associar o IP flutuante a uma VM -->
     <div class="modal" id="myAssociateIP">
-      <!-- formulario para associar o IP a uma VM -->
+    
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -141,7 +145,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>   <!-- FIM  formulario para associar o IP flutuante a uma VM -->
   </div>
 </template>
 
@@ -164,7 +168,7 @@ export default {
     };
   },
   methods: {
-    getFloatingIPs: function() {
+    getFloatingIPs: function() { //funcao que obtem os ips flutuantes
       axios
         .get(this.url + ":9696/v2.0/floatingips", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -174,7 +178,7 @@ export default {
           console.log(this.floatingIPs);
         });
     },
-    getNetworks: function() {
+    getNetworks: function() {  //funcao que obtem as redes
       axios
         .get(this.url + ":9696/v2.0/networks", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -184,7 +188,7 @@ export default {
           console.log(this.networks);
         });
     },
-    getInstances() {
+    getInstances() { //funcao que obtem as instancias
       axios
         .get(this.url + "/compute/v2.1/servers/detail", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -195,7 +199,7 @@ export default {
           console.log(this.instances);
         });
     },
-    allocateIP() {
+    allocateIP() {  //funcao que aloca um ip flutuante
       axios
         .post(
           this.url + ":9696/v2.0/floatingips",
@@ -216,10 +220,10 @@ export default {
           this.getFloatingIPs();
         });
     },
-    saveFloatingID(id) {
+    saveFloatingID(id) { //guarda ID do IP flutuante  para depois ser usado para associar a uma vm
       this.float_ID = id;
     },
-    associateIP(ip) {
+    associateIP(ip) { //funcao que associa IP flutuante a uma VM
       axios
         .get(this.url + ":9696/v2.0/ports", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -254,7 +258,7 @@ export default {
         });
       
     },
-      disassociateFloatingIP(id) {
+      disassociateFloatingIP(id) { //funcao que desassocia o IP da VM 
         axios.put(this.url + ":9696/v2.0/floatingips/" + id, 
               {
                 floatingip: {
@@ -269,7 +273,7 @@ export default {
                   this.getFloatingIPs();
               });   
     },
-    deleteFloatingIP(floatingIP) {
+    deleteFloatingIP(floatingIP) {  //eliminar IP flutuante
       axios
         .delete(this.url + ":9696/v2.0/floatingips/" + floatingIP.id, {
           headers: { "x-auth-token": this.$store.state.token }
@@ -282,7 +286,7 @@ export default {
     }
   },
 
-  mounted() {
+  mounted() { //a pagina ao ser carregada executa as seguintes funcoes
     this.getNetworks();
     this.getFloatingIPs();
     this.getInstances();

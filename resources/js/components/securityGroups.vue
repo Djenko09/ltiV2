@@ -198,7 +198,7 @@
   <div><br>
     <h1>Security Groups</h1>
   </div><br>
-    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#modalSecurityGroup" v-on:click="createSecurityGroup()">Create Security Group</button><br><br>
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#modalSecurityGroup">Create Security Group</button><br><br>
  <!-- tabela que lista os security groups-->
  <table class="table table-hover">
     <thead>

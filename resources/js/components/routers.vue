@@ -63,6 +63,8 @@
         </div>
       </div>
     </div>
+
+     <!--  tabela que lista os routers -->
     <table class="table table-hover">
       <thead>
         <tr>
@@ -98,7 +100,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>   <!--  FIM tabela que lista os routers -->
 
     <div class="modal" id="myModalRouterEdit">
       <!-- [INICIO] Formulario para editar router-->
@@ -154,7 +156,7 @@ export default {
     };
   },
   methods: {
-    getRouters: function() {
+    getRouters: function() {  //funcao que obtem os routers
       axios
         .get(this.url + ":9696/v2.0/routers", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -165,7 +167,7 @@ export default {
         });
     },
 
-    getNetworks: function() {
+    getNetworks: function() { //funcao que obtem as redes
       axios
         .get(this.url + ":9696/v2.0/networks", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -175,7 +177,7 @@ export default {
           console.log(this.networks);
         });
     },
-    createRouter() {
+    createRouter() { //funcao para criar routers
       axios
         .post(
           this.url + ":9696/v2.0/routers",
@@ -196,10 +198,10 @@ export default {
           this.getRouters();
         });
     },
-    editRouter(id) {
+    editRouter(id) { //funcao que guarda o id do router a ser alterado
       this.router.id = id;
     },
-    sendEditRouter() {
+    sendEditRouter() { //funcao que edita router
       axios
         .put(
           this.url + ":9696/v2.0/routers/" + this.router.id,
@@ -217,7 +219,7 @@ export default {
           this.getRouters();
         });
     },
-    deleteRouter(id) {
+    deleteRouter(id) { //funcao que elimina router
       axios
         .delete(this.url + ":9696/v2.0/routers/" + id, {
           headers: { "x-auth-token": this.$store.state.token }

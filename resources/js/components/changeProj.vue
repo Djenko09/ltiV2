@@ -20,13 +20,13 @@ export default {
   methods: {
     loginProject() {
       axios
-        .post(this.url + "/identity/v3/auth/tokens", {
+        .post(this.url + "/identity/v3/auth/tokens", {  //funcao para mudar de projeto
           auth: {
             identity: {
               methods: ["password"],
               password: {
                 user: {
-                  name: this.$store.state.user.name,
+                  name: this.$store.state.user.name, //nome guardado vuex
                   domain: {
                     name: "Default"
                   },

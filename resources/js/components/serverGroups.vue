@@ -5,14 +5,14 @@
   <div >
     <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal">Create Security Group</button>
   </div>
-  <!-- The Modal For Create Security Group -->
+    <!-- formulario para criar server group-->
   <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Create Security Group</h4>
+          <h4 class="modal-title">Create Server Group</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
@@ -20,15 +20,15 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="nameServerGroup">Name *</label>
-            <input type="text" class="form-control"  placeholder="A name for the server Group" name="name" v-model="serversGroup.name"></input>
+            <input type="text" class="form-control"  placeholder="A name for the server Group" name="name" v-model="serversGroup.name"/>
           </div>
           <div class="form-group">
             <label for="policy">Policy</label>
              <select class="form-control text-capitalize" v-model="serversGroup.policy">
-              <option v-model="serversGroup.policy">anti-affinity</option>
-              <option v-model="serversGroup.policy">affinity</option>
-              <option v-model="serversGroup.policy">soft-anti-affinity </option>
-              <option v-model="serversGroup.policy">soft-affinity </option>
+              <option>anti-affinity</option>
+              <option >affinity</option>
+              <option>soft-anti-affinity </option>
+              <option>soft-affinity </option>
             </select>
           </div>
         </div>
@@ -41,7 +41,10 @@
       </div>
     </div>
   </div>
+  <!-- FIM formulario para criar server group-->
   <br>
+
+   <!--  tabela que lista os server groups -->
   <table class="table table-hover">
 
     <thead>
@@ -68,7 +71,7 @@
       </td>
     </tr>
     </tbody>
-  </table>
+  </table>   <!-- FIM tabela que lista os server groups -->
 </div>
 
 </template>
@@ -87,7 +90,7 @@ export default {
   }
 },
   methods:{
-    getServerGroups(){
+    getServerGroups(){   //funcão que obtem os server groups
       axios.get(this.url +"/compute/v2.1/os-server-groups",{
         headers: {'x-auth-token': this.$store.state.token}
       }).then(response=>{
@@ -95,7 +98,7 @@ export default {
         console.log(this.servers)
       })
     },
-    deleteServerGroup(serverGroup){
+    deleteServerGroup(serverGroup){  //eliminar server group
       axios.delete(this.url + "/compute/v2.1/os-server-groups/"+ serverGroup.id,{
         headers: {'x-auth-token': this.$store.state.token}
       }).then(response=>{
@@ -103,7 +106,7 @@ export default {
          this.getServerGroups();
       })
     },
-    createServerGroup(){
+    createServerGroup(){ //funcao que cria server group
       axios.post(this.url + "/compute/v2.1/os-server-groups",
         {
           server_group:{
@@ -119,7 +122,7 @@ export default {
       })
     }
   },
-  mounted(){
+  mounted(){ //a pagina ao ser carregada executa as seguintes funcoes
     this.getServerGroups();
   }
 

@@ -3,7 +3,7 @@
   <br>
   <h3>Server Groups</h3>
   <div >
-    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal">Create Security Group</button>
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal">Create Server Group</button>
   </div>
     <!-- formulario para criar server group-->
   <div class="modal" id="myModal">

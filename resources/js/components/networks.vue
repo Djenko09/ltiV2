@@ -202,7 +202,10 @@ export default {
         {
           headers: { "x-auth-token": this.$store.state.token }
         }
-      );
+      ) .then(response => {
+         this.$toasted.show("Network Created!");
+         this.getNetworks();
+        });
     },
     createSubnet(id) { //funcao que guarda o id da REDE
       this.subnet.network_id = id;

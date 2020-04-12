@@ -73,13 +73,13 @@
         <!-- Modal body -->
         <div class="modal-body">
             <div class="container">
-                <label for="nameKeyPair">Name:</label>
+                <label for="nameKeyPair">Name: *</label>
                 <input type="text" class="form-control" v-model="newKeypair.name" id="name" />
             </div>
             <br>
 
             <div class="form-group container">
-                <label for="keyPairType">Type:</label>
+                <label for="keyPairType">Type: *</label>
                   <select class="form-control text-capitalize" v-model="newKeypair.type">
                     <option value="ssh">SSH Key</option>
                     <option value="x509">X509 Certificate</option>
@@ -88,7 +88,7 @@
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal" v-on:click="createKeyPair()">Create Key Pair</button>
+          <button type="button" class="btn btn-warning"   :class="{ disabled: isDisabled }" :disabled="isDisabled" data-dismiss="modal" v-on:click="createKeyPair()">Create Key Pair</button>
         </div>
       </div>
     </div>
@@ -120,7 +120,7 @@
         type="button"
         class="btn btn-sm btn-success"
         data-toggle="modal" data-target="#myModalKeyPairsDetail"
-        v-on:click="keyPairsDetail(keypairs.keypair)"  
+        v-on:click="keyPairsDetail(keypairs.keypair)"
         >Details</button>
         <button
         type="button"
@@ -191,7 +191,7 @@ export default {
          }).catch(error=>{
         console.log('Error');
       });
-    },  
+    },
     keyPairsDetail: function(keypair) { //funcao que obtem as keypairs detalhadas
       axios.get(this.url + "/compute/v2.1/os-keypairs/" + keypair.name,{
          headers: {
@@ -221,8 +221,14 @@ export default {
       this.$emit('exit-images');
     }
   },
-  components: {
-
+  computed:{
+    isDisabled () {
+      if (this.newKeypair.name && this.newKeypair.type) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   },
   mounted(){ //a pagina ao ser carregada executa as seguintes funcoes
     this.getKeyPairs();

@@ -26,12 +26,12 @@
           <!-- Modal body -->
           <div class="modal-body">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name">Name *</label>
               <input type="text" class="form-control" v-model="volume.name" id="name" />
             </div>
 
             <div class="form-group">
-              <label for="size">Size (GB)</label>
+              <label for="size">Size (GB)*</label>
               <input type="text" class="form-control" v-model="volume.size" id="size" />
             </div>
 
@@ -53,7 +53,7 @@
             <button
               type="button"
               class="btn btn-warning"
-              data-dismiss="modal"
+              data-dismiss="modal" :class="{ disabled: isDisabled }" :disabled="isDisabled"
               v-on:click="createVolume()"
             >Create</button>
           </div>
@@ -99,7 +99,7 @@
           <td v-else>YES</td>
           <td>
             <!-- botão que chama o formulario de editar volume passando o volume(id,name,size) -->
-            <button 
+            <button
               type="button"
               class="btn btn-sm btn-success"
               data-toggle="modal"
@@ -107,7 +107,7 @@
               v-on:click="volumeEdit(volume)"
             >Edit</button>
              <!-- botão que chama o formulario de editar size volume passando o volume(id,name,size) -->
-            <button 
+            <button
               type="button"
               class="btn btn-sm btn-warning"
               data-toggle="modal"
@@ -184,7 +184,7 @@
                 type="button"
                 class="btn btn-warning"
                 data-dismiss="modal"
-                v-on:click="sendSizeEdit()"  
+                v-on:click="sendSizeEdit()"
               >Edit Size</button>
               <!--[FIM] Formulario para editar size volume -->
             </div>
@@ -361,7 +361,7 @@ export default {
           {
             "os-extend": {
               new_size: this.volume.size,
-              
+
 
             }
           },
@@ -376,7 +376,15 @@ export default {
           })
     }
   },
-
+  computed:{
+    isDisabled () {
+      if (this.volume.name && this.volume.size) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   mounted() { //a pagina ao ser carregada executa as seguintes funcoes
     this.getVolumes();
     this.getImages();

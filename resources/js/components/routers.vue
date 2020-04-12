@@ -27,7 +27,7 @@
           <!-- Modal body -->
           <div class="modal-body">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name">Name *</label>
               <input
                 type="text"
                 class="form-control"
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group">
-              <label for="network">Pool</label>
+              <label for="network">Pool *</label>
               <select class="form-control" v-model="router.network_id">
                 <option
                   v-for="network in networks"
@@ -55,7 +55,7 @@
             <button
               type="button"
               class="btn btn-warning"
-              data-dismiss="modal"
+              data-dismiss="modal" :class="{ disabled: isDisabled }" :disabled="isDisabled"
               v-on:click="createRouter()"
             >Create</button>
           </div>
@@ -230,7 +230,15 @@ export default {
         });
     }
   },
-
+  computed:{
+    isDisabled () {
+      if (this.router.name && this.router.network_id) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   mounted() {
     this.getRouters();
     this.getNetworks();

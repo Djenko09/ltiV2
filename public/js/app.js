@@ -4085,7 +4085,15 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('exit-images');
     }
   },
-  components: {},
+  computed: {
+    isDisabled: function isDisabled() {
+      if (this.newKeypair.name && this.newKeypair.type) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getKeyPairs();
@@ -4234,7 +4242,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit("clearToken"); ///limpa o token
 
       this.$toasted.info("Successfully logout!");
-      this.$router.push('/');
+      this.$router.push('/login');
     }
   },
   mounted: function mounted() {
@@ -4449,6 +4457,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createNetwork: function createNetwork() {
+      var _this2 = this;
+
       //funcao para criar rede
       axios.post(this.url + ":9696/v2.0/networks", {
         network: {
@@ -4458,6 +4468,10 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           "x-auth-token": this.$store.state.token
         }
+      }).then(function (response) {
+        _this2.$toasted.show("Network Created!");
+
+        _this2.getNetworks();
       });
     },
     createSubnet: function createSubnet(id) {
@@ -4465,7 +4479,7 @@ __webpack_require__.r(__webpack_exports__);
       this.subnet.network_id = id;
     },
     sendCreateSubnet: function sendCreateSubnet(version) {
-      var _this2 = this;
+      var _this3 = this;
 
       //funcao que criar a subRede
       axios.post(this.url + ":9696/v2.0/subnets", {
@@ -4480,15 +4494,15 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this2.$toasted.show("Subnet  " + response.data.subnet.cidr + " created! The gateway is " + response.data.subnet.gateway_ip);
+        _this3.$toasted.show("Subnet  " + response.data.subnet.cidr + " created! The gateway is " + response.data.subnet.gateway_ip);
 
-        _this2.getSubnets();
+        _this3.getSubnets();
 
-        _this2.getNetworks();
+        _this3.getNetworks();
       });
     },
     deleteNetwork: function deleteNetwork(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       //funcao que elimina uma rede
       axios["delete"](this.url + ":9696/v2.0/networks/" + id, {
@@ -4496,15 +4510,15 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this3.$toasted.show("Network Deleted!");
+        _this4.$toasted.show("Network Deleted!");
 
-        _this3.getSubnets();
+        _this4.getSubnets();
 
-        _this3.getNetworks();
+        _this4.getNetworks();
       });
     },
     getSubnetPools: function getSubnetPools() {
-      var _this4 = this;
+      var _this5 = this;
 
       //funcoa que obtem as pools
       axios.get(this.url + ":9696/v2.0/subnetpools", {
@@ -4512,12 +4526,12 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this4.subnetPools = response.data.subnetpools;
-        console.log(_this4.subnetPools);
+        _this5.subnetPools = response.data.subnetpools;
+        console.log(_this5.subnetPools);
       });
     },
     getSubnets: function getSubnets() {
-      var _this5 = this;
+      var _this6 = this;
 
       //funcao que obtem as subnets
       axios.get(this.url + ":9696/v2.0/subnets", {
@@ -4525,9 +4539,18 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this5.subnets = response.data.subnets;
-        console.log(_this5.subnets);
+        _this6.subnets = response.data.subnets;
+        console.log(_this6.subnets);
       });
+    }
+  },
+  computed: {
+    isDisabled: function isDisabled() {
+      if (this.network.name) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   mounted: function mounted() {
@@ -4929,6 +4952,15 @@ __webpack_require__.r(__webpack_exports__);
 
         _this5.getRouters();
       });
+    }
+  },
+  computed: {
+    isDisabled: function isDisabled() {
+      if (this.router.name && this.router.network_id) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   mounted: function mounted() {
@@ -5559,6 +5591,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  computed: {
+    isDisabled: function isDisabled() {
+      if (this.serversGroup.name && this.serversGroup.policy) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServerGroups();
@@ -5934,6 +5975,15 @@ __webpack_require__.r(__webpack_exports__);
 
         _this5.getVolumes();
       });
+    }
+  },
+  computed: {
+    isDisabled: function isDisabled() {
+      if (this.volume.name && this.volume.size) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   mounted: function mounted() {
@@ -46832,7 +46882,7 @@ var render = function() {
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "container" }, [
                 _c("label", { attrs: { for: "nameKeyPair" } }, [
-                  _vm._v("Name:")
+                  _vm._v("Name: *")
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -46862,7 +46912,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "form-group container" }, [
                 _c("label", { attrs: { for: "keyPairType" } }, [
-                  _vm._v("Type:")
+                  _vm._v("Type: *")
                 ]),
                 _vm._v(" "),
                 _c(
@@ -46915,7 +46965,12 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-warning",
-                  attrs: { type: "button", "data-dismiss": "modal" },
+                  class: { disabled: _vm.isDisabled },
+                  attrs: {
+                    type: "button",
+                    disabled: _vm.isDisabled,
+                    "data-dismiss": "modal"
+                  },
                   on: {
                     click: function($event) {
                       return _vm.createKeyPair()
@@ -47245,7 +47300,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -47280,7 +47335,12 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
+                class: { disabled: _vm.isDisabled },
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  disabled: _vm.isDisabled
+                },
                 on: {
                   click: function($event) {
                     return _vm.createNetwork()
@@ -47771,7 +47831,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -47801,7 +47861,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "network" } }, [_vm._v("Pool")]),
+              _c("label", { attrs: { for: "network" } }, [_vm._v("Pool *")]),
               _vm._v(" "),
               _c(
                 "select",
@@ -47863,7 +47923,12 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
+                class: { disabled: _vm.isDisabled },
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  disabled: _vm.isDisabled
+                },
                 on: {
                   click: function($event) {
                     return _vm.createRouter()
@@ -49311,7 +49376,12 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
+                class: { disabled: _vm.isDisabled },
+                attrs: {
+                  type: "button",
+                  disabled: _vm.isDisabled,
+                  "data-dismiss": "modal"
+                },
                 on: {
                   click: function($event) {
                     return _vm.createServerGroup()
@@ -49383,7 +49453,7 @@ var staticRenderFns = [
             "data-target": "#myModal"
           }
         },
-        [_vm._v("Create Security Group")]
+        [_vm._v("Create Server Group")]
       )
     ])
   },
@@ -49460,7 +49530,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -49486,7 +49556,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "size" } }, [_vm._v("Size (GB)")]),
+              _c("label", { attrs: { for: "size" } }, [_vm._v("Size (GB)*")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -49570,7 +49640,12 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
+                class: { disabled: _vm.isDisabled },
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  disabled: _vm.isDisabled
+                },
                 on: {
                   click: function($event) {
                     return _vm.createVolume()
@@ -66533,7 +66608,7 @@ var containers = Vue.component('containers', _components_containers_vue__WEBPACK
 
 var routes = [{
   path: '/',
-  component: _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  component: login
 }, {
   path: '/login',
   component: login,

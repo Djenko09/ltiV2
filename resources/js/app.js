@@ -65,7 +65,7 @@ const containers = Vue.component('containers', containersComponent); //parte 2 p
 
 
 const routes = [
-    { path: '/', component: homeComponent },
+    { path: '/', component: login },
     { path: '/login', component: login, name: "login" },
     { path: '/instances', component: instancias, name: "instancias"},
     { path: '/home', component: dashboard, name: "dashboard"},

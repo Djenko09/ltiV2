@@ -26,7 +26,7 @@
           <!-- Modal body -->
           <div class="modal-body">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name">Name *</label>
               <input
                 type="text"
                 class="form-control"
@@ -42,7 +42,7 @@
             <button
               type="button"
               class="btn btn-warning"
-              data-dismiss="modal"
+              data-dismiss="modal" :class="{ disabled: isDisabled }" :disabled="isDisabled"
               v-on:click="createNetwork()"
             >Create</button>     <!-- [FIM] Formulario para criar rede -->
           </div>
@@ -268,7 +268,15 @@ export default {
         });
     }
   },
-
+  computed:{
+    isDisabled () {
+      if (this.network.name) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   mounted() { //a pagina ao ser carregada executa as seguintes funcoes
     this.getNetworks();
     this.getSubnets();

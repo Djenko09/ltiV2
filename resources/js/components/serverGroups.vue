@@ -35,7 +35,7 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal" v-on:click="createServerGroup()" >Create</button>
+          <button type="button" class="btn btn-warning" :class="{ disabled: isDisabled }" :disabled="isDisabled" data-dismiss="modal" v-on:click="createServerGroup()" >Create</button>
         </div>
 
       </div>
@@ -120,6 +120,15 @@ export default {
         this.$toasted.success("Server Group created with success!");
         this.getServerGroups();
       })
+    }
+  },
+  computed:{
+    isDisabled () {
+      if (this.serversGroup.name && this.serversGroup.policy) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   mounted(){ //a pagina ao ser carregada executa as seguintes funcoes

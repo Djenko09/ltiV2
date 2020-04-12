@@ -125,12 +125,12 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="instance">Port</label>
-              <select class="form-control" v-model="instance.ip">
+              <select class="form-control" v-model="instance">
                 <option
                   v-for="instance in instances"
                   :key="instance.id"
-                  v-bind:value="instance.addresses.private[0].addr"
-                >{{ instance.name}} : {{instance.addresses.private[0].addr}}</option>
+                  v-bind:value="instance"
+                >{{ instance.name}}</option>
               </select>
             </div>
           </div>
@@ -140,7 +140,7 @@
               type="button"
               class="btn btn-warning"
               data-dismiss="modal"
-              v-on:click="associateIP(instance.ip)"
+              v-on:click="associateIP(instance)"
             >Associate IP</button>
           </div>
         </div>
@@ -196,7 +196,7 @@ export default {
 
         .then(response => {
           this.instances = response.data.servers;
-          console.log(this.instances);
+          console.log(this.instances[0].addresses.private[0].addr);
         });
     },
     allocateIP() {  //funcao que aloca um ip flutuante
@@ -223,7 +223,8 @@ export default {
     saveFloatingID(id) { //guarda ID do IP flutuante  para depois ser usado para associar a uma vm
       this.float_ID = id;
     },
-    associateIP(ip) { //funcao que associa IP flutuante a uma VM
+    associateIP(instance) { //funcao que associa IP flutuante a uma VM
+    console.log(instance)
       axios
         .get(this.url + ":9696/v2.0/ports", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -234,7 +235,7 @@ export default {
           console.log(this.float_ID);
           for (const port of this.ports) {
             //console.log(ip);
-            if (port.fixed_ips[0].ip_address == ip) {
+            if (port.fixed_ips[0].ip_address == instance.addresses.private[0].addr || port.fixed_ips[0].ip_address == instance.addresses.private[1].addr) {
               console.log(port.id);
               this.port_id = port.id;
               axios.put(this.url + ":9696/v2.0/floatingips/" + this.float_ID, 
@@ -248,7 +249,7 @@ export default {
                 headers: { "x-auth-token": this.$store.state.token }
               }).then(response => {
                    
-          this.$toasted.show("FloatingIP associated to Instance with IP:" +ip);
+          this.$toasted.show("FloatingIP associated");
            this.getFloatingIPs();
           
               });
@@ -287,9 +288,10 @@ export default {
   },
 
   mounted() { //a pagina ao ser carregada executa as seguintes funcoes
+    this.getInstances();
     this.getNetworks();
     this.getFloatingIPs();
-    this.getInstances();
+    
     this.getNetworks();
    
   }

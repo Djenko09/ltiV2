@@ -2577,7 +2577,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }).then(function (response) {
         _this3.instances = response.data.servers;
-        console.log(_this3.instances);
+        console.log(_this3.instances[0].addresses["private"][0].addr);
       });
     },
     allocateIP: function allocateIP() {
@@ -2606,10 +2606,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       //guarda ID do IP flutuante  para depois ser usado para associar a uma vm
       this.float_ID = id;
     },
-    associateIP: function associateIP(ip) {
+    associateIP: function associateIP(instance) {
       var _this5 = this;
 
       //funcao que associa IP flutuante a uma VM
+      console.log(instance);
       axios.get(this.url + ":9696/v2.0/ports", {
         headers: {
           "x-auth-token": this.$store.state.token
@@ -2626,7 +2627,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var port = _step.value;
 
             //console.log(ip);
-            if (port.fixed_ips[0].ip_address == ip) {
+            if (port.fixed_ips[0].ip_address == instance.addresses["private"][0].addr || port.fixed_ips[0].ip_address == instance.addresses["private"][1].addr) {
               console.log(port.id);
               _this5.port_id = port.id;
               axios.put(_this5.url + ":9696/v2.0/floatingips/" + _this5.float_ID, {
@@ -2638,7 +2639,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   "x-auth-token": _this5.$store.state.token
                 }
               }).then(function (response) {
-                _this5.$toasted.show("FloatingIP associated to Instance with IP:" + ip);
+                _this5.$toasted.show("FloatingIP associated");
 
                 _this5.getFloatingIPs();
               });
@@ -2688,9 +2689,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
+    this.getInstances();
     this.getNetworks();
     this.getFloatingIPs();
-    this.getInstances();
     this.getNetworks();
   }
 });
@@ -4039,9 +4040,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response);
 
-        _this2.getKeyPairs();
-
         _this2.$router.push("/keypairs");
+
+        _this2.getKeyPairs();
 
         _this2.$toasted.show("Key Pair Created");
       })["catch"](function (error) {
@@ -4072,9 +4073,9 @@ __webpack_require__.r(__webpack_exports__);
           'x-auth-token': this.$store.state.token
         }
       }).then(function (response) {
-        _this4.getKeyPairs();
-
         _this4.$router.push("/keypairs");
+
+        _this4.getKeyPairs();
 
         _this4.$toasted.show("Key Pair Deleted");
       })["catch"](function (error) {
@@ -44896,8 +44897,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.instance.ip,
-                      expression: "instance.ip"
+                      value: _vm.instance,
+                      expression: "instance"
                     }
                   ],
                   staticClass: "form-control",
@@ -44911,30 +44912,17 @@ var render = function() {
                           var val = "_value" in o ? o._value : o.value
                           return val
                         })
-                      _vm.$set(
-                        _vm.instance,
-                        "ip",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
+                      _vm.instance = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
                     }
                   }
                 },
                 _vm._l(_vm.instances, function(instance) {
                   return _c(
                     "option",
-                    {
-                      key: instance.id,
-                      domProps: { value: instance.addresses.private[0].addr }
-                    },
-                    [
-                      _vm._v(
-                        _vm._s(instance.name) +
-                          " : " +
-                          _vm._s(instance.addresses.private[0].addr)
-                      )
-                    ]
+                    { key: instance.id, domProps: { value: instance } },
+                    [_vm._v(_vm._s(instance.name))]
                   )
                 }),
                 0
@@ -44950,7 +44938,7 @@ var render = function() {
                 attrs: { type: "button", "data-dismiss": "modal" },
                 on: {
                   click: function($event) {
-                    return _vm.associateIP(_vm.instance.ip)
+                    return _vm.associateIP(_vm.instance)
                   }
                 }
               },

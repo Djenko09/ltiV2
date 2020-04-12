@@ -14,6 +14,7 @@ export default  new Vuex.Store({
     state: {
         token: "",
         user: null,
+        password: null,
         project:null,
         projectName:null,
         projectNames:[],
@@ -54,6 +55,10 @@ export default  new Vuex.Store({
             state.projectNames = projectNames;
             window.localStorage.setItem('projectNames', projectNames);
 
+        },
+        setPassword: (state, password) => {
+          state.password = password;
+          window.localStorage.setItem('password', password);
         },
         clearProject: state => {
             state.project = null;

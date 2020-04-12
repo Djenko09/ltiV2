@@ -3,6 +3,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
@@ -80,7 +81,7 @@ const routes = [
     { path: '/routers', component: routers, name:"routers"},
     { path: '/securityGroups', component: securityGroups, name:"securityGroups"},
     { path: '/containers', component: containers, name:"containers"} //parte 2 projeto
-    
+
 
 ];
 
@@ -103,5 +104,8 @@ new Vue({
       show(){
         $('#sidebar').toggleClass('active');
       },
-}
+},
+  components:{
+    PulseLoader
+  }
 });

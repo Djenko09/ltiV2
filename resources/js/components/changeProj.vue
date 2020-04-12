@@ -30,7 +30,7 @@ export default {
                   domain: {
                     name: "Default"
                   },
-                  password: "devstack"
+                  password: this.$store.state.password
                 }
               }
             },

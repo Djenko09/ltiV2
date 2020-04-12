@@ -20,11 +20,10 @@
           <!-- Modal Header -->
           <div class="modal-header">
             <div class="navbars">
-              <a v-on:click="modalChange(details)">Details</a>
-              <a v-on:click="modalChange(source)">Source</a>
-              <a v-on:click="modalChange(flavor)">Flavor</a>
-              <a v-on:click="modalChange(network)">Networks</a>
-              <a v-on:click="modalChange(networksPorts)">Network Ports</a>
+              <a v-on:click="modalChange(details)">Details *</a>
+              <a v-on:click="modalChange(source)">Source *</a>
+              <a v-on:click="modalChange(flavor)">Flavor *</a>
+              <a v-on:click="modalChange(network)">Networks *</a>
               <a v-on:click="modalChange(security)">Security Groups</a>
               <a v-on:click="modalChange(key)">Key pair</a>
               <a v-on:click="modalChange(server)">Server Groups</a>
@@ -35,7 +34,7 @@
           <div class="modal-body">
             <div v-if="this.modalContent == this.details" class="form-group">
               <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Name *</label>
                 <input type="text" class="form-control" v-model="instance.name" id="name" />
               </div>
               <div class="form-group">
@@ -43,70 +42,206 @@
                 <input type="text" class="form-control" v-model="instance.description" id="name" />
               </div>
               <div class="form-group">
-                <label for="AvailabilityZone">Availability Zone</label><br>
+                <label for="AvailabilityZone">Availability Zone *</label><br>
                 <select class="form-control"  v-model="instance.availability_zone">
                     <option v-for="availabilityZone in availability_zones" :value="availabilityZone.zoneName">{{availabilityZone.zoneName}}</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="count">Count</label>
-                <input type="number" class="form-control">
+                <div>
+                  <b>Note: Please fill all the fields with * in order to create the instace with the minimiun requirements</b>
+                </div>
               </div>
             </div>
             <div v-if="this.modalContent == this.source"class="form-group">
+              <h3>
+                <b>Source</b><br>
+              </h3>
               <div class="form-group">
-                <label for="image">Image</label>
-                <select class="form-control" id="image" name="image" v-model="instance.image_id">
-                  <option value selected>Choose a image</option>
-                  <option
-                    v-for="image in images"
-                    :key="image.id"
-                    v-bind:value="image.id"
-                  >{{ image.name }}</option>
-                </select>
+                <label for="image">Select an Image *</label>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Disk Format</th>
+                      <th>Container Format</th>
+                      <th>Status</th>
+                      <th>Protected</th>
+                      <th>Visibility</th>
+                      <th>Select One</th>
+                    </tr>
+                  </thead>
+
+                  <tbody v-for="image in images" :key="image.id">
+                    <tr>
+                      <td v-if="image.name === ''">{{ image.id }}</td>
+                      <td v-else>{{ image.name }}</td>
+                      <td>{{ image.disk_format }}</td>
+                      <td>{{ image.container_format}}</td>
+                      <td>{{ image.status }}</td>
+                      <td v-if="image.protected == false">NO</td>
+                      <td v-else>YES</td>
+                      <td>{{ image.visibility }}</td>
+                      <td>
+                        <input type="checkbox" align="center" v-on:click="setSource(image.id)"/>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
             <div v-if="this.modalContent == this.flavor" class="form-group">
-              <div class="form-group">
-                <label for="flavor">Flavor</label>
-                <select class="form-control" id="flavor" name="flavor" v-model="instance.flavor_id">
-                  <option value selected>Choose a flavor</option>
-                  <option
-                    v-for="flavor in flavors"
-                    :key="flavor.id"
-                    v-bind:value="flavor.id"
-                  >{{ flavor.name}} ||| VCPUS:{{flavor.vcpus}} ||| RAM:{{flavor.ram}}MB ||| DISK:{{flavor.disk}}GB</option>
-                </select>
-              </div>
+              <h3>
+                <b>Flavors</b><br>
+              </h3>
+              <b style="text-align:right">Select only one !</b><br><br>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Vcpus</th>
+                      <th>Ram</th>
+                      <th>Total Disk</th>
+                      <th>Public</th>
+                      <th>Select One *</th>
+                    </tr>
+                  </thead>
+
+                  <tbody v-for="flavor in flavors" :key="flavor.id">
+                    <tr>
+                      <td>{{flavor.name}}</td>
+                      <td>{{flavor.vcpus}}</td>
+                      <td>{{flavor.ram}}</td>
+                      <td>{{flavor.disk}}</td>
+                      <td>{{flavor["os-flavor-access:is_public"]}}</td>
+                      <td>
+                        <input type="checkbox" v-on:click="setFlavor(flavor.id)"/>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
             </div>
             <div v-if="this.modalContent == this.network" class="form-group">
-              <div class="form-group">
-                <label for="flavor">Network</label>
-                <select class="form-control" id="flavor" name="flavor" v-model="instance.network_id">
-                  <option value selected>Choose a network</option>
-                  <option
-                    v-for="network_id in networks"
-                    :key="network_id.id"
-                    v-bind:value="network_id.id"
-                  >{{ network_id.name}}</option>
-                </select>
-              </div>
-            </div>
-            <div v-if="this.modalContent == this.network" class="form-group">
-              <h1>NETWORK</h1>
-            </div>
-            <div v-if="this.modalContent == this.networksPorts" class="form-group">
-              <h1>NETWORK</h1>
+              <h3>
+                <b>Networks</b><br><br>
+              </h3>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Subnets Associated</th>
+                    <th>Shared</th>
+                    <th>Status</th>
+                    <th>Admin State</th>
+                    <th>Select One</th>
+                  </tr>
+                </thead>
+
+                <tbody v-for="network in networks" :key="network.id">
+                  <tr>
+                    <td>{{ network.name}}</td>
+                    <div v-for="subnet in subnets" :key="subnet.id">
+                      <td v-if="subnet.network_id === network.id"> <b>{{subnet.name}}</b> {{subnet.cidr}}</td>
+                    </div>
+                    <td v-if="network.shared == 0">NO</td>
+                    <td v-else>Yes</td>
+                    <td>{{network.status}}</td>
+                    <td v-if="network.admin_state_up == 1">UP</td>
+                    <td v-else>DOWN</td>
+                    <td>
+                      <input type="checkbox" v-on:click="setNetwork(network.id)"/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div v-if="this.modalContent == this.security" class="form-group">
-              <h1>Security groups</h1>
+              <h3>
+                <b>Security Groups</b><br><br>
+              </h3>
+              <table class="table table-hover">
+                 <thead>
+                   <tr>
+                     <th>Name</th>
+                     <th>Description</th>
+                     <th>Select One</th>
+                   </tr>
+                 </thead>
+
+                 <tbody
+                 v-for="securityGroup in securityGroups"
+                 :key="securityGroup.id"
+                 >
+                 <tr>
+                   <td>{{ securityGroup.name }}</td>
+                   <td>{{ securityGroup.description }}</td>
+                   <td>
+                     <input type="checkbox" v-on:click="setSecurityGroup(securityGroup.name)"/>
+                   </td>
+                 </tr>
+               </tbody>
+               </table>
             </div>
             <div v-if="this.modalContent == this.key" class="form-group">
-              <h1>key</h1>
+              <h3>
+                <b>Key pairs</b>
+              </h3>
+              <div class="container-fluid">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Select One</th>
+                  </tr>
+                </thead>
+
+                <tbody
+                v-for="keypairs in keypairs"
+                :key="keypairs.id"
+                >
+                <tr>
+                  <td>{{ keypairs.keypair.name }}</td>
+                  <td>{{ keypairs.keypair.type }}</td>
+                  <td>
+                     <input type="checkbox" v-on:click="setKeyPairs(keypairs.keypair.name)"/>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+              </div>
             </div>
             <div v-if="this.modalContent == this.server" class="form-group">
-              <h1>Server groups</h1>
-            </div>
+              <h3>
+                <b>Server groups</b>
+              </h3>
+              <!--  tabela que lista os server groups -->
+             <table class="table table-hover">
+
+               <thead>
+                 <tr>
+                   <th>Name</th>
+                   <th>Policy</th>
+                   <th>Select One</th>
+                 </tr>
+               </thead>
+
+               <tbody
+               v-for="serverGroup in serverGroups"
+               :key="serverGroup.id"
+               >
+               <tr>
+                 <td>{{serverGroup.name}}</td>
+                 <td>{{serverGroup.policy}}</td>
+                 <td>
+                  <input type="checkbox" v-on:click="setServerGroup(serverGroup.id)"/>
+                 </td>
+               </tr>
+               </tbody>
+             </table>   <!-- FIM tabela que lista os server groups -->
+           </div>
+
           </div><!-- Fim do BODY contente -->
           <div class="modal-footer">
             <button type="button"   class="btn btn-danger" data-dismiss="modal" name="button">Close</button>
@@ -114,7 +249,7 @@
               type="button"
               class="btn btn-warning"
               data-dismiss="modal"
-              v-on:click="createInstance()"
+              v-on:click="createInstance()" :class="{ disabled: isDisabled }" :disabled="isDisabled"
             >Create</button>
           </div>
         </div>
@@ -243,7 +378,11 @@ export default {
     return {
       url: process.env.MIX_URL,
       instances: [],
+      subnets: [],
+      keypairs:[],
+      securityGroups:[],
       availability_zones:[],
+      serverGroups:[],
       instance: {
         availability_zone:"",
         description: "",
@@ -251,7 +390,10 @@ export default {
         name: "",
         flavor_id: "",
         image_id: "",
-        network_id: ""
+        network_id: "",
+        security_group:"default",
+        server_group:"",
+        keyname:"",
       },
       networks: [],
       images: [],
@@ -266,7 +408,8 @@ export default {
       networksPorts:"netports",
       security:"security",
       key:"key",
-      server:"server"
+      server:"server",
+      trigger:null
     };
   },
   methods: {
@@ -332,6 +475,8 @@ export default {
             server: {
               flavorRef: this.instance.flavor_id,
               name: this.instance.name,
+              availability_zone: this.instance.availability_zone,
+              key_name: this.instance.key_name,
 
               networks: [
                 {
@@ -339,9 +484,13 @@ export default {
                 }
               ],
 
-              imageRef: this.instance.image_id,
+              security_groups:[
+                {
+                  name: this.instance.security_group
+                }
+              ],
 
-              availability_zone: "nova"
+              imageRef: this.instance.image_id,
             }
           },
           {
@@ -573,8 +722,7 @@ export default {
       }
     },
     modalChange(value){ //muda conteudo do modal de criar instancia
-      this.modalContent = value
-      console.log(this.modalContent);
+      this.modalContent = value;
     },
     getAvailabilityZones(){ // Obter Availability Zones
       axios.get(this.url + "/compute/v2.1/os-availability-zone",{
@@ -582,11 +730,75 @@ export default {
       }).then(response =>{
         this.availability_zones = response.data.availabilityZoneInfo
       })
+    },
+    setFlavor(flavor){
+      this.instance.flavor_id = flavor;
+    },
+    setNetwork(network){
+      this.instance.network_id = network;
+    },
+    setSecurityGroup(securityGroup){
+      this.instance.security_group = securityGroup;
+    },
+    setKeyPairs(keypair){
+      this.instance.key_name = keypair;
+    },
+    setSource(source){
+      this.instance.image_id = source;
+    },
+    setServerGroup(serverGroup){
+      this.instance.server_group = serverGroup;
+    },
+    getSecurityGroups(){
+      axios.get(this.url +":9696/v2.0/security-groups",{
+        headers: {"x-auth-token": this.$store.state.token}
+      }).then(response=>{
+        this.securityGroups = response.data.security_groups;
+      })
+    },
+    getKeyPairs: function(){ //funcao que obtem as keypairs
+      axios.get(this.url + "/compute/v2.1/os-keypairs",{
+         headers: {
+             'x-auth-token': this.$store.state.token,
+             'x-openstack-nova-api-version': '2.2'
+             }
+       }).then(response=>{
+           this.keypairs = response.data.keypairs;
+         })
+    },
+    getSubnets() { //funcao que obtem as subnets
+      axios
+        .get(this.url + ":9696/v2.0/subnets", {
+          headers: { "x-auth-token": this.$store.state.token }
+        })
+        .then(response => {
+          this.subnets = response.data.subnets;
+        });
+    },
+    getServerGroups(){   //funcão que obtem os server groups
+      axios.get(this.url +"/compute/v2.1/os-server-groups",{
+        headers: {'x-auth-token': this.$store.state.token}
+      }).then(response=>{
+        this.serverGroups= response.data.server_groups;
+      })
+    }
+  },
+  computed:{
+    isDisabled () {
+      if (this.instance.name && this.instance.image_id && this.instance.flavor_id && this.instance.network_id && this.instance.availability_zone) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
 
   mounted() {
+    this.getSubnets();
     this.getInstances();
+    this.getKeyPairs();
+    this.getSecurityGroups();
+    this.getServerGroups();
     this.getFlavors();
     this.getImages();
     this.getNetworks();

@@ -1,12 +1,13 @@
 <template>
   <div>
+      <pulse-loader :loading="loading" :color="yellow" :size="small"></pulse-loader>
     <br />
     <div>
       <h1>Images</h1>
     </div>
     <br />
     <div class="form-group">
-      
+
       <button
         type="button"
         class="btn btn-outline-dark"
@@ -21,10 +22,10 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create a new Image</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
+            <h3 class="modal-title">Create a new Image</h3><br>
 
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div><br>
           <!-- Modal body -->
           <div class="modal-body">
             <form class action="index.html" method="post">
@@ -41,7 +42,7 @@
               </div>
               <br />
               <div class="form-group">
-                <h3>Image Source</h3>
+                <h3>Image Source *</h3>
                 <input
                   type="file"
                   class="form-control"
@@ -50,7 +51,8 @@
                   v-on:change="handleFileUpload"
                   placeholder="Upload Image"
                 />
-
+              </div><br>
+              <div class="form-group">
                 <label for="Disk_format">Disk Format *</label>
                 <select required class="form-control text-capitalize" v-model="image.disk_format">
                   <option value selected>Choose a format</option>
@@ -66,12 +68,11 @@
                   <option value="ploop">PLOOP - Virtuozzo/Parallels Loopback Disk</option>
                 </select>
               </div>
-
-              <br />
-              <h3>Image requirements</h3>
+              <br>
+              <h3>Image requirements *</h3><br>
 
               <div class="form-inline">
-                <label for="disk">Minimum Disk</label>
+                <label for="disk">Minimum Disk (GB) *</label><br>
                 <input
                   required
                   class="form-control mb-2 mr-sm-2 mb-sm-0"
@@ -79,7 +80,7 @@
                   name="disk"
                   v-model="image.min_disk"
                 />
-                <label required for="ram">Minimum RAM</label>
+                <label required for="ram">Minimum RAM (MB) *</label><br>
                 <input
                   class="form-control mb-2 mr-sm-2 mb-sm-0"
                   type="number"
@@ -87,11 +88,11 @@
                   name="ram"
                   v-model="image.min_ram"
                 />
-              </div>
+              </div><br>
 
               <br />
 
-              <h3>Image Sharing</h3>
+              <h3>Image Sharing</h3><br>
 
               <label for="visibility ">Visibility:</label>
               <div class="form-group">
@@ -111,10 +112,10 @@
                       <input type="radio" class="mr-1" value=false v-model="image.protected" /> No
                     </label>
                   </div>
-                  <br />
-               
-              </div>
-              <br />
+                  <br>
+
+              </div><br>
+              <br>
 
               <!-- </label> -->
               <!-- Modal footer -->
@@ -123,14 +124,15 @@
                   type="submit"
                   class="btn btn-warning"
                   data-dismiss="modal"
+                  :class="{ disabled: isDisabled }" :disabled="isDisabled"
                   v-on:click="createImage()"
                   value="Create"
                 />
-              </div>   
+              </div>
             </form>
           </div>
         </div>
-      </div>   
+      </div>
     </div><!-- FIM formulario para criar imagem -->
 
 
@@ -200,10 +202,11 @@ export default {
         min_ram: null,
         protected: false,
         tags: [],
-        visibility: ""
+        visibility: "private"
       },
       imageId: null,
-      file: ""
+      file: "",
+      loading : true
     };
   },
   methods: {
@@ -222,7 +225,7 @@ export default {
       this.file = e.target.files[0];
       console.log(event.target.files[0]);
     },
-    createImage() {  //função para criar imagemn 
+    createImage() {  //função para criar imagemn
 
       if(this.image.protected === "true"){
         this.image.protected = true;
@@ -270,9 +273,11 @@ export default {
               "X-Auth-Token": this.$store.state.token
             }
           }
-        )
+        ),
+        this.loading = true
         .then(response => {
-          console.log("UploadSucess!");
+          this.loading = false
+          this.$toasted.success('Image created!')
           this.getImages();
         })
         .catch(error => {
@@ -296,6 +301,15 @@ export default {
     },
     exit() {
       this.$emit("exit-images");
+    }
+  },
+  computed:{
+    isDisabled () {
+      if (this.image.name && this.file && this.image.min_disk && this.image.min_ram && this.image.disk_format) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   mounted() {   //a pagina ao ser carregada executa as seguintes funcoes

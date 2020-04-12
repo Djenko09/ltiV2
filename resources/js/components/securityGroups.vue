@@ -75,7 +75,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="policy">Rule</label>
+          <label for="policy">Rule *</label>
            <select @change="onChangeRule($event)" class="form-control text-capitalize" v-model="securityGroupRule.rule"> <!-- CHANGE rule-->
             <option value selected>Choose a rule</option>
             <option value="customTCP">Custom TCP Rule</option>
@@ -103,14 +103,14 @@
             <textarea id="w3mission" rows="4" cols="50" v-model="securityGroupRule.description"></textarea>
           </div>
           <div class="form-group">
-            <label for="">Direction:</label>
+            <label for="">Direction: *</label>
             <select class="form-control" v-model="securityGroupRule.direction">
               <option value="ingress">Ingress</option>
               <option value="egress">Egress</option>
             </select>
           </div>
           <div v-if="securityGroupRule.rule === 'customTCP' || securityGroupRule.rule === 'customUDP'" class="form-group">  <!-- CHANGE port -->
-            <label>Open Port</label>
+            <label>Open Port *</label>
             <select @change="onChangePort($event)" class="form-control" v-model="securityGroupRule.port">
               <option value="port">Port</option>
               <option value="portRange">Port Range</option>
@@ -118,48 +118,48 @@
             </select>
           </div>
           <div v-if="securityGroupRule.rule === 'customICMP'" class="form-group">  <!-- CHANGE port -->
-            <label>Type (-1 - 255)</label><br>
+            <label>Type (-1 - 255) *</label><br>
             <input type="text" name="" v-model="securityGroupRule.port_range_min">
           </div>
           <div v-if="securityGroupRule.rule === 'customICMP'" class="form-group">  <!-- CHANGE port -->
-            <label>Code (-1 - 255)</label><br>
+            <label>Code (-1 - 255) *</label><br>
             <input type="text" name="" v-model="securityGroupRule.port_range_min">
           </div>
           <div v-if="securityGroupRule.port === 'port' && (securityGroupRule.rule === 'customTCP' || securityGroupRule.rule === 'customUDP')" class="form-group">  <!-- Ports hidden/available -->
-            <label type="text" readonly class="form-control-plaintext">Port:</label>
-            <input @change="onChangePortV2($event)" type="text" v-model="securityGroupRule.portSelected">
+            <label type="text" readonly class="form-control-plaintext">Port: *</label>
+            <input @change="onChangePortV2($event)" class="form-control" type="text" v-model="securityGroupRule.portSelected">
           </div>
           <div v-if="securityGroupRule.port === 'portRange'" class="form-group">  <!-- Ports hidden/available -->
-            <label type="text" readonly class="form-control-plaintext">From Port</label>
+            <label type="text" readonly class="form-control-plaintext">From Port *</label>
             <input class="form-group" type="text" v-model="securityGroupRule.port_range_min">
-            <label type="text" readonly class="form-control-plaintext">To Port</label>
+            <label type="text" readonly class="form-control-plaintext">To Port *</label>
             <input type="text" v-model="securityGroupRule.port_range_max">
           </div>
           <div class="form-group">    <!-- CHANGE remote-->
-            <label>Remote</label>
+            <label>Remote *</label>
             <select @change="onChangeRemote($event)" class="form-control" v-model="securityGroupRule.remote" >
               <option value="cidr">CIDR</option>
               <option value="secur">Security Group</option>
             </select>
           </div>
           <div v-if="securityGroupRule.remote === 'secur'" class="form-group">
-            <label for="securityGroup">Security Group</label>
+            <label for="securityGroup">Security Group *</label>
             <select class="form-control" v-model="securityGroupRule.remote_group_id">
               <option v-for="securityGroupOption in securityGroupsOptions" :key="securityGroupOption.name" :value="securityGroupOption.id">{{securityGroupOption.name}}</option>
             </select>
-            <label for="etherType">EtherType</label>
+            <label for="etherType">EtherType *</label>
             <select class="form-control" v-model="securityGroupRule.ethertype">
               <option value="ipv4">IPv4</option>
               <option value="ipv6">IPv6</option>
             </select>
           </div>
           <div v-if="securityGroupRule.remote === 'cidr'" class="form-group">
-            <label for="CIDR">CIDR</label><br>
-            <input type="text" name="CIDR" class="form-control" palceholder="0.0.0.0/0" v-model="securityGroupRule.remote_ip_prefix">
+            <label for="CIDR">CIDR *</label><br>
+            <input type="text" name="CIDR" class="form-control" value="0.0.0.0/0" v-model="securityGroupRule.remote_ip_prefix">
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" :class="{ disabled: isDisabledRule }" :disabled="isDisabledRule" v-on:click="createSecurityGroupRule()">Create Rule</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal" :class="{ disabled: isDisabledRule }" :disabled="isDisabledRule" v-on:click="createSecurityGroupRule()">Create Rule</button>
       </div>
     </div>
   </div>
@@ -279,11 +279,7 @@ computed:{
       }
     },
     isDisabledRule () {
-      if (this.securityGroup.name) {
-        return false;
-      } else {
-        return true;
-      }
+        return false
     }
 },
 methods:{

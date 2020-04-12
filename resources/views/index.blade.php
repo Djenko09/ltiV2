@@ -97,7 +97,7 @@
                     <div>
                       <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Overview</router-link>
                       <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Instances</router-link>
-                      <router-link to="/containers" href="#" class="list-group-item list-group-item-action bg-info" style="text-align:right">Containers</router-link>
+                      <router-link to="/containers" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Containers</router-link>
                       <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Images</router-link>
                       <router-link to="/keyPairs" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Key Pairs</router-link>
                       <router-link to="/serverGroup" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Server Groups</router-link>
@@ -113,10 +113,6 @@
                   <div class="collapse multi-collapse" id="multiCollapseVolumes">
                     <div>
                       <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Volumes</router-link>
-                      <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Snapshots</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Groups</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Groups Snapshots</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Server Groups</router-link>
                     </div>
                   </div>
                 </div>
@@ -148,77 +144,12 @@
         <div class="row">
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseAdmin">
-              <p>
-              <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseAdminCompute" role="button" aria-expanded="false" aria-controls="multiCollapseAdminCompute" role="button" aria-pressed="true"
-              style="text-align:center">Compute</a>
-              </p>
-              <div class="row">
-                <div class="col">
-                  <div class="collapse multi-collapse" id="multiCollapseAdminCompute">
-                    <div>
-                      <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Hypervisors</router-link>
-                      <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">HostAgregates</router-link>
-                      <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Instances</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Flavors</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Images</router-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p>
-              <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseAdminVolumes" role="button" aria-expanded="false" aria-controls="multiCollapseAdminVolumes" role="button" aria-pressed="true"
-              style="text-align:center">Volume</a>
-              </p>
-              <div class="row">
-                <div class="col">
-                  <div class="collapse multi-collapse" id="multiCollapseAdminVolumes">
-                    <div>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Volumes</router-link>
-                      <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Snapshots</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Volume Types</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Groups</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Groups Snapshots</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Group types</router-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p>
-              <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseAdminNetwork" role="button" aria-expanded="false" aria-controls="multiCollapseAdminNetwork" role="button" aria-pressed="true"
-              style="text-align:center">Network</a>
-              </p>
-              <div class="row">
-                <div class="col">
-                  <div class="collapse multi-collapse" id="multiCollapseAdminNetwork">
-                    <div>
-                      <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Networks</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Routers</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Floating Ips</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">RBAC Policies</router-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p>
-              <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseAdminSystem" role="button" aria-expanded="false" aria-controls="multiCollapseAdminSystem" role="button" aria-pressed="true"
-              style="text-align:center">System</a>
-              </p>
-              <div class="row">
-                <div class="col">
-                  <div class="collapse multi-collapse" id="multiCollapseAdminSystem">
-                    <div>
-                      <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right" >Defaults</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Metadata Definitions</router-link>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">System Informations</router-link>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <router-link to="/flavors" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Flavors</router-link>
             </div>
           </div>
         </div>
       </div>
-      <div class="list-group list-group-flush">
+    <!--  <div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseIdentity" role="button" aria-expanded="false" aria-controls="multiCollapseIdentity">Identity</a>
         </p>
         <div class="row">
@@ -235,7 +166,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
       <!--<div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#multiCollapseSettings" role="button" aria-expanded="false" aria-controls="multiCollapseSettings">Settings</a>
         </p>

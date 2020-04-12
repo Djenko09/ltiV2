@@ -3556,11 +3556,11 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response);
+        _this6.getInstances();
 
         _this6.$toasted.show("Instance Created");
-
-        _this6.getInstances();
+      })["catch"](function (error) {
+        _this6.$toasted.error('instance not created');
       });
     },
     instanceEdit: function instanceEdit(instance) {
@@ -3800,7 +3800,7 @@ __webpack_require__.r(__webpack_exports__);
     getSubnets: function getSubnets() {
       var _this19 = this;
 
-      //funcao que obtem as subnets
+      //funcao que obtem as subnetsp
       axios.get(this.url + ":9696/v2.0/subnets", {
         headers: {
           "x-auth-token": this.$store.state.token
@@ -5253,6 +5253,20 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     inputOptions: function inputOptions() {
       return this.securityGroupRule.rule;
+    },
+    isDisabledGroup: function isDisabledGroup() {
+      if (this.securityGroup.name) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    isDisabledRule: function isDisabledRule() {
+      if (this.securityGroup.name) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   methods: {
@@ -45717,7 +45731,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Key pair")]
+                  [_vm._v("Key pairs")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -48921,6 +48935,7 @@ var render = function() {
                             expression: "securityGroupRule.remote_ip_prefix"
                           }
                         ],
+                        staticClass: "form-control",
                         attrs: {
                           type: "text",
                           name: "CIDR",
@@ -48951,7 +48966,12 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-danger",
-                    attrs: { type: "button", "data-dismiss": "modal" },
+                    class: { disabled: _vm.isDisabledRule },
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      disabled: _vm.isDisabledRule
+                    },
                     on: {
                       click: function($event) {
                         return _vm.createSecurityGroupRule()
@@ -49042,7 +49062,12 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
+                class: { disabled: _vm.isDisabledGroup },
+                attrs: {
+                  type: "button",
+                  disabled: _vm.isDisabledGroup,
+                  "data-dismiss": "modal"
+                },
                 on: {
                   click: function($event) {
                     return _vm.createSecurityGroup()

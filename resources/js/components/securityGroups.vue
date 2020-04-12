@@ -155,11 +155,11 @@
           </div>
           <div v-if="securityGroupRule.remote === 'cidr'" class="form-group">
             <label for="CIDR">CIDR</label><br>
-            <input type="text" name="CIDR" palceholder="0.0.0.0/0" v-model="securityGroupRule.remote_ip_prefix">
+            <input type="text" name="CIDR" class="form-control" palceholder="0.0.0.0/0" v-model="securityGroupRule.remote_ip_prefix">
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" v-on:click="createSecurityGroupRule()">Create Rule</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" :class="{ disabled: isDisabledRule }" :disabled="isDisabledRule" v-on:click="createSecurityGroupRule()">Create Rule</button>
       </div>
     </div>
   </div>
@@ -189,7 +189,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal" v-on:click="createSecurityGroup()">Create Security Group</button>
+        <button type="button" class="btn btn-warning" :class="{ disabled: isDisabledGroup }" :disabled="isDisabledGroup" data-dismiss="modal" v-on:click="createSecurityGroup()">Create Security Group</button>
       </div>
 
     </div>
@@ -271,7 +271,20 @@ computed:{
   inputOptions(){
     return this.securityGroupRule.rule
   },
-
+    isDisabledGroup () {
+      if (this.securityGroup.name) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    isDisabledRule () {
+      if (this.securityGroup.name) {
+        return false;
+      } else {
+        return true;
+      }
+    }
 },
 methods:{
   getSecurityGroups(){

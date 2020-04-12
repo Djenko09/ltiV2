@@ -25,7 +25,7 @@
               <a v-on:click="modalChange(flavor)">Flavor *</a>
               <a v-on:click="modalChange(network)">Networks *</a>
               <a v-on:click="modalChange(security)">Security Groups</a>
-              <a v-on:click="modalChange(key)">Key pair</a>
+              <a v-on:click="modalChange(key)">Key pairs</a>
               <a v-on:click="modalChange(server)">Server Groups</a>
             </div>
           </div>
@@ -501,9 +501,10 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
-          this.$toasted.show("Instance Created");
           this.getInstances();
+          this.$toasted.show("Instance Created");
+        }).catch(error => {
+          this.$toasted.error('instance not created')
         });
     },
 
@@ -766,7 +767,7 @@ export default {
            this.keypairs = response.data.keypairs;
          })
     },
-    getSubnets() { //funcao que obtem as subnets
+    getSubnets() { //funcao que obtem as subnetsp
       axios
         .get(this.url + ":9696/v2.0/subnets", {
           headers: { "x-auth-token": this.$store.state.token }

@@ -185,8 +185,8 @@ export default {
          )
          .then(response => {
            console.log(response);
-           this.getKeyPairs();
            this.$router.push("/keypairs");
+           this.getKeyPairs();
            this.$toasted.show("Key Pair Created");
          }).catch(error=>{
         console.log('Error');
@@ -210,8 +210,8 @@ export default {
              'x-auth-token': this.$store.state.token
              }
        }).then(response=>{
-           this.getKeyPairs();
            this.$router.push("/keypairs");
+           this.getKeyPairs();
            this.$toasted.show("Key Pair Deleted");
          }).catch(error=>{
         console.log('Error');

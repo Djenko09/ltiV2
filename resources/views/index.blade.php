@@ -149,24 +149,24 @@
           </div>
         </div>
       </div>
-    <!--  <div class="list-group list-group-flush">
+     <div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseIdentity" role="button" aria-expanded="false" aria-controls="multiCollapseIdentity">Identity</a>
         </p>
         <div class="row">
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseIdentity">
               <div>
-                <router-link v-if="this.$store.state.user.name == 'admin'"to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Domains</router-link>
+                <!--<router-link v-if="this.$store.state.user.name == 'admin'"to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Domains</router-link>-->
                 <router-link to="/projects" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Projects</router-link>
-                <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Users</router-link>
+               <!-- <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Users</router-link>
                 <router-link v-if="this.$store.state.user.name == 'admin'"to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Groups</router-link>
                 <router-link v-if="this.$store.state.user.name == 'admin'"to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Roles</router-link>
-                <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Aplication Credentials</router-link>
+                <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Aplication Credentials</router-link> -->
               </div>
             </div>
           </div>
         </div>
-      </div>-->
+      </div>
       <!--<div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#multiCollapseSettings" role="button" aria-expanded="false" aria-controls="multiCollapseSettings">Settings</a>
         </p>

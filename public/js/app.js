@@ -2395,11 +2395,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.20",
-      flavors: []
+      flavors: [],
+      flavor: {
+        name: "",
+        ram: "",
+        vcpus: "",
+        disk: "",
+        visibility: true
+      }
     };
   },
   methods: {
@@ -2413,6 +2483,51 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.flavors = response.data.flavors;
       });
+    },
+    createFlavor: function createFlavor() {
+      var _this2 = this;
+
+      axios.post(this.url + "/compute/v2.1/flavors", {
+        flavor: {
+          name: this.flavor.name,
+          ram: this.flavor.ram,
+          disk: this.flavor.disk,
+          vcpus: this.flavor.vcpus,
+          is_public: this.visbility
+        }
+      }, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this2.getFlavors();
+
+        _this2.$toasted.success('Flavor Created');
+      })["catch"](function (error) {
+        _this2.$toasted.error('Flavor not created! Error occured');
+      });
+    },
+    deleteFlavor: function deleteFlavor(flavor) {
+      var _this3 = this;
+
+      axios["delete"](this.url + "/compute/v2.1/flavors/" + flavor, {
+        headers: {
+          "x-auth-token": this.$store.state.token
+        }
+      }).then(function (response) {
+        _this3.$toasted.success("Flavor Deleted!");
+
+        _this3.getFlavors();
+      });
+    }
+  },
+  computed: {
+    isDisabled: function isDisabled() {
+      if (this.flavor.name && this.flavor.ram && this.flavor.disk && this.flavor.vcpus) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   mounted: function mounted() {
@@ -2805,7 +2920,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -44720,37 +44834,248 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "table",
-        { staticClass: "table table-hover" },
-        [
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._l(_vm.flavors, function(flavor) {
-            return _c("tbody", { key: flavor.id }, [
-              _c("tr", [
-                _c("td", [_vm._v(_vm._s(flavor.name))]),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade bd-example-modal-lg",
+        attrs: { id: "myModalImages" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(1),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(flavor.vcpus))]),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.flavor.name,
+                      expression: "flavor.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    required: "",
+                    type: "text",
+                    placeholder: "A name for the image",
+                    name: "name"
+                  },
+                  domProps: { value: _vm.flavor.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.flavor, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "ram" } }, [_vm._v("RAM (MB) *")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(flavor.ram))]),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.flavor.ram,
+                      expression: "flavor.ram"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { required: "", type: "text", name: "ram" },
+                  domProps: { value: _vm.flavor.ram },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.flavor, "ram", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "vpcus" } }, [_vm._v("Vcpus *")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(flavor.disk))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(flavor["os-flavor-access:is_public"]))
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.flavor.vcpus,
+                      expression: "flavor.vcpus"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { required: "", type: "text" },
+                  domProps: { value: _vm.flavor.vcpus },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.flavor, "vcpus", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "name" } }, [
+                  _vm._v("Disk (GB) *")
                 ]),
-                _vm._v("-->\r\n          ")
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.flavor.disk,
+                      expression: "flavor.disk"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { required: "", type: "text" },
+                  domProps: { value: _vm.flavor.disk },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.flavor, "disk", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "Visibility" } }, [
+                  _vm._v("Visibility")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.flavor.visibility,
+                        expression: "flavor.visibility"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "visibility" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.flavor,
+                          "visibility",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "true" } }, [
+                      _vm._v("Public")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "false" } }, [
+                      _vm._v("Private")
+                    ])
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  class: { disabled: _vm.isDisabled },
+                  attrs: {
+                    type: "button",
+                    "data-dismiss": "modal",
+                    disabled: _vm.isDisabled
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.createFlavor()
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              )
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-hover" },
+      [
+        _vm._m(2),
+        _vm._v(" "),
+        _vm._l(_vm.flavors, function(flavor) {
+          return _c("tbody", { key: flavor.id }, [
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(flavor.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(flavor.vcpus))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(flavor.ram))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(flavor.disk))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(flavor["os-flavor-access:is_public"]))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteFlavor(flavor.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete Flavor")]
+                )
               ])
             ])
-          })
-        ],
-        2
-      )
-    ])
+          ])
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -44758,7 +45083,45 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", [_c("b", [_vm._v("Flavors")])])
+    return _c("div", [
+      _c("div", [_c("h1", [_vm._v("\r\n        Flavors\r\n      ")])]),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-dark",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": ".bd-example-modal-lg"
+            }
+          },
+          [_vm._v("New Flavor")]
+        )
+      ]),
+      _c("br"),
+      _c("br")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h3", { staticClass: "modal-title" }, [_vm._v("Create a new flavor")]),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
+    ])
   },
   function() {
     var _vm = this
@@ -44774,7 +45137,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Total Disk")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Public")])
+        _c("th", [_vm._v("Public")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
     ])
   }
@@ -45233,456 +45598,438 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("pulse-loader", {
-        attrs: { loading: _vm.loading, color: _vm.yellow, size: _vm.small }
-      }),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "modal fade bd-example-modal-xl",
-          attrs: { id: "myModalImages" }
-        },
-        [
-          _c("div", { staticClass: "modal-dialog modal-xl" }, [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "form",
-                  { attrs: { action: "index.html", method: "post" } },
-                  [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "name" } }, [
-                        _vm._v("Name *")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.image.name,
-                            expression: "image.name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          required: "",
-                          type: "text",
-                          placeholder: "A name for the image",
-                          name: "name"
-                        },
-                        domProps: { value: _vm.image.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.image, "name", $event.target.value)
-                          }
+  return _c("div", [
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade bd-example-modal-xl",
+        attrs: { id: "myModalImages" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-xl" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(2),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("form", { attrs: { action: "index.html", method: "post" } }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.image.name,
+                        expression: "image.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      required: "",
+                      type: "text",
+                      placeholder: "A name for the image",
+                      name: "name"
+                    },
+                    domProps: { value: _vm.image.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
                         }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("h3", [_vm._v("Image Source *")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        ref: "file",
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "file",
-                          id: "file",
-                          placeholder: "Upload Image"
-                        },
-                        on: { change: _vm.handleFileUpload }
-                      })
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "Disk_format" } }, [
-                        _vm._v("Disk Format *")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
+                        _vm.$set(_vm.image, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("h3", [_vm._v("Image Source *")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    ref: "file",
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "file",
+                      id: "file",
+                      placeholder: "Upload Image"
+                    },
+                    on: { change: _vm.handleFileUpload }
+                  })
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "Disk_format" } }, [
+                    _vm._v("Disk Format *")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
                         {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.image.disk_format,
-                              expression: "image.disk_format"
-                            }
-                          ],
-                          staticClass: "form-control text-capitalize",
-                          attrs: { required: "" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.image,
-                                "disk_format",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "", selected: "" } }, [
-                            _vm._v("Choose a format")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "iso" } }, [
-                            _vm._v("ISO - Optical Disk Image")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "ami" } }, [
-                            _vm._v("Ami - Amazon Kernel Image")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "ari" } }, [
-                            _vm._v("ARI - Amazon Ramdisk Image")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "aki" } }, [
-                            _vm._v("AKI - Amazon Kernel Image")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "vhd" } }, [
-                            _vm._v("VHD - Virtual Hard Disk")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "vmdk" } }, [
-                            _vm._v("VMDK - Virtual Machine Disk")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "raw" } }, [
-                            _vm._v("RAW")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "qcow2" } }, [
-                            _vm._v("QCOW2 - QEMU Emulator")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "vdi" } }, [
-                            _vm._v("VDI - Virtual Disk Image")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "ploop" } }, [
-                            _vm._v("PLOOP - Virtuozzo/Parallels Loopback Disk")
-                          ])
-                        ]
-                      )
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.image.disk_format,
+                          expression: "image.disk_format"
+                        }
+                      ],
+                      staticClass: "form-control text-capitalize",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.image,
+                            "disk_format",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v("Choose a format")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "iso" } }, [
+                        _vm._v("ISO - Optical Disk Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ami" } }, [
+                        _vm._v("Ami - Amazon Kernel Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ari" } }, [
+                        _vm._v("ARI - Amazon Ramdisk Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "aki" } }, [
+                        _vm._v("AKI - Amazon Kernel Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "vhd" } }, [
+                        _vm._v("VHD - Virtual Hard Disk")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "vmdk" } }, [
+                        _vm._v("VMDK - Virtual Machine Disk")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "raw" } }, [
+                        _vm._v("RAW")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "qcow2" } }, [
+                        _vm._v("QCOW2 - QEMU Emulator")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "vdi" } }, [
+                        _vm._v("VDI - Virtual Disk Image")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "ploop" } }, [
+                        _vm._v("PLOOP - Virtuozzo/Parallels Loopback Disk")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("h3", [_vm._v("Image requirements *")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-inline" }, [
+                  _c("label", { attrs: { for: "disk" } }, [
+                    _vm._v("Minimum Disk (GB) *")
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.image.min_disk,
+                        expression: "image.min_disk"
+                      }
+                    ],
+                    staticClass: "form-control mb-2 mr-sm-2 mb-sm-0",
+                    attrs: { required: "", type: "number", name: "disk" },
+                    domProps: { value: _vm.image.min_disk },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.image, "min_disk", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { required: "", for: "ram" } }, [
+                    _vm._v("Minimum RAM (MB) *")
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.image.min_ram,
+                        expression: "image.min_ram"
+                      }
+                    ],
+                    staticClass: "form-control mb-2 mr-sm-2 mb-sm-0",
+                    attrs: { type: "number", placeholder: "1", name: "ram" },
+                    domProps: { value: _vm.image.min_ram },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.image, "min_ram", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("h3", [_vm._v("Image Sharing")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "visibility " } }, [
+                  _vm._v("Visibility:")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.image.visibility,
+                          expression: "image.visibility"
+                        }
+                      ],
+                      staticClass: "form-control text-capitalize",
+                      attrs: { required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.image,
+                            "visibility",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v("Choose visibility")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "private" } }, [
+                        _vm._v("Private")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "shared" } }, [
+                        _vm._v("Shared")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "community" } }, [
+                        _vm._v("Community")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "protected" } }, [
+                      _vm._v("Protected:  ")
                     ]),
                     _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("h3", [_vm._v("Image requirements *")]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-inline" }, [
-                      _c("label", { attrs: { for: "disk" } }, [
-                        _vm._v("Minimum Disk (GB) *")
-                      ]),
-                      _c("br"),
-                      _vm._v(" "),
+                    _c("label", { staticClass: "mr-3" }, [
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.image.min_disk,
-                            expression: "image.min_disk"
+                            value: _vm.image.protected,
+                            expression: "image.protected"
                           }
                         ],
-                        staticClass: "form-control mb-2 mr-sm-2 mb-sm-0",
-                        attrs: { required: "", type: "number", name: "disk" },
-                        domProps: { value: _vm.image.min_disk },
+                        staticClass: "mr-1",
+                        attrs: { type: "radio", value: "true" },
+                        domProps: {
+                          checked: _vm._q(_vm.image.protected, "true")
+                        },
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.image, "min_disk", $event.target.value)
+                          change: function($event) {
+                            return _vm.$set(_vm.image, "protected", "true")
                           }
                         }
                       }),
-                      _vm._v(" "),
-                      _c("label", { attrs: { required: "", for: "ram" } }, [
-                        _vm._v("Minimum RAM (MB) *")
-                      ]),
-                      _c("br"),
-                      _vm._v(" "),
+                      _vm._v(" Yes\n                    ")
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "mr-3" }, [
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.image.min_ram,
-                            expression: "image.min_ram"
+                            value: _vm.image.protected,
+                            expression: "image.protected"
                           }
                         ],
-                        staticClass: "form-control mb-2 mr-sm-2 mb-sm-0",
-                        attrs: {
-                          type: "number",
-                          placeholder: "1",
-                          name: "ram"
-                        },
-                        domProps: { value: _vm.image.min_ram },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.image, "min_ram", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("h3", [_vm._v("Image Sharing")]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "visibility " } }, [
-                      _vm._v("Visibility:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.image.visibility,
-                              expression: "image.visibility"
-                            }
-                          ],
-                          staticClass: "form-control text-capitalize",
-                          attrs: { required: "" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.image,
-                                "visibility",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        [
-                          _c("option", { attrs: { value: "", selected: "" } }, [
-                            _vm._v("Choose visibility")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "private" } }, [
-                            _vm._v("Private")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "shared" } }, [
-                            _vm._v("Shared")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "community" } }, [
-                            _vm._v("Community")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "protected" } }, [
-                          _vm._v("Protected:  ")
-                        ]),
-                        _vm._v(" "),
-                        _c("label", { staticClass: "mr-3" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.image.protected,
-                                expression: "image.protected"
-                              }
-                            ],
-                            staticClass: "mr-1",
-                            attrs: { type: "radio", value: "true" },
-                            domProps: {
-                              checked: _vm._q(_vm.image.protected, "true")
-                            },
-                            on: {
-                              change: function($event) {
-                                return _vm.$set(_vm.image, "protected", "true")
-                              }
-                            }
-                          }),
-                          _vm._v(" Yes\n                    ")
-                        ]),
-                        _vm._v(" "),
-                        _c("label", { staticClass: "mr-3" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.image.protected,
-                                expression: "image.protected"
-                              }
-                            ],
-                            staticClass: "mr-1",
-                            attrs: { type: "radio", value: "false" },
-                            domProps: {
-                              checked: _vm._q(_vm.image.protected, "false")
-                            },
-                            on: {
-                              change: function($event) {
-                                return _vm.$set(_vm.image, "protected", "false")
-                              }
-                            }
-                          }),
-                          _vm._v(" No\n                    ")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("br")
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-footer" }, [
-                      _c("input", {
-                        staticClass: "btn btn-warning",
-                        class: { disabled: _vm.isDisabled },
-                        attrs: {
-                          type: "submit",
-                          "data-dismiss": "modal",
-                          disabled: _vm.isDisabled,
-                          value: "Create"
+                        staticClass: "mr-1",
+                        attrs: { type: "radio", value: "false" },
+                        domProps: {
+                          checked: _vm._q(_vm.image.protected, "false")
                         },
                         on: {
-                          click: function($event) {
-                            return _vm.createImage()
+                          change: function($event) {
+                            return _vm.$set(_vm.image, "protected", "false")
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" No\n                    ")
                     ])
-                  ]
+                  ]),
+                  _vm._v(" "),
+                  _c("br")
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c("input", {
+                    staticClass: "btn btn-warning",
+                    class: { disabled: _vm.isDisabled },
+                    attrs: {
+                      type: "submit",
+                      "data-dismiss": "modal",
+                      disabled: _vm.isDisabled,
+                      value: "Create"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.createImage()
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-hover" },
+      [
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._l(_vm.images, function(image) {
+          return _c("tbody", { key: image.id }, [
+            _c("tr", [
+              image.name === ""
+                ? _c("td", [_vm._v(_vm._s(image.id))])
+                : _c("td", [_vm._v(_vm._s(image.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(image.disk_format))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(image.container_format))]),
+              _vm._v(" "),
+              image.status === "active"
+                ? _c("td", { staticClass: "bg-success" }, [
+                    _vm._v(_vm._s(image.status))
+                  ])
+                : _c("td", { staticClass: "bg-danger" }, [
+                    _vm._v(_vm._s(image.status))
+                  ]),
+              _vm._v(" "),
+              image.protected == false
+                ? _c("td", [_vm._v("NO")])
+                : _c("td", [_vm._v("YES")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(image.visibility))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-success",
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Edit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-sm btn-danger",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteImage(image.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete")]
                 )
               ])
             ])
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "table",
-        { staticClass: "table table-hover" },
-        [
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._l(_vm.images, function(image) {
-            return _c("tbody", { key: image.id }, [
-              _c("tr", [
-                image.name === ""
-                  ? _c("td", [_vm._v(_vm._s(image.id))])
-                  : _c("td", [_vm._v(_vm._s(image.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(image.disk_format))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(image.container_format))]),
-                _vm._v(" "),
-                image.status === "active"
-                  ? _c("td", { staticClass: "bg-success" }, [
-                      _vm._v(_vm._s(image.status))
-                    ])
-                  : _c("td", { staticClass: "bg-danger" }, [
-                      _vm._v(_vm._s(image.status))
-                    ]),
-                _vm._v(" "),
-                image.protected == false
-                  ? _c("td", [_vm._v("NO")])
-                  : _c("td", [_vm._v("YES")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(image.visibility))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-success",
-                      attrs: { type: "button" }
-                    },
-                    [_vm._v("Edit")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-danger",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteImage(image.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ])
-              ])
-            ])
-          })
-        ],
-        2
-      )
-    ],
-    1
-  )
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = [
   function() {

@@ -1,6 +1,5 @@
 <template>
   <div>
-      <pulse-loader :loading="loading" :color="yellow" :size="small"></pulse-loader>
     <br />
     <div>
       <h1>Images</h1>

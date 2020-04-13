@@ -1970,8 +1970,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.$toasted.success("Changed to project " + _this.projectName);
 
         _this.$router.push("/home");
-
-        console.log("SUCESS");
       });
     }
   },
@@ -2116,7 +2114,6 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response.data);
         _this.containers = response.data.containers;
       });
     },
@@ -2130,7 +2127,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.images = response.data.images;
-        console.log(images);
       });
     },
     createContainer: function createContainer() {
@@ -2150,8 +2146,6 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response);
-
         _this3.$toasted.show("Container Created");
 
         _this3.getContainers();
@@ -2166,8 +2160,6 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response);
-
         _this4.$toasted.show("Container Deleted With Success");
 
         _this4.getContainers();
@@ -2224,7 +2216,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getProjects: function getProjects() {
       var _this = this;
 
-      // funcão que obtem os 
+      // funcão que obtem os
       axios.get(this.url + "/identity/v3/auth/projects", {
         headers: {
           "x-auth-token": this.$store.state.token
@@ -2233,8 +2225,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.projects = response.data.projects;
 
         _this.$store.commit("setProjectNames", _this.projects);
-
-        console.log(_this.$store.state.projectNames);
       });
     },
     createInstance: function createInstance() {
@@ -2258,8 +2248,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this2.$store.commit("setProject", _this2.project_id);
 
         _this2.$store.commit("setProjectName", _this2.project_name);
-
-        console.log(_this2.project_id);
       });
     },
 
@@ -2326,7 +2314,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }).then(function (response) {
         _this3.images = response.data.images;
-        console.log(images);
       });
     }
   }, _defineProperty(_methods, "getInstances", function getInstances() {
@@ -2733,7 +2720,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }).then(function (response) {
         _this.floatingIPs = response.data.floatingips;
-        console.log(_this.floatingIPs);
       });
     },
     getNetworks: function getNetworks() {
@@ -2746,7 +2732,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }).then(function (response) {
         _this2.networks = response.data.networks;
-        console.log(_this2.networks);
       });
     },
     getInstances: function getInstances() {
@@ -2759,7 +2744,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }).then(function (response) {
         _this3.instances = response.data.servers;
-        console.log(_this3.instances[0].addresses["private"][0].addr);
       });
     },
     allocateIP: function allocateIP() {
@@ -2777,8 +2761,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response);
-
         _this4.$toasted.show("Floating IP Allocated");
 
         _this4.getFloatingIPs();
@@ -2792,14 +2774,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this5 = this;
 
       //funcao que associa IP flutuante a uma VM
-      console.log(instance);
       axios.get(this.url + ":9696/v2.0/ports", {
         headers: {
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
         _this5.ports = response.data.ports;
-        console.log(_this5.float_ID);
 
         var _iterator = _createForOfIteratorHelper(_this5.ports),
             _step;
@@ -2808,9 +2788,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var port = _step.value;
 
-            //console.log(ip);
             if (port.fixed_ips[0].ip_address == instance.addresses["private"][0].addr || port.fixed_ips[0].ip_address == instance.addresses["private"][1].addr) {
-              console.log(port.id);
               _this5.port_id = port.id;
               axios.put(_this5.url + ":9696/v2.0/floatingips/" + _this5.float_ID, {
                 floatingip: {
@@ -2837,7 +2815,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     disassociateFloatingIP: function disassociateFloatingIP(id) {
       var _this6 = this;
 
-      //funcao que desassocia o IP da VM 
+      //funcao que desassocia o IP da VM
       axios.put(this.url + ":9696/v2.0/floatingips/" + id, {
         floatingip: {
           port_id: null
@@ -2861,8 +2839,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response);
-
         _this7.$toasted.show("Floating IP Deleted With Success");
 
         _this7.getFloatingIPs();
@@ -3128,12 +3104,10 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.images = response.data.images;
-        console.log(_this.images);
       });
     },
     handleFileUpload: function handleFileUpload(e) {
       this.file = e.target.files[0];
-      console.log(event.target.files[0]);
     },
     createImage: function createImage() {
       var _this2 = this;
@@ -3163,14 +3137,11 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this2.imageId = response.data.id;
         _this2.image.name = undefined;
-        console.log(_this2.imageId);
 
         _this2.submitfile();
 
         _this2.getImages();
-      })["catch"](function (error) {
-        console.log("Error");
-      });
+      })["catch"](function (error) {});
     },
     submitfile: function submitfile() {
       var _this3 = this;
@@ -3189,7 +3160,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.getImages();
       })["catch"](function (error) {
-        console.log("Error");
+        _this3.$toasted.error('Image not Created! An error ocurred');
       });
     },
     deleteImage: function deleteImage(image) {
@@ -3661,7 +3632,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.instances = response.data.servers;
-        console.log(_this.instances);
       });
     },
     getImages: function getImages() {
@@ -3673,7 +3643,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.images = response.data.images;
-        console.log(images);
       });
     },
     getFlavors: function getFlavors() {
@@ -3685,7 +3654,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this3.flavors = response.data.flavors;
-        console.log(images);
       });
     },
     getNetworks: function getNetworks() {
@@ -3697,7 +3665,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this4.networks = response.data.networks;
-        console.log(_this4.networks);
       });
     },
     deleteInstance: function deleteInstance(instance) {
@@ -3708,8 +3675,6 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response);
-
         _this5.$toasted.show("Instance Deleted With Success");
 
         _this5.getInstances();
@@ -3895,7 +3860,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this15.console_url = response.data.console.url;
-        console.log(_this15.console_url);
         window.open(_this15.console_url); // win.focus();
       });
     },
@@ -4200,7 +4164,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.keypairs = response.data.keypairs;
-        console.log(_this.keypairs);
       });
     },
     createKeyPair: function createKeyPair() {
@@ -4219,15 +4182,13 @@ __webpack_require__.r(__webpack_exports__);
           "x-openstack-nova-api-version": "2.2"
         }
       }).then(function (response) {
-        console.log(response);
-
         _this2.$router.push("/keypairs");
 
         _this2.getKeyPairs();
 
-        _this2.$toasted.show("Key Pair Created");
+        _this2.$toasted.success("Key Pair Created");
       })["catch"](function (error) {
-        console.log('Error');
+        _this2.$toasted.error("Key Pair not Created! An error occured");
       });
     },
     keyPairsDetail: function keyPairsDetail(keypair) {
@@ -4241,9 +4202,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this3.keypairAMostar = response.data.keypair;
-      })["catch"](function (error) {
-        console.log('Error');
-      });
+      })["catch"](function (error) {});
     },
     keyPairsDelete: function keyPairsDelete(keypair) {
       var _this4 = this;
@@ -4259,9 +4218,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.getKeyPairs();
 
         _this4.$toasted.show("Key Pair Deleted");
-      })["catch"](function (error) {
-        console.log('Error');
-      });
+      })["catch"](function (error) {});
     },
     exit: function exit() {
       this.$emit('exit-images');
@@ -4389,7 +4346,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.message = "Invalid Credentials";
         _this.showMessage = true;
-        console.log(error);
       });
     },
     mounted: function mounted() {}
@@ -4428,7 +4384,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.logout(); //console.log("component mouted");
+    this.logout();
   }
 });
 
@@ -4635,7 +4591,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.networks = response.data.networks;
-        console.log(_this.networks);
       });
     },
     createNetwork: function createNetwork() {
@@ -4709,7 +4664,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this5.subnetPools = response.data.subnetpools;
-        console.log(_this5.subnetPools);
       });
     },
     getSubnets: function getSubnets() {
@@ -4722,7 +4676,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this6.subnets = response.data.subnets;
-        console.log(_this6.subnets);
       });
     }
   },
@@ -4873,8 +4826,6 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$toasted.success("Changed to project " + project.name);
 
         _this2.$router.push("/home");
-
-        console.log("SUCESS");
       });
     }
   },
@@ -5062,7 +5013,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.routers = response.data.routers;
-        console.log(_this.routers);
       });
     },
     getNetworks: function getNetworks() {
@@ -5075,7 +5025,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.networks = response.data.networks;
-        console.log(_this2.networks);
       });
     },
     createRouter: function createRouter() {
@@ -5458,7 +5407,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.securityGroups = response.data.security_groups;
         _this.securityGroupsOptions = response.data.security_groups;
-        console.log(_this.securityGroups);
       });
     },
     deleteSecurityGroup: function deleteSecurityGroup(securityGroup) {
@@ -5505,7 +5453,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this4.securityGroupId = securityGroupId;
         _this4.securityGroupRules = response.data.security_group.security_group_rules;
-        console.log(_this4.securityGroupRules);
+        _this4.securityGroupRules;
       });
     },
     createSecurityGroupRule: function createSecurityGroupRule() {
@@ -5625,8 +5573,6 @@ __webpack_require__.r(__webpack_exports__);
     onChangePortV2: function onChangePortV2(event) {
       this.securityGroupRule.port_range_max = event.target.value;
       this.securityGroupRule.port_range_min = event.target.value;
-      console.log("RANGE MAX : " + this.securityGroupRule.port_range_max);
-      console.log("RANGE MIN : " + this.securityGroupRule.port_range_min);
     }
   },
   mounted: function mounted() {
@@ -5746,7 +5692,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.servers = response.data.server_groups;
-        console.log(_this.servers);
       });
     },
     deleteServerGroup: function deleteServerGroup(serverGroup) {
@@ -6031,7 +5976,6 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response.data);
         _this.volumes = response.data.volumes;
       });
     },
@@ -6045,7 +5989,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.images = response.data.images;
-        console.log(images);
       });
     },
     deleteVolume: function deleteVolume(volume) {
@@ -6084,8 +6027,6 @@ __webpack_require__.r(__webpack_exports__);
             "x-auth-token": this.$store.state.token
           }
         }).then(function (response) {
-          console.log(response);
-
           _this3.$toasted.show("Volume Created");
 
           _this3.getVolumes();
@@ -6113,8 +6054,6 @@ __webpack_require__.r(__webpack_exports__);
             "x-auth-token": this.$store.state.token
           }
         }).then(function (response) {
-          console.log(response);
-
           _this3.$toasted.show("Volume Created");
 
           _this3.getVolumes();
@@ -6142,8 +6081,6 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        console.log(response);
-
         _this4.$toasted.show("Volume edited!");
 
         _this4.getVolumes();
@@ -6218,7 +6155,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 
@@ -49831,7 +49768,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "policy" } }, [_vm._v("Policy")]),
+              _c("label", { attrs: { for: "policy" } }, [_vm._v("Policy *")]),
               _vm._v(" "),
               _c(
                 "select",

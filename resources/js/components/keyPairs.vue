@@ -162,7 +162,6 @@ export default {
              }
        }).then(response=>{
            this.keypairs = response.data.keypairs;
-           console.log(this.keypairs);
          })
     },
     createKeyPair(){ //funcao para criar as keyspairs
@@ -184,12 +183,12 @@ export default {
            }
          )
          .then(response => {
-           console.log(response);
+
            this.$router.push("/keypairs");
            this.getKeyPairs();
-           this.$toasted.show("Key Pair Created");
+           this.$toasted.success("Key Pair Created");
          }).catch(error=>{
-        console.log('Error');
+          this.$toasted.error("Key Pair not Created! An error occured");
       });
     },
     keyPairsDetail: function(keypair) { //funcao que obtem as keypairs detalhadas
@@ -201,7 +200,7 @@ export default {
        }).then(response=>{
            this.keypairAMostar = response.data.keypair;
          }).catch(error=>{
-        console.log('Error');
+
       });
     },
     keyPairsDelete: function(keypair) { //funcao que elimina a keypair
@@ -214,7 +213,7 @@ export default {
            this.getKeyPairs();
            this.$toasted.show("Key Pair Deleted");
          }).catch(error=>{
-        console.log('Error');
+
       });
     },
     exit(){

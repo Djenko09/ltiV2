@@ -188,7 +188,6 @@ export default {
         })
         .then(response => {
           this.networks = response.data.networks;
-          console.log(this.networks);
         });
     },
     createNetwork() { //funcao para criar rede
@@ -254,7 +253,7 @@ export default {
         })
         .then(response => {
           this.subnetPools = response.data.subnetpools;
-          console.log(this.subnetPools);
+
         });
     },
     getSubnets() { //funcao que obtem as subnets
@@ -264,7 +263,7 @@ export default {
         })
         .then(response => {
           this.subnets = response.data.subnets;
-          console.log(this.subnets);
+
         });
     }
   },

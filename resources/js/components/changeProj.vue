@@ -53,7 +53,7 @@ export default {
           this.$store.commit("setProject", this.project); //guarda id do projecto
           this.$toasted.success("Changed to project " + this.projectName);
           this.$router.push("/home");
-          console.log("SUCESS")
+
         });
     },
 

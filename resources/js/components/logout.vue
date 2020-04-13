@@ -21,7 +21,7 @@ methods:{
 },
   mounted(){
     this.logout();
-    //console.log("component mouted");
+  
   }
 }
 </script>

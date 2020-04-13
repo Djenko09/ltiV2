@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="this.$store.state.token" class="jumbotron">
-     
+
     </div>
 
   </div>
@@ -24,7 +24,7 @@ export default {
     };
   },
   methods: {
-    getProjects() { // funcão que obtem os 
+    getProjects() { // funcão que obtem os
       axios
         .get(this.url + "/identity/v3/auth/projects", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -32,7 +32,6 @@ export default {
         .then(response => {
           this.projects = response.data.projects;
           this.$store.commit("setProjectNames", this.projects);
-          console.log(this.$store.state.projectNames);
         });
     },
     createInstance: function() {
@@ -54,7 +53,6 @@ export default {
           this.project_name = response.data.token.project.name;
           this.$store.commit("setProject", this.project_id);
           this.$store.commit("setProjectName", this.project_name);
-          console.log(this.project_id);
         });
     },
     /*loginProject(project) {
@@ -116,7 +114,6 @@ export default {
 
          .then(response=>{
            this.images = response.data.images;
-           console.log(images);
          })
     },
     getInstances(){

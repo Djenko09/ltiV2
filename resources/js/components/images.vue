@@ -216,13 +216,12 @@ export default {
         })
         .then(response => {
           this.images = response.data.images;
-          console.log(this.images);
         });
     },
 
     handleFileUpload(e) {
       this.file = e.target.files[0];
-      console.log(event.target.files[0]);
+
     },
     createImage() {  //função para criar imagemn
 
@@ -252,12 +251,12 @@ export default {
         .then(response => {
           this.imageId = response.data.id;
           this.image.name = undefined;
-          console.log(this.imageId);
+
           this.submitfile();
           this.getImages();
         })
         .catch(error => {
-          console.log("Error");
+
         });
     },
     submitfile() {  //funcao para subtmeter o ficheiro da imagem
@@ -280,7 +279,7 @@ export default {
           this.getImages();
         })
         .catch(error => {
-          console.log("Error");
+          this.$toasted.error('Image not Created! An error ocurred')
         });
     },
     deleteImage(image) { //funcao que apaga uma imagem

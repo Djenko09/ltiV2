@@ -421,7 +421,6 @@ export default {
 
         .then(response => {
           this.instances = response.data.servers;
-          console.log(this.instances);
         });
     },
     getImages: function() {
@@ -432,7 +431,6 @@ export default {
 
         .then(response => {
           this.images = response.data.images;
-          console.log(images);
         });
     },
     getFlavors: function() {
@@ -443,7 +441,6 @@ export default {
 
         .then(response => {
           this.flavors = response.data.flavors;
-          console.log(images);
         });
     },
     getNetworks: function() {
@@ -453,7 +450,7 @@ export default {
         })
         .then(response => {
           this.networks = response.data.networks;
-          console.log(this.networks);
+
         });
     },
     deleteInstance: function(instance) {
@@ -462,7 +459,7 @@ export default {
           headers: { "x-auth-token": this.$store.state.token }
         })
         .then(response => {
-          console.log(response);
+
           this.$toasted.show("Instance Deleted With Success");
           this.getInstances();
         });
@@ -689,7 +686,7 @@ export default {
         )
         .then(response => {
           this.console_url = response.data.console.url;
-          console.log(this.console_url);
+
           window.open(this.console_url);
          // win.focus();
         });

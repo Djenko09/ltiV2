@@ -6,7 +6,7 @@
       <h1>Projects</h1>
     </div>
     <br>
-  
+
     <!-- tabela que listas os projetos -->
       <table class="table table-hover">
 
@@ -33,17 +33,17 @@
           <td>{{ project.domain_id}}</td>
           <td v-if="project.enabled == 0"> NO</td>
           <td v-else> YES </td>
-    
+
 
           <td v-if="active_prj != project.id">
             <!-- botão para mudar de projeto -->
-              <button type="submit" class="btn btn-outline-dark" v-on:click="changeProject(project)">Define as Active Project</button> 
-           
+              <button type="submit" class="btn btn-outline-dark" v-on:click="changeProject(project)">Define as Active Project</button>
+
           </td>
 
         </tr>
       </tbody>
-    </table>  
+    </table>
     <!-- FIM tabela que listas os projetos -->
 </div>
 </template>
@@ -62,8 +62,8 @@ export default {
       user:{
         token: null
       },
-    
-    
+
+
       };
     },
     methods: {
@@ -111,10 +111,9 @@ export default {
           this.$store.commit("setProject", project.id); //guarda id do projecto
           this.$toasted.success("Changed to project " + project.name);
           this.$router.push("/home");
-          console.log("SUCESS");
         });
     },
-      
+
 
   },
   mounted() { //a pagina ao ser carregada executa as seguintes funcoes

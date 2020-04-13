@@ -289,7 +289,6 @@ methods:{
     }).then(response=>{
       this.securityGroups = response.data.security_groups;
       this.securityGroupsOptions = response.data.security_groups;
-      console.log(this.securityGroups)
     })
   },
   deleteSecurityGroup(securityGroup){
@@ -322,7 +321,7 @@ methods:{
     }).then(response=>{
       this.securityGroupId = securityGroupId
       this.securityGroupRules = response.data.security_group.security_group_rules;
-      console.log(this.securityGroupRules);
+       (this.securityGroupRules);
     })
   },
   createSecurityGroupRule(){
@@ -440,8 +439,6 @@ createSecurityGroup(){
   onChangePortV2(event){
     this.securityGroupRule.port_range_max = event.target.value;
     this.securityGroupRule.port_range_min = event.target.value;
-    console.log("RANGE MAX : " + this.securityGroupRule.port_range_max)
-    console.log("RANGE MIN : " + this.securityGroupRule.port_range_min)
   }
 
 

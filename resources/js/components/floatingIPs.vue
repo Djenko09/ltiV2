@@ -57,7 +57,7 @@
               class="btn btn-warning"
               data-dismiss="modal"
               v-on:click="allocateIP()"
-            >Allocate IP</button>   
+            >Allocate IP</button>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@
 
       <!-- formulario para associar o IP flutuante a uma VM -->
     <div class="modal" id="myAssociateIP">
-    
+
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -175,7 +175,6 @@ export default {
         })
         .then(response => {
           this.floatingIPs = response.data.floatingips;
-          console.log(this.floatingIPs);
         });
     },
     getNetworks: function() {  //funcao que obtem as redes
@@ -185,7 +184,6 @@ export default {
         })
         .then(response => {
           this.networks = response.data.networks;
-          console.log(this.networks);
         });
     },
     getInstances() { //funcao que obtem as instancias
@@ -196,7 +194,6 @@ export default {
 
         .then(response => {
           this.instances = response.data.servers;
-          console.log(this.instances[0].addresses.private[0].addr);
         });
     },
     allocateIP() {  //funcao que aloca um ip flutuante
@@ -215,7 +212,6 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
           this.$toasted.show("Floating IP Allocated");
           this.getFloatingIPs();
         });
@@ -224,7 +220,6 @@ export default {
       this.float_ID = id;
     },
     associateIP(instance) { //funcao que associa IP flutuante a uma VM
-    console.log(instance)
       axios
         .get(this.url + ":9696/v2.0/ports", {
           headers: { "x-auth-token": this.$store.state.token }
@@ -232,39 +227,39 @@ export default {
 
         .then(response => {
           this.ports = response.data.ports;
-          console.log(this.float_ID);
+
           for (const port of this.ports) {
-            //console.log(ip);
+
             if (port.fixed_ips[0].ip_address == instance.addresses.private[0].addr || port.fixed_ips[0].ip_address == instance.addresses.private[1].addr) {
-              console.log(port.id);
+
               this.port_id = port.id;
-              axios.put(this.url + ":9696/v2.0/floatingips/" + this.float_ID, 
+              axios.put(this.url + ":9696/v2.0/floatingips/" + this.float_ID,
               {
                 floatingip: {
                   port_id: this.port_id,
-                  
+
                 }
               }
               ,{
                 headers: { "x-auth-token": this.$store.state.token }
               }).then(response => {
-                   
+
           this.$toasted.show("FloatingIP associated");
            this.getFloatingIPs();
-          
+
               });
             }
           }
-       
+
         });
-      
+
     },
-      disassociateFloatingIP(id) { //funcao que desassocia o IP da VM 
-        axios.put(this.url + ":9696/v2.0/floatingips/" + id, 
+      disassociateFloatingIP(id) { //funcao que desassocia o IP da VM
+        axios.put(this.url + ":9696/v2.0/floatingips/" + id,
               {
                 floatingip: {
                   port_id: null,
-             
+
                 }
               }
               ,{
@@ -272,7 +267,7 @@ export default {
               }).then(response => {
                   this.$toasted.show("FloatingIP disassociated");
                   this.getFloatingIPs();
-              });   
+              });
     },
     deleteFloatingIP(floatingIP) {  //eliminar IP flutuante
       axios
@@ -280,7 +275,6 @@ export default {
           headers: { "x-auth-token": this.$store.state.token }
         })
         .then(response => {
-          console.log(response);
           this.$toasted.show("Floating IP Deleted With Success");
           this.getFloatingIPs();
         });
@@ -291,9 +285,9 @@ export default {
     this.getInstances();
     this.getNetworks();
     this.getFloatingIPs();
-    
+
     this.getNetworks();
-   
+
   }
 };
 </script>

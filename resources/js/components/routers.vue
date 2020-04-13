@@ -163,7 +163,6 @@ export default {
         })
         .then(response => {
           this.routers = response.data.routers;
-          console.log(this.routers);
         });
     },
 
@@ -174,7 +173,6 @@ export default {
         })
         .then(response => {
           this.networks = response.data.networks;
-          console.log(this.networks);
         });
     },
     createRouter() { //funcao para criar routers

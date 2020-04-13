@@ -225,7 +225,6 @@ export default {
         )
 
         .then(response => {
-          console.log(response.data);
           this.volumes = response.data.volumes;
         });
     },
@@ -237,7 +236,6 @@ export default {
 
         .then(response => {
           this.images = response.data.images;
-          console.log(images);
         });
     },
     deleteVolume: function(volume) { //eliminar volume
@@ -284,7 +282,6 @@ export default {
             }
           )
           .then(response => {
-            console.log(response);
             this.$toasted.show("Volume Created");
             this.getVolumes();
           });
@@ -317,7 +314,6 @@ export default {
             }
           )
           .then(response => {
-            console.log(response);
             this.$toasted.show("Volume Created");
             this.getVolumes();
           });
@@ -350,7 +346,6 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
           this.$toasted.show("Volume edited!");
           this.getVolumes();
         });
@@ -361,8 +356,6 @@ export default {
           {
             "os-extend": {
               new_size: this.volume.size,
-
-
             }
           },
           {

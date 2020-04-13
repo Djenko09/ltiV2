@@ -122,7 +122,6 @@ export default {
         })
 
         .then(response => {
-          console.log(response.data);
           this.containers = response.data.containers;
         });
     },
@@ -134,7 +133,6 @@ export default {
 
         .then(response => {
           this.images = response.data.images;
-          console.log(images);
         });
     },
     createContainer: function() { //funcao que cria container
@@ -142,14 +140,14 @@ export default {
         .post(
           this.url + "/container/v1/containers",
           {
-           
+
             image: this.container.image_name,
             name: this.container.name,
             cpu: this.container.cpu,
             memory: this.container.memory,
             security_groups: ["default"],
             availability_zone: "nova",
-            
+
           },
           {
             headers: {
@@ -159,7 +157,6 @@ export default {
           }
         )
         .then(response => {
-          console.log(response);
           this.$toasted.show("Container Created");
           this.getContainers();
         });
@@ -169,12 +166,11 @@ export default {
       axios.delete(this.url + "/container/v1/containers/" +container.uuid, {
         headers: { "x-auth-token": this.$store.state.token }
       }) .then(response => {
-          console.log(response);
           this.$toasted.show("Container Deleted With Success");
           this.getContainers();
         });
 
-      
+
     }
   },
 

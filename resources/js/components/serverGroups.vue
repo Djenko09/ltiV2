@@ -23,7 +23,7 @@
             <input type="text" class="form-control"  placeholder="A name for the server Group" name="name" v-model="serversGroup.name"/>
           </div>
           <div class="form-group">
-            <label for="policy">Policy</label>
+            <label for="policy">Policy *</label>
              <select class="form-control text-capitalize" v-model="serversGroup.policy">
               <option>anti-affinity</option>
               <option >affinity</option>
@@ -95,7 +95,6 @@ export default {
         headers: {'x-auth-token': this.$store.state.token}
       }).then(response=>{
         this.servers= response.data.server_groups;
-        console.log(this.servers)
       })
     },
     deleteServerGroup(serverGroup){  //eliminar server group

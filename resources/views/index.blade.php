@@ -95,7 +95,6 @@
                 <div class="col">
                   <div class="collapse multi-collapse" id="multiCollapseCompute">
                     <div>
-                      <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Overview</router-link>
                       <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Instances</router-link>
                       <router-link to="/containers" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Containers</router-link>
                       <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Images</router-link>
@@ -123,8 +122,7 @@
               <div class="row">
                 <div class="col">
                   <div class="collapse multi-collapse" id="multiCollapseNetwork">
-                    <div>
-                      <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Network Topology</router-link>
+                    <div>                      
                       <router-link to="/networks" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Networks</router-link>
                       <router-link to="/routers" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Routers</router-link>
                       <router-link to="/securityGroups" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Security Groups</router-link>

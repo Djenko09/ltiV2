@@ -1,6 +1,7 @@
 <template>
 <div>
   <div>
+    <br>
     <div>
       <h1>
         Flavors
@@ -13,7 +14,7 @@
         data-toggle="modal"
         data-target=".bd-example-modal-lg"
       >New Flavor</button>
-    </div><br><br>
+    </div><br>
     </div>
     <!-- formulario para criar imagem -->
       <div class="modal fade bd-example-modal-lg" id="myModalImages">

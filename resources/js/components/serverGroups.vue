@@ -1,7 +1,8 @@
 <template>
   <div>
   <br>
-  <h3>Server Groups</h3>
+  <h1>Server Groups</h1>
+  <br>
   <div >
     <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal">Create Server Group</button>
   </div>

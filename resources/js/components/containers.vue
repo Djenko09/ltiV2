@@ -159,6 +159,8 @@ export default {
         .then(response => {
           this.$toasted.show("Container Created");
           this.getContainers();
+        }).catch(error =>{
+          this.$toasted.error("Container not created! An error ocurred")
         });
     },
 
@@ -168,8 +170,9 @@ export default {
       }) .then(response => {
           this.$toasted.show("Container Deleted With Success");
           this.getContainers();
+        }).catch(error =>{
+          this.$toasted.error("Container not deleted! An error ocurred")
         });
-
 
     }
   },

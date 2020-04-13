@@ -348,7 +348,9 @@ methods:{
     this.$toasted.success('Rule created with success');
     this.getSecurityGroupRules(this.securityGroupId);
     this.securityGroupRule.length = 0;
-  })
+  }).catch(error =>{
+    this.$toasted.error("Rule not created! An error Ocurred");
+  });
 },
 createSecurityGroup(){
   axios.post(this.url + ":9696/v2.0/security-groups",
@@ -367,7 +369,9 @@ createSecurityGroup(){
   ).then(response=>{
     this.getSecurityGroups();
     this.$toasted.success("Security Group created!")
-  })
+  }).catch(error =>{
+    this.$toasted.error("Security group not created! An error Ocurred");
+  });
 },
   onChangeRule(event){
     this.securityGroupRule.rule = event.target.value;

@@ -101,13 +101,6 @@ export default {
     revokeOldToken() {
       this.$store.commit("clearToken");
     },
-    deleteInstance: function(instance) {
-      axios.delete(this.url + "/compute/v2.1/servers/" + instance, {
-        headers: { "x-auth-token": this.$store.state.token }
-      });
-
-      this.$toasted.show("Instance Deleted With Success");
-    },
     getImages: function(){
       axios.get(this.url + "/image/v2/images",{
          headers: {'x-auth-token': this.$store.state.token} })

@@ -1,4 +1,4 @@
-<template>
+ .cat<template>
 <div>
   <div>
     <h1>Key Pairs</h1>
@@ -212,9 +212,9 @@ export default {
            this.$router.push("/keypairs");
            this.getKeyPairs();
            this.$toasted.show("Key Pair Deleted");
-         }).catch(error=>{
-
-      });
+         }).catch(error =>{
+           this.$toasted.error("Key Pair not deleted! An error Ocurred");
+         });
     },
     exit(){
       this.$emit('exit-images');

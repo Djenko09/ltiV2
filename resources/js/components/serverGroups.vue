@@ -103,7 +103,9 @@ export default {
       }).then(response=>{
          this.$toasted.error("Server Group "+ serverGroup.name +" deleted with success!");
          this.getServerGroups();
-      })
+      }).catch(error =>{
+        this.$toasted.error("Server Group not deleted! An error Ocurred");
+      });
     },
     createServerGroup(){ //funcao que cria server group
       axios.post(this.url + "/compute/v2.1/os-server-groups",
@@ -118,7 +120,9 @@ export default {
       }).then(response =>{
         this.$toasted.success("Server Group created with success!");
         this.getServerGroups();
-      })
+      }).catch(error =>{
+        this.$toasted.error("Server Group not created! An error Ocurred");
+      });
     }
   },
   computed:{

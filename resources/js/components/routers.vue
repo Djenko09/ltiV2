@@ -173,6 +173,7 @@ export default {
         })
         .then(response => {
           this.networks = response.data.networks;
+
         });
     },
     createRouter() { //funcao para criar routers
@@ -194,7 +195,9 @@ export default {
         .then(response => {
           this.$toasted.show("Router Created!");
           this.getRouters();
-        });
+        }).catch(error =>{
+          this.$toasted.error("Router not created! An error Ocurred");
+        });;
     },
     editRouter(id) { //funcao que guarda o id do router a ser alterado
       this.router.id = id;
@@ -215,6 +218,8 @@ export default {
         .then(response => {
           this.$toasted.show("Router Edited!");
           this.getRouters();
+        }).catch(error =>{
+          this.$toasted.error("Router not edited! An error Ocurred");
         });
     },
     deleteRouter(id) { //funcao que elimina router
@@ -225,7 +230,9 @@ export default {
         .then(response => {
           this.$toasted.show("Router Deleted!");
           this.getRouters();
-        });
+        }).catch(error =>{
+          this.$toasted.error("Router not deleted! An error Ocurred");
+        });;
     }
   },
   computed:{

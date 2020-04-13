@@ -214,6 +214,8 @@ export default {
         .then(response => {
           this.$toasted.show("Floating IP Allocated");
           this.getFloatingIPs();
+        }).catch(error =>{
+          this.$toasted.error("Floating IP not allocated! An error ocurred");
         });
     },
     saveFloatingID(id) { //guarda ID do IP flutuante  para depois ser usado para associar a uma vm
@@ -244,10 +246,12 @@ export default {
                 headers: { "x-auth-token": this.$store.state.token }
               }).then(response => {
 
-          this.$toasted.show("FloatingIP associated");
+          this.$toasted.success("FloatingIP associated");
            this.getFloatingIPs();
 
-              });
+         }).catch(error=>{
+            this.$toasted.error("FloatingIP not associated! An error ocurred!");
+         });
             }
           }
 
@@ -265,8 +269,10 @@ export default {
               ,{
                 headers: { "x-auth-token": this.$store.state.token }
               }).then(response => {
-                  this.$toasted.show("FloatingIP disassociated");
+                  this.$toasted.success("FloatingIP disassociated");
                   this.getFloatingIPs();
+              }).catch(error =>{
+                  this.$toasted.error("FloatingIP not disassociated! An error ocurred!");
               });
     },
     deleteFloatingIP(floatingIP) {  //eliminar IP flutuante
@@ -275,8 +281,10 @@ export default {
           headers: { "x-auth-token": this.$store.state.token }
         })
         .then(response => {
-          this.$toasted.show("Floating IP Deleted With Success");
+          this.$toasted.success("Floating IP Deleted With Success");
           this.getFloatingIPs();
+        }).catch(error=>{
+            this.$toasted.error("Floating IP not deleted! An error ocurred");
         });
     }
   },

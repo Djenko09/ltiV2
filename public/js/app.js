@@ -1970,6 +1970,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.$toasted.success("Changed to project " + _this.projectName);
 
         _this.$router.push("/home");
+      })["catch"](function (error) {
+        _this.$toasted.error("Cannot change project!");
       });
     }
   },
@@ -2149,6 +2151,8 @@ __webpack_require__.r(__webpack_exports__);
         _this3.$toasted.show("Container Created");
 
         _this3.getContainers();
+      })["catch"](function (error) {
+        _this3.$toasted.error("Container not created! An error ocurred");
       });
     },
     deleteContainer: function deleteContainer(container) {
@@ -2163,6 +2167,8 @@ __webpack_require__.r(__webpack_exports__);
         _this4.$toasted.show("Container Deleted With Success");
 
         _this4.getContainers();
+      })["catch"](function (error) {
+        _this4.$toasted.error("Container not deleted! An error ocurred");
       });
     }
   },
@@ -2296,14 +2302,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     revokeOldToken: function revokeOldToken() {
       this.$store.commit("clearToken");
-    },
-    deleteInstance: function deleteInstance(instance) {
-      axios["delete"](this.url + "/compute/v2.1/servers/" + instance, {
-        headers: {
-          "x-auth-token": this.$store.state.token
-        }
-      });
-      this.$toasted.show("Instance Deleted With Success");
     },
     getImages: function getImages() {
       var _this3 = this;
@@ -2505,6 +2503,8 @@ __webpack_require__.r(__webpack_exports__);
         _this3.$toasted.success("Flavor Deleted!");
 
         _this3.getFlavors();
+      })["catch"](function (error) {
+        _this3.$toasted.error("Error deleting flavor!");
       });
     }
   },
@@ -2764,6 +2764,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this4.$toasted.show("Floating IP Allocated");
 
         _this4.getFloatingIPs();
+      })["catch"](function (error) {
+        _this4.$toasted.error("Floating IP not allocated! An error ocurred");
       });
     },
     saveFloatingID: function saveFloatingID(id) {
@@ -2799,9 +2801,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   "x-auth-token": _this5.$store.state.token
                 }
               }).then(function (response) {
-                _this5.$toasted.show("FloatingIP associated");
+                _this5.$toasted.success("FloatingIP associated");
 
                 _this5.getFloatingIPs();
+              })["catch"](function (error) {
+                _this5.$toasted.error("FloatingIP not associated! An error ocurred!");
               });
             }
           }
@@ -2825,9 +2829,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this6.$toasted.show("FloatingIP disassociated");
+        _this6.$toasted.success("FloatingIP disassociated");
 
         _this6.getFloatingIPs();
+      })["catch"](function (error) {
+        _this6.$toasted.error("FloatingIP not disassociated! An error ocurred!");
       });
     },
     deleteFloatingIP: function deleteFloatingIP(floatingIP) {
@@ -2839,9 +2845,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this7.$toasted.show("Floating IP Deleted With Success");
+        _this7.$toasted.success("Floating IP Deleted With Success");
 
         _this7.getFloatingIPs();
+      })["catch"](function (error) {
+        _this7.$toasted.error("Floating IP not deleted! An error ocurred");
       });
     }
   },
@@ -3675,9 +3683,11 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this5.$toasted.show("Instance Deleted With Success");
+        _this5.$toasted.success("Instance Deleted With Success");
 
         _this5.getInstances();
+      })["catch"](function (error) {
+        _this5.$toasted.error("Instance not deleted! An error Ocurred");
       });
     },
     createInstance: function createInstance() {
@@ -3730,7 +3740,10 @@ __webpack_require__.r(__webpack_exports__);
         _this7.$toasted.show("Instance edit successfully!");
 
         _this7.getInstances();
+      })["catch"](function (error) {
+        _this7.$toasted.error("Instance not edited! An error Ocurred");
       });
+      ;
     },
     pauseInstance: function pauseInstance(instance) {
       var _this8 = this;
@@ -3764,7 +3777,10 @@ __webpack_require__.r(__webpack_exports__);
         setTimeout(2222);
 
         _this9.getInstances();
+      })["catch"](function (error) {
+        _this9.$toasted.error("Instance not paused! An error Ocurred");
       });
+      ;
     },
     suspendInstance: function suspendInstance(instance) {
       var _this10 = this;
@@ -3780,7 +3796,10 @@ __webpack_require__.r(__webpack_exports__);
         _this10.$toasted.show("Instance Suspensed!");
 
         _this10.getInstances();
+      })["catch"](function (error) {
+        _this10.$toasted.error("Instance not suspensed! An error Ocurred");
       });
+      ;
     },
     resumeSuspend: function resumeSuspend(instance) {
       var _this11 = this;
@@ -3796,7 +3815,10 @@ __webpack_require__.r(__webpack_exports__);
         _this11.$toasted.show("Instance Active!");
 
         _this11.getInstances();
+      })["catch"](function (error) {
+        _this11.$toasted.error("An error Ocurred");
       });
+      ;
     },
     rebootInstance: function rebootInstance(instance) {
       var _this12 = this;
@@ -3830,7 +3852,10 @@ __webpack_require__.r(__webpack_exports__);
         _this13.$toasted.show("Instance off!");
 
         _this13.getInstances();
+      })["catch"](function (error) {
+        _this13.$toasted.error("An error Ocurred");
       });
+      ;
     },
     startInstance: function startInstance(instance) {
       var _this14 = this;
@@ -3844,7 +3869,10 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this14.$toasted.show("Instance started!");
+      })["catch"](function (error) {
+        _this14.$toasted.error("Instance not started! An error Ocurred");
       });
+      ;
     },
     viewconsole: function viewconsole(instance) {
       var _this15 = this;
@@ -4218,7 +4246,9 @@ __webpack_require__.r(__webpack_exports__);
         _this4.getKeyPairs();
 
         _this4.$toasted.show("Key Pair Deleted");
-      })["catch"](function (error) {});
+      })["catch"](function (error) {
+        _this4.$toasted.error("Key Pair not deleted! An error Ocurred");
+      });
     },
     exit: function exit() {
       this.$emit('exit-images');
@@ -4609,7 +4639,10 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$toasted.show("Network Created!");
 
         _this2.getNetworks();
+      })["catch"](function (error) {
+        _this2.$toasted.error("Network not created! An error Ocurred");
       });
+      ;
     },
     createSubnet: function createSubnet(id) {
       //funcao que guarda o id da REDE
@@ -4636,7 +4669,10 @@ __webpack_require__.r(__webpack_exports__);
         _this3.getSubnets();
 
         _this3.getNetworks();
+      })["catch"](function (error) {
+        _this3.$toasted.error("Subnet not created! An error Ocurred");
       });
+      ;
     },
     deleteNetwork: function deleteNetwork(id) {
       var _this4 = this;
@@ -4652,6 +4688,8 @@ __webpack_require__.r(__webpack_exports__);
         _this4.getSubnets();
 
         _this4.getNetworks();
+      })["catch"](function (error) {
+        _this4.$toasted.error("Network not deleted! An error Ocurred");
       });
     },
     getSubnetPools: function getSubnetPools() {
@@ -5046,7 +5084,10 @@ __webpack_require__.r(__webpack_exports__);
         _this3.$toasted.show("Router Created!");
 
         _this3.getRouters();
+      })["catch"](function (error) {
+        _this3.$toasted.error("Router not created! An error Ocurred");
       });
+      ;
     },
     editRouter: function editRouter(id) {
       //funcao que guarda o id do router a ser alterado
@@ -5068,6 +5109,8 @@ __webpack_require__.r(__webpack_exports__);
         _this4.$toasted.show("Router Edited!");
 
         _this4.getRouters();
+      })["catch"](function (error) {
+        _this4.$toasted.error("Router not edited! An error Ocurred");
       });
     },
     deleteRouter: function deleteRouter(id) {
@@ -5082,7 +5125,10 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$toasted.show("Router Deleted!");
 
         _this5.getRouters();
+      })["catch"](function (error) {
+        _this5.$toasted.error("Router not deleted! An error Ocurred");
       });
+      ;
     }
   },
   computed: {
@@ -5481,6 +5527,8 @@ __webpack_require__.r(__webpack_exports__);
         _this5.getSecurityGroupRules(_this5.securityGroupId);
 
         _this5.securityGroupRule.length = 0;
+      })["catch"](function (error) {
+        _this5.$toasted.error("Rule not created! An error Ocurred");
       });
     },
     createSecurityGroup: function createSecurityGroup() {
@@ -5500,6 +5548,8 @@ __webpack_require__.r(__webpack_exports__);
         _this6.getSecurityGroups();
 
         _this6.$toasted.success("Security Group created!");
+      })["catch"](function (error) {
+        _this6.$toasted.error("Security group not created! An error Ocurred");
       });
     },
     onChangeRule: function onChangeRule(event) {
@@ -5706,6 +5756,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$toasted.error("Server Group " + serverGroup.name + " deleted with success!");
 
         _this2.getServerGroups();
+      })["catch"](function (error) {
+        _this2.$toasted.error("Server Group not deleted! An error Ocurred");
       });
     },
     createServerGroup: function createServerGroup() {
@@ -5725,6 +5777,8 @@ __webpack_require__.r(__webpack_exports__);
         _this3.$toasted.success("Server Group created with success!");
 
         _this3.getServerGroups();
+      })["catch"](function (error) {
+        _this3.$toasted.error("Server Group not created! An error Ocurred");
       });
     }
   },
@@ -5992,16 +6046,21 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteVolume: function deleteVolume(volume) {
+      var _this3 = this;
+
       //eliminar volume
       axios["delete"](this.url + "/volume/v3/" + this.$store.state.project + "/volumes/" + volume.id, {
         headers: {
           "x-auth-token": this.$store.state.token
         }
+      }).then(function (response) {
+        _this3.$toasted.show("Volume Deleted With Success");
+      })["catch"](function (error) {
+        _this3.$toasted.error("Volume not deleted! An error Ocurred");
       });
-      this.$toasted.show("Volume Deleted With Success");
     },
     createVolume: function createVolume() {
-      var _this3 = this;
+      var _this4 = this;
 
       //criar volume
       if (this.volume.image_id == "") {
@@ -6027,9 +6086,11 @@ __webpack_require__.r(__webpack_exports__);
             "x-auth-token": this.$store.state.token
           }
         }).then(function (response) {
-          _this3.$toasted.show("Volume Created");
+          _this4.$toasted.show("Volume Created");
 
-          _this3.getVolumes();
+          _this4.getVolumes();
+        })["catch"](function (error) {
+          _this4.$toasted.error("Volume not created! An error Ocurred");
         });
       } else {
         //com imagem
@@ -6054,9 +6115,11 @@ __webpack_require__.r(__webpack_exports__);
             "x-auth-token": this.$store.state.token
           }
         }).then(function (response) {
-          _this3.$toasted.show("Volume Created");
+          _this4.$toasted.show("Volume Created");
 
-          _this3.getVolumes();
+          _this4.getVolumes();
+        })["catch"](function (error) {
+          _this4.$toasted.error("Volume not created! An error Ocurred");
         });
       }
     },
@@ -6067,7 +6130,7 @@ __webpack_require__.r(__webpack_exports__);
       this.volume.size = volume.size;
     },
     sendVolumeEdit: function sendVolumeEdit() {
-      var _this4 = this;
+      var _this5 = this;
 
       //função que edita o volume
       axios.put(this.url + "/volume/v3/" + this.$store.state.project + "/volumes/" + this.volume.id, {
@@ -6081,13 +6144,15 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this4.$toasted.show("Volume edited!");
+        _this5.$toasted.show("Volume edited!");
 
-        _this4.getVolumes();
+        _this5.getVolumes();
+      })["catch"](function (error) {
+        _this5.$toasted.error("Volume not edited! An error Ocurred");
       });
     },
     sendSizeEdit: function sendSizeEdit() {
-      var _this5 = this;
+      var _this6 = this;
 
       //função que edita o tamanho do volume
       axios.post(this.url + "/volume/v3/" + this.$store.state.project + "/volumes/" + this.volume.id + "/action", {
@@ -6100,9 +6165,11 @@ __webpack_require__.r(__webpack_exports__);
           "x-auth-token": this.$store.state.token
         }
       }).then(function (response) {
-        _this5.$toasted.show("Size edited!");
+        _this6.$toasted.show("Size edited!");
 
-        _this5.getVolumes();
+        _this6.getVolumes();
+      })["catch"](function (error) {
+        _this6.$toasted.error("Size not edited! An error Ocurred");
       });
     }
   },
@@ -6155,7 +6222,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
 
 // exports
 

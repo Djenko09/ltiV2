@@ -145,6 +145,8 @@ export default {
     }).then(response=>{
       this.$toasted.success("Flavor Deleted!");
       this.getFlavors();
+    }).catch(error =>{
+      this.$toasted.error("Error deleting flavor!")
     })
   }
   },

@@ -248,9 +248,13 @@ export default {
         {
           headers: { "x-auth-token": this.$store.state.token }
         }
-      );
+      ).then(response=>{
+        this.$toasted.show("Volume Deleted With Success");
+      }).catch(error =>{
+        this.$toasted.error("Volume not deleted! An error Ocurred");
+      });
 
-      this.$toasted.show("Volume Deleted With Success");
+
     },
     createVolume: function() {  //criar volume
       if (this.volume.image_id == "") {
@@ -284,6 +288,8 @@ export default {
           .then(response => {
             this.$toasted.show("Volume Created");
             this.getVolumes();
+          }).catch(error =>{
+            this.$toasted.error("Volume not created! An error Ocurred");
           });
       } else {
         //com imagem
@@ -316,6 +322,8 @@ export default {
           .then(response => {
             this.$toasted.show("Volume Created");
             this.getVolumes();
+          }).catch(error =>{
+            this.$toasted.error("Volume not created! An error Ocurred");
           });
       }
     },
@@ -348,6 +356,8 @@ export default {
         .then(response => {
           this.$toasted.show("Volume edited!");
           this.getVolumes();
+        }).catch(error =>{
+          this.$toasted.error("Volume not edited! An error Ocurred");
         });
     },
     sendSizeEdit: function() { //função que edita o tamanho do volume
@@ -366,7 +376,9 @@ export default {
           }) .then(response => {
            this.$toasted.show("Size edited!");
            this.getVolumes();
-          })
+          }).catch(error =>{
+            this.$toasted.error("Size not edited! An error Ocurred");
+          });
     }
   },
   computed:{

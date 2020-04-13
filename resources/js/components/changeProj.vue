@@ -54,6 +54,8 @@ export default {
           this.$toasted.success("Changed to project " + this.projectName);
           this.$router.push("/home");
 
+        }).catch(error =>{
+          this.$toasted.error("Cannot change project!")
         });
     },
 

@@ -122,7 +122,7 @@
               <div class="row">
                 <div class="col">
                   <div class="collapse multi-collapse" id="multiCollapseNetwork">
-                    <div>                      
+                    <div>
                       <router-link to="/networks" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Networks</router-link>
                       <router-link to="/routers" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Routers</router-link>
                       <router-link to="/securityGroups" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Security Groups</router-link>
@@ -142,7 +142,19 @@
         <div class="row">
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseAdmin">
-                <router-link to="/flavors" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Flavors</router-link>
+              <p>
+              <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseComputeAdmin" role="button" aria-expanded="false" aria-controls="multiCollapseCompute" role="button" aria-pressed="true"
+              style="text-align:center">Compute</a>
+              </p>
+              <div class="row">
+                <div class="col">
+                  <div class="collapse multi-collapse" id="multiCollapseComputeAdmin">
+                    <div>
+                      <router-link to="/flavors" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:right">Flavors</router-link>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -202,6 +214,7 @@
             <li v-if="this.$store.state.token" class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-html="this.$store.state.projectName">
               </a>
+
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <div v-for="project in this.$store.state.projectNames" :key="project.id">
                     <router-link :to="{name: 'changeProj', params: {projectName: project.name}}" class="dropdown-item" v-html="project.name" style="text-align:center" href="#"></router-link>

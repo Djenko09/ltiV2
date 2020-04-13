@@ -460,8 +460,10 @@ export default {
         })
         .then(response => {
 
-          this.$toasted.show("Instance Deleted With Success");
+          this.$toasted.success("Instance Deleted With Success");
           this.getInstances();
+        }).catch(error =>{
+          this.$toasted.error("Instance not deleted! An error Ocurred");
         });
     },
     createInstance: function() {
@@ -528,7 +530,9 @@ export default {
         .then(response => {
           this.$toasted.show("Instance edit successfully!");
           this.getInstances();
-        });
+        }).catch(error =>{
+          this.$toasted.error("Instance not edited! An error Ocurred");
+        });;
     },
     pauseInstance(instance) {
       axios
@@ -567,7 +571,9 @@ export default {
           this.$toasted.show("Instance Paused!");
           setTimeout(2222);
           this.getInstances();
-        });
+        }).catch(error =>{
+          this.$toasted.error("Instance not paused! An error Ocurred");
+        });;
     },
     suspendInstance(instance) {
       axios
@@ -586,7 +592,9 @@ export default {
         .then(response => {
           this.$toasted.show("Instance Suspensed!");
           this.getInstances();
-        });
+        }).catch(error =>{
+          this.$toasted.error("Instance not suspensed! An error Ocurred");
+        });;
     },
     resumeSuspend(instance) {
       axios
@@ -605,7 +613,9 @@ export default {
         .then(response => {
           this.$toasted.show("Instance Active!");
           this.getInstances();
-        });
+        }).catch(error =>{
+          this.$toasted.error("An error Ocurred");
+        });;
     },
     rebootInstance(instance) {
       axios
@@ -646,7 +656,9 @@ export default {
         .then(response => {
           this.$toasted.show("Instance off!");
           this.getInstances();
-        });
+        }).catch(error =>{
+          this.$toasted.error("An error Ocurred");
+        });;
     },
     startInstance(instance) {
       axios
@@ -665,7 +677,9 @@ export default {
         )
         .then(response => {
          this.$toasted.show("Instance started!");
-        });
+        }).catch(error =>{
+          this.$toasted.error("Instance not started! An error Ocurred");
+        });;
     },
     viewconsole(instance) {
       axios

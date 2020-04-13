@@ -106,7 +106,7 @@ new Vue({
     methods: {
       show(){
         $('#sidebar').toggleClass('active');
-      },
+      }
 },
   components:{
     PulseLoader

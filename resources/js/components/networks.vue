@@ -204,7 +204,9 @@ export default {
       ) .then(response => {
          this.$toasted.show("Network Created!");
          this.getNetworks();
-        });
+        }).catch(error =>{
+          this.$toasted.error("Network not created! An error Ocurred");
+        });;
     },
     createSubnet(id) { //funcao que guarda o id da REDE
       this.subnet.network_id = id;
@@ -229,7 +231,9 @@ export default {
           this.$toasted.show("Subnet  " + response.data.subnet.cidr + " created! The gateway is " + response.data.subnet.gateway_ip );
           this.getSubnets();
           this.getNetworks();
-        });
+        }).catch(error =>{
+          this.$toasted.error("Subnet not created! An error Ocurred");
+        });;
     },
     deleteNetwork(id){ //funcao que elimina uma rede
         axios
@@ -243,6 +247,8 @@ export default {
           this.$toasted.show("Network Deleted!");
           this.getSubnets();
           this.getNetworks();
+        }).catch(error =>{
+          this.$toasted.error("Network not deleted! An error Ocurred");
         });
 
     },

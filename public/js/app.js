@@ -2442,7 +2442,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3146,6 +3145,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.imageId = response.data.id;
         _this2.image.name = undefined;
 
+        _this2.$toasted.info("Image uploading! This may take a few seconds, do not refresh the page!");
+
         _this2.submitfile();
 
         _this2.getImages();
@@ -3161,15 +3162,15 @@ __webpack_require__.r(__webpack_exports__);
           "Content-Type": "application/octet-stream",
           "X-Auth-Token": this.$store.state.token
         }
-      }), this.loading = true.then(function (response) {
-        _this3.loading = false;
-
-        _this3.$toasted.success('Image created!');
-
-        _this3.getImages();
+      }).then(function (response) {
+        _this3.afterSubmit();
       })["catch"](function (error) {
         _this3.$toasted.error('Image not Created! An error ocurred');
       });
+    },
+    afterSubmit: function afterSubmit() {
+      this.$toasted.success('Image Uploaded!');
+      this.getImages();
     },
     deleteImage: function deleteImage(image) {
       var _this4 = this;
@@ -3180,7 +3181,7 @@ __webpack_require__.r(__webpack_exports__);
           "X-Auth-Token": this.$store.state.token
         }
       }).then(function (response) {
-        _this4.$toasted.info("Image deleted");
+        _this4.$toasted.success("Image deleted");
 
         _this4.getImages();
       })["catch"](function (error) {
@@ -44869,7 +44870,7 @@ var render = function() {
                   attrs: {
                     required: "",
                     type: "text",
-                    placeholder: "A name for the image",
+                    placeholder: "A name for the flavor",
                     name: "name"
                   },
                   domProps: { value: _vm.flavor.name },

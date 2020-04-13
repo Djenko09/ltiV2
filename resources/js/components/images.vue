@@ -251,7 +251,7 @@ export default {
         .then(response => {
           this.imageId = response.data.id;
           this.image.name = undefined;
-
+          this.$toasted.info("Image uploading! This may take a few seconds, do not refresh the page!")
           this.submitfile();
           this.getImages();
         })
@@ -271,16 +271,16 @@ export default {
               "X-Auth-Token": this.$store.state.token
             }
           }
-        ),
-        this.loading = true
-        .then(response => {
-          this.loading = false
-          this.$toasted.success('Image created!')
-          this.getImages();
+        ).then(response => {
+          this.afterSubmit();
         })
         .catch(error => {
           this.$toasted.error('Image not Created! An error ocurred')
         });
+    },
+    afterSubmit(){
+      this.$toasted.success('Image Uploaded!')
+      this.getImages();
     },
     deleteImage(image) { //funcao que apaga uma imagem
       axios
@@ -290,7 +290,7 @@ export default {
           }
         })
         .then(response => {
-          this.$toasted.info("Image deleted");
+          this.$toasted.success("Image deleted");
           this.getImages();
         })
         .catch(error => {

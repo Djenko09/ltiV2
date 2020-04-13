@@ -506,7 +506,6 @@ export default {
           this.$toasted.error('instance not created')
         });
     },
-
     instanceEdit: function(instance) {
       this.instance.id = instance.id;
       this.instance.name = instance.name;

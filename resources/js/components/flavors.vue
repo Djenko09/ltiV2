@@ -29,7 +29,7 @@
             <div class="modal-body">
                 <div class="form-group">
                   <label for="name">Name *</label>
-                  <input required type="text" class="form-control" placeholder="A name for the image" name="name" v-model="flavor.name"/>
+                  <input required type="text" class="form-control" placeholder="A name for the flavor" name="name" v-model="flavor.name"/>
                 </div>
                 <div class="form-group">
                   <label for="ram">RAM (MB) *</label>
@@ -89,7 +89,6 @@
         </tbody>
       </table>
   </div>
-</div>
 </template>
 
 <script>

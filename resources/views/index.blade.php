@@ -223,7 +223,7 @@
               </div>
 
             </li>
-            <li v-if="!this.$store.state.token" class="nav-item active">
+            <li v-if="!this.$store.state.token"  class="nav-item active">
               <router-link class="nav-link" to="/login">Login</router-link>
             </li>
             <li v-else class="nav-item active">

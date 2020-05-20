@@ -43,8 +43,11 @@ import floatingIPsComponent from "./components/floatingIPs.vue";
 import routersComponent from "./components/routers.vue";
 import securityGroupsComponent from "./components/securityGroups.vue";
 import flavorsComponent from "./components/flavors.vue";
-import containersComponent from "./components/containers.vue";  //parte 2 projeto
-import testeComponent from "./components/teste.vue";
+import containersComponent from "./components/containers.vue";  //parte 2 projeto TL1
+
+//Trabalho laboratorial 2
+import chooseAppComponent from "./components/chooseApp.vue";
+import kubernetsHomeComponent from "./components/kubernetsHome.vue";
 
 const gps = Vue.component('gps', gpsComponent);
 const home = Vue.component('home', homeComponent);
@@ -67,10 +70,13 @@ const containers = Vue.component('containers', containersComponent); //parte 2 p
 const teste = Vue.component('teste', testeComponent);
 
 
+//Trabalho laboratorial 2
+const chooseApp = Vue.component('chooseApp', chooseAppComponent);
+const kubernetsHome = Vue.component('kubernetsHome', kubernetsHomeComponent);
 
 
 const routes = [
-    { path: '/', component: login },
+    { path: '/', component: chooseApp },  //alterado para TL2
     { path: '/login', component: login, name: "login" },
     { path: '/instances', component: instancias, name: "instancias"},
     { path: '/home', component: dashboard, name: "dashboard"},
@@ -86,9 +92,12 @@ const routes = [
     { path: '/routers', component: routers, name:"routers"},
     { path: '/securityGroups', component: securityGroups, name:"securityGroups"},
     { path: '/flavors', component: flavors, name:"flavors"},
-    { path: '/containers', component: containers, name:"containers"},
-    { path: '/gps', component: gps, name:"gps"}, //parte 2 projeto
-    { path: '/teste', component: teste, name:"teste"},
+    { path: '/containers', component: containers, name:"containers"}, //parte 2 projeto
+
+     //Trabalho laboratorial 2
+    { path: '/chooseApp', component: chooseApp, name:"chooseApp"},
+    { path: '/kubernetsHome', component: kubernetsHome, name:"kubernetsHome"}
+
 
 ];
 

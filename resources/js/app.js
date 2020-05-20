@@ -26,7 +26,7 @@ Vue.use(Toasted, {
 
 import store from "./vuex.js";
 
-
+import gpsComponent from "./components/gps.vue";
 import loginComponent from "./components/loginComponent.vue";
 import homeComponent from "./components/homeComponent.vue";
 import instanciasComponent from "./components/instancias.vue";
@@ -44,7 +44,9 @@ import routersComponent from "./components/routers.vue";
 import securityGroupsComponent from "./components/securityGroups.vue";
 import flavorsComponent from "./components/flavors.vue";
 import containersComponent from "./components/containers.vue";  //parte 2 projeto
+import testeComponent from "./components/teste.vue";
 
+const gps = Vue.component('gps', gpsComponent);
 const home = Vue.component('home', homeComponent);
 const login = Vue.component('login', loginComponent);
 const logout = Vue.component('logout', logoutComponent);
@@ -62,6 +64,7 @@ const routers = Vue.component('routers', routersComponent);
 const securityGroups = Vue.component('securityGroups', securityGroupsComponent);
 const flavors = Vue.component('flavors', flavorsComponent);
 const containers = Vue.component('containers', containersComponent); //parte 2 projeto
+const teste = Vue.component('teste', testeComponent);
 
 
 
@@ -83,8 +86,9 @@ const routes = [
     { path: '/routers', component: routers, name:"routers"},
     { path: '/securityGroups', component: securityGroups, name:"securityGroups"},
     { path: '/flavors', component: flavors, name:"flavors"},
-    { path: '/containers', component: containers, name:"containers"} //parte 2 projeto
-
+    { path: '/containers', component: containers, name:"containers"},
+    { path: '/gps', component: gps, name:"gps"}, //parte 2 projeto
+    { path: '/teste', component: teste, name:"teste"},
 
 ];
 

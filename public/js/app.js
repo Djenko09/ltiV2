@@ -2885,6 +2885,78 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/gps.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    map: "";
+
+    heatmap: "";
+  },
+  methods: {
+    initMap: function initMap() {
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: {
+          lat: 37.775,
+          lng: -122.434
+        },
+        mapTypeId: 'satellite'
+      });
+      this.heatmap = new google.maps.visualization.HeatmapLayer({
+        data: getPoints(),
+        map: this.map
+      });
+    },
+    toggleHeatmap: function toggleHeatmap() {
+      this.heatmap.setMap(heatmap.getMap() ? null : map);
+    },
+    changeGradient: function changeGradient() {
+      var gradient = ['rgba(0, 255, 255, 0)', 'rgba(0, 255, 255, 1)', 'rgba(0, 191, 255, 1)', 'rgba(0, 127, 255, 1)', 'rgba(0, 63, 255, 1)', 'rgba(0, 0, 255, 1)', 'rgba(0, 0, 223, 1)', 'rgba(0, 0, 191, 1)', 'rgba(0, 0, 159, 1)', 'rgba(0, 0, 127, 1)', 'rgba(63, 0, 91, 1)', 'rgba(127, 0, 63, 1)', 'rgba(191, 0, 31, 1)', 'rgba(255, 0, 0, 1)'];
+      heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+    },
+    changeRadius: function changeRadius() {
+      heatmap.set('radius', heatmap.get('radius') ? null : 20);
+    },
+    changeOpacity: function changeOpacity() {
+      heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+    },
+    // Heatmap data: 500 Points
+    getPoints: function getPoints() {
+      return [new google.maps.LatLng(37.782551, -122.445368), new google.maps.LatLng(37.782745, -122.444586), new google.maps.LatLng(37.782842, -122.443688), new google.maps.LatLng(37.782919, -122.442815), new google.maps.LatLng(37.782992, -122.442112), new google.maps.LatLng(37.783100, -122.441461), new google.maps.LatLng(37.783206, -122.440829), new google.maps.LatLng(37.783273, -122.440324), new google.maps.LatLng(37.783316, -122.440023), new google.maps.LatLng(37.783357, -122.439794), new google.maps.LatLng(37.783371, -122.439687), new google.maps.LatLng(37.783368, -122.439666), new google.maps.LatLng(37.783383, -122.439594), new google.maps.LatLng(37.783508, -122.439525), new google.maps.LatLng(37.783842, -122.439591), new google.maps.LatLng(37.784147, -122.439668), new google.maps.LatLng(37.784206, -122.439686), new google.maps.LatLng(37.784386, -122.439790), new google.maps.LatLng(37.784701, -122.439902), new google.maps.LatLng(37.784965, -122.439938), new google.maps.LatLng(37.785010, -122.439947), new google.maps.LatLng(37.785360, -122.439952), new google.maps.LatLng(37.785715, -122.440030), new google.maps.LatLng(37.786117, -122.440119), new google.maps.LatLng(37.786564, -122.440209), new google.maps.LatLng(37.786905, -122.440270), new google.maps.LatLng(37.786956, -122.440279), new google.maps.LatLng(37.800224, -122.433520), new google.maps.LatLng(37.800155, -122.434101), new google.maps.LatLng(37.800160, -122.434430), new google.maps.LatLng(37.800378, -122.434527), new google.maps.LatLng(37.800738, -122.434598), new google.maps.LatLng(37.800938, -122.434650), new google.maps.LatLng(37.801024, -122.434889), new google.maps.LatLng(37.800955, -122.435392), new google.maps.LatLng(37.800886, -122.435959), new google.maps.LatLng(37.800811, -122.436275), new google.maps.LatLng(37.800788, -122.436299), new google.maps.LatLng(37.800719, -122.436302), new google.maps.LatLng(37.800702, -122.436298), new google.maps.LatLng(37.800661, -122.436273), new google.maps.LatLng(37.800395, -122.436172), new google.maps.LatLng(37.800228, -122.436116), new google.maps.LatLng(37.800169, -122.436130), new google.maps.LatLng(37.800066, -122.436167), new google.maps.LatLng(37.784345, -122.422922), new google.maps.LatLng(37.784389, -122.422926), new google.maps.LatLng(37.784437, -122.422924), new google.maps.LatLng(37.784746, -122.422818), new google.maps.LatLng(37.785436, -122.422959), new google.maps.LatLng(37.786120, -122.423112), new google.maps.LatLng(37.786433, -122.423029), new google.maps.LatLng(37.786631, -122.421213), new google.maps.LatLng(37.786660, -122.421033), new google.maps.LatLng(37.786801, -122.420141), new google.maps.LatLng(37.786823, -122.420034), new google.maps.LatLng(37.786831, -122.419916), new google.maps.LatLng(37.787034, -122.418208), new google.maps.LatLng(37.787056, -122.418034), new google.maps.LatLng(37.787169, -122.417145), new google.maps.LatLng(37.787217, -122.416715), new google.maps.LatLng(37.786144, -122.416403), new google.maps.LatLng(37.785292, -122.416257), new google.maps.LatLng(37.780666, -122.390374), new google.maps.LatLng(37.780501, -122.391281), new google.maps.LatLng(37.780148, -122.392052), new google.maps.LatLng(37.780173, -122.391148), new google.maps.LatLng(37.780693, -122.390592), new google.maps.LatLng(37.781261, -122.391142), new google.maps.LatLng(37.781808, -122.391730), new google.maps.LatLng(37.782340, -122.392341), new google.maps.LatLng(37.782812, -122.393022), new google.maps.LatLng(37.783300, -122.393672), new google.maps.LatLng(37.783809, -122.394275), new google.maps.LatLng(37.784246, -122.394979), new google.maps.LatLng(37.784791, -122.395958), new google.maps.LatLng(37.785675, -122.396746), new google.maps.LatLng(37.786262, -122.395780), new google.maps.LatLng(37.786776, -122.395093), new google.maps.LatLng(37.787282, -122.394426), new google.maps.LatLng(37.787783, -122.393767), new google.maps.LatLng(37.788343, -122.393184), new google.maps.LatLng(37.788895, -122.392506), new google.maps.LatLng(37.789371, -122.391701), new google.maps.LatLng(37.789722, -122.390952), new google.maps.LatLng(37.790315, -122.390305), new google.maps.LatLng(37.790738, -122.389616), new google.maps.LatLng(37.779448, -122.438702), new google.maps.LatLng(37.779023, -122.438585), new google.maps.LatLng(37.778542, -122.438492), new google.maps.LatLng(37.778100, -122.438411), new google.maps.LatLng(37.777986, -122.438376), new google.maps.LatLng(37.777680, -122.438313), new google.maps.LatLng(37.777316, -122.438273), new google.maps.LatLng(37.777135, -122.438254), new google.maps.LatLng(37.776987, -122.438303), new google.maps.LatLng(37.776946, -122.438404), new google.maps.LatLng(37.776944, -122.438467), new google.maps.LatLng(37.776892, -122.438459), new google.maps.LatLng(37.776842, -122.438442), new google.maps.LatLng(37.776822, -122.438391), new google.maps.LatLng(37.776814, -122.438412), new google.maps.LatLng(37.776787, -122.438628), new google.maps.LatLng(37.776729, -122.438650), new google.maps.LatLng(37.776759, -122.438677), new google.maps.LatLng(37.776772, -122.438498), new google.maps.LatLng(37.776787, -122.438389), new google.maps.LatLng(37.776848, -122.438283), new google.maps.LatLng(37.776870, -122.438239), new google.maps.LatLng(37.777015, -122.438198), new google.maps.LatLng(37.777333, -122.438256), new google.maps.LatLng(37.777595, -122.438308), new google.maps.LatLng(37.777797, -122.438344), new google.maps.LatLng(37.778160, -122.438442), new google.maps.LatLng(37.778414, -122.438508), new google.maps.LatLng(37.778445, -122.438516), new google.maps.LatLng(37.778503, -122.438529), new google.maps.LatLng(37.778607, -122.438549), new google.maps.LatLng(37.778670, -122.438644), new google.maps.LatLng(37.778847, -122.438706), new google.maps.LatLng(37.779240, -122.438744), new google.maps.LatLng(37.779738, -122.438822), new google.maps.LatLng(37.780201, -122.438882), new google.maps.LatLng(37.780400, -122.438905), new google.maps.LatLng(37.780501, -122.438921), new google.maps.LatLng(37.780892, -122.438986), new google.maps.LatLng(37.781446, -122.439087), new google.maps.LatLng(37.781985, -122.439199), new google.maps.LatLng(37.782239, -122.439249), new google.maps.LatLng(37.782286, -122.439266), new google.maps.LatLng(37.797847, -122.429388), new google.maps.LatLng(37.797874, -122.429180), new google.maps.LatLng(37.797885, -122.429069), new google.maps.LatLng(37.797887, -122.429050), new google.maps.LatLng(37.797933, -122.428954), new google.maps.LatLng(37.798242, -122.428990), new google.maps.LatLng(37.798617, -122.429075), new google.maps.LatLng(37.798719, -122.429092), new google.maps.LatLng(37.798944, -122.429145), new google.maps.LatLng(37.799320, -122.429251), new google.maps.LatLng(37.799590, -122.429309), new google.maps.LatLng(37.799677, -122.429324), new google.maps.LatLng(37.799966, -122.429360), new google.maps.LatLng(37.800288, -122.429430), new google.maps.LatLng(37.800443, -122.429461), new google.maps.LatLng(37.800465, -122.429474), new google.maps.LatLng(37.800644, -122.429540), new google.maps.LatLng(37.800948, -122.429620), new google.maps.LatLng(37.801242, -122.429685), new google.maps.LatLng(37.801375, -122.429702), new google.maps.LatLng(37.801400, -122.429703), new google.maps.LatLng(37.801453, -122.429707), new google.maps.LatLng(37.801473, -122.429709), new google.maps.LatLng(37.801532, -122.429707), new google.maps.LatLng(37.801852, -122.429729), new google.maps.LatLng(37.802173, -122.429789), new google.maps.LatLng(37.802459, -122.429847), new google.maps.LatLng(37.802554, -122.429825), new google.maps.LatLng(37.802647, -122.429549), new google.maps.LatLng(37.802693, -122.429179), new google.maps.LatLng(37.802729, -122.428751), new google.maps.LatLng(37.766104, -122.409291), new google.maps.LatLng(37.766103, -122.409268), new google.maps.LatLng(37.766138, -122.409229), new google.maps.LatLng(37.766183, -122.409231), new google.maps.LatLng(37.766153, -122.409276), new google.maps.LatLng(37.766005, -122.409365), new google.maps.LatLng(37.765897, -122.409570), new google.maps.LatLng(37.765767, -122.409739), new google.maps.LatLng(37.765693, -122.410389), new google.maps.LatLng(37.765615, -122.411201), new google.maps.LatLng(37.765533, -122.412121), new google.maps.LatLng(37.765467, -122.412939), new google.maps.LatLng(37.765444, -122.414821), new google.maps.LatLng(37.765444, -122.414964), new google.maps.LatLng(37.765318, -122.415424), new google.maps.LatLng(37.763961, -122.415296), new google.maps.LatLng(37.763115, -122.415196), new google.maps.LatLng(37.762967, -122.415183), new google.maps.LatLng(37.762278, -122.415127), new google.maps.LatLng(37.761675, -122.415055), new google.maps.LatLng(37.760932, -122.414988), new google.maps.LatLng(37.759337, -122.414862), new google.maps.LatLng(37.773187, -122.421922), new google.maps.LatLng(37.773043, -122.422118), new google.maps.LatLng(37.773007, -122.422165), new google.maps.LatLng(37.772979, -122.422219), new google.maps.LatLng(37.772865, -122.422394), new google.maps.LatLng(37.772779, -122.422503), new google.maps.LatLng(37.772676, -122.422701), new google.maps.LatLng(37.772606, -122.422806), new google.maps.LatLng(37.772566, -122.422840), new google.maps.LatLng(37.772508, -122.422852), new google.maps.LatLng(37.772387, -122.423011), new google.maps.LatLng(37.772099, -122.423328), new google.maps.LatLng(37.771704, -122.423783), new google.maps.LatLng(37.771481, -122.424081), new google.maps.LatLng(37.771400, -122.424179), new google.maps.LatLng(37.771352, -122.424220), new google.maps.LatLng(37.771248, -122.424327), new google.maps.LatLng(37.770904, -122.424781), new google.maps.LatLng(37.770520, -122.425283), new google.maps.LatLng(37.770337, -122.425553), new google.maps.LatLng(37.770128, -122.425832), new google.maps.LatLng(37.769756, -122.426331), new google.maps.LatLng(37.769300, -122.426902), new google.maps.LatLng(37.769132, -122.427065), new google.maps.LatLng(37.769092, -122.427103), new google.maps.LatLng(37.768979, -122.427172), new google.maps.LatLng(37.768595, -122.427634), new google.maps.LatLng(37.768372, -122.427913), new google.maps.LatLng(37.768337, -122.427961), new google.maps.LatLng(37.768244, -122.428138), new google.maps.LatLng(37.767942, -122.428581), new google.maps.LatLng(37.767482, -122.429094), new google.maps.LatLng(37.767031, -122.429606), new google.maps.LatLng(37.766732, -122.429986), new google.maps.LatLng(37.766680, -122.430058), new google.maps.LatLng(37.766633, -122.430109), new google.maps.LatLng(37.766580, -122.430211), new google.maps.LatLng(37.766367, -122.430594), new google.maps.LatLng(37.765910, -122.431137), new google.maps.LatLng(37.765353, -122.431806), new google.maps.LatLng(37.764962, -122.432298), new google.maps.LatLng(37.764868, -122.432486), new google.maps.LatLng(37.764518, -122.432913), new google.maps.LatLng(37.763435, -122.434173), new google.maps.LatLng(37.762847, -122.434953), new google.maps.LatLng(37.762291, -122.435935), new google.maps.LatLng(37.762224, -122.436074), new google.maps.LatLng(37.761957, -122.436892), new google.maps.LatLng(37.761652, -122.438886), new google.maps.LatLng(37.761284, -122.439955), new google.maps.LatLng(37.761210, -122.440068), new google.maps.LatLng(37.761064, -122.440720), new google.maps.LatLng(37.761040, -122.441411), new google.maps.LatLng(37.761048, -122.442324), new google.maps.LatLng(37.760851, -122.443118), new google.maps.LatLng(37.759977, -122.444591), new google.maps.LatLng(37.759913, -122.444698), new google.maps.LatLng(37.759623, -122.445065), new google.maps.LatLng(37.758902, -122.445158), new google.maps.LatLng(37.758428, -122.444570), new google.maps.LatLng(37.757687, -122.443340), new google.maps.LatLng(37.757583, -122.443240), new google.maps.LatLng(37.757019, -122.442787), new google.maps.LatLng(37.756603, -122.442322), new google.maps.LatLng(37.756380, -122.441602), new google.maps.LatLng(37.755790, -122.441382), new google.maps.LatLng(37.754493, -122.442133), new google.maps.LatLng(37.754361, -122.442206), new google.maps.LatLng(37.753719, -122.442650), new google.maps.LatLng(37.753096, -122.442915), new google.maps.LatLng(37.751617, -122.443211), new google.maps.LatLng(37.751496, -122.443246), new google.maps.LatLng(37.750733, -122.443428), new google.maps.LatLng(37.750126, -122.443536), new google.maps.LatLng(37.750103, -122.443784), new google.maps.LatLng(37.750390, -122.444010), new google.maps.LatLng(37.750448, -122.444013), new google.maps.LatLng(37.750536, -122.444040), new google.maps.LatLng(37.750493, -122.444141), new google.maps.LatLng(37.790859, -122.402808), new google.maps.LatLng(37.790864, -122.402768), new google.maps.LatLng(37.790995, -122.402539), new google.maps.LatLng(37.791148, -122.402172), new google.maps.LatLng(37.791385, -122.401312), new google.maps.LatLng(37.791405, -122.400776), new google.maps.LatLng(37.791288, -122.400528), new google.maps.LatLng(37.791113, -122.400441), new google.maps.LatLng(37.791027, -122.400395), new google.maps.LatLng(37.791094, -122.400311), new google.maps.LatLng(37.791211, -122.400183), new google.maps.LatLng(37.791060, -122.399334), new google.maps.LatLng(37.790538, -122.398718), new google.maps.LatLng(37.790095, -122.398086), new google.maps.LatLng(37.789644, -122.397360), new google.maps.LatLng(37.789254, -122.396844), new google.maps.LatLng(37.788855, -122.396397), new google.maps.LatLng(37.788483, -122.395963), new google.maps.LatLng(37.788015, -122.395365), new google.maps.LatLng(37.787558, -122.394735), new google.maps.LatLng(37.787472, -122.394323), new google.maps.LatLng(37.787630, -122.394025), new google.maps.LatLng(37.787767, -122.393987), new google.maps.LatLng(37.787486, -122.394452), new google.maps.LatLng(37.786977, -122.395043), new google.maps.LatLng(37.786583, -122.395552), new google.maps.LatLng(37.786540, -122.395610), new google.maps.LatLng(37.786516, -122.395659), new google.maps.LatLng(37.786378, -122.395707), new google.maps.LatLng(37.786044, -122.395362), new google.maps.LatLng(37.785598, -122.394715), new google.maps.LatLng(37.785321, -122.394361), new google.maps.LatLng(37.785207, -122.394236), new google.maps.LatLng(37.785751, -122.394062), new google.maps.LatLng(37.785996, -122.393881), new google.maps.LatLng(37.786092, -122.393830), new google.maps.LatLng(37.785998, -122.393899), new google.maps.LatLng(37.785114, -122.394365), new google.maps.LatLng(37.785022, -122.394441), new google.maps.LatLng(37.784823, -122.394635), new google.maps.LatLng(37.784719, -122.394629), new google.maps.LatLng(37.785069, -122.394176), new google.maps.LatLng(37.785500, -122.393650), new google.maps.LatLng(37.785770, -122.393291), new google.maps.LatLng(37.785839, -122.393159), new google.maps.LatLng(37.782651, -122.400628), new google.maps.LatLng(37.782616, -122.400599), new google.maps.LatLng(37.782702, -122.400470), new google.maps.LatLng(37.782915, -122.400192), new google.maps.LatLng(37.783137, -122.399887), new google.maps.LatLng(37.783414, -122.399519), new google.maps.LatLng(37.783629, -122.399237), new google.maps.LatLng(37.783688, -122.399157), new google.maps.LatLng(37.783716, -122.399106), new google.maps.LatLng(37.783798, -122.399072), new google.maps.LatLng(37.783997, -122.399186), new google.maps.LatLng(37.784271, -122.399538), new google.maps.LatLng(37.784577, -122.399948), new google.maps.LatLng(37.784828, -122.400260), new google.maps.LatLng(37.784999, -122.400477), new google.maps.LatLng(37.785113, -122.400651), new google.maps.LatLng(37.785155, -122.400703), new google.maps.LatLng(37.785192, -122.400749), new google.maps.LatLng(37.785278, -122.400839), new google.maps.LatLng(37.785387, -122.400857), new google.maps.LatLng(37.785478, -122.400890), new google.maps.LatLng(37.785526, -122.401022), new google.maps.LatLng(37.785598, -122.401148), new google.maps.LatLng(37.785631, -122.401202), new google.maps.LatLng(37.785660, -122.401267), new google.maps.LatLng(37.803986, -122.426035), new google.maps.LatLng(37.804102, -122.425089), new google.maps.LatLng(37.804211, -122.424156), new google.maps.LatLng(37.803861, -122.423385), new google.maps.LatLng(37.803151, -122.423214), new google.maps.LatLng(37.802439, -122.423077), new google.maps.LatLng(37.801740, -122.422905), new google.maps.LatLng(37.801069, -122.422785), new google.maps.LatLng(37.800345, -122.422649), new google.maps.LatLng(37.799633, -122.422603), new google.maps.LatLng(37.799750, -122.421700), new google.maps.LatLng(37.799885, -122.420854), new google.maps.LatLng(37.799209, -122.420607), new google.maps.LatLng(37.795656, -122.400395), new google.maps.LatLng(37.795203, -122.400304), new google.maps.LatLng(37.778738, -122.415584), new google.maps.LatLng(37.778812, -122.415189), new google.maps.LatLng(37.778824, -122.415092), new google.maps.LatLng(37.778833, -122.414932), new google.maps.LatLng(37.778834, -122.414898), new google.maps.LatLng(37.778740, -122.414757), new google.maps.LatLng(37.778501, -122.414433), new google.maps.LatLng(37.778182, -122.414026), new google.maps.LatLng(37.777851, -122.413623), new google.maps.LatLng(37.777486, -122.413166), new google.maps.LatLng(37.777109, -122.412674), new google.maps.LatLng(37.776743, -122.412186), new google.maps.LatLng(37.776440, -122.411800), new google.maps.LatLng(37.776295, -122.411614), new google.maps.LatLng(37.776158, -122.411440), new google.maps.LatLng(37.775806, -122.410997), new google.maps.LatLng(37.775422, -122.410484), new google.maps.LatLng(37.775126, -122.410087), new google.maps.LatLng(37.775012, -122.409854), new google.maps.LatLng(37.775164, -122.409573), new google.maps.LatLng(37.775498, -122.409180), new google.maps.LatLng(37.775868, -122.408730), new google.maps.LatLng(37.776256, -122.408240), new google.maps.LatLng(37.776519, -122.407928), new google.maps.LatLng(37.776539, -122.407904), new google.maps.LatLng(37.776595, -122.407854), new google.maps.LatLng(37.776853, -122.407547), new google.maps.LatLng(37.777234, -122.407087), new google.maps.LatLng(37.777644, -122.406558), new google.maps.LatLng(37.778066, -122.406017), new google.maps.LatLng(37.778468, -122.405499), new google.maps.LatLng(37.778866, -122.404995), new google.maps.LatLng(37.779295, -122.404455), new google.maps.LatLng(37.779695, -122.403950), new google.maps.LatLng(37.779982, -122.403584), new google.maps.LatLng(37.780295, -122.403223), new google.maps.LatLng(37.780664, -122.402766), new google.maps.LatLng(37.781043, -122.402288), new google.maps.LatLng(37.781399, -122.401823), new google.maps.LatLng(37.781727, -122.401407), new google.maps.LatLng(37.781853, -122.401247), new google.maps.LatLng(37.781894, -122.401195), new google.maps.LatLng(37.782076, -122.400977), new google.maps.LatLng(37.782338, -122.400603), new google.maps.LatLng(37.782666, -122.400133), new google.maps.LatLng(37.783048, -122.399634), new google.maps.LatLng(37.783450, -122.399198), new google.maps.LatLng(37.783791, -122.398998), new google.maps.LatLng(37.784177, -122.398959), new google.maps.LatLng(37.784388, -122.398971), new google.maps.LatLng(37.784404, -122.399128), new google.maps.LatLng(37.784586, -122.399524), new google.maps.LatLng(37.784835, -122.399927), new google.maps.LatLng(37.785116, -122.400307), new google.maps.LatLng(37.785282, -122.400539), new google.maps.LatLng(37.785346, -122.400692), new google.maps.LatLng(37.765769, -122.407201), new google.maps.LatLng(37.765790, -122.407414), new google.maps.LatLng(37.765802, -122.407755), new google.maps.LatLng(37.765791, -122.408219), new google.maps.LatLng(37.765763, -122.408759), new google.maps.LatLng(37.765726, -122.409348), new google.maps.LatLng(37.765716, -122.409882), new google.maps.LatLng(37.765708, -122.410202), new google.maps.LatLng(37.765705, -122.410253), new google.maps.LatLng(37.765707, -122.410369), new google.maps.LatLng(37.765692, -122.410720), new google.maps.LatLng(37.765699, -122.411215), new google.maps.LatLng(37.765687, -122.411789), new google.maps.LatLng(37.765666, -122.412373), new google.maps.LatLng(37.765598, -122.412883), new google.maps.LatLng(37.765543, -122.413039), new google.maps.LatLng(37.765532, -122.413125), new google.maps.LatLng(37.765500, -122.413553), new google.maps.LatLng(37.765448, -122.414053), new google.maps.LatLng(37.765388, -122.414645), new google.maps.LatLng(37.765323, -122.415250), new google.maps.LatLng(37.765303, -122.415847), new google.maps.LatLng(37.765251, -122.416439), new google.maps.LatLng(37.765204, -122.417020), new google.maps.LatLng(37.765172, -122.417556), new google.maps.LatLng(37.765164, -122.418075), new google.maps.LatLng(37.765153, -122.418618), new google.maps.LatLng(37.765136, -122.419112), new google.maps.LatLng(37.765129, -122.419378), new google.maps.LatLng(37.765119, -122.419481), new google.maps.LatLng(37.765100, -122.419852), new google.maps.LatLng(37.765083, -122.420349), new google.maps.LatLng(37.765045, -122.420930), new google.maps.LatLng(37.764992, -122.421481), new google.maps.LatLng(37.764980, -122.421695), new google.maps.LatLng(37.764993, -122.421843), new google.maps.LatLng(37.764986, -122.422255), new google.maps.LatLng(37.764975, -122.422823), new google.maps.LatLng(37.764939, -122.423411), new google.maps.LatLng(37.764902, -122.424014), new google.maps.LatLng(37.764853, -122.424576), new google.maps.LatLng(37.764826, -122.424922), new google.maps.LatLng(37.764796, -122.425375), new google.maps.LatLng(37.764782, -122.425869), new google.maps.LatLng(37.764768, -122.426089), new google.maps.LatLng(37.764766, -122.426117), new google.maps.LatLng(37.764723, -122.426276), new google.maps.LatLng(37.764681, -122.426649), new google.maps.LatLng(37.782012, -122.404200), new google.maps.LatLng(37.781574, -122.404911), new google.maps.LatLng(37.781055, -122.405597), new google.maps.LatLng(37.780479, -122.406341), new google.maps.LatLng(37.779996, -122.406939), new google.maps.LatLng(37.779459, -122.407613), new google.maps.LatLng(37.778953, -122.408228), new google.maps.LatLng(37.778409, -122.408839), new google.maps.LatLng(37.777842, -122.409501), new google.maps.LatLng(37.777334, -122.410181), new google.maps.LatLng(37.776809, -122.410836), new google.maps.LatLng(37.776240, -122.411514), new google.maps.LatLng(37.775725, -122.412145), new google.maps.LatLng(37.775190, -122.412805), new google.maps.LatLng(37.774672, -122.413464), new google.maps.LatLng(37.774084, -122.414186), new google.maps.LatLng(37.773533, -122.413636), new google.maps.LatLng(37.773021, -122.413009), new google.maps.LatLng(37.772501, -122.412371), new google.maps.LatLng(37.771964, -122.411681), new google.maps.LatLng(37.771479, -122.411078), new google.maps.LatLng(37.770992, -122.410477), new google.maps.LatLng(37.770467, -122.409801), new google.maps.LatLng(37.770090, -122.408904), new google.maps.LatLng(37.769657, -122.408103), new google.maps.LatLng(37.769132, -122.407276), new google.maps.LatLng(37.768564, -122.406469), new google.maps.LatLng(37.767980, -122.405745), new google.maps.LatLng(37.767380, -122.405299), new google.maps.LatLng(37.766604, -122.405297), new google.maps.LatLng(37.765838, -122.405200), new google.maps.LatLng(37.765139, -122.405139), new google.maps.LatLng(37.764457, -122.405094), new google.maps.LatLng(37.763716, -122.405142), new google.maps.LatLng(37.762932, -122.405398), new google.maps.LatLng(37.762126, -122.405813), new google.maps.LatLng(37.761344, -122.406215), new google.maps.LatLng(37.760556, -122.406495), new google.maps.LatLng(37.759732, -122.406484), new google.maps.LatLng(37.758910, -122.406228), new google.maps.LatLng(37.758182, -122.405695), new google.maps.LatLng(37.757676, -122.405118), new google.maps.LatLng(37.757039, -122.404346), new google.maps.LatLng(37.756335, -122.403719), new google.maps.LatLng(37.755503, -122.403406), new google.maps.LatLng(37.754665, -122.403242), new google.maps.LatLng(37.753837, -122.403172), new google.maps.LatLng(37.752986, -122.403112), new google.maps.LatLng(37.751266, -122.403355)];
+    }
+  },
+  mounted: function mounted() {
+    this.initMap();
+    this.getPoints();
+    console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/homeComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/homeComponent.vue?vue&type=script&lang=js& ***!
@@ -5824,6 +5896,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/teste.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/teste.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {},
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/volumes.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/volumes.vue?vue&type=script&lang=js& ***!
@@ -6249,6 +6345,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Dropdown Button */\n.dropbtn {\r\n  background-color: #4caf50;\r\n  color: white;\r\n  padding: 16px;\r\n  font-size: 16px;\r\n  border: none;\n}\r\n\r\n/* The container <div> - needed to position the dropdown content */\n.dropdown {\r\n  position: relative;\r\n  display: inline-block;\n}\r\n\r\n/* Dropdown Content (Hidden by Default) */\n.dropdown-content {\r\n  display: none;\r\n  position: absolute;\r\n  background-color: #f1f1f1;\r\n  min-width: 160px;\r\n  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\r\n  z-index: 1;\n}\r\n\r\n/* Links inside the dropdown */\n.dropdown-content a {\r\n  color: black;\r\n  padding: 12px 16px;\r\n  text-decoration: none;\r\n  display: block;\n}\nChange color of dropdown links on hover */ .dropdown-content a:hover {\r\n  background-color: #ddd;\n}\r\n\r\n/* Show the dropdown menu on hover */\n.dropdown:hover .dropdown-content {\r\n  display: block;\n}\r\n\r\n/* Change the background color of the dropdown button when the dropdown content is shown */\n.dropdown:hover .dropbtn {\r\n  background-color: #3e8e41;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* Always set the map height explicitly to define the size of the div\r\n* element that contains the map. */\n#map {\r\nheight: 100%;\n}\r\n/* Optional: Makes the sample page fill the window. */\nhtml, body {\r\nheight: 100%;\r\nmargin: 0;\r\npadding: 0;\n}\n#floating-panel {\r\nposition: absolute;\r\ntop: 10px;\r\nleft: 25%;\r\nz-index: 5;\r\nbackground-color: #fff;\r\npadding: 5px;\r\nborder: 1px solid #999;\r\ntext-align: center;\r\nfont-family: 'Roboto','sans-serif';\r\nline-height: 30px;\r\npadding-left: 10px;\n}\n#floating-panel {\r\nbackground-color: #fff;\r\nborder: 1px solid #999;\r\nleft: 25%;\r\npadding: 5px;\r\nposition: absolute;\r\ntop: 10px;\r\nz-index: 5;\n}\r\n", ""]);
 
 // exports
 
@@ -43693,6 +43808,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./gps.vue?vue&type=style&index=0&media=screen&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/instancias.vue?vue&type=style&index=0&media=screen&lang=css& ***!
@@ -45637,6 +45782,86 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=template&id=7e81a8a2&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/gps.vue?vue&type=template&id=7e81a8a2& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c("div", { staticClass: "container" }, [
+      _c("h1", [_vm._v("hello")]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "floating-panel" } }, [
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                return _vm.toggleHeatmap()
+              }
+            }
+          },
+          [_vm._v("Toggle Heatmap")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                return _vm.changeGradient()
+              }
+            }
+          },
+          [_vm._v("Change gradient")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                return _vm.changeRadius()
+              }
+            }
+          },
+          [_vm._v("Change radius")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                return _vm.changeOpacity()
+              }
+            }
+          },
+          [_vm._v("Change opacity")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "map" } })
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50099,6 +50324,37 @@ var staticRenderFns = [
         _c("th", [_vm._v(" Options ")])
       ])
     ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/teste.vue?vue&type=template&id=14d36558&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/teste.vue?vue&type=template&id=14d36558&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Isto é um teste")])])
   }
 ]
 render._withStripped = true
@@ -67145,23 +67401,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-toasted */ "./node_modules/vue-toasted/dist/vue-toasted.min.js");
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_toasted__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _vuex_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vuex.js */ "./resources/js/vuex.js");
-/* harmony import */ var _components_loginComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/loginComponent.vue */ "./resources/js/components/loginComponent.vue");
-/* harmony import */ var _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/homeComponent.vue */ "./resources/js/components/homeComponent.vue");
-/* harmony import */ var _components_instancias_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/instancias.vue */ "./resources/js/components/instancias.vue");
-/* harmony import */ var _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/dashboard.vue */ "./resources/js/components/dashboard.vue");
-/* harmony import */ var _components_logout_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/logout.vue */ "./resources/js/components/logout.vue");
-/* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
-/* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
-/* harmony import */ var _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/keyPairs.vue */ "./resources/js/components/keyPairs.vue");
-/* harmony import */ var _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/changeProj.vue */ "./resources/js/components/changeProj.vue");
-/* harmony import */ var _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/serverGroups.vue */ "./resources/js/components/serverGroups.vue");
-/* harmony import */ var _components_projects_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/projects.vue */ "./resources/js/components/projects.vue");
-/* harmony import */ var _components_networks_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/networks.vue */ "./resources/js/components/networks.vue");
-/* harmony import */ var _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/floatingIPs.vue */ "./resources/js/components/floatingIPs.vue");
-/* harmony import */ var _components_routers_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/routers.vue */ "./resources/js/components/routers.vue");
-/* harmony import */ var _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/securityGroups.vue */ "./resources/js/components/securityGroups.vue");
-/* harmony import */ var _components_flavors_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/flavors.vue */ "./resources/js/components/flavors.vue");
-/* harmony import */ var _components_containers_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/containers.vue */ "./resources/js/components/containers.vue");
+/* harmony import */ var _components_gps_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/gps.vue */ "./resources/js/components/gps.vue");
+/* harmony import */ var _components_loginComponent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/loginComponent.vue */ "./resources/js/components/loginComponent.vue");
+/* harmony import */ var _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/homeComponent.vue */ "./resources/js/components/homeComponent.vue");
+/* harmony import */ var _components_instancias_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/instancias.vue */ "./resources/js/components/instancias.vue");
+/* harmony import */ var _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/dashboard.vue */ "./resources/js/components/dashboard.vue");
+/* harmony import */ var _components_logout_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/logout.vue */ "./resources/js/components/logout.vue");
+/* harmony import */ var _components_images_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/images.vue */ "./resources/js/components/images.vue");
+/* harmony import */ var _components_volumes_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/volumes.vue */ "./resources/js/components/volumes.vue");
+/* harmony import */ var _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/keyPairs.vue */ "./resources/js/components/keyPairs.vue");
+/* harmony import */ var _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/changeProj.vue */ "./resources/js/components/changeProj.vue");
+/* harmony import */ var _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/serverGroups.vue */ "./resources/js/components/serverGroups.vue");
+/* harmony import */ var _components_projects_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/projects.vue */ "./resources/js/components/projects.vue");
+/* harmony import */ var _components_networks_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/networks.vue */ "./resources/js/components/networks.vue");
+/* harmony import */ var _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/floatingIPs.vue */ "./resources/js/components/floatingIPs.vue");
+/* harmony import */ var _components_routers_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/routers.vue */ "./resources/js/components/routers.vue");
+/* harmony import */ var _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/securityGroups.vue */ "./resources/js/components/securityGroups.vue");
+/* harmony import */ var _components_flavors_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/flavors.vue */ "./resources/js/components/flavors.vue");
+/* harmony import */ var _components_containers_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/containers.vue */ "./resources/js/components/containers.vue");
+/* harmony import */ var _components_teste_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/teste.vue */ "./resources/js/components/teste.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
 
 
@@ -67199,26 +67457,30 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_3___default.a, {
 
 
 
+
  //parte 2 projeto
 
-var home = Vue.component('home', _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-var login = Vue.component('login', _components_loginComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-var logout = Vue.component('logout', _components_logout_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-var instancias = Vue.component('instancias', _components_instancias_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
-var dashboard = Vue.component('dashboard', _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
-var volumes = Vue.component('volumes', _components_volumes_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
-var keyPairs = Vue.component('keyPairs', _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
-var changeProj = Vue.component('changeProj', _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
-var serverGroup = Vue.component('serverGroup', _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
-var projects = Vue.component('projects', _components_projects_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
-var networks = Vue.component('networks', _components_networks_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
-var floatingIPs = Vue.component('floatingIPs', _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
-var routers = Vue.component('routers', _components_routers_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
-var securityGroups = Vue.component('securityGroups', _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
-var flavors = Vue.component('flavors', _components_flavors_vue__WEBPACK_IMPORTED_MODULE_20__["default"]);
-var containers = Vue.component('containers', _components_containers_vue__WEBPACK_IMPORTED_MODULE_21__["default"]); //parte 2 projeto
 
+var gps = Vue.component('gps', _components_gps_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var home = Vue.component('home', _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+var login = Vue.component('login', _components_loginComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+var logout = Vue.component('logout', _components_logout_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+var instancias = Vue.component('instancias', _components_instancias_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+var dashboard = Vue.component('dashboard', _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+var images = Vue.component('images', _components_images_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+var volumes = Vue.component('volumes', _components_volumes_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
+var keyPairs = Vue.component('keyPairs', _components_keyPairs_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
+var changeProj = Vue.component('changeProj', _components_changeProj_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+var serverGroup = Vue.component('serverGroup', _components_serverGroups_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
+var projects = Vue.component('projects', _components_projects_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+var networks = Vue.component('networks', _components_networks_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+var floatingIPs = Vue.component('floatingIPs', _components_floatingIPs_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
+var routers = Vue.component('routers', _components_routers_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
+var securityGroups = Vue.component('securityGroups', _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_20__["default"]);
+var flavors = Vue.component('flavors', _components_flavors_vue__WEBPACK_IMPORTED_MODULE_21__["default"]);
+var containers = Vue.component('containers', _components_containers_vue__WEBPACK_IMPORTED_MODULE_22__["default"]); //parte 2 projeto
+
+var teste = Vue.component('teste', _components_teste_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
 var routes = [{
   path: '/',
   component: login
@@ -67287,8 +67549,16 @@ var routes = [{
   path: '/containers',
   component: containers,
   name: "containers"
-} //parte 2 projeto
-];
+}, {
+  path: '/gps',
+  component: gps,
+  name: "gps"
+}, //parte 2 projeto
+{
+  path: '/teste',
+  component: teste,
+  name: "teste"
+}];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes
 });
@@ -67701,6 +67971,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_floatingIPs_vue_vue_type_template_id_618d6e6b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_floatingIPs_vue_vue_type_template_id_618d6e6b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/gps.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/components/gps.vue ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _gps_vue_vue_type_template_id_7e81a8a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gps.vue?vue&type=template&id=7e81a8a2& */ "./resources/js/components/gps.vue?vue&type=template&id=7e81a8a2&");
+/* harmony import */ var _gps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gps.vue?vue&type=script&lang=js& */ "./resources/js/components/gps.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _gps_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gps.vue?vue&type=style&index=0&media=screen&lang=css& */ "./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _gps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _gps_vue_vue_type_template_id_7e81a8a2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _gps_vue_vue_type_template_id_7e81a8a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/gps.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/gps.vue?vue&type=script&lang=js&":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/gps.vue?vue&type=script&lang=js& ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./gps.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css& ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./gps.vue?vue&type=style&index=0&media=screen&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=style&index=0&media=screen&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_style_index_0_media_screen_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/gps.vue?vue&type=template&id=7e81a8a2&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/gps.vue?vue&type=template&id=7e81a8a2& ***!
+  \************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_template_id_7e81a8a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./gps.vue?vue&type=template&id=7e81a8a2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/gps.vue?vue&type=template&id=7e81a8a2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_template_id_7e81a8a2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_gps_vue_vue_type_template_id_7e81a8a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -68514,6 +68871,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_serverGroups_vue_vue_type_template_id_05841342_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_serverGroups_vue_vue_type_template_id_05841342_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/teste.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/teste.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _teste_vue_vue_type_template_id_14d36558_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./teste.vue?vue&type=template&id=14d36558&scoped=true& */ "./resources/js/components/teste.vue?vue&type=template&id=14d36558&scoped=true&");
+/* harmony import */ var _teste_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./teste.vue?vue&type=script&lang=js& */ "./resources/js/components/teste.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _teste_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _teste_vue_vue_type_template_id_14d36558_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _teste_vue_vue_type_template_id_14d36558_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "14d36558",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/teste.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/teste.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/teste.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_teste_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./teste.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/teste.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_teste_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/teste.vue?vue&type=template&id=14d36558&scoped=true&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/teste.vue?vue&type=template&id=14d36558&scoped=true& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_teste_vue_vue_type_template_id_14d36558_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./teste.vue?vue&type=template&id=14d36558&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/teste.vue?vue&type=template&id=14d36558&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_teste_vue_vue_type_template_id_14d36558_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_teste_vue_vue_type_template_id_14d36558_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

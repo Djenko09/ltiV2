@@ -250,6 +250,10 @@
 
 </script>
 
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1_kwpSRCY6EIkT2aYBdPENRN3Qvco16o&libraries=visualization&callback=initMap">
+</script>
+
 
 </body>
 <script src="js/app.js"> </script>

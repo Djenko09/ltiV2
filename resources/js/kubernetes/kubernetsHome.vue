@@ -23,6 +23,7 @@
       <h3 style="text-align:center" >Luis Filipe Farinha Mateus</h3><br>
       <h3 style="text-align:center" >Paulo Miguel Veríssimo Custodio</h3><br>
     </div>
+    <button type="button" v-on:click="getApi()" name="button">VAI</button>
 
   </div>
 </template>
@@ -30,7 +31,7 @@
 export default {
   data:function(){
     return {
-      url: process.env.MIX_URL_KUBERNETES,
+      url: process.env.MIX_URL,
     }
   },
   methods:{
@@ -65,11 +66,13 @@ export default {
       })
     },
     getApi(){
-      axios.get("http://192.168.28.140:8080/api/v1/pods")
+      axios.get(this.url + "/api/v1/pods")
     }
   },
   mounted(){
+    console.log(process.env.MIX_URL);
     // /this.createPod();
+   this.getApi();
     //this.$store.commit("setApp", "kubernetes");
     this.$store.commit("setUser", "kubernetes");
     //console.log(this.$store.state.app);

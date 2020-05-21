@@ -55,6 +55,9 @@ import kubernetsHomeComponent from "./kubernetes/kubernetsHome.vue";
 import podsComponent from "./kubernetes/pods.vue";
 import deploymentsComponent from "./kubernetes/deployments.vue";
 import servicesComponent from "./kubernetes/services.vue";
+import namespacesHomeComponent from "./kubernetes/namespaces.vue";
+
+
 
 const gps = Vue.component('gps', gpsComponent);
 const home = Vue.component('home', homeComponent);
@@ -84,6 +87,7 @@ const pods = Vue.component('pods', podsComponent);
 const deployments = Vue.component('deployments', deploymentsComponent); 
 const services = Vue.component('services', servicesComponent); 
 
+const namespaces = Vue.component('namespaces', namespacesHomeComponent);
 
 //kubernetes
 const routes = [
@@ -104,20 +108,20 @@ const routes = [
     { path: '/securityGroups', component: securityGroups, name:"securityGroups"},
     { path: '/flavors', component: flavors, name:"flavors"},
     { path: '/containers', component: containers, name:"containers"}, //parte 2 projeto
-
      //Trabalho laboratorial 2
+
     { path: '/chooseApp', component: chooseApp, name:"chooseApp"},
     { path: '/kubernetsHome', component: kubernetsHome, name:"kubernetsHome"},
     { path: '/pods', component: pods, name:"pods"},
     { path: '/deployments', component: deployments, name:"deployments"},
     { path: '/services', component: services, name:"services"},
+    { path: '/namespaces', component:namespaces, name:"namespaces"}
 
 
 ];
 
 const router = new VueRouter({
     routes,
-
 
 });
 

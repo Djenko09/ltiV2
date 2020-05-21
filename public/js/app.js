@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['projectName'],
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       project_name: null,
       user: {
         token: null
@@ -2032,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       showMessage: false,
       message: ""
     };
@@ -2169,7 +2169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       containers: [],
       container: {
         name: "",
@@ -2300,7 +2300,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       projects: [],
       instances: [],
       images: [],
@@ -2540,7 +2540,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       flavors: [],
       flavor: {
         name: "",
@@ -2787,7 +2787,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       floatingIPs: [],
       instances: [],
       networks: [],
@@ -3052,7 +3052,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {},
@@ -3249,7 +3249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       images: [],
       disk_formats: ["ami", "ari", "aki", "vhd", "vhdx", "vmdk", "raw", "qcow2", "vdi", "ploop", "iso"],
       image: {
@@ -3762,7 +3762,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       instances: [],
       subnets: [],
       keypairs: [],
@@ -4339,7 +4339,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       keypairs: [],
       newKeypair: {
         name: "",
@@ -4487,7 +4487,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       showMessage: false,
       message: ""
     };
@@ -4571,7 +4571,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.232.71:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {
@@ -4763,7 +4763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       networks: [],
       network: {
         name: ""
@@ -4967,7 +4967,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       projects: [],
       active_prj: this.$store.state.project,
       user: {
@@ -5199,7 +5199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       routers: [],
       router: {
         id: "",
@@ -5567,7 +5567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       securityGroups: [],
       securityGroup: {
         name: null,
@@ -5894,7 +5894,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       servers: [],
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       serversGroup: {
         name: null,
         policy: null
@@ -6179,7 +6179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       volumes: [],
       volume: {
         id: "",
@@ -6402,12 +6402,89 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       deployments: [],
-      deployment: {}
+      deployment: {
+        image: "",
+        name: "",
+        replicas: ""
+      }
     };
   },
   methods: {
@@ -6436,6 +6513,66 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.deployments[i].metadata.managedFields[0].time = diferenca.toFixed(1);
         }
+      });
+    },
+    createDeployment: function createDeployment() {
+      var _this2 = this;
+
+      var replica = this.deployment.replicas >>> 0;
+      axios.post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
+        kind: "Deployment",
+        apiVersion: "apps/v1",
+        metadata: {
+          name: this.deployment.name,
+          labels: {
+            app: "nginx"
+          }
+        },
+        spec: {
+          replicas: replica,
+          selector: {
+            matchLabels: {
+              app: "nginx"
+            }
+          },
+          template: {
+            metadata: {
+              labels: {
+                app: "nginx"
+              }
+            },
+            spec: {
+              containers: [{
+                name: "ngnix",
+                image: this.deployment.image,
+                ports: [{
+                  containerPort: 80
+                }],
+                resources: {
+                  limits: {
+                    memory: "128Mi",
+                    cpu: "500m"
+                  }
+                }
+              }]
+            }
+          }
+        }
+      }).then(function (response) {
+        console.log(response.data);
+
+        _this2.$toasted.show("Deployment Created");
+
+        _this2.getDeployments();
+      });
+    },
+    deleteDeployment: function deleteDeployment(deployment) {
+      var _this3 = this;
+
+      axios["delete"](this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(function (response) {
+        console.log(response.data);
+
+        _this3.$toasted.success('Deployment Deleted!');
       });
     }
   },
@@ -6488,7 +6625,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {
@@ -6527,7 +6664,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log("http://192.168.232.71:8080"); // /this.createPod();
+    console.log("http://192.168.28.140:1234"); // /this.createPod();
 
     this.getApi(); //this.$store.commit("setApp", "kubernetes");
 
@@ -6645,7 +6782,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       namespaces: [],
       namespacesItems: [],
       namespace: {
@@ -6772,7 +6909,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return _defineProperty({
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       nodes: []
     }, "nodes", {});
   },
@@ -6906,7 +7043,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       pods: [],
       pod: {
         name: null,
@@ -7049,7 +7186,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       services: [],
       service: {}
     };
@@ -51766,6 +51903,124 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.deployment.name,
+                    expression: "deployment.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "name",
+                  placeholder: "Insert name "
+                },
+                domProps: { value: _vm.deployment.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.deployment, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "image" } }, [_vm._v("Image")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.deployment.image,
+                    expression: "deployment.image"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "image",
+                  placeholder: "Insert image "
+                },
+                domProps: { value: _vm.deployment.image },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.deployment, "image", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "replicas" } }, [_vm._v("replicas")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.deployment.replicas,
+                    expression: "deployment.replicas"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "number",
+                  id: "replicas",
+                  placeholder: "Insert name "
+                },
+                domProps: { value: _vm.deployment.replicas },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.deployment, "replicas", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function($event) {
+                      return _vm.createDeployment()
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
         _vm._v("List of Deployments")
@@ -51776,16 +52031,30 @@ var render = function() {
           "table",
           { staticClass: "table table-hover" },
           [
-            _vm._m(0),
+            _vm._m(2),
             _vm._v(" "),
             _vm._l(_vm.deployments, function(deployment) {
-              return _c("tbody", [
+              return _c("tbody", { key: deployment.metadata.name }, [
                 _c("tr", [
                   _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(deployment.metadata.labels.app))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v("PERCEBERRRRRRR")]),
+                  !deployment.status.readyReplicas
+                    ? _c("td", [
+                        _vm._v("0/" + _vm._s(deployment.status.replicas))
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  deployment.status.readyReplicas
+                    ? _c("td", [
+                        _vm._v(
+                          _vm._s(deployment.status.readyReplicas) +
+                            "/" +
+                            _vm._s(deployment.status.replicas)
+                        )
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
@@ -51795,6 +52064,38 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(deployment.metadata.managedFields[0].time))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", name: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteDeployment(
+                              deployment.metadata.name
+                            )
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", name: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.editDeployment(deployment.metadata.name)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    )
                   ])
                 ])
               ])
@@ -51811,6 +52112,42 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-dark",
+          attrs: {
+            type: "submit",
+            "data-toggle": "modal",
+            "data-target": "#myModalPod"
+          }
+        },
+        [_vm._v("Create Deployment")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Deployment")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
@@ -51821,7 +52158,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Images")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Age")])
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
     ])
   }
@@ -52257,7 +52596,7 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalContainers" } }, [
+    _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
           _vm._m(1),
@@ -52386,7 +52725,7 @@ var staticRenderFns = [
           attrs: {
             type: "submit",
             "data-toggle": "modal",
-            "data-target": "#myModalContainers"
+            "data-target": "#myModalPod"
           }
         },
         [_vm._v("Create Pod")]
@@ -71312,8 +71651,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

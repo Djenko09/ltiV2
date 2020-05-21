@@ -4440,88 +4440,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
-    createPod: function createPod() {
-      axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods", {
-        "kind": "Pod",
-        "apiVersion": "v1",
-        "metadata": {
-          "name": "nginx2",
-          "namespace": "default",
-          "labels": {
-            "name": "nginx2"
-          }
-        },
-        "spec": {
-          "containers": [{
-            "name": "nginx",
-            "image": "nginx",
-            "ports": [{
-              "containerPort": 80
-            }],
-            "resources": {
-              "limits": {
-                "memory": "128Mi",
-                "cpu": "500m"
-              }
-            }
-          }]
-        }
-      }).then(function (response) {
-        console.log(response.data);
-      });
-    },
-    getApi: function getApi() {
-      axios.get("http://192.168.28.140:8080/api/v1/pods");
-    }
-  },
-  mounted: function mounted() {
-    // /this.createPod();
-    //this.$store.commit("setApp", "kubernetes");
-    this.$store.commit("setUser", "kubernetes"); //console.log(this.$store.state.app);
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loginComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loginComponent.vue?vue&type=script&lang=js& ***!
@@ -6439,6 +6357,88 @@ __webpack_require__.r(__webpack_exports__);
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getVolumes();
     this.getImages();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    createPod: function createPod() {
+      axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods", {
+        "kind": "Pod",
+        "apiVersion": "v1",
+        "metadata": {
+          "name": "nginx2",
+          "namespace": "default",
+          "labels": {
+            "name": "nginx2"
+          }
+        },
+        "spec": {
+          "containers": [{
+            "name": "nginx",
+            "image": "nginx",
+            "ports": [{
+              "containerPort": 80
+            }],
+            "resources": {
+              "limits": {
+                "memory": "128Mi",
+                "cpu": "500m"
+              }
+            }
+          }]
+        }
+      }).then(function (response) {
+        console.log(response.data);
+      });
+    },
+    getApi: function getApi() {
+      axios.get("http://192.168.28.140:8080/api/v1/pods");
+    }
+  },
+  mounted: function mounted() {
+    // /this.createPod();
+    //this.$store.commit("setApp", "kubernetes");
+    this.$store.commit("setUser", "kubernetes"); //console.log(this.$store.state.app);
   }
 });
 
@@ -48221,96 +48221,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/kubernetsHome.vue?vue&type=template&id=66469dc2&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/kubernetsHome.vue?vue&type=template&id=66469dc2& ***!
-  \****************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "jumbotron" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", [
-      _c("img", {
-        staticClass: "center",
-        attrs: { src: "/images/kubernets.png", width: "100", height: "300/" }
-      })
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(1),
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(2)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h1", { staticStyle: { "text-align": "center" } }, [
-      _c("b", [_vm._v("\n      Welcome to Kubernets\n    ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "center" }, [
-      _c("h2", { staticStyle: { "text-align": "center" } }, [
-        _c("b", [_vm._v("Laboratório de Tecnologias de Informação")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "center" }, [
-      _c("h3", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Aplicação realizada por:")
-      ]),
-      _c("br"),
-      _vm._v(" "),
-      _c("h3", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("David Jesus Guilherme")
-      ]),
-      _c("br"),
-      _vm._v(" "),
-      _c("h3", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Luis Filipe Farinha Mateus")
-      ]),
-      _c("br"),
-      _vm._v(" "),
-      _c("h3", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Paulo Miguel Veríssimo Custodio")
-      ]),
-      _c("br")
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loginComponent.vue?vue&type=template&id=413f4ec2&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loginComponent.vue?vue&type=template&id=413f4ec2& ***!
@@ -51186,6 +51096,96 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Options")])
       ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/kubernetsHome.vue?vue&type=template&id=d3ff6562&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/kubernetsHome.vue?vue&type=template&id=d3ff6562& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "jumbotron" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", [
+      _c("img", {
+        staticClass: "center",
+        attrs: { src: "/images/kubernets.png", width: "100", height: "300/" }
+      })
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(1),
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(2)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", { staticStyle: { "text-align": "center" } }, [
+      _c("b", [_vm._v("\n      Welcome to Kubernets\n    ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "center" }, [
+      _c("h2", { staticStyle: { "text-align": "center" } }, [
+        _c("b", [_vm._v("Laboratório de Tecnologias de Informação")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "center" }, [
+      _c("h3", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Aplicação realizada por:")
+      ]),
+      _c("br"),
+      _vm._v(" "),
+      _c("h3", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("David Jesus Guilherme")
+      ]),
+      _c("br"),
+      _vm._v(" "),
+      _c("h3", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Luis Filipe Farinha Mateus")
+      ]),
+      _c("br"),
+      _vm._v(" "),
+      _c("h3", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Paulo Miguel Veríssimo Custodio")
+      ]),
+      _c("br")
     ])
   }
 ]
@@ -67746,7 +67746,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_flavors_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/flavors.vue */ "./resources/js/components/flavors.vue");
 /* harmony import */ var _components_containers_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/containers.vue */ "./resources/js/components/containers.vue");
 /* harmony import */ var _components_chooseApp_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/chooseApp.vue */ "./resources/js/components/chooseApp.vue");
-/* harmony import */ var _components_kubernetsHome_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/kubernetsHome.vue */ "./resources/js/components/kubernetsHome.vue");
+/* harmony import */ var _kubernetes_kubernetsHome_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./kubernetes/kubernetsHome.vue */ "./resources/js/kubernetes/kubernetsHome.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
 
 
@@ -67815,7 +67815,7 @@ var containers = Vue.component('containers', _components_containers_vue__WEBPACK
 //Trabalho laboratorial 2
 
 var chooseApp = Vue.component('chooseApp', _components_chooseApp_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
-var kubernetsHome = Vue.component('kubernetsHome', _components_kubernetsHome_vue__WEBPACK_IMPORTED_MODULE_24__["default"]); //kubernetes
+var kubernetsHome = Vue.component('kubernetsHome', _kubernetes_kubernetsHome_vue__WEBPACK_IMPORTED_MODULE_24__["default"]); //kubernetes
 
 var routes = [{
   path: '/',
@@ -68782,75 +68782,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/kubernetsHome.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/kubernetsHome.vue ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kubernetsHome.vue?vue&type=template&id=66469dc2& */ "./resources/js/components/kubernetsHome.vue?vue&type=template&id=66469dc2&");
-/* harmony import */ var _kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./kubernetsHome.vue?vue&type=script&lang=js& */ "./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/kubernetsHome.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./kubernetsHome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/kubernetsHome.vue?vue&type=template&id=66469dc2&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/kubernetsHome.vue?vue&type=template&id=66469dc2& ***!
-  \**********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./kubernetsHome.vue?vue&type=template&id=66469dc2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/kubernetsHome.vue?vue&type=template&id=66469dc2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/loginComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/loginComponent.vue ***!
@@ -69434,6 +69365,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_volumes_vue_vue_type_template_id_40fb899e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/kubernetsHome.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/kubernetes/kubernetsHome.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _kubernetsHome_vue_vue_type_template_id_d3ff6562___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kubernetsHome.vue?vue&type=template&id=d3ff6562& */ "./resources/js/kubernetes/kubernetsHome.vue?vue&type=template&id=d3ff6562&");
+/* harmony import */ var _kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./kubernetsHome.vue?vue&type=script&lang=js& */ "./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _kubernetsHome_vue_vue_type_template_id_d3ff6562___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _kubernetsHome_vue_vue_type_template_id_d3ff6562___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/kubernetes/kubernetsHome.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./kubernetsHome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/kubernetsHome.vue?vue&type=template&id=d3ff6562&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/kubernetes/kubernetsHome.vue?vue&type=template&id=d3ff6562& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_template_id_d3ff6562___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./kubernetsHome.vue?vue&type=template&id=d3ff6562& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/kubernetsHome.vue?vue&type=template&id=d3ff6562&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_template_id_d3ff6562___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_template_id_d3ff6562___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

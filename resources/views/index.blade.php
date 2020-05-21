@@ -8,11 +8,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>OpenStack</title>
-
+  <title v-if="this.$store.state.user == 'kuberneasdates'">Kubernetes</title>
+  <title v-else>OpenStack</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   @yield('extrastyles')
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://use.fontawesome.com/1bce9209b1.js"></script>
 
 
@@ -178,21 +179,21 @@
           </div>
         </div>
       </div>
-      <!--<div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#multiCollapseSettings" role="button" aria-expanded="false" aria-controls="multiCollapseSettings">Settings</a>
-        </p>
-        <div class="row">
-          <div class="col">
-            <div class="collapse multi-collapse" id="multiCollapseSettings">
-              <div>
-                <router-link to="/instances" href="#" class="list-group-item list-group-item-action bg-light">User Settings</router-link>
-                <router-link to="/images" href="#" class="list-group-item list-group-item-action bg-light">Change Password</router-link>
-                <router-link to="/volumes" href="#" class="list-group-item list-group-item-action bg-light">Volumes</router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>-->
+      <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Kubernetes a partir daqui<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Sidebar <<<<<<<<<<<<<<<<<<<<< -->
+      <div v-if="this.$store.state.user == 'kubernetes'" class="list-group list-group-flush">
+        <ul class="list-unstyled components">
+            <p style="background-color:#1aa3ff;color:#fff"class="text-center">Cluster</p>
+            <li class="active">
+              <router-link to="/" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Namespaces</router-link>
+              <router-link to="/" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Nodes</router-link>
+            </li>
+            <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Workload</p>
+            <li class="active">
+                <router-link to="/projects" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Pods</router-link>
+                <router-link to="/projects" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Por ai fora</router-link>
+            </li>
+          </ul>
+      </div>
     </div>
     <!-- /#sidebar-wrapper -->
 

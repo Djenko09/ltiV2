@@ -51,7 +51,7 @@ import containersComponent from "./components/containers.vue";  //parte 2 projet
 
 //Trabalho laboratorial 2
 import chooseAppComponent from "./components/chooseApp.vue";
-import kubernetsHomeComponent from "./components/kubernetsHome.vue";
+import kubernetsHomeComponent from "./kubernetes/kubernetsHome.vue";
 
 const gps = Vue.component('gps', gpsComponent);
 const home = Vue.component('home', homeComponent);
@@ -79,12 +79,6 @@ const chooseApp = Vue.component('chooseApp', chooseAppComponent);
 const kubernetsHome = Vue.component('kubernetsHome', kubernetsHomeComponent);
 
 //kubernetes
-
-
-
-
-
-
 const routes = [
     { path: '/', component: chooseApp },  //alterado para TL2
     { path: '/login', component: login, name: "login" },

@@ -56,6 +56,7 @@ import podsComponent from "./kubernetes/pods.vue";
 import deploymentsComponent from "./kubernetes/deployments.vue";
 import servicesComponent from "./kubernetes/services.vue";
 import namespacesHomeComponent from "./kubernetes/namespaces.vue";
+import nodesComponent from "./kubernetes/nodes.vue";
 
 
 
@@ -86,8 +87,8 @@ const kubernetsHome = Vue.component('kubernetsHome', kubernetsHomeComponent);
 const pods = Vue.component('pods', podsComponent); 
 const deployments = Vue.component('deployments', deploymentsComponent); 
 const services = Vue.component('services', servicesComponent); 
-
 const namespaces = Vue.component('namespaces', namespacesHomeComponent);
+const nodes = Vue.component('nodes', nodesComponent);
 
 //kubernetes
 const routes = [
@@ -115,7 +116,8 @@ const routes = [
     { path: '/pods', component: pods, name:"pods"},
     { path: '/deployments', component: deployments, name:"deployments"},
     { path: '/services', component: services, name:"services"},
-    { path: '/namespaces', component:namespaces, name:"namespaces"}
+    { path: '/namespaces', component:namespaces, name:"namespaces"},
+    { path: '/nodes', component:nodes, name:"nodes"},
 
 
 ];

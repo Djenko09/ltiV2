@@ -6540,7 +6540,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createNamespace: function createNamespace() {
-      axios.post(this.url + "/");
+      axios.post(this.url + "/api/v1/namespaces");
     }
   },
   mounted: function mounted() {

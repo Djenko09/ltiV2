@@ -80,7 +80,7 @@ export default {
       })
     },
     createNamespace(){
-      axios.post(this.url + "/")
+      axios.post(this.url + "/api/v1/namespaces")
     }
   },
 

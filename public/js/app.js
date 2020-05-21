@@ -6400,6 +6400,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6416,6 +6418,24 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.url + "/apis/apps/v1/namespaces/default/deployments").then(function (response) {
         console.log(response.data);
         _this.deployments = response.data.items;
+        var arrayLength = _this.deployments.length;
+
+        for (var i = 0; i < arrayLength; i++) {
+          var date = _this.deployments[i].metadata.managedFields[0].time;
+          var divideDiaHora = date.split("T");
+          var dia = divideDiaHora[0].split("-");
+          var divideHoraZ = divideDiaHora[1].split("Z");
+          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
+          //console.log(res);
+          //console.log(hour);
+
+          var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
+          var hoje = new Date().getTime();
+          var diferenca = hoje - data;
+          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
+
+          _this.deployments[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+        }
       });
     }
   },
@@ -6748,6 +6768,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return _defineProperty({
@@ -6763,6 +6784,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.get(this.url + "/api/v1/nodes").then(function (response) {
         console.log(response.data);
         _this.nodes = response.data.items;
+        var arrayLength = _this.nodes.length;
+
+        for (var i = 0; i < arrayLength; i++) {
+          var date = _this.nodes[i].metadata.managedFields[0].time;
+          var divideDiaHora = date.split("T");
+          var dia = divideDiaHora[0].split("-");
+          var divideHoraZ = divideDiaHora[1].split("Z");
+          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
+          //console.log(res);
+          //console.log(hour);
+
+          var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
+          var hoje = new Date().getTime();
+          var diferenca = hoje - data;
+          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
+
+          _this.nodes[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+        }
       });
     }
   },
@@ -6783,9 +6822,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -51724,6 +51760,10 @@ var render = function() {
                     _vm._v(
                       _vm._s(deployment.spec.template.spec.containers[0].image)
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(deployment.metadata.managedFields[0].time))
                   ])
                 ])
               ])
@@ -51748,7 +51788,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Pods")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Images")])
+        _c("th", [_vm._v("Images")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Age")])
       ])
     ])
   }
@@ -52121,7 +52163,13 @@ var render = function() {
                     _vm._v(_vm._s(node.status.nodeInfo.operatingSystem))
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(node.status.nodeInfo.osImage))])
+                  _c("td", [_vm._v(_vm._s(node.status.nodeInfo.osImage))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(node.metadata.managedFields[0].time) + " Hours"
+                    )
+                  ])
                 ])
               ])
             })
@@ -52147,7 +52195,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Opertating System")]),
         _vm._v(" "),
-        _c("th", [_vm._v("osImage")])
+        _c("th", [_vm._v("osImage")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Age")])
       ])
     ])
   }
@@ -52258,13 +52308,10 @@ var render = function() {
                     _vm._l(pod.status.containerStatuses, function(res) {
                       return _c("td", [_vm._v(_vm._s(res.restartCount))])
                     }),
-                    _vm._v("\n<<<<<<< HEAD\n              "),
+                    _vm._v(" "),
                     _c("td", [
                       _vm._v(_vm._s(pod.metadata.managedFields[0].time))
-                    ]),
-                    _vm._v(
-                      "\n=======\n>>>>>>> 63ecdec0831e03c2bd9d7346a5144b71d26e48a8\n            "
-                    )
+                    ])
                   ],
                   2
                 )

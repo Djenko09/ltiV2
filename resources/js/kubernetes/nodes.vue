@@ -11,6 +11,7 @@
               <th>Ready</th>
               <th>Opertating System</th>
               <th>osImage</th>
+              <th>Age</th>
             </tr>
           </thead>
           <tbody v-for="node in nodes">
@@ -19,9 +20,9 @@
               <td>{{node.metadata.labels.app}}</td>
               <td> xd </td>
               <td>{{node.status.nodeInfo.operatingSystem}}</td>
-              
+
               <td>{{node.status.nodeInfo.osImage}}</td>
-              
+              <td>{{node.metadata.managedFields[0].time}} Hours</td>
             </tr>
           </tbody>
         </table>
@@ -49,6 +50,32 @@ export default {
         .then(response => {
           console.log(response.data);
           this.nodes = response.data.items;
+
+          var arrayLength = this.nodes.length;
+          for(var i = 0; i<arrayLength; i++){
+
+            var date = this.nodes[i].metadata.managedFields[0].time;
+            var divideDiaHora = date.split("T");
+            var dia = divideDiaHora[0].split("-");
+            var divideHoraZ = divideDiaHora[1].split("Z");
+            var horas = divideHoraZ[0].split(":");
+            //var hour = res[1].split("Z")
+            //console.log(res);
+
+            //console.log(hour);
+
+            var data = new Date(dia[0],dia[1]-1,dia[2],horas[0],horas[1],horas[2],0);
+
+            var hoje = new Date().getTime();
+
+            var diferenca = hoje-data;
+            diferenca = (diferenca / (1000*60*60)) - 1
+
+
+            //vidaNamespace = vidaNamespace / 36000;
+            this.nodes[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+          }
+
         });
     }
   },

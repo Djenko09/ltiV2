@@ -184,7 +184,7 @@
         <ul class="list-unstyled components">
             <p style="background-color:#1aa3ff;color:#fff"class="text-center">Cluster</p>
             <li class="active">
-              <router-link to="/" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Namespaces</router-link>
+              <router-link to="/namespaces" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Namespaces</router-link>
               <router-link to="/" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Nodes</router-link>
             </li>
             <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Workload</p>

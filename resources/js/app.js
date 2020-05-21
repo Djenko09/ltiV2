@@ -52,6 +52,9 @@ import containersComponent from "./components/containers.vue";  //parte 2 projet
 //Trabalho laboratorial 2
 import chooseAppComponent from "./components/chooseApp.vue";
 import kubernetsHomeComponent from "./kubernetes/kubernetsHome.vue";
+import namespacesHomeComponent from "./kubernetes/namespaces.vue";
+
+
 
 const gps = Vue.component('gps', gpsComponent);
 const home = Vue.component('home', homeComponent);
@@ -77,6 +80,7 @@ const containers = Vue.component('containers', containersComponent); //parte 2 p
 //Trabalho laboratorial 2
 const chooseApp = Vue.component('chooseApp', chooseAppComponent);
 const kubernetsHome = Vue.component('kubernetsHome', kubernetsHomeComponent);
+const namespaces = Vue.component('namespaces', namespacesHomeComponent);
 
 //kubernetes
 const routes = [
@@ -97,17 +101,17 @@ const routes = [
     { path: '/securityGroups', component: securityGroups, name:"securityGroups"},
     { path: '/flavors', component: flavors, name:"flavors"},
     { path: '/containers', component: containers, name:"containers"}, //parte 2 projeto
-
      //Trabalho laboratorial 2
+
     { path: '/chooseApp', component: chooseApp, name:"chooseApp"},
-    { path: '/kubernetsHome', component: kubernetsHome, name:"kubernetsHome"}
+    { path: '/kubernetsHome', component: kubernetsHome, name:"kubernetsHome"},
+    { path: '/namespaces', component:namespaces, name:"namespaces"}
 
 
 ];
 
 const router = new VueRouter({
     routes,
-
 
 });
 

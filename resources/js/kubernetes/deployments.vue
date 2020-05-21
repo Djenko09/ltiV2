@@ -76,9 +76,10 @@
               <th>Pods</th>
               <th>Images</th>
               <th>Age</th>
+              <th>Options</th>
             </tr>
           </thead>
-          <tbody v-for="deployment in deployments">
+          <tbody v-for="deployment in deployments" :key="deployment.metadata.name">
             <tr>
               <td>{{deployment.metadata.name}}</td>
               <td>{{deployment.metadata.labels.app}}</td>
@@ -86,6 +87,12 @@
                <td v-if="deployment.status.readyReplicas">{{deployment.status.readyReplicas}}/{{deployment.status.replicas}}</td>
               <td>{{deployment.spec.template.spec.containers[0].image}}</td>
               <td>{{deployment.metadata.managedFields[0].time}}</td>
+              <td>
+                <button type="button" name="button"
+                class="btn btn-danger" v-on:click="deleteDeployment(deployment.metadata.name)">Delete</button>
+                <button type="button" name="button"
+                class="btn btn-primary" v-on:click="editDeployment(deployment.metadata.name)">Edit</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -203,6 +210,13 @@ export default {
           this.$toasted.show("Deployment Created");
           this.getDeployments();
         });
+    },
+    deleteDeployment(deployment){
+        axios.delete(this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(response=>{
+        console.log(response.data);
+        this.$toasted.success('Deployment Deleted!')
+      })
+
     }
   },
   mounted() {

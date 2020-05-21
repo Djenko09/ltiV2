@@ -6468,6 +6468,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6557,6 +6564,15 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$toasted.show("Deployment Created");
 
         _this2.getDeployments();
+      });
+    },
+    deleteDeployment: function deleteDeployment(deployment) {
+      var _this3 = this;
+
+      axios["delete"](this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(function (response) {
+        console.log(response.data);
+
+        _this3.$toasted.success('Deployment Deleted!');
       });
     }
   },
@@ -51987,7 +52003,7 @@ var render = function() {
             _vm._m(2),
             _vm._v(" "),
             _vm._l(_vm.deployments, function(deployment) {
-              return _c("tbody", [
+              return _c("tbody", { key: deployment.metadata.name }, [
                 _c("tr", [
                   _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
                   _vm._v(" "),
@@ -52017,6 +52033,38 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(deployment.metadata.managedFields[0].time))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", name: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteDeployment(
+                              deployment.metadata.name
+                            )
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", name: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.editDeployment(deployment.metadata.name)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    )
                   ])
                 ])
               ])
@@ -52079,7 +52127,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Images")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Age")])
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
     ])
   }

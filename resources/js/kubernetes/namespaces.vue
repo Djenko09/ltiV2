@@ -1,7 +1,7 @@
 <template >
   <div>
 
-    <div style="margin-top:50px"class="card">
+    <div style="margin-top:50px" class="card">
       <div class="card-header bg-primary text-white ">
         List of Namespaces
       </div>

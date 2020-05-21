@@ -6899,6 +6899,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6939,15 +6943,24 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    createPod: function createPod() {
+    deletePod: function deletePod(pod) {
       var _this2 = this;
+
+      axios["delete"](this.url + "/api/v1/namespaces/default/pods/" + pod).then(function (response) {
+        _this2.$toasted.success('Pod ' + pod + ' eliminated !');
+
+        _this2.getPods();
+      });
+    },
+    createPod: function createPod() {
+      var _this3 = this;
 
       axios.post(this.url + "/api/v1/namespaces/default/pods", {
         kind: "Pod",
         apiVersion: "v1",
         metadata: {
           name: this.pod.name,
-          namespace: this.pod.name,
+          namespace: "default",
           labels: {
             name: "nginx4"
           }
@@ -6970,9 +6983,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         console.log(response.data);
 
-        _this2.$toasted.show("Pod Created");
+        _this3.$toasted.show("Pod Created");
 
-        _this2.getPods();
+        _this3.getPods();
       });
     }
   },
@@ -7031,6 +7044,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7047,6 +7062,22 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.url + "/api/v1/namespaces/default/services").then(function (response) {
         console.log(response.data);
         _this.services = response.data.items;
+        var arrayLength = _this.services.length;
+
+        for (var i = 0; i < arrayLength; i++) {
+          var date = _this.services[i].metadata.managedFields[0].time;
+          var divideDiaHora = date.split("T");
+          var dia = divideDiaHora[0].split("-");
+          var divideHoraZ = divideDiaHora[1].split("Z");
+          var horas = divideHoraZ[0].split(":");
+          var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
+          var hoje = new Date().getTime();
+          var segundosNamespace = data.getTime();
+          var diferenca = hoje - data;
+          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
+
+          _this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+        }
       });
     }
   },
@@ -52310,7 +52341,25 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(pod.metadata.managedFields[0].time))
+                      _vm._v(
+                        _vm._s(pod.metadata.managedFields[0].time) + " Hours"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "button", name: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.deletePod(pod.metadata.name)
+                            }
+                          }
+                        },
+                        [_vm._v("Delete")]
+                      )
                     ])
                   ],
                   2
@@ -52375,7 +52424,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Restarts")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Age")])
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
     ])
   }
@@ -52453,7 +52504,15 @@ var render = function() {
                             _vm._s(service.spec.ports[0].protocol)
                         )
                       ])
-                    : _vm._e()
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("x")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(service.metadata.managedFields[0].time) + " Hours"
+                    )
+                  ])
                 ])
               ])
             })

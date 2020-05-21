@@ -58,6 +58,7 @@
               <th>Status</th>
               <th>Restarts</th>
               <th>Age</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody v-for="pod in pods">
@@ -66,7 +67,10 @@
               <td>{{pod.spec.nodeName}}</td>
               <td>{{pod.status.phase}}</td>
               <td v-for="res in pod.status.containerStatuses">{{res.restartCount}}</td>
-              <td>{{pod.metadata.managedFields[0].time}}</td>
+              <td>{{pod.metadata.managedFields[0].time}} Hours</td>
+              <td>
+                <button type="button" name="button" class="btn btn-danger" v-on:click="deletePod(pod.metadata.name)">Delete</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -125,6 +129,12 @@ export default {
           }
         });
     },
+    deletePod(pod){
+      axios.delete(this.url + "/api/v1/namespaces/default/pods/" + pod ).then(response=>{
+        this.$toasted.success('Pod ' + pod + ' eliminated !');
+        this.getPods();
+      })
+    },
     createPod() {
       axios
         .post(this.url + "/api/v1/namespaces/default/pods", {
@@ -132,7 +142,7 @@ export default {
           apiVersion: "v1",
           metadata: {
             name: this.pod.name,
-            namespace: this.pod.name,
+            namespace: "default",
             labels: {
               name:  "nginx4"
             }

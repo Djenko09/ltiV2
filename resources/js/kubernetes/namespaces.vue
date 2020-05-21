@@ -65,7 +65,7 @@
               <th>Name</th>
               <th>Status</th>
               <th>Age</th>
-              <th class = "text-center">Options</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody v-for="namespace in namespaces.items" :key="namespace.metadata.name">

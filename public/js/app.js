@@ -6400,60 +6400,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6798,60 +6744,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6868,6 +6760,25 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.url + "/api/v1/namespaces/default/pods").then(function (response) {
         console.log(response.data);
         _this.pods = response.data.items;
+        var arrayLength = _this.pods.length;
+
+        for (var i = 0; i < arrayLength; i++) {
+          var date = _this.pods[i].metadata.managedFields[0].time;
+          var divideDiaHora = date.split("T");
+          var dia = divideDiaHora[0].split("-");
+          var divideHoraZ = divideDiaHora[1].split("Z");
+          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
+          //console.log(res);
+          //console.log(hour);
+
+          var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
+          var hoje = new Date().getTime();
+          var segundosNamespace = data.getTime();
+          var diferenca = hoje - data;
+          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
+
+          _this.pods[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+        }
       });
     }
   },
@@ -6888,59 +6799,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -51683,122 +51541,40 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalDeployment" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.deployment.name,
-                    expression: "deployment.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "name" },
-                domProps: { value: _vm.deployment.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.deployment, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
+    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
+      _c("div", { staticClass: "card-header bg-primary text-white" }, [
+        _vm._v("List of Deployments")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          [
+            _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "size" } }, [_vm._v("Size (GB)*")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.deployment,
-                    expression: "deployment"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "size" },
-                domProps: { value: _vm.deployment },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.deployment = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
-                on: {
-                  click: function($event) {
-                    return _vm.createPod()
-                  }
-                }
-              },
-              [_vm._v("Create")]
-            )
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-hover" },
-      [
-        _vm._m(3),
-        _vm._v(" "),
-        _vm._l(_vm.deployments, function(deployment) {
-          return _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(" " + _vm._s(deployment.metadata.labels.app) + " ")
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v("PERCEBERRRRRRR ")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  _vm._s(deployment.spec.template.spec.containers[0].image)
-                )
+            _vm._l(_vm.deployments, function(deployment) {
+              return _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(deployment.metadata.labels.app))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("PERCEBERRRRRRR")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(deployment.spec.template.spec.containers[0].image)
+                    )
+                  ])
+                ])
               ])
-            ])
-          ])
-        })
-      ],
-      2
-    )
+            })
+          ],
+          2
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -51806,49 +51582,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Deployments")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-dark",
-          attrs: {
-            type: "submit",
-            "data-toggle": "modal",
-            "data-target": "#myModalDeployment"
-          }
-        },
-        [_vm._v("Create Deployment")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Deployments")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
@@ -52177,7 +51911,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Age")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Options")])
+        _c("th", [_vm._v("Options")])
       ])
     ])
   }
@@ -52204,128 +51938,46 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pod.name,
-                    expression: "pod.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "name" },
-                domProps: { value: _vm.pod.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.pod, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
+    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
+      _c("div", { staticClass: "card-header bg-primary text-white" }, [
+        _vm._v("List of Pods")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          [
+            _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "size" } }, [_vm._v("Size (GB)*")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pod,
-                    expression: "pod"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "size" },
-                domProps: { value: _vm.pod },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.pod = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
-                on: {
-                  click: function($event) {
-                    return _vm.createPod()
-                  }
-                }
-              },
-              [_vm._v("Create")]
-            )
-          ])
-        ])
+            _vm._l(_vm.pods, function(pod) {
+              return _c("tbody", [
+                _c(
+                  "tr",
+                  [
+                    _c("td", [_vm._v(_vm._s(pod.metadata.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(pod.spec.nodeName))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(pod.status.phase))]),
+                    _vm._v(" "),
+                    _vm._l(pod.status.containerStatuses, function(res) {
+                      return _c("td", [_vm._v(_vm._s(res.restartCount))])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(pod.metadata.managedFields[0].time))
+                    ])
+                  ],
+                  2
+                )
+              ])
+            })
+          ],
+          2
+        )
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-hover" },
-      [
-        _vm._m(3),
-        _vm._v(" "),
-        _vm._l(_vm.pods, function(pod) {
-          return _c("tbody", [
-            _c(
-              "tr",
-              [
-                _c("td", [_vm._v(_vm._s(pod.metadata.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(" " + _vm._s(pod.spec.nodeName) + " ")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(pod.status.phase))]),
-                _vm._v(" "),
-                _vm._l(pod.status.containerStatuses, function(res) {
-                  return _c("td", [_vm._v(_vm._s(res.restartCount))])
-                }),
-                _vm._v(" "),
-                _c("td"),
-                _vm._v(" "),
-                _c("td"),
-                _vm._v(" "),
-                _c("td")
-              ],
-              2
-            )
-          ])
-        })
-      ],
-      2
-    )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -52333,49 +51985,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Pods")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-dark",
-          attrs: {
-            type: "submit",
-            "data-toggle": "modal",
-            "data-target": "#myModalPod"
-          }
-        },
-        [_vm._v("Create Pod")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Pods")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
@@ -52383,7 +51993,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Restarts")])
+        _c("th", [_vm._v("Restarts")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Age")])
       ])
     ])
   }
@@ -52410,146 +52022,66 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalDeployment" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.service.name,
-                    expression: "service.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "name" },
-                domProps: { value: _vm.service.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.service, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
+    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
+      _c("div", { staticClass: "card-header bg-primary text-white" }, [
+        _vm._v("List of Services")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          [
+            _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "size" } }, [_vm._v("Size (GB)*")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.service,
-                    expression: "service"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "size" },
-                domProps: { value: _vm.service },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.service = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
-                on: {
-                  click: function($event) {
-                    return _vm.createPod()
-                  }
-                }
-              },
-              [_vm._v("Create")]
-            )
-          ])
-        ])
+            _vm._l(_vm.services, function(service) {
+              return _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(service.metadata.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(service.metadata.labels))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(service.spec.clusterIP))]),
+                  _vm._v(" "),
+                  service.spec.ports[0].nodePort
+                    ? _c("td", [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(service.metadata.name) +
+                            ": " +
+                            _vm._s(service.spec.ports[0].port) +
+                            "\\" +
+                            _vm._s(service.spec.ports[0].protocol) +
+                            " |\n              " +
+                            _vm._s(service.metadata.name) +
+                            ": " +
+                            _vm._s(service.spec.ports[0].nodePort) +
+                            "\\" +
+                            _vm._s(service.spec.ports[0].protocol) +
+                            "\n            "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !service.spec.ports[0].nodePort
+                    ? _c("td", [
+                        _vm._v(
+                          _vm._s(service.metadata.name) +
+                            ": " +
+                            _vm._s(service.spec.ports[0].port) +
+                            "\\" +
+                            _vm._s(service.spec.ports[0].protocol)
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            })
+          ],
+          2
+        )
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-hover" },
-      [
-        _vm._m(3),
-        _vm._v(" "),
-        _vm._l(_vm.services, function(service) {
-          return _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v(_vm._s(service.metadata.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" " + _vm._s(service.metadata.labels) + " ")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(service.spec.clusterIP) + " ")]),
-              _vm._v(" "),
-              service.spec.ports[0].nodePort
-                ? _c("td", [
-                    _vm._v(
-                      _vm._s(service.metadata.name) +
-                        ": " +
-                        _vm._s(service.spec.ports[0].port) +
-                        "\\" +
-                        _vm._s(service.spec.ports[0].protocol) +
-                        " |   \n              " +
-                        _vm._s(service.metadata.name) +
-                        ": " +
-                        _vm._s(service.spec.ports[0].nodePort) +
-                        "\\" +
-                        _vm._s(service.spec.ports[0].protocol)
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              !service.spec.ports[0].nodePort
-                ? _c("td", [
-                    _vm._v(
-                      " " +
-                        _vm._s(service.metadata.name) +
-                        ": " +
-                        _vm._s(service.spec.ports[0].port) +
-                        "\\" +
-                        _vm._s(service.spec.ports[0].protocol) +
-                        "  "
-                    )
-                  ])
-                : _vm._e()
-            ])
-          ])
-        })
-      ],
-      2
-    )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -52557,49 +52089,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Services")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-dark",
-          attrs: {
-            type: "submit",
-            "data-toggle": "modal",
-            "data-target": "#myModalDeployment"
-          }
-        },
-        [_vm._v("Create Service")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Service")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),

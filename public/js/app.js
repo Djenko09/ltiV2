@@ -6563,12 +6563,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.28.140:1234",
       namespaces: [],
-      namespacesItems: []
+      namespacesItems: [],
+      namespace: {
+        name: null,
+        label: null
+      }
     };
   },
   methods: {
@@ -6581,23 +6644,19 @@ __webpack_require__.r(__webpack_exports__);
         var arrayLength = _this.namespacesItems.length;
 
         for (var i = 0; i < arrayLength; i++) {
-          console.log(_this.namespacesItems[i].metadata.managedFields[0].time);
           var date = _this.namespacesItems[i].metadata.managedFields[0].time;
           var divideDiaHora = date.split("T");
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
           var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
           //console.log(res);
-
-          console.log(horas); //console.log(hour);
+          //console.log(hour);
 
           var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
-          console.log(data);
           var hoje = new Date().getTime();
           var segundosNamespace = data.getTime();
           var diferenca = hoje - data;
-          diferenca = diferenca / (1000 * 60 * 60);
-          console.log(diferenca); //vidaNamespace = vidaNamespace / 36000;
+          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
 
           _this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(1);
         } //  console.log(this.namespaces.items[0].metadata.managedFields[0].time);
@@ -6605,7 +6664,37 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createNamespace: function createNamespace() {
-      axios.post(this.url + "/api/v1/namespaces");
+      axios.post(this.url + "/api/v1/namespaces", {
+        "apiVersion": "v1",
+        "kind": "Namespace",
+        "metadata": {
+          "name": this.namespace.name,
+          "labels": {
+            "name": this.namespace.label
+          }
+        }
+      });
+    },
+    deleteNamespace: function deleteNamespace(namespace) {
+      var _this2 = this;
+
+      axios["delete"](this.url + "/api/v1/namespaces/" + namespace).then(function (response) {
+        console.log(response.data);
+
+        _this2.$toasted.success('NameSpace Deleted!');
+      });
+    },
+    editNamespace: function editNamespace(namespace) {
+      axios.patch(this.url + "/api/v1/namespaces/" + namespace, {
+        "apiVersion": "v1",
+        "kind": "Namespace",
+        "metadata": {
+          "name": "teste",
+          "labels": {
+            "name": "teste"
+          }
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -51765,8 +51854,104 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-dark",
+        staticStyle: { "margin-top": "50px", "margin-left": "10px" },
+        attrs: {
+          type: "submit",
+          "data-toggle": "modal",
+          "data-target": "#myModalNameSpace"
+        }
+      },
+      [_vm._v("Create Namespace")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myModalNameSpace" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.namespace.name,
+                    expression: "namespace.name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "name",
+                  placeholder: "eg: development"
+                },
+                domProps: { value: _vm.namespace.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.namespace, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Label *")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.namespace.label,
+                    expression: "namespace.label"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "name", placeholder: "eg: team" },
+                domProps: { value: _vm.namespace.label },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.namespace, "label", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.createNamespace()
+                  }
+                }
+              },
+              [_vm._v("Create")]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
-      _c("div", { staticClass: "card-header bg-primary text-white " }, [
+      _c("div", { staticClass: "card-header bg-primary text-white" }, [
         _vm._v("\n      List of Namespaces\n    ")
       ]),
       _vm._v(" "),
@@ -51775,7 +51960,7 @@ var render = function() {
           "table",
           { staticClass: "table table-hover" },
           [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _vm._l(_vm.namespaces.items, function(namespace) {
               return _c("tbody", { key: namespace.metadata.name }, [
@@ -51788,6 +51973,36 @@ var render = function() {
                     _vm._v(
                       _vm._s(namespace.metadata.managedFields[0].time) +
                         " Hours"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", name: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteNamespace(namespace.metadata.name)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", name: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.editNamespace(namespace.metadata.name)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
                     )
                   ])
                 ])
@@ -51805,13 +52020,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Namespace")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Age")])
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Options")])
       ])
     ])
   }

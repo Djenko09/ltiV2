@@ -1,10 +1,63 @@
 <template >
   <div>
+    <button
+      style="margin-top:50px;margin-left:10px"
+      type="submit"
+      class="btn btn-outline-dark"
+      data-toggle="modal"
+      data-target="#myModalNameSpace"
+    >Create Namespace</button>
 
-    <div style="margin-top:50px" class="card">
-      <div class="card-header bg-primary text-white ">
+    <div class="modal" id="myModalNameSpace">  <!-- [INICIO] Formulario para criar rede -->
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Create Namespace</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="namespace.name"
+                id="name"
+                placeholder="eg: development"
+              />
+            </div>
+            <div class="form-group">
+              <label for="name">Label *</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="namespace.label"
+                id="name"
+                placeholder="eg: team"
+              />
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-dismiss="modal"
+              v-on:click="createNamespace()"
+            >Create</button>     <!-- [FIM] Formulario para criar rede -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:50px"class="card">
+      <div class="card-header bg-primary text-white">
         List of Namespaces
       </div>
+
       <div class="card-body">
         <table class="table table-hover">
           <thead class="thead-dark" >
@@ -12,7 +65,7 @@
               <th>Name</th>
               <th>Status</th>
               <th>Age</th>
-              <!--<th>Options</th>-->
+              <th class = "text-center">Options</th>
             </tr>
           </thead>
           <tbody v-for="namespace in namespaces.items" :key="namespace.metadata.name">
@@ -27,6 +80,12 @@
                 >Delete</button>
               </td>-->
               <td>{{namespace.metadata.managedFields[0].time}} Hours</td>
+              <td>
+                <button type="button" name="button"
+                class="btn btn-danger" v-on:click="deleteNamespace(namespace.metadata.name)">Delete</button>
+                <button type="button" name="button"
+                class="btn btn-primary" v-on:click="editNamespace(namespace.metadata.name)">Edit</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -42,6 +101,10 @@ export default {
       url : process.env.MIX_URL,
       namespaces:[],
       namespacesItems:[],
+      namespace:{
+        name:null,
+        label:null
+      }
     }
   },
 
@@ -53,7 +116,7 @@ export default {
 
         var arrayLength = this.namespacesItems.length;
         for(var i = 0; i<arrayLength; i++){
-          console.log(this.namespacesItems[i].metadata.managedFields[0].time);
+
           var date = this.namespacesItems[i].metadata.managedFields[0].time;
           var divideDiaHora = date.split("T");
           var dia = divideDiaHora[0].split("-");
@@ -61,17 +124,17 @@ export default {
           var horas = divideHoraZ[0].split(":");
           //var hour = res[1].split("Z")
           //console.log(res);
-          console.log(horas);
+
           //console.log(hour);
 
           var data = new Date(dia[0],dia[1]-1,dia[2],horas[0],horas[1],horas[2],0);
-          console.log(data);
+
           var hoje = new Date().getTime();
           var segundosNamespace = data.getTime();
 
           var diferenca = hoje-data;
-          diferenca = (diferenca / (1000*60*60))
-          console.log(diferenca);
+          diferenca = (diferenca / (1000*60*60)) - 1
+
 
           //vidaNamespace = vidaNamespace / 36000;
           this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(1);
@@ -80,10 +143,36 @@ export default {
       })
     },
     createNamespace(){
-      axios.post(this.url + "/api/v1/namespaces")
+      axios.post(this.url + "/api/v1/namespaces",{
+          "apiVersion": "v1",
+          "kind": "Namespace",
+          "metadata": {
+            "name": this.namespace.name,
+            "labels": {
+              "name": this.namespace.label
+            }
+          }
+      })
+    },
+    deleteNamespace(namespace){
+      axios.delete(this.url + "/api/v1/namespaces/" + namespace).then(response=>{
+        console.log(response.data);
+        this.$toasted.success('NameSpace Deleted!')
+      })
+    },
+    editNamespace(namespace){
+      axios.patch(this.url + "/api/v1/namespaces/" + namespace,{
+        "apiVersion": "v1",
+        "kind": "Namespace",
+        "metadata": {
+          "name": "teste",
+          "labels": {
+            "name": "teste",
+          }
+        }
+      })
     }
   },
-
   mounted(){
     this.getNamespaces();
   }

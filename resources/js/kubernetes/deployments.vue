@@ -172,6 +172,23 @@ export default {
             app: "nginx"
           }
         },
+        managedFields: [
+                {
+                  manager: "kubectl",
+                  image: this.deployment.image,
+                  ports: [
+                    {
+                      containerPort: 80
+                    }
+                  ],
+                  resources: {
+                    limits: {
+                      memory: "128Mi",
+                      cpu: "500m"
+                    }
+                  }
+                }
+              ],
         spec: {
           replicas: replica,
           selector: {

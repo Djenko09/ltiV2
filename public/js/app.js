@@ -6529,6 +6529,19 @@ __webpack_require__.r(__webpack_exports__);
             app: "nginx"
           }
         },
+        managedFields: [{
+          manager: "kubectl",
+          image: this.deployment.image,
+          ports: [{
+            containerPort: 80
+          }],
+          resources: {
+            limits: {
+              memory: "128Mi",
+              cpu: "500m"
+            }
+          }
+        }],
         spec: {
           replicas: replica,
           selector: {
@@ -6877,7 +6890,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -52613,9 +52625,9 @@ var render = function() {
                 _c("tr", [
                   _c("td", [_vm._v(_vm._s(node.metadata.name))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(node.metadata.labels.app))]),
+                  _c("td", [_vm._v(_vm._s(node.metadata.labels))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(" xd ")]),
+                  _c("td", [_vm._v(_vm._s(node.status.conditions[4].status))]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(node.status.nodeInfo.operatingSystem))

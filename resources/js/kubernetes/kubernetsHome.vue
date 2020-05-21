@@ -32,7 +32,7 @@ export default {
     return {
       url: process.env.MIX_URL_KUBERNETES,
     }
-  }
+  },
   methods:{
     createPod(){
       axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods",{

@@ -6367,80 +6367,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
-    createPod: function createPod() {
-      axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods", {
-        "kind": "Pod",
-        "apiVersion": "v1",
-        "metadata": {
-          "name": "nginx2",
-          "namespace": "default",
-          "labels": {
-            "name": "nginx2"
-          }
-        },
-        "spec": {
-          "containers": [{
-            "name": "nginx",
-            "image": "nginx",
-            "ports": [{
-              "containerPort": 80
-            }],
-            "resources": {
-              "limits": {
-                "memory": "128Mi",
-                "cpu": "500m"
-              }
-            }
-          }]
-        }
-      }).then(function (response) {
-        console.log(response.data);
-      });
-    },
-    getApi: function getApi() {
-      axios.get("http://192.168.28.140:8080/api/v1/pods");
-    }
-  },
-  mounted: function mounted() {
-    // /this.createPod();
-    //this.$store.commit("setApp", "kubernetes");
-    this.$store.commit("setUser", "kubernetes"); //console.log(this.$store.state.app);
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\lti\\resources\\js\\kubernetes\\kubernetsHome.vue: Unexpected token, expected \",\" (36:2)\n\n\u001b[0m \u001b[90m 34 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 35 | \u001b[39m  }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 | \u001b[39m  methods\u001b[33m:\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 37 | \u001b[39m    createPod(){\u001b[0m\n\u001b[0m \u001b[90m 38 | \u001b[39m      axios\u001b[33m.\u001b[39mpost(\u001b[32m\"http://192.168.232.71:8080/api/v1/namespaces/default/pods\"\u001b[39m\u001b[33m,\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 39 | \u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.expect (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8743:28)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10365:14)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExportDefaultExpression (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12283:24)\n    at Parser.parseExport (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12185:31)\n    at Parser.parseStatementContent (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11185:27)\n    at Parser.parseStatement (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseTopLevel (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11012:10)\n    at Parser.parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12637:10)\n    at parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12688:38)\n    at parser (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:93:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (C:\\laragon\\www\\lti\\node_modules\\gensync\\index.js:254:32)\n    at C:\\laragon\\www\\lti\\node_modules\\gensync\\index.js:266:13\n    at async.call.result.err.err (C:\\laragon\\www\\lti\\node_modules\\gensync\\index.js:216:11)");
 
 /***/ }),
 

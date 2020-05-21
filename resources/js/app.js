@@ -7,6 +7,10 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+//import k8s from '@kubernetes/client-node';
+//Vue.use(k8s);
+//const k8s = require('@kubernetes/client-node');
+
 import moment from 'moment';
 
 Vue.filter('formatDate', function(value) {
@@ -67,12 +71,18 @@ const routers = Vue.component('routers', routersComponent);
 const securityGroups = Vue.component('securityGroups', securityGroupsComponent);
 const flavors = Vue.component('flavors', flavorsComponent);
 const containers = Vue.component('containers', containersComponent); //parte 2 projeto
-const teste = Vue.component('teste', testeComponent);
+//const teste = Vue.component('teste', testeComponent);
 
 
 //Trabalho laboratorial 2
 const chooseApp = Vue.component('chooseApp', chooseAppComponent);
 const kubernetsHome = Vue.component('kubernetsHome', kubernetsHomeComponent);
+
+//kubernetes
+
+
+
+
 
 
 const routes = [

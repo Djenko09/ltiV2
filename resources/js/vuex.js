@@ -20,6 +20,10 @@ export default  new Vuex.Store({
         projectNames:[],
     },
 
+    app: {
+      name:null,
+    },
+
     getters: {
         isAuthenticated: state => !state.token,
         authStatus: state => state.status,
@@ -33,6 +37,11 @@ export default  new Vuex.Store({
             window.localStorage.removeItem('token');
             axios.defaults.headers.common.Authorization = undefined;
 
+
+        },
+        setApp:(app, appName)=>{
+          app.name = appName
+          window.localStorage.setItem('appName', appName);
 
         },
         setToken: (state, token) => {

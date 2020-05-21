@@ -8,19 +8,19 @@
                             <div class="col"><img class="center" v-bind:src="'/images/logologin.png'" width=100 height=200/></div>
                             <div class="col"><img class="center" v-bind:src="'/images/kubernets.png'" width=300 height=200/></div>
                         </div>
-                  
+
                    <br>
                    <br>
                    <br>
                    <!-- formulario para LOG IN -->
-                    
-                      
+
+
                          <div class="form-group row">
-                             
+
                              <div class="col" align="center"><input type="submit" class="btnSubmit" value="Go to Openstack" v-on:click.prevent="toOpenstack()"/></div>
-                          
+
                              <div class="col" align="center"><input type="submit" class="btnSubmit" value="Go to Kubernets" style="background-color: blue" v-on:click.prevent="toKubernets()"/></div>
-                           
+
                         </div>
                 </div>
             </div>
@@ -54,7 +54,12 @@ export default {
     toKubernets() {  //funcao para ir para o openstack
           this.$router.push("/kubernetsHome");
     },
-    mounted() {}
+
+  },
+
+  mounted() {
+    console.log("limpou");
+    this.$store.commit("clearUser");
   }
 };
 </script>

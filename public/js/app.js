@@ -2045,8 +2045,11 @@ __webpack_require__.r(__webpack_exports__);
     toKubernets: function toKubernets() {
       //funcao para ir para o openstack
       this.$router.push("/kubernetsHome");
-    },
-    mounted: function mounted() {}
+    }
+  },
+  mounted: function mounted() {
+    console.log("limpou");
+    this.$store.commit("clearUser");
   }
 });
 
@@ -4432,6 +4435,88 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getKeyPairs();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    createPod: function createPod() {
+      axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods", {
+        "kind": "Pod",
+        "apiVersion": "v1",
+        "metadata": {
+          "name": "nginx2",
+          "namespace": "default",
+          "labels": {
+            "name": "nginx2"
+          }
+        },
+        "spec": {
+          "containers": [{
+            "name": "nginx",
+            "image": "nginx",
+            "ports": [{
+              "containerPort": 80
+            }],
+            "resources": {
+              "limits": {
+                "memory": "128Mi",
+                "cpu": "500m"
+              }
+            }
+          }]
+        }
+      }).then(function (response) {
+        console.log(response.data);
+      });
+    },
+    getApi: function getApi() {
+      axios.get("http://192.168.28.140:8080/api/v1/pods");
+    }
+  },
+  mounted: function mounted() {
+    // /this.createPod();
+    //this.$store.commit("setApp", "kubernetes");
+    this.$store.commit("setUser", "kubernetes"); //console.log(this.$store.state.app);
   }
 });
 
@@ -67668,7 +67753,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]); //import k8s from '@kubernetes/client-node';
+//Vue.use(k8s);
+//const k8s = require('@kubernetes/client-node');
+
 
 Vue.filter('formatDate', function (value) {
   if (value) {
@@ -67723,11 +67811,12 @@ var routers = Vue.component('routers', _components_routers_vue__WEBPACK_IMPORTED
 var securityGroups = Vue.component('securityGroups', _components_securityGroups_vue__WEBPACK_IMPORTED_MODULE_20__["default"]);
 var flavors = Vue.component('flavors', _components_flavors_vue__WEBPACK_IMPORTED_MODULE_21__["default"]);
 var containers = Vue.component('containers', _components_containers_vue__WEBPACK_IMPORTED_MODULE_22__["default"]); //parte 2 projeto
-
-var teste = Vue.component('teste', testeComponent); //Trabalho laboratorial 2
+//const teste = Vue.component('teste', testeComponent);
+//Trabalho laboratorial 2
 
 var chooseApp = Vue.component('chooseApp', _components_chooseApp_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
-var kubernetsHome = Vue.component('kubernetsHome', _components_kubernetsHome_vue__WEBPACK_IMPORTED_MODULE_24__["default"]);
+var kubernetsHome = Vue.component('kubernetsHome', _components_kubernetsHome_vue__WEBPACK_IMPORTED_MODULE_24__["default"]); //kubernetes
+
 var routes = [{
   path: '/',
   component: chooseApp
@@ -68703,15 +68792,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kubernetsHome.vue?vue&type=template&id=66469dc2& */ "./resources/js/components/kubernetsHome.vue?vue&type=template&id=66469dc2&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./kubernetsHome.vue?vue&type=script&lang=js& */ "./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__["render"],
   _kubernetsHome_vue_vue_type_template_id_66469dc2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -68725,6 +68816,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/kubernetsHome.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./kubernetsHome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/kubernetsHome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kubernetsHome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -69364,6 +69469,9 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
     projectName: null,
     projectNames: []
   },
+  app: {
+    name: null
+  },
   getters: {
     isAuthenticated: function isAuthenticated(state) {
       return !state.token;
@@ -69379,6 +69487,10 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
       window.localStorage.removeItem('user');
       window.localStorage.removeItem('token');
       axios.defaults.headers.common.Authorization = undefined;
+    },
+    setApp: function setApp(app, appName) {
+      app.name = appName;
+      window.localStorage.setItem('appName', appName);
     },
     setToken: function setToken(state, token) {
       state.token = token;

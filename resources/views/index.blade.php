@@ -77,11 +77,12 @@
     <!-- Sidebar -->
 
 
-    <div  v-if="this.$store.state.token" class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><router-link to="/home" class="navbar-brand"><img src="{{URL::asset('/images/logo.png')}}" alt="some text" width=200 height=100/></router-link></div>
+    <div  v-if="this.$store.state.token || this.$store.state.user == 'kubernetes'" class="bg-light border-right" id="sidebar-wrapper">
+      <div v-if="this.$store.state.token" class="sidebar-heading"><router-link to="/home" class="navbar-brand"><img src="{{URL::asset('/images/logo.png')}}" alt="some text" width=200 height=100/></router-link></div>
+      <div v-if="this.$store.state.user == 'kubernetes'"class="sidebar-heading"><router-link to="" class="navbar-brand"><img src="{{URL::asset('/images/kubernets.png')}}" alt="some text" width=200 height=100/></router-link></div>
       <div class="list-group list-group-flush">
         <p>
-        <a class="list-group-item list-group-item-action btn-outline-secondary  dropdown-toggle" data-toggle="collapse" href="#multiCollapseProject" role="button" aria-expanded="false" aria-controls="multiCollapseProject"
+        <a v-if="this.$store.state.token"class="list-group-item list-group-item-action btn-outline-secondary  dropdown-toggle" data-toggle="collapse" href="#multiCollapseProject" role="button" aria-expanded="false" aria-controls="multiCollapseProject"
         role="button" aria-pressed="true">Project</a>
         </p>
         <div class="row">
@@ -160,7 +161,7 @@
         </div>
       </div>
      <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseIdentity" role="button" aria-expanded="false" aria-controls="multiCollapseIdentity">Identity</a>
+        <a v-if="this.$store.state.token" class="list-group-item list-group-item-action bg-light dropdown-toggle" data-toggle="collapse" href="#multiCollapseIdentity" role="button" aria-expanded="false" aria-controls="multiCollapseIdentity">Identity</a>
         </p>
         <div class="row">
           <div class="col">
@@ -223,11 +224,14 @@
               </div>
 
             </li>
-            <li v-if="!this.$store.state.token"  class="nav-item active">
+            <li v-if="!this.$store.state.token && !this.$store.state.user"  class="nav-item active">
               <router-link class="nav-link" to="/login">Login</router-link>
             </li>
-            <li v-else class="nav-item active">
+            <li v-if="this.$store.state.token" class="nav-item active">
               <router-link class="nav-link" to="/logout">Logout</router-link>
+            </li>
+            <li v-if="this.$store.state.user == 'kubernetes'" class="nav-item active">
+              <router-link class="nav-link" to="/">Exit kubernetes</router-link>
             </li>
           </ul>
         </div>

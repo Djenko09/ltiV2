@@ -6467,6 +6467,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -51992,7 +51993,21 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(deployment.metadata.labels.app))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v("PERCEBERRRRRRR")]),
+                  !deployment.status.readyReplicas
+                    ? _c("td", [
+                        _vm._v("0/" + _vm._s(deployment.status.replicas))
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  deployment.status.readyReplicas
+                    ? _c("td", [
+                        _vm._v(
+                          _vm._s(deployment.status.readyReplicas) +
+                            "/" +
+                            _vm._s(deployment.status.replicas)
+                        )
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(

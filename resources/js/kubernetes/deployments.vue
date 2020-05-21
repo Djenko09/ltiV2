@@ -82,7 +82,8 @@
             <tr>
               <td>{{deployment.metadata.name}}</td>
               <td>{{deployment.metadata.labels.app}}</td>
-              <td>PERCEBERRRRRRR</td>
+              <td v-if="!deployment.status.readyReplicas">0/{{deployment.status.replicas}}</td>
+               <td v-if="deployment.status.readyReplicas">{{deployment.status.readyReplicas}}/{{deployment.status.replicas}}</td>
               <td>{{deployment.spec.template.spec.containers[0].image}}</td>
               <td>{{deployment.metadata.managedFields[0].time}}</td>
             </tr>

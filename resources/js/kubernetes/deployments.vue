@@ -2,6 +2,7 @@
   <div>
     <div>
       <button
+      style="margin-top:50px;margin-left:10px"
         type="submit"
         class="btn btn-outline-dark"
         data-toggle="modal"
@@ -214,7 +215,8 @@ export default {
     deleteDeployment(deployment){
         axios.delete(this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(response=>{
         console.log(response.data);
-        this.$toasted.success('Deployment Deleted!')
+        this.getDeployments();
+        this.$toasted.success('Deployment ' + deployment + ' eliminated !');;
       })
 
     }

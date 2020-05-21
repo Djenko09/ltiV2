@@ -5,10 +5,10 @@
         type="submit"
         class="btn btn-outline-dark"
         data-toggle="modal"
-        data-target="#myModalContainers"
+        data-target="#myModalPod"
       >Create Pod</button>
     </div>
-    <div class="modal" id="myModalContainers">
+    <div class="modal" id="myModalPod">
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -66,7 +66,7 @@
               <td>{{pod.spec.nodeName}}</td>
               <td>{{pod.status.phase}}</td>
               <td v-for="res in pod.status.containerStatuses">{{res.restartCount}}</td>
-              <td>{{pod.metadata.managedFields[0].time}}</td>
+              <td >{{pod.metadata.managedFields[0].time}}</td>
             </tr>
           </tbody>
         </table>

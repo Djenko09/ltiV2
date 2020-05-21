@@ -189,8 +189,13 @@
             </li>
             <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Workload</p>
             <li class="active">
-                <router-link to="/projects" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Pods</router-link>
-                <router-link to="/projects" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Por ai fora</router-link>
+                <router-link to="/pods" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Pods</router-link>
+                <router-link to="/deployments" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Deployments</router-link>
+            </li>
+            <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Services and discovery</p>
+            <li class="active">
+                <router-link to="/services" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Services</router-link>
+              
             </li>
           </ul>
       </div>

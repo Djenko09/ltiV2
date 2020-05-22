@@ -18,6 +18,9 @@ export default  new Vuex.Store({
         project:null,
         projectName:null,
         projectNames:[],
+
+        //TL 2
+        namespace: null
     },
 
     app: {
@@ -88,13 +91,25 @@ export default  new Vuex.Store({
             window.localStorage.setItem('user', JSON.stringify(user));
 
         },
+        //TL2
+        setNameSpace: (state, namespace) => {
+            state.namespace = namespace;
+            window.localStorage.setItem('namespace', namespace);
+
+        },
+        clearNameSpace: state => {
+            state.namespace = null;
+            localStorage.removeItem("namespace");
+        },
         loadTokenAndUserFromSession: state => {
             state.token = "";
             state.user = null;
             state.project = null
+            state.namespace = null
             let token = localStorage.getItem("token");
             let user = localStorage.getItem("user");
             let project = localStorage.getItem("project");
+            let namespace = localStorage.getItem("namespace");
             if (token) {
                 state.token = token;
                 axios.defaults.headers.common.Authorization = token;
@@ -106,6 +121,9 @@ export default  new Vuex.Store({
             }
             if(project){
                 state.project = project;
+            }
+            if(namespace){
+                state.namespace = namespace;
             }
 
         },

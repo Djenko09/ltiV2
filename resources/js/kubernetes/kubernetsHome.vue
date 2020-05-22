@@ -75,6 +75,7 @@ export default {
    this.getApi();
     //this.$store.commit("setApp", "kubernetes");
     this.$store.commit("setUser", "kubernetes");
+    this.$store.commit("setNameSpace", "default");
     //console.log(this.$store.state.app);
   }
 

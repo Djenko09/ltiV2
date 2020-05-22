@@ -2050,6 +2050,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("limpou");
     this.$store.commit("clearUser");
+    this.$store.commit("clearNameSpace");
   }
 });
 
@@ -6476,6 +6477,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6485,7 +6504,8 @@ __webpack_require__.r(__webpack_exports__);
         image: "",
         name: "",
         replicas: ""
-      }
+      },
+      namespaces: []
     };
   },
   methods: {
@@ -6493,7 +6513,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //função para obter os deployments
-      axios.get(this.url + "/apis/apps/v1/namespaces/default/deployments").then(function (response) {
+      axios.get(this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/deployments").then(function (response) {
         console.log(response.data);
         _this.deployments = response.data.items;
         var arrayLength = _this.deployments.length;
@@ -6588,15 +6608,26 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.getDeployments();
 
-        _this3.$toasted.success('Deployment ' + deployment + ' eliminated !');
-
-        ;
+        _this3.$toasted.success("Deployment " + deployment + " eliminated !");
       });
+    },
+    getNamespaces: function getNamespaces() {
+      var _this4 = this;
+
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this4.namespaces = response.data.items;
+      });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getDeployments();
     }
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
+    console.log(this.$store.state);
     this.getDeployments();
+    this.getNamespaces();
   }
 });
 
@@ -6686,7 +6717,8 @@ __webpack_require__.r(__webpack_exports__);
 
     this.getApi(); //this.$store.commit("setApp", "kubernetes");
 
-    this.$store.commit("setUser", "kubernetes"); //console.log(this.$store.state.app);
+    this.$store.commit("setUser", "kubernetes");
+    this.$store.commit("setNameSpace", "default"); //console.log(this.$store.state.app);
   }
 });
 
@@ -7058,6 +7090,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7066,7 +7106,8 @@ __webpack_require__.r(__webpack_exports__);
       pod: {
         name: null,
         containerName: null
-      }
+      },
+      namespaces: []
     };
   },
   methods: {
@@ -7074,7 +7115,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //função para obter os pods
-      axios.get(this.url + "/api/v1/namespaces/default/pods").then(function (response) {
+      axios.get(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/pods").then(function (response) {
         console.log(response.data);
         _this.pods = response.data.items;
         var arrayLength = _this.pods.length;
@@ -7142,11 +7183,23 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.getPods();
       });
+    },
+    getNamespaces: function getNamespaces() {
+      var _this4 = this;
+
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this4.namespaces = response.data.items;
+      });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getPods();
     }
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getPods();
+    this.getNamespaces();
   }
 });
 
@@ -7190,12 +7243,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.28.140:1234",
       replicas: [],
-      replica: {}
+      replica: {},
+      namespaces: []
     };
   },
   methods: {
@@ -7203,7 +7265,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //função para obter os pods
-      axios.get(this.url + "/apis/apps/v1/namespaces/default/replicasets").then(function (response) {
+      axios.get(this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/replicasets").then(function (response) {
         console.log(response.data);
         _this.replicas = response.data.items;
         var arrayLength = _this.replicas.length;
@@ -7223,11 +7285,23 @@ __webpack_require__.r(__webpack_exports__);
           _this.replicas[i].metadata.managedFields[0].time = diferenca.toFixed(1);
         }
       });
+    },
+    getNamespaces: function getNamespaces() {
+      var _this2 = this;
+
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this2.namespaces = response.data.items;
+      });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getReplicas();
     }
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getReplicas();
+    this.getNamespaces();
   }
 });
 
@@ -7282,12 +7356,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.28.140:1234",
       services: [],
-      service: {}
+      service: {},
+      namespaces: []
     };
   },
   methods: {
@@ -7295,7 +7378,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //função para obter os pods
-      axios.get(this.url + "/api/v1/namespaces/default/services").then(function (response) {
+      axios.get(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/services").then(function (response) {
         console.log(response.data);
         _this.services = response.data.items;
         var arrayLength = _this.services.length;
@@ -7315,11 +7398,23 @@ __webpack_require__.r(__webpack_exports__);
           _this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
         }
       });
+    },
+    getNamespaces: function getNamespaces() {
+      var _this2 = this;
+
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this2.namespaces = response.data.items;
+      });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getServices();
     }
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServices();
+    this.getNamespaces();
   }
 });
 
@@ -52122,7 +52217,33 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Deployments")
+        _c("div", [
+          _vm._v("Deployments List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -52162,7 +52283,10 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._v(_vm._s(deployment.metadata.managedFields[0].time))
+                    _vm._v(
+                      _vm._s(deployment.metadata.managedFields[0].time) +
+                        " Hours"
+                    )
                   ]),
                   _vm._v(" "),
                   _c("td", [
@@ -52754,7 +52878,33 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Pods")
+        _c("div", [
+          _vm._v("Pods List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -52895,7 +53045,33 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Replicas")
+        _c("div", [
+          _vm._v("Replica Sets List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -52975,7 +53151,33 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Services")
+        _c("div", [
+          _vm._v("Services List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -71799,7 +72001,9 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
     password: null,
     project: null,
     projectName: null,
-    projectNames: []
+    projectNames: [],
+    //TL 2
+    namespace: null
   },
   app: {
     name: null
@@ -71862,13 +72066,24 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
       state.user = user;
       window.localStorage.setItem('user', JSON.stringify(user));
     },
+    //TL2
+    setNameSpace: function setNameSpace(state, namespace) {
+      state.namespace = namespace;
+      window.localStorage.setItem('namespace', namespace);
+    },
+    clearNameSpace: function clearNameSpace(state) {
+      state.namespace = null;
+      localStorage.removeItem("namespace");
+    },
     loadTokenAndUserFromSession: function loadTokenAndUserFromSession(state) {
       state.token = "";
       state.user = null;
       state.project = null;
+      state.namespace = null;
       var token = localStorage.getItem("token");
       var user = localStorage.getItem("user");
       var project = localStorage.getItem("project");
+      var namespace = localStorage.getItem("namespace");
 
       if (token) {
         state.token = token;
@@ -71883,6 +72098,10 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 
       if (project) {
         state.project = project;
+      }
+
+      if (namespace) {
+        state.namespace = namespace;
       }
     }
   }

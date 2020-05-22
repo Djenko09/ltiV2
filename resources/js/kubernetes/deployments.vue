@@ -2,7 +2,7 @@
   <div>
     <div>
       <button
-      style="margin-top:50px;margin-left:10px"
+        style="margin-top:50px;margin-left:10px"
         type="submit"
         class="btn btn-outline-dark"
         data-toggle="modal"
@@ -30,7 +30,7 @@
                 placeholder="Insert name "
               />
             </div>
-            
+
             <div class="form-group">
               <label for="image">Image</label>
               <input
@@ -42,7 +42,7 @@
               />
             </div>
 
-              <div class="form-group">
+            <div class="form-group">
               <label for="replicas">replicas</label>
               <input
                 type="number"
@@ -67,7 +67,15 @@
       </div>
     </div>
     <div style="margin-top:50px" class="card">
-      <div class="card-header bg-primary text-white">List of Deployments</div>
+      <div class="card-header bg-primary text-white">
+        
+          <div>Deployments List of namespace:  <b class="text-dark">{{this.$store.state.namespace}}</b> </div>
+           <a class="text-dark"> Change Namespace</a>
+          <select>
+            <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)"> {{namespace.metadata.name}}</option>
+          </select>
+        
+      </div>
       <div class="card-body">
         <table class="table table-hover">
           <thead class="thead-dark">
@@ -85,14 +93,24 @@
               <td>{{deployment.metadata.name}}</td>
               <td>{{deployment.metadata.labels.app}}</td>
               <td v-if="!deployment.status.readyReplicas">0/{{deployment.status.replicas}}</td>
-               <td v-if="deployment.status.readyReplicas">{{deployment.status.readyReplicas}}/{{deployment.status.replicas}}</td>
+              <td
+                v-if="deployment.status.readyReplicas"
+              >{{deployment.status.readyReplicas}}/{{deployment.status.replicas}}</td>
               <td>{{deployment.spec.template.spec.containers[0].image}}</td>
-              <td>{{deployment.metadata.managedFields[0].time}}</td>
+              <td>{{deployment.metadata.managedFields[0].time}} Hours</td>
               <td>
-                <button type="button" name="button"
-                class="btn btn-danger" v-on:click="deleteDeployment(deployment.metadata.name)">Delete</button>
-                <button type="button" name="button"
-                class="btn btn-primary" v-on:click="editDeployment(deployment.metadata.name)">Edit</button>
+                <button
+                  type="button"
+                  name="button"
+                  class="btn btn-danger"
+                  v-on:click="deleteDeployment(deployment.metadata.name)"
+                >Delete</button>
+                <button
+                  type="button"
+                  name="button"
+                  class="btn btn-primary"
+                  v-on:click="editDeployment(deployment.metadata.name)"
+                >Edit</button>
               </td>
             </tr>
           </tbody>
@@ -110,17 +128,19 @@ export default {
       url: process.env.MIX_URL,
       deployments: [],
       deployment: {
-          image:"",
-          name:"",
-          replicas: "" ,
-      }
+        image: "",
+        name: "",
+        replicas: ""
+      },
+      namespaces: [],
+    
     };
   },
   methods: {
     getDeployments() {
       //função para obter os deployments
       axios
-        .get(this.url + "/apis/apps/v1/namespaces/default/deployments")
+        .get(this.url + "/apis/apps/v1/namespaces/"+this.$store.state.namespace+"/deployments")
 
         .then(response => {
           console.log(response.data);
@@ -161,86 +181,104 @@ export default {
         });
     },
     createDeployment() {
-        var replica = this.deployment.replicas >>>0;
-      axios.post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
-         
-         kind: "Deployment",
-        apiVersion: "apps/v1",
-        metadata: {
-          name: this.deployment.name,
-          labels: {
-            app: "nginx"
-          }
-        },
-        managedFields: [
-                {
-                  manager: "kubectl",
-                  image: this.deployment.image,
-                  ports: [
-                    {
-                      containerPort: 80
-                    }
-                  ],
-                  resources: {
-                    limits: {
-                      memory: "128Mi",
-                      cpu: "500m"
-                    }
-                  }
-                }
-              ],
-        spec: {
-          replicas: replica,
-          selector: {
-            matchLabels: {
+      var replica = this.deployment.replicas >>> 0;
+      axios
+        .post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
+          kind: "Deployment",
+          apiVersion: "apps/v1",
+          metadata: {
+            name: this.deployment.name,
+            labels: {
               app: "nginx"
             }
           },
-          template: {
-            metadata: {
-              labels: {
+          managedFields: [
+            {
+              manager: "kubectl",
+              image: this.deployment.image,
+              ports: [
+                {
+                  containerPort: 80
+                }
+              ],
+              resources: {
+                limits: {
+                  memory: "128Mi",
+                  cpu: "500m"
+                }
+              }
+            }
+          ],
+          spec: {
+            replicas: replica,
+            selector: {
+              matchLabels: {
                 app: "nginx"
               }
             },
-            spec: {
-              containers: [
-                {
-                  name: "ngnix",
-                  image: this.deployment.image,
-                  ports: [
-                    {
-                      containerPort: 80
-                    }
-                  ],
-                  resources: {
-                    limits: {
-                      memory: "128Mi",
-                      cpu: "500m"
+            template: {
+              metadata: {
+                labels: {
+                  app: "nginx"
+                }
+              },
+              spec: {
+                containers: [
+                  {
+                    name: "ngnix",
+                    image: this.deployment.image,
+                    ports: [
+                      {
+                        containerPort: 80
+                      }
+                    ],
+                    resources: {
+                      limits: {
+                        memory: "128Mi",
+                        cpu: "500m"
+                      }
                     }
                   }
-                }
-              ]
+                ]
+              }
             }
           }
-        }
-      }).then(response => {
+        })
+        .then(response => {
           console.log(response.data);
           this.$toasted.show("Deployment Created");
           this.getDeployments();
         });
     },
-    deleteDeployment(deployment){
-        axios.delete(this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(response=>{
-        console.log(response.data);
-        this.getDeployments();
-        this.$toasted.success('Deployment ' + deployment + ' eliminated !');;
-      })
-
+    deleteDeployment(deployment) {
+      axios
+        .delete(
+          this.url +
+            "/apis/apps/v1/namespaces/default/deployments/" +
+            deployment
+        )
+        .then(response => {
+          console.log(response.data);
+          this.getDeployments();
+          this.$toasted.success("Deployment " + deployment + " eliminated !");
+        });
+    },
+    getNamespaces() {
+      axios.get(this.url + "/api/v1/namespaces").then(response => {
+        this.namespaces = response.data.items;
+      });
+      
+    },
+    changeNameSpace(namespace){
+       this.$store.commit("setNameSpace", namespace); 
+       this.getDeployments();
     }
   },
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
+    console.log(this.$store.state);
     this.getDeployments();
+    this.getNamespaces();
   }
 };
 </script>

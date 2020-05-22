@@ -60,6 +60,7 @@ export default {
   mounted() {
     console.log("limpou");
     this.$store.commit("clearUser");
+    this.$store.commit("clearNameSpace");
   }
 };
 </script>

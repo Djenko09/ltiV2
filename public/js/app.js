@@ -6500,6 +6500,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6510,7 +6534,11 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         replicas: ""
       },
-      namespaces: []
+      namespaces: [],
+      //detail
+      deploymentDetailsMetadata: [],
+      deploymentDetailsSpec: [],
+      deploymentDetailsStatus: []
     };
   },
   methods: {
@@ -6619,6 +6647,11 @@ __webpack_require__.r(__webpack_exports__);
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getDeployments();
+    },
+    detail: function detail(deployment) {
+      this.deploymentDetailsMetadata = deployment.metadata;
+      this.deploymentDetailsSpec = deployment.spec;
+      this.deploymentDetailsStatus = deployment.status;
     }
   },
   mounted: function mounted() {
@@ -7104,6 +7137,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7113,6 +7176,10 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         containerName: null
       },
+      //details
+      podDetailsMetadata: [],
+      podDetailsSpec: [],
+      podDetailsStatus: [],
       namespaces: []
     };
   },
@@ -7200,6 +7267,11 @@ __webpack_require__.r(__webpack_exports__);
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getPods();
+    },
+    detail: function detail(pod) {
+      this.podDetailsMetadata = pod.metadata;
+      this.podDetailsSpec = pod.spec;
+      this.podDetailsStatus = pod.status;
     }
   },
   mounted: function mounted() {
@@ -52455,6 +52527,25 @@ var render = function() {
                         }
                       },
                       [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: {
+                          type: "button",
+                          name: "button",
+                          "data-toggle": "modal",
+                          "data-target": "#myModalDetail"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.detail(deployment)
+                          }
+                        }
+                      },
+                      [_vm._v("Details")]
                     )
                   ])
                 ])
@@ -52464,7 +52555,29 @@ var render = function() {
           2
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { id: "myModalDetail", role: "dialog" } },
+      [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("b", [_vm._v("Name:")]),
+              _vm._v("  " + _vm._s(this.deploymentDetailsMetadata.name)),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("uid:")]),
+              _vm._v("  " + _vm._s(this.deploymentDetailsMetadata.uid)),
+              _c("br")
+            ])
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -52506,6 +52619,23 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details ")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]
@@ -53082,6 +53212,25 @@ var render = function() {
                           }
                         },
                         [_vm._v("Delete")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          attrs: {
+                            type: "button",
+                            name: "button",
+                            "data-toggle": "modal",
+                            "data-target": "#myModalDetail"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.detail(pod)
+                            }
+                          }
+                        },
+                        [_vm._v("Details")]
                       )
                     ])
                   ],
@@ -53093,7 +53242,60 @@ var render = function() {
           2
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { id: "myModalDetail", role: "dialog" } },
+      [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("b", [_vm._v("Name:")]),
+              _vm._v("  " + _vm._s(this.podDetailsMetadata.name)),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("uid:")]),
+              _vm._v("  " + _vm._s(this.podDetailsMetadata.uid)),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("NameSpace:")]),
+              _vm._v(" " + _vm._s(this.podDetailsMetadata.namespace)),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Labels:")]),
+              _vm._v("  " + _vm._s(this.podDetailsMetadata.labels)),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Creations time:")]),
+              _vm._v(" " + _vm._s(this.podDetailsMetadata.creationTimestamp)),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Node:")]),
+              _vm._v(" " + _vm._s(this.podDetailsSpec.nodeName)),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Pod IP:")]),
+              _vm._v(" " + _vm._s(this.podDetailsStatus.podIP)),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Host IP:")]),
+              _vm._v(" " + _vm._s(this.podDetailsStatus.hostIP)),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Status:")]),
+              _vm._v(" " + _vm._s(this.podDetailsStatus.phase)),
+              _c("br"),
+              _c("br")
+            ])
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -53135,6 +53337,23 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details ")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]

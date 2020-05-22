@@ -116,11 +116,35 @@
                   class="btn btn-primary"
                   v-on:click="editDeployment(deployment.metadata.name)"
                 >Edit</button>
+                   <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"
+        data-target="#myModalDetail" v-on:click="detail(deployment)">Details</button>
+              </td
               </td>
             </tr>
           </tbody>
         </table>
         <!-- FIM tabela que lista os deployments -->
+      </div>
+    </div>
+     <div class="modal" id="myModalDetail" role="dialog">  
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Details </h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+           <div class="modal-body">
+            <b>Name:</b>  {{this.deploymentDetailsMetadata.name}}<br>
+            <b>uid:</b>  {{this.deploymentDetailsMetadata.uid}}<br>
+           
+           
+
+            
+          </div>
+
+         
+        </div>
       </div>
     </div>
   </div>
@@ -137,7 +161,12 @@ export default {
         name: "",
         replicas: ""
       },
-      namespaces: []
+      namespaces: [],
+
+      //detail
+      deploymentDetailsMetadata: [],
+      deploymentDetailsSpec: [],
+      deploymentDetailsStatus:[]
     };
   },
   methods: {
@@ -272,6 +301,12 @@ export default {
     changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getDeployments();
+    },
+    detail(deployment) {
+      this.deploymentDetailsMetadata = deployment.metadata;
+       this.deploymentDetailsSpec = deployment.spec;
+       this.deploymentDetailsStatus = deployment.status;
+
     }
   },
   mounted() {

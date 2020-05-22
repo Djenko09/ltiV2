@@ -189,8 +189,9 @@
             </li>
             <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Workload</p>
             <li class="active">
+            <router-link to="/deployments" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Deployments</router-link>
                 <router-link to="/pods" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Pods</router-link>
-                <router-link to="/deployments" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Deployments</router-link>
+                <router-link to="/replicaSets" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Replica Sets</router-link>
             </li>
             <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Services and discovery</p>
             <li class="active">

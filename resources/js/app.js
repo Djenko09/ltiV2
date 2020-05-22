@@ -57,6 +57,7 @@ import deploymentsComponent from "./kubernetes/deployments.vue";
 import servicesComponent from "./kubernetes/services.vue";
 import namespacesHomeComponent from "./kubernetes/namespaces.vue";
 import nodesComponent from "./kubernetes/nodes.vue";
+import replicaSetsComponent from "./kubernetes/replicaSets.vue";
 
 
 
@@ -89,6 +90,8 @@ const deployments = Vue.component('deployments', deploymentsComponent);
 const services = Vue.component('services', servicesComponent); 
 const namespaces = Vue.component('namespaces', namespacesHomeComponent);
 const nodes = Vue.component('nodes', nodesComponent);
+const replicaSets = Vue.component('replicaSets', replicaSetsComponent);
+
 
 //kubernetes
 const routes = [
@@ -118,6 +121,7 @@ const routes = [
     { path: '/services', component: services, name:"services"},
     { path: '/namespaces', component:namespaces, name:"namespaces"},
     { path: '/nodes', component:nodes, name:"nodes"},
+    { path: '/replicaSets', component:replicaSets, name:"replicaSets"},
 
 
 ];

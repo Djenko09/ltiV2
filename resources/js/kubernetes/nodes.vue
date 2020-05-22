@@ -17,10 +17,9 @@
           <tbody v-for="node in nodes">
             <tr>
               <td>{{node.metadata.name}}</td>
-              <td>{{node.metadata.labels.app}}</td>
-              <td> xd </td>
+              <td>{{node.metadata.labels}}</td>
+              <td>{{node.status.conditions[4].status}}</td>
               <td>{{node.status.nodeInfo.operatingSystem}}</td>
-
               <td>{{node.status.nodeInfo.osImage}}</td>
               <td>{{node.metadata.managedFields[0].time}} Hours</td>
             </tr>

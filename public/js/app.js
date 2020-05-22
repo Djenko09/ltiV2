@@ -2050,6 +2050,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("limpou");
     this.$store.commit("clearUser");
+    this.$store.commit("clearNameSpace");
   }
 });
 
@@ -6367,212 +6368,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/deployments.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      url: "http://192.168.232.71:8080",
-      deployments: [],
-      deployment: {
-        image: "",
-        name: "",
-        replicas: ""
-      }
-    };
-  },
-  methods: {
-    getDeployments: function getDeployments() {
-      var _this = this;
-
-      //função para obter os deployments
-      axios.get(this.url + "/apis/apps/v1/namespaces/default/deployments").then(function (response) {
-        console.log(response.data);
-        _this.deployments = response.data.items;
-        var arrayLength = _this.deployments.length;
-
-        for (var i = 0; i < arrayLength; i++) {
-          var date = _this.deployments[i].metadata.managedFields[0].time;
-          var divideDiaHora = date.split("T");
-          var dia = divideDiaHora[0].split("-");
-          var divideHoraZ = divideDiaHora[1].split("Z");
-          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
-          //console.log(res);
-          //console.log(hour);
-
-          var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
-          var hoje = new Date().getTime();
-          var diferenca = hoje - data;
-          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
-
-          _this.deployments[i].metadata.managedFields[0].time = diferenca.toFixed(1);
-        }
-      });
-    },
-    createDeployment: function createDeployment() {
-      var _this2 = this;
-
-      var replica = this.deployment.replicas >>> 0;
-      axios.post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
-        kind: "Deployment",
-        apiVersion: "apps/v1",
-        metadata: {
-          name: this.deployment.name,
-          labels: {
-            app: "nginx"
-          }
-        },
-        spec: {
-          replicas: replica,
-          selector: {
-            matchLabels: {
-              app: "nginx"
-            }
-          },
-          template: {
-            metadata: {
-              labels: {
-                app: "nginx"
-              }
-            },
-            spec: {
-              containers: [{
-                name: "ngnix",
-                image: this.deployment.image,
-                resources: {}
-              }]
-            }
-          }
-        }
-      }).then(function (response) {
-        console.log(response.data);
-
-        _this2.$toasted.show("Deployment Created");
-
-        _this2.getDeployments();
-      });
-    },
-    deleteDeployment: function deleteDeployment(deployment) {
-      var _this3 = this;
-
-      axios["delete"](this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(function (response) {
-        console.log(response.data);
-
-        _this3.$toasted.success('Deployment Deleted!');
-      });
-    }
-  },
-  mounted: function mounted() {
-    //a pagina ao ser carregada executa as seguintes funcoes
-    this.getDeployments();
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\lti\\resources\\js\\kubernetes\\deployments.vue: Unexpected token (184:0)\n\n\u001b[0m \u001b[90m 182 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 183 | \u001b[39m    createDeployment() {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 184 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 185 | \u001b[39m        \u001b[36mvar\u001b[39m replica \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdeployment\u001b[33m.\u001b[39mreplicas \u001b[33m>>>\u001b[39m\u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 186 | \u001b[39m      axios\u001b[33m.\u001b[39mpost(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39murl \u001b[33m+\u001b[39m \u001b[32m\"/apis/apps/v1/namespaces/default/deployments\"\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 187 | \u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10052:20)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExpression (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9332:23)\n    at Parser.parseStatementContent (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11210:23)\n    at Parser.parseStatement (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseBlock (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11626:10)\n    at Parser.parseFunctionBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10634:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10617:10)\n    at Parser.parseMethod (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10579:10)\n    at Parser.parseObjectMethod (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10495:19)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:23)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseObjectProperty (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10512:101)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:101)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)");
 
 /***/ }),
 
@@ -6660,7 +6458,8 @@ __webpack_require__.r(__webpack_exports__);
 
     this.getApi(); //this.$store.commit("setApp", "kubernetes");
 
-    this.$store.commit("setUser", "kubernetes"); //console.log(this.$store.state.app);
+    this.$store.commit("setUser", "kubernetes");
+    this.$store.commit("setNameSpace", "default"); //console.log(this.$store.state.app);
   }
 });
 
@@ -6897,7 +6696,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return _defineProperty({
@@ -7032,6 +6830,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7040,7 +6847,8 @@ __webpack_require__.r(__webpack_exports__);
       pod: {
         name: null,
         containerName: null
-      }
+      },
+      namespaces: []
     };
   },
   methods: {
@@ -7048,7 +6856,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //função para obter os pods
-      axios.get(this.url + "/api/v1/namespaces/default/pods").then(function (response) {
+      axios.get(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/pods").then(function (response) {
         console.log(response.data);
         _this.pods = response.data.items;
         var arrayLength = _this.pods.length;
@@ -7116,20 +6924,32 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.getPods();
       });
+    },
+    getNamespaces: function getNamespaces() {
+      var _this4 = this;
+
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this4.namespaces = response.data.items;
+      });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getPods();
     }
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getPods();
+    this.getNamespaces();
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/services.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/services.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/replicaSets.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/replicaSets.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7172,36 +6992,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.71:8080",
-      services: [],
-      service: {}
+      replicas: [],
+      replica: {},
+      namespaces: []
     };
   },
   methods: {
-    getServices: function getServices() {
+    getReplicas: function getReplicas() {
       var _this = this;
 
       //função para obter os pods
-      axios.get(this.url + "/api/v1/namespaces/default/services").then(function (response) {
+      axios.get(this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/replicasets").then(function (response) {
         console.log(response.data);
-        _this.services = response.data.items;
-        var arrayLength = _this.services.length;
+        _this.replicas = response.data.items;
+        var arrayLength = _this.replicas.length;
 
         for (var i = 0; i < arrayLength; i++) {
-          var date = _this.services[i].metadata.managedFields[0].time;
+          var date = _this.replicas[i].metadata.managedFields[0].time;
           var divideDiaHora = date.split("T");
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
@@ -7212,52 +7023,39 @@ __webpack_require__.r(__webpack_exports__);
           var diferenca = hoje - data;
           diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
 
-          _this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+          _this.replicas[i].metadata.managedFields[0].time = diferenca.toFixed(1);
         }
       });
     },
-    deleteService: function deleteService(service) {
+    getNamespaces: function getNamespaces() {
       var _this2 = this;
 
-      axios["delete"](this.url + "/api/v1/namespaces/default/services/" + service).then(function (response) {
-        _this2.$toasted.show("Service " + " '" + service + "' " + " deleted");
-
-        _this2.getServices();
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this2.namespaces = response.data.items;
       });
     },
-    createService: function createService() {
-      axios.post(this.url + "/api/v1/namespaces/default/services", {
-        "kind": "Service",
-        "apiVersion": "v1",
-        "metadata": {
-          "name": "umnovoteste2",
-          "namespace": "default",
-          "labels": {
-            "app": "umnovoteste2"
-          }
-        },
-        "spec": {
-          "ports": [{
-            "name": "80-80",
-            "protocol": "TCP",
-            "port": 80,
-            "targetPort": 80
-          }],
-          "selector": {
-            "app": "umnovoteste2"
-          },
-          "type": "NodePort",
-          "sessionAffinity": "None",
-          "externalTrafficPolicy": "Cluster"
-        }
-      });
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getReplicas();
     }
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
-    this.getServices();
+    this.getReplicas();
+    this.getNamespaces();
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/services.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/services.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\lti\\resources\\js\\kubernetes\\services.vue: Unexpected token (99:0)\n\n\u001b[0m \u001b[90m  97 | \u001b[39m        })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  98 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  99 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 100 | \u001b[39m    deleteService(service){\u001b[0m\n\u001b[0m \u001b[90m 101 | \u001b[39m      axios\u001b[33m.\u001b[39m\u001b[36mdelete\u001b[39m(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39murl \u001b[33m+\u001b[39m \u001b[32m\"/api/v1/namespaces/default/services/\"\u001b[39m \u001b[33m+\u001b[39m service)\u001b[33m.\u001b[39mthen(response\u001b[33m=>\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 102 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$toasted\u001b[33m.\u001b[39mshow(\u001b[32m\"Service \"\u001b[39m \u001b[33m+\u001b[39m \u001b[32m\" '\"\u001b[39m \u001b[33m+\u001b[39m service  \u001b[33m+\u001b[39m \u001b[32m\"' \"\u001b[39m  \u001b[33m+\u001b[39m \u001b[32m\" deleted\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.parseIdentifierName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10748:18)\n    at Parser.parseIdentifier (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10726:23)\n    at Parser.parseMaybePrivateName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10079:19)\n    at Parser.parsePropertyName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10550:126)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10451:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseObjectProperty (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10512:101)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:101)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExportDefaultExpression (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12283:24)\n    at Parser.parseExport (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12185:31)\n    at Parser.parseStatementContent (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11185:27)\n    at Parser.parseStatement (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseTopLevel (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11012:10)\n    at Parser.parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12637:10)\n    at parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12688:38)\n    at parser (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)");
 
 /***/ }),
 
@@ -52058,7 +51856,33 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Deployments")
+        _c("div", [
+          _vm._v("Deployments List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -52098,7 +51922,10 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._v(_vm._s(deployment.metadata.managedFields[0].time))
+                    _vm._v(
+                      _vm._s(deployment.metadata.managedFields[0].time) +
+                        " Hours"
+                    )
                   ]),
                   _vm._v(" "),
                   _c("td", [
@@ -52152,6 +51979,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass: "btn btn-outline-dark",
+          staticStyle: { "margin-top": "50px", "margin-left": "10px" },
           attrs: {
             type: "submit",
             "data-toggle": "modal",
@@ -52560,9 +52388,9 @@ var render = function() {
                 _c("tr", [
                   _c("td", [_vm._v(_vm._s(node.metadata.name))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(node.metadata.labels.app))]),
+                  _c("td", [_vm._v(_vm._s(node.metadata.labels))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(" xd ")]),
+                  _c("td", [_vm._v(_vm._s(node.status.conditions[4].status))]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(_vm._s(node.status.nodeInfo.operatingSystem))
@@ -52689,7 +52517,33 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Pods")
+        _c("div", [
+          _vm._v("Pods List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -52757,6 +52611,7 @@ var staticRenderFns = [
         "button",
         {
           staticClass: "btn btn-outline-dark",
+          staticStyle: { "margin-top": "50px", "margin-left": "10px" },
           attrs: {
             type: "submit",
             "data-toggle": "modal",
@@ -52811,6 +52666,112 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/replicaSets.vue?vue&type=template&id=16b13044&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/replicaSets.vue?vue&type=template&id=16b13044& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
+      _c("div", { staticClass: "card-header bg-primary text-white" }, [
+        _c("div", [
+          _vm._v("Replica Sets List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "table",
+          { staticClass: "table table-hover" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.replicas, function(replica) {
+              return _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(replica.metadata.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(replica.metadata.labels))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(replica.metadata.managedFields[0].time) + " Hours"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(replica.spec.template.spec.containers[0].image)
+                    )
+                  ])
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Labels")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Image")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/services.vue?vue&type=template&id=e0c60f0e&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/services.vue?vue&type=template&id=e0c60f0e& ***!
@@ -52845,7 +52806,33 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Services")
+        _c("div", [
+          _vm._v("Services List of namespace:  "),
+          _c("b", { staticClass: "text-dark" }, [
+            _vm._v(_vm._s(this.$store.state.namespace))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          _vm._l(_vm.namespaces, function(namespace) {
+            return _c(
+              "option",
+              {
+                domProps: { value: namespace.metadata.name },
+                on: {
+                  click: function($event) {
+                    return _vm.changeNameSpace(namespace.metadata.name)
+                  }
+                }
+              },
+              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+            )
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -69516,6 +69503,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _kubernetes_services_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./kubernetes/services.vue */ "./resources/js/kubernetes/services.vue");
 /* harmony import */ var _kubernetes_namespaces_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./kubernetes/namespaces.vue */ "./resources/js/kubernetes/namespaces.vue");
 /* harmony import */ var _kubernetes_nodes_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./kubernetes/nodes.vue */ "./resources/js/kubernetes/nodes.vue");
+/* harmony import */ var _kubernetes_replicaSets_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./kubernetes/replicaSets.vue */ "./resources/js/kubernetes/replicaSets.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
 
 
@@ -69567,6 +69555,7 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_3___default.a, {
 
 
 
+
 var gps = Vue.component('gps', _components_gps_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var home = Vue.component('home', _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var login = Vue.component('login', _components_loginComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
@@ -69594,7 +69583,8 @@ var pods = Vue.component('pods', _kubernetes_pods_vue__WEBPACK_IMPORTED_MODULE_2
 var deployments = Vue.component('deployments', _kubernetes_deployments_vue__WEBPACK_IMPORTED_MODULE_26__["default"]);
 var services = Vue.component('services', _kubernetes_services_vue__WEBPACK_IMPORTED_MODULE_27__["default"]);
 var namespaces = Vue.component('namespaces', _kubernetes_namespaces_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
-var nodes = Vue.component('nodes', _kubernetes_nodes_vue__WEBPACK_IMPORTED_MODULE_29__["default"]); //kubernetes
+var nodes = Vue.component('nodes', _kubernetes_nodes_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
+var replicaSets = Vue.component('replicaSets', _kubernetes_replicaSets_vue__WEBPACK_IMPORTED_MODULE_30__["default"]); //kubernetes
 
 var routes = [{
   path: '/',
@@ -69695,6 +69685,10 @@ var routes = [{
   path: '/nodes',
   component: nodes,
   name: "nodes"
+}, {
+  path: '/replicaSets',
+  component: replicaSets,
+  name: "replicaSets"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes
@@ -71514,6 +71508,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/kubernetes/replicaSets.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/kubernetes/replicaSets.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _replicaSets_vue_vue_type_template_id_16b13044___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./replicaSets.vue?vue&type=template&id=16b13044& */ "./resources/js/kubernetes/replicaSets.vue?vue&type=template&id=16b13044&");
+/* harmony import */ var _replicaSets_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./replicaSets.vue?vue&type=script&lang=js& */ "./resources/js/kubernetes/replicaSets.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _replicaSets_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _replicaSets_vue_vue_type_template_id_16b13044___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _replicaSets_vue_vue_type_template_id_16b13044___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/kubernetes/replicaSets.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/replicaSets.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/kubernetes/replicaSets.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_replicaSets_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./replicaSets.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/replicaSets.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_replicaSets_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/replicaSets.vue?vue&type=template&id=16b13044&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/kubernetes/replicaSets.vue?vue&type=template&id=16b13044& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_replicaSets_vue_vue_type_template_id_16b13044___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./replicaSets.vue?vue&type=template&id=16b13044& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/replicaSets.vue?vue&type=template&id=16b13044&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_replicaSets_vue_vue_type_template_id_16b13044___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_replicaSets_vue_vue_type_template_id_16b13044___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/kubernetes/services.vue":
 /*!**********************************************!*\
   !*** ./resources/js/kubernetes/services.vue ***!
@@ -71611,7 +71674,9 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
     password: null,
     project: null,
     projectName: null,
-    projectNames: []
+    projectNames: [],
+    //TL 2
+    namespace: null
   },
   app: {
     name: null
@@ -71674,13 +71739,24 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
       state.user = user;
       window.localStorage.setItem('user', JSON.stringify(user));
     },
+    //TL2
+    setNameSpace: function setNameSpace(state, namespace) {
+      state.namespace = namespace;
+      window.localStorage.setItem('namespace', namespace);
+    },
+    clearNameSpace: function clearNameSpace(state) {
+      state.namespace = null;
+      localStorage.removeItem("namespace");
+    },
     loadTokenAndUserFromSession: function loadTokenAndUserFromSession(state) {
       state.token = "";
       state.user = null;
       state.project = null;
+      state.namespace = null;
       var token = localStorage.getItem("token");
       var user = localStorage.getItem("user");
       var project = localStorage.getItem("project");
+      var namespace = localStorage.getItem("namespace");
 
       if (token) {
         state.token = token;
@@ -71695,6 +71771,10 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 
       if (project) {
         state.project = project;
+      }
+
+      if (namespace) {
+        state.namespace = namespace;
       }
     }
   }

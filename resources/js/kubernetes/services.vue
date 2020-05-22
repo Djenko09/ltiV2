@@ -4,7 +4,15 @@
       <button type="button" name="button" class="btn btn-primary" v-on:click="createService()">Create service</button>
     </div>
     <div style="margin-top:50px" class="card">
-      <div class="card-header bg-primary text-white">List of Services</div>
+        <div class="card-header bg-primary text-white">
+
+          <div>Services List of namespace:  <b class="text-dark">{{this.$store.state.namespace}}</b> </div>
+           <a class="text-dark"> Change Namespace</a>
+          <select>
+            <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)"> {{namespace.metadata.name}}</option>
+          </select>
+
+      </div>
       <div class="card-body">
         <table class="table table-hover">
           <thead class="thead-dark">
@@ -51,14 +59,15 @@ export default {
     return {
       url: process.env.MIX_URL,
       services: [],
-      service: {}
+      service: {},
+      namespaces: []
     };
   },
   methods: {
     getServices() {
       //função para obter os pods
       axios
-        .get(this.url + "/api/v1/namespaces/default/services")
+        .get(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/services")
 
         .then(response => {
           console.log(response.data);
@@ -121,11 +130,21 @@ export default {
                 "externalTrafficPolicy": "Cluster"
             }
       })
-    }
+    },
+    getNamespaces() {
+    axios.get(this.url + "/api/v1/namespaces").then(response => {
+      this.namespaces = response.data.items;
+    });
+
+  },
+  changeNameSpace(namespace){
+     this.$store.commit("setNameSpace", namespace);
+     this.getServices();
   },
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServices();
+    this.getNamespaces();
   }
 };
 </script>

@@ -2,6 +2,7 @@
   <div>
     <div>
       <button
+       style="margin-top:50px;margin-left:10px"
         type="submit"
         class="btn btn-outline-dark"
         data-toggle="modal"
@@ -47,7 +48,15 @@
       </div>
     </div>
     <div style="margin-top:50px" class="card">
-      <div class="card-header bg-primary text-white">List of Pods</div>
+        <div class="card-header bg-primary text-white">
+        
+          <div>Pods List of namespace:  <b class="text-dark">{{this.$store.state.namespace}}</b> </div>
+           <a class="text-dark"> Change Namespace</a>
+          <select>
+            <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)"> {{namespace.metadata.name}}</option>
+          </select>
+        
+      </div>
 
       <div class="card-body">
         <table class="table table-hover">
@@ -89,14 +98,16 @@ export default {
         name:null,
         containerName: null,
 
-      }
+      },
+      namespaces: [],
+      
     };
   },
   methods: {
     getPods() {
       //função para obter os pods
       axios
-        .get(this.url + "/api/v1/namespaces/default/pods")
+        .get(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/pods")
 
         .then(response => {
           console.log(response.data);
@@ -168,11 +179,22 @@ export default {
           this.$toasted.show("Pod Created");
           this.getPods();
         });
+    },
+     getNamespaces() {
+      axios.get(this.url + "/api/v1/namespaces").then(response => {
+        this.namespaces = response.data.items;
+      });
+      
+    },
+    changeNameSpace(namespace){
+       this.$store.commit("setNameSpace", namespace); 
+       this.getPods();
     }
   },
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getPods();
+    this.getNamespaces()
   }
 };
 </script>

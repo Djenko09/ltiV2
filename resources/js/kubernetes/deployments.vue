@@ -107,8 +107,7 @@
       <div style="margin-top:10px" class="card">
         <div class="card-header bg-primary text-white">
           <div>
-            Deployments list from namespace:
-            <b class="text-dark">{{this.$store.state.namespace}}</b>
+            Deployments list 
           </div>
         </div>
         <div class="card-body">

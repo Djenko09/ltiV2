@@ -207,6 +207,11 @@
                 <router-link to="/services" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Services</router-link>
 
             </li>
+            <p style="background-color:#1aa3ff;color:#000;margin-top:10px"class="text-center">Config and Storage</p>
+            <li class="active">
+                <router-link to="/configMaps" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Config Maps</router-link>
+
+            </li>
           </ul>
       </div>
     </div>

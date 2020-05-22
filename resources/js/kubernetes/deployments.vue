@@ -1,20 +1,35 @@
 <template>
   <div>
-    <div>
-      <button
-        style="margin-top:50px;margin-left:10px"
-        type="submit"
-        class="btn btn-outline-dark"
-        data-toggle="modal"
-        data-target="#myModalPod"
-      >Create Deployment</button>
+    <div style="margin-top:50px" class="card">
+      <div class="row">
+        <div class="col-md-4">
+            <div style="margin-top:10px;margin-left:5px;"class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Change Namespace</label>
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)">{{namespace.metadata.name}}</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+          <button
+            style="margin-top:10px;margin-left:10px"
+            type="submit"
+            class="btn btn-outline-dark"
+            data-toggle="modal"
+            data-target="#myModalPod"
+          >Create Deployment <i class="fa fa-plus-circle"></i></button>
+        </div>
+      </div>
     </div>
     <div class="modal" id="myModalPod">
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Deployment for namespace: <b>{{this.$store.state.namespace}}</b></h4>
+            <h4 class="modal-title">Create Deployment from namespace: <b>{{this.$store.state.namespace}}</b></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
@@ -29,6 +44,10 @@
                 id="name"
                 placeholder="Insert name "
               />
+            </div>
+            <div class="form-group">
+              <label for="label">Label</label>
+              <input type="text" class="form-control" v-model="deployment.label">
             </div>
 
             <div class="form-group">
@@ -66,20 +85,12 @@
         </div>
       </div>
     </div>
-    <div style="margin-top:50px" class="card">
+    <div style="margin-top:10px" class="card">
       <div class="card-header bg-primary text-white">
         <div>
-          Deployments List of namespace:
+          Deployments list from namespace:
           <b class="text-dark">{{this.$store.state.namespace}}</b>
         </div>
-        <a class="text-dark">Change Namespace</a>
-        <select>
-          <option
-            v-for="namespace in namespaces"
-            :value="namespace.metadata.name"
-            v-on:click="changeNameSpace(namespace.metadata.name)"
-          >{{namespace.metadata.name}}</option>
-        </select>
       </div>
       <div class="card-body">
         <table class="table table-hover">
@@ -159,7 +170,8 @@ export default {
       deployment: {
         image: "",
         name: "",
-        replicas: ""
+        replicas: "",
+        label:null,
       },
       namespaces: [],
 
@@ -225,54 +237,47 @@ export default {
           kind: "Deployment",
           apiVersion: "apps/v1",
           metadata: {
-            name: this.deployment.name,
-            labels: {
-              app: "nginx"
+          name: this.deployment.name,
+          namespace : this.$store.state.namespace,
+          labels: {
+            app:  this.deployment.label
+          }
+        },
+        spec: {
+          replicas: replica,
+          selector: {
+            matchLabels: {
+              app:  this.deployment.name
             }
 
           },
-          spec: {
-            replicas: replica,
-            selector: {
-              matchLabels: {
-                app: "nginx"
+          template: {
+            metadata: {
+              labels: {
+                app: this.deployment.name
               }
             },
-            managedFields: [
-              {
-                manager: "kubectl",
-                image: this.deployment.image,
-                ports: [
-                  {
-                    containerPort: 80
-                  }
-                ],
-                resources: {
-                  limits: {
-                    memory: "128Mi",
-                    cpu: "500m"
-                  }
-                }
-              }
-            ],
             spec: {
-              replicas: replica,
-              selector: {
-                matchLabels: {
-                  app: "nginx"
-                }
-              },
-              spec: {
-                containers: [
-                  {
-                    name: "ngnix",
-                    image: this.deployment.image,
-                    resources: {}
+              containers: [
+                {
+                  name: this.deployment.name,
+                  image: this.deployment.image,
+                  ports: [
+                    {
+                      containerPort: 80
+                    }
+                  ],
+                  resources: {
+                    limits: {
+                      memory: "128Mi",
+                      cpu: "500m"
+                    }
                   }
-                ]
-              }
+                }
+              ]
             }
           }
+        }
         })
         .then(response => {
           console.log(response.data);

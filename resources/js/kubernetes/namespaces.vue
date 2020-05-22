@@ -137,7 +137,7 @@ export default {
 
 
           //vidaNamespace = vidaNamespace / 36000;
-          this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+          this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(0);
         }
       //  console.log(this.namespaces.items[0].metadata.managedFields[0].time);
       })
@@ -152,9 +152,6 @@ export default {
               "name": this.namespace.label
             }
           }
-      }).then(response=>{
-        this.$toasted.success('NameSpace Created!')
-        this.getNamespaces();
       })
     },
     deleteNamespace(namespace){

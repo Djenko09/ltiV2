@@ -68,13 +68,18 @@
     </div>
     <div style="margin-top:50px" class="card">
       <div class="card-header bg-primary text-white">
-
-          <div>Deployments List of namespace:  <b class="text-dark">{{this.$store.state.namespace}}</b> </div>
-           <a class="text-dark"> Change Namespace</a>
-          <select>
-            <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)"> {{namespace.metadata.name}}</option>
-          </select>
-
+        <div>
+          Deployments List of namespace:
+          <b class="text-dark">{{this.$store.state.namespace}}</b>
+        </div>
+        <a class="text-dark">Change Namespace</a>
+        <select>
+          <option
+            v-for="namespace in namespaces"
+            :value="namespace.metadata.name"
+            v-on:click="changeNameSpace(namespace.metadata.name)"
+          >{{namespace.metadata.name}}</option>
+        </select>
       </div>
       <div class="card-body">
         <table class="table table-hover">
@@ -132,15 +137,19 @@ export default {
         name: "",
         replicas: ""
       },
-      namespaces: [],
-
+      namespaces: []
     };
   },
   methods: {
     getDeployments() {
       //função para obter os deployments
       axios
-        .get(this.url + "/apis/apps/v1/namespaces/"+this.$store.state.namespace+"/deployments")
+        .get(
+          this.url +
+            "/apis/apps/v1/namespaces/" +
+            this.$store.state.namespace +
+            "/deployments"
+        )
 
         .then(response => {
           console.log(response.data);
@@ -181,41 +190,17 @@ export default {
         });
     },
     createDeployment() {
-        var replica = this.deployment.replicas >>>0;
-      axios.post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
-
-        kind: "Deployment",
-        apiVersion: "apps/v1",
-        metadata: {
-          name: this.deployment.name,
-          labels: {
-            app: "nginx"
-          }
-        },
-        spec: {
-          replicas: replica,
-          selector: {
-            matchLabels: {
+      var replica = this.deployment.replicas >>> 0;
+      axios
+        .post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
+          kind: "Deployment",
+          apiVersion: "apps/v1",
+          metadata: {
+            name: this.deployment.name,
+            labels: {
               app: "nginx"
             }
           },
-          managedFields: [
-            {
-              manager: "kubectl",
-              image: this.deployment.image,
-              ports: [
-                {
-                  containerPort: 80
-                }
-              ],
-              resources: {
-                limits: {
-                  memory: "128Mi",
-                  cpu: "500m"
-                }
-              }
-            }
-          ],
           spec: {
             replicas: replica,
             selector: {
@@ -223,15 +208,39 @@ export default {
                 app: "nginx"
               }
             },
-            spec: {
-              containers: [
-                {
-                  name: "ngnix",
-                  image: this.deployment.image,
-                  resources: {
-                  },
+            managedFields: [
+              {
+                manager: "kubectl",
+                image: this.deployment.image,
+                ports: [
+                  {
+                    containerPort: 80
+                  }
+                ],
+                resources: {
+                  limits: {
+                    memory: "128Mi",
+                    cpu: "500m"
+                  }
                 }
-              ]
+              }
+            ],
+            spec: {
+              replicas: replica,
+              selector: {
+                matchLabels: {
+                  app: "nginx"
+                }
+              },
+              spec: {
+                containers: [
+                  {
+                    name: "ngnix",
+                    image: this.deployment.image,
+                    resources: {}
+                  }
+                ]
+              }
             }
           }
         })
@@ -258,11 +267,10 @@ export default {
       axios.get(this.url + "/api/v1/namespaces").then(response => {
         this.namespaces = response.data.items;
       });
-
     },
-    changeNameSpace(namespace){
-       this.$store.commit("setNameSpace", namespace);
-       this.getDeployments();
+    changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getDeployments();
     }
   },
   mounted() {

@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['projectName'],
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       project_name: null,
       user: {
         token: null
@@ -2032,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       showMessage: false,
       message: ""
     };
@@ -2170,7 +2170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       containers: [],
       container: {
         name: "",
@@ -2301,7 +2301,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       projects: [],
       instances: [],
       images: [],
@@ -2541,7 +2541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       flavors: [],
       flavor: {
         name: "",
@@ -2788,7 +2788,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       floatingIPs: [],
       instances: [],
       networks: [],
@@ -3053,7 +3053,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {},
@@ -3250,7 +3250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       images: [],
       disk_formats: ["ami", "ari", "aki", "vhd", "vhdx", "vmdk", "raw", "qcow2", "vdi", "ploop", "iso"],
       image: {
@@ -3763,7 +3763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       instances: [],
       subnets: [],
       keypairs: [],
@@ -4340,7 +4340,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       keypairs: [],
       newKeypair: {
         name: "",
@@ -4488,7 +4488,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       showMessage: false,
       message: ""
     };
@@ -4572,7 +4572,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.232.71:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {
@@ -4764,7 +4764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       networks: [],
       network: {
         name: ""
@@ -4968,7 +4968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       projects: [],
       active_prj: this.$store.state.project,
       user: {
@@ -5200,7 +5200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       routers: [],
       router: {
         id: "",
@@ -5568,7 +5568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       securityGroups: [],
       securityGroup: {
         name: null,
@@ -5895,7 +5895,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       servers: [],
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       serversGroup: {
         name: null,
         policy: null
@@ -6180,7 +6180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       volumes: [],
       volume: {
         id: "",
@@ -6368,9 +6368,266 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/deployments.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\lti\\resources\\js\\kubernetes\\deployments.vue: Unexpected token (184:0)\n\n\u001b[0m \u001b[90m 182 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 183 | \u001b[39m    createDeployment() {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 184 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 185 | \u001b[39m        \u001b[36mvar\u001b[39m replica \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdeployment\u001b[33m.\u001b[39mreplicas \u001b[33m>>>\u001b[39m\u001b[35m0\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 186 | \u001b[39m      axios\u001b[33m.\u001b[39mpost(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39murl \u001b[33m+\u001b[39m \u001b[32m\"/apis/apps/v1/namespaces/default/deployments\"\u001b[39m\u001b[33m,\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 187 | \u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10052:20)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExpression (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9332:23)\n    at Parser.parseStatementContent (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11210:23)\n    at Parser.parseStatement (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseBlock (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11626:10)\n    at Parser.parseFunctionBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10634:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10617:10)\n    at Parser.parseMethod (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10579:10)\n    at Parser.parseObjectMethod (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10495:19)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:23)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseObjectProperty (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10512:101)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:101)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: "http://192.168.28.140:1234",
+      deployments: [],
+      deployment: {
+        image: "",
+        name: "",
+        replicas: ""
+      },
+      namespaces: []
+    };
+  },
+  methods: {
+    getDeployments: function getDeployments() {
+      var _this = this;
+
+      //função para obter os deployments
+      axios.get(this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/deployments").then(function (response) {
+        console.log(response.data);
+        _this.deployments = response.data.items;
+        var arrayLength = _this.deployments.length;
+
+        for (var i = 0; i < arrayLength; i++) {
+          var date = _this.deployments[i].metadata.managedFields[0].time;
+          var divideDiaHora = date.split("T");
+          var dia = divideDiaHora[0].split("-");
+          var divideHoraZ = divideDiaHora[1].split("Z");
+          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
+          //console.log(res);
+          //console.log(hour);
+
+          var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
+          var hoje = new Date().getTime();
+          var diferenca = hoje - data;
+          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
+
+          _this.deployments[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+        }
+      });
+    },
+    createDeployment: function createDeployment() {
+      var _this2 = this;
+
+      var replica = this.deployment.replicas >>> 0;
+      axios.post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
+        kind: "Deployment",
+        apiVersion: "apps/v1",
+        metadata: {
+          name: this.deployment.name,
+          labels: {
+            app: "nginx"
+          }
+        },
+        spec: {
+          replicas: replica,
+          selector: {
+            matchLabels: {
+              app: "nginx"
+            }
+          },
+          managedFields: [{
+            manager: "kubectl",
+            image: this.deployment.image,
+            ports: [{
+              containerPort: 80
+            }],
+            resources: {
+              limits: {
+                memory: "128Mi",
+                cpu: "500m"
+              }
+            }
+          }],
+          spec: {
+            replicas: replica,
+            selector: {
+              matchLabels: {
+                app: "nginx"
+              }
+            },
+            spec: {
+              containers: [{
+                name: "ngnix",
+                image: this.deployment.image,
+                resources: {}
+              }]
+            }
+          }
+        }
+      }).then(function (response) {
+        console.log(response.data);
+
+        _this2.$toasted.show("Deployment Created");
+
+        _this2.getDeployments();
+      });
+    },
+    deleteDeployment: function deleteDeployment(deployment) {
+      var _this3 = this;
+
+      axios["delete"](this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(function (response) {
+        console.log(response.data);
+
+        _this3.getDeployments();
+
+        _this3.$toasted.success("Deployment " + deployment + " eliminated !");
+      });
+    },
+    getNamespaces: function getNamespaces() {
+      var _this4 = this;
+
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this4.namespaces = response.data.items;
+      });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getDeployments();
+    }
+  },
+  mounted: function mounted() {
+    //a pagina ao ser carregada executa as seguintes funcoes
+    console.log(this.$store.state);
+    this.getDeployments();
+    this.getNamespaces();
+  }
+});
 
 /***/ }),
 
@@ -6415,7 +6672,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {
@@ -6454,7 +6711,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log("http://192.168.232.71:8080"); // /this.createPod();
+    console.log("http://192.168.28.140:1234"); // /this.createPod();
 
     this.getApi(); //this.$store.commit("setApp", "kubernetes");
 
@@ -6573,7 +6830,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       namespaces: [],
       namespacesItems: [],
       namespace: {
@@ -6699,7 +6956,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return _defineProperty({
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       nodes: []
     }, "nodes", {});
   },
@@ -6842,7 +7099,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       pods: [],
       pod: {
         name: null,
@@ -6995,7 +7252,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.232.71:8080",
+      url: "http://192.168.28.140:1234",
       replicas: [],
       replica: {},
       namespaces: []
@@ -7055,7 +7312,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: default */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\lti\\resources\\js\\kubernetes\\services.vue: Unexpected token (99:0)\n\n\u001b[0m \u001b[90m  97 | \u001b[39m        })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  98 | \u001b[39m    }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  99 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 100 | \u001b[39m    deleteService(service){\u001b[0m\n\u001b[0m \u001b[90m 101 | \u001b[39m      axios\u001b[33m.\u001b[39m\u001b[36mdelete\u001b[39m(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39murl \u001b[33m+\u001b[39m \u001b[32m\"/api/v1/namespaces/default/services/\"\u001b[39m \u001b[33m+\u001b[39m service)\u001b[33m.\u001b[39mthen(response\u001b[33m=>\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 102 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$toasted\u001b[33m.\u001b[39mshow(\u001b[32m\"Service \"\u001b[39m \u001b[33m+\u001b[39m \u001b[32m\" '\"\u001b[39m \u001b[33m+\u001b[39m service  \u001b[33m+\u001b[39m \u001b[32m\"' \"\u001b[39m  \u001b[33m+\u001b[39m \u001b[32m\" deleted\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.parseIdentifierName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10748:18)\n    at Parser.parseIdentifier (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10726:23)\n    at Parser.parseMaybePrivateName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10079:19)\n    at Parser.parsePropertyName (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10550:126)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10451:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseObjectProperty (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10512:101)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10537:101)\n    at Parser.parseObjectMember (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10461:10)\n    at Parser.parseObj (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:10374:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExportDefaultExpression (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12283:24)\n    at Parser.parseExport (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12185:31)\n    at Parser.parseStatementContent (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11185:27)\n    at Parser.parseStatement (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseTopLevel (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:11012:10)\n    at Parser.parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12637:10)\n    at parse (C:\\laragon\\www\\lti\\node_modules\\@babel\\parser\\lib\\index.js:12688:38)\n    at parser (C:\\laragon\\www\\lti\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)");
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\ltiV2\\resources\\js\\kubernetes\\services.vue: Unexpected token, expected \",\" (149:1)\n\n\u001b[0m \u001b[90m 147 | \u001b[39m    \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetNamespaces()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 148 | \u001b[39m  }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 149 | \u001b[39m}\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 150 | \u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:742:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:735:17)\n    at Parser.raise (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:729:17)\n    at Parser.unexpected (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:8757:16)\n    at Parser.expect (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:8743:28)\n    at Parser.parseObj (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:10365:14)\n    at Parser.parseExprAtom (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:9995:28)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:9602:23)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:9582:21)\n    at Parser.parseExprOps (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:9452:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:9425:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:9380:21)\n    at Parser.parseExportDefaultExpression (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:12283:24)\n    at Parser.parseExport (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:12185:31)\n    at Parser.parseStatementContent (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:11185:27)\n    at Parser.parseStatement (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:11081:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:11656:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:11642:10)\n    at Parser.parseTopLevel (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:11012:10)\n    at Parser.parse (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:12637:10)\n    at parse (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\parser\\lib\\index.js:12688:38)\n    at parser (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\core\\lib\\parser\\index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:93:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (C:\\laragon\\www\\ltiV2\\node_modules\\@babel\\core\\lib\\transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (C:\\laragon\\www\\ltiV2\\node_modules\\gensync\\index.js:254:32)\n    at C:\\laragon\\www\\ltiV2\\node_modules\\gensync\\index.js:266:13\n    at async.call.result.err.err (C:\\laragon\\www\\ltiV2\\node_modules\\gensync\\index.js:216:11)");
 
 /***/ }),
 
@@ -51857,13 +52114,13 @@ var render = function() {
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
         _c("div", [
-          _vm._v("Deployments List of namespace:  "),
+          _vm._v("\n        Deployments List of namespace:\n        "),
           _c("b", { staticClass: "text-dark" }, [
             _vm._v(_vm._s(this.$store.state.namespace))
           ])
         ]),
         _vm._v(" "),
-        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
+        _c("a", { staticClass: "text-dark" }, [_vm._v("Change Namespace")]),
         _vm._v(" "),
         _c(
           "select",
@@ -51878,7 +52135,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v(" " + _vm._s(namespace.metadata.name))]
+              [_vm._v(_vm._s(namespace.metadata.name))]
             )
           }),
           0
@@ -71800,8 +72057,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

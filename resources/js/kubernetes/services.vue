@@ -139,7 +139,7 @@ export default {
      this.$store.commit("setNameSpace", namespace);
      this.getServices();
   },
-}
+},
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServices();

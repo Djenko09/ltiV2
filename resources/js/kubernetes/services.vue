@@ -1,7 +1,70 @@
 <template>
   <div>
+    <div class="modal" id="myModalService">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Create Deployment</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="service.name"
+                id="name"
+                placeholder="Insert a name "
+              />
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label for="image">Port</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    v-model="service.port"
+                    placeholder="80"
+                  />
+                </div>
+                <div class="col">
+                  <label for="replicas">Target port</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    v-model="service.targetPort"
+                    placeholder="80"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="protocol">Procotol</label>
+              <select class="" name="protocolSelect" v-model="service.protocol">
+                <option value="TCP">TCP</option>
+                <option value="UDP">UPD</option>
+              </select>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-warning"
+                data-dismiss="modal"
+                v-on:click="createService()"
+              >Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div >
-      <button type="button" name="button" class="btn btn-primary" v-on:click="createService()">Create service</button>
+      <button type="button" name="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalService" >Create service</button>
     </div>
     <div style="margin-top:50px" class="card">
         <div class="card-header bg-primary text-white">
@@ -9,7 +72,7 @@
           <div>Services List of namespace:  <b class="text-dark">{{this.$store.state.namespace}}</b> </div>
            <a class="text-dark"> Change Namespace</a>
           <select>
-            <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)"> {{namespace.metadata.name}}</option>
+            <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)">{{namespace.metadata.name}}</option>
           </select>
 
       </div>
@@ -59,7 +122,13 @@ export default {
     return {
       url: process.env.MIX_URL,
       services: [],
-      service: {},
+      service: {
+        name:null,
+        port:null,
+        targetPort:null,
+        namespace:null,
+        protocol:null,
+      },
       namespaces: []
     }
   },
@@ -102,27 +171,27 @@ export default {
       });
     },
     createService(){
-      axios.post(this.url + "/api/v1/namespaces/default/services",{
+      axios.post(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/services",{
         "kind": "Service",
         "apiVersion": "v1",
         "metadata": {
-            "name": "umnovoteste2",
-            "namespace": "default",
+            "name": this.service.name,
+            "namespace": this.$store.state.namespace,
             "labels": {
-              "app": "umnovoteste2"
+              "app":  this.service.name,
             }
         },
         "spec": {
            "ports": [
             	{
-	            "name": "80-80",
-	            "protocol": "TCP",
-	            "port" : 80,
-	            "targetPort" : 80
+	            "name": "90-90",
+	            "protocol": this.service.protocol,
+	            "port" : parseInt(this.service.port),
+	            "targetPort" : parseInt(this.service.targetPort)
         		 }
             ],
                 "selector": {
-                    "app": "umnovoteste2"
+                    "app":  this.service.name
                 },
                 "type": "NodePort",
                 "sessionAffinity": "None",
@@ -139,7 +208,7 @@ export default {
      this.$store.commit("setNameSpace", namespace);
      this.getServices();
   },
-}
+},
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServices();

@@ -12,6 +12,7 @@
               <th>Opertating System</th>
               <th>osImage</th>
               <th>Age</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody v-for="node in nodes">
@@ -22,10 +23,47 @@
               <td>{{node.status.nodeInfo.operatingSystem}}</td>
               <td>{{node.status.nodeInfo.osImage}}</td>
               <td>{{node.metadata.managedFields[0].time}} Hours</td>
+              <td>
+                <button
+                  type="button"
+                  name="button"
+                  class="btn btn-secondary"
+                  data-toggle="modal"
+                  data-target="#myModalDetail"
+                  v-on:click="detail(node)"
+                >Details</button>
+              </td>
             </tr>
           </tbody>
         </table>
         <!-- FIM tabela que lista os deployments -->
+      </div>
+    </div>
+    <div class="modal" id="myModalDetail" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Details</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <b>Name:</b>
+            {{this.nodeDetailsMetadata.name}}
+            <br />
+            <b>uid:</b>
+            {{this.nodeDetailsMetadata.uid}}
+            <br />
+            <b>Labels:</b>
+            {{this.nodeDetailsMetadata.labels}}
+            <br />
+            <b>Creations time:</b>
+            {{this.nodeDetailsMetadata.creationTimestamp}}
+            <br />
+            <b>Pod CIDR:</b>
+            {{this.nodeDetailsSpec.podCIDR}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +75,10 @@ export default {
     return {
       url: process.env.MIX_URL,
       nodes: [],
-      nodes: {}
+      nodes: {},
+      nodeDetailsMetadata: [],
+      nodeDetailsSpec: [],
+      nodeDetailsStatus: [],
     };
   },
   methods: {
@@ -51,8 +92,7 @@ export default {
           this.nodes = response.data.items;
 
           var arrayLength = this.nodes.length;
-          for(var i = 0; i<arrayLength; i++){
-
+          for (var i = 0; i < arrayLength; i++) {
             var date = this.nodes[i].metadata.managedFields[0].time;
             var divideDiaHora = date.split("T");
             var dia = divideDiaHora[0].split("-");
@@ -63,19 +103,31 @@ export default {
 
             //console.log(hour);
 
-            var data = new Date(dia[0],dia[1]-1,dia[2],horas[0],horas[1],horas[2],0);
+            var data = new Date(
+              dia[0],
+              dia[1] - 1,
+              dia[2],
+              horas[0],
+              horas[1],
+              horas[2],
+              0
+            );
 
             var hoje = new Date().getTime();
 
-            var diferenca = hoje-data;
-            diferenca = (diferenca / (1000*60*60)) - 1
-
+            var diferenca = hoje - data;
+            diferenca = diferenca / (1000 * 60 * 60) - 1;
 
             //vidaNamespace = vidaNamespace / 36000;
             this.nodes[i].metadata.managedFields[0].time = diferenca.toFixed(1);
           }
-
         });
+    },
+     detail(node) {
+      this.nodeDetailsMetadata = node.metadata;
+       this.nodeDetailsSpec = node.spec;
+       this.nodeDetailsStatus= node.status;
+
     }
   },
   mounted() {

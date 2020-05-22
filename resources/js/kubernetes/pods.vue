@@ -104,13 +104,9 @@
             <b>Node:</b> {{this.podDetailsSpec.nodeName}}<br><br>
             <b>Pod IP:</b> {{this.podDetailsStatus.podIP}}<br>
             <b>Host IP:</b> {{this.podDetailsStatus.hostIP}}<br><br>
-            <b>Status:</b> {{this.podDetailsStatus.phase}}<br><br>
-           
-
-            
+            <b>Status:</b> {{this.podDetailsStatus.phase}}<br>
+            <b>QoS Class:</b> {{this.podDetailsStatus.qosClass}}<br>  
           </div>
-
-         
         </div>
       </div>
     </div>

@@ -6524,6 +6524,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6532,7 +6582,8 @@ __webpack_require__.r(__webpack_exports__);
       deployment: {
         image: "",
         name: "",
-        replicas: ""
+        replicas: "",
+        label: null
       },
       namespaces: [],
       //detail
@@ -6578,42 +6629,37 @@ __webpack_require__.r(__webpack_exports__);
         apiVersion: "apps/v1",
         metadata: {
           name: this.deployment.name,
+          namespace: this.$store.state.namespace,
           labels: {
-            app: "nginx"
+            app: this.deployment.label
           }
         },
         spec: {
           replicas: replica,
           selector: {
             matchLabels: {
-              app: "nginx"
+              app: this.deployment.name
             }
           },
-          managedFields: [{
-            manager: "kubectl",
-            image: this.deployment.image,
-            ports: [{
-              containerPort: 80
-            }],
-            resources: {
-              limits: {
-                memory: "128Mi",
-                cpu: "500m"
-              }
-            }
-          }],
-          spec: {
-            replicas: replica,
-            selector: {
-              matchLabels: {
-                app: "nginx"
+          template: {
+            metadata: {
+              labels: {
+                app: this.deployment.name
               }
             },
             spec: {
               containers: [{
-                name: "ngnix",
+                name: this.deployment.name,
                 image: this.deployment.image,
-                resources: {}
+                ports: [{
+                  containerPort: 80
+                }],
+                resources: {
+                  limits: {
+                    memory: "128Mi",
+                    cpu: "500m"
+                  }
+                }
               }]
             }
           }
@@ -6896,14 +6942,12 @@ __webpack_require__.r(__webpack_exports__);
           var diferenca = hoje - data;
           diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
 
-          _this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+          _this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(0);
         } //  console.log(this.namespaces.items[0].metadata.managedFields[0].time);
 
       });
     },
     createNamespace: function createNamespace() {
-      var _this2 = this;
-
       axios.post(this.url + "/api/v1/namespaces", {
         "apiVersion": "v1",
         "kind": "Namespace",
@@ -6913,21 +6957,17 @@ __webpack_require__.r(__webpack_exports__);
             "name": this.namespace.label
           }
         }
-      }).then(function (response) {
-        _this2.$toasted.success('NameSpace Created!');
-
-        _this2.getNamespaces();
       });
     },
     deleteNamespace: function deleteNamespace(namespace) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios["delete"](this.url + "/api/v1/namespaces/" + namespace).then(function (response) {
         console.log(response.data);
 
-        _this3.$toasted.success('NameSpace Deleted!');
+        _this2.$toasted.success('NameSpace Deleted!');
 
-        _this3.getNamespaces();
+        _this2.getNamespaces();
       });
     },
     editNamespace: function editNamespace(namespace) {
@@ -6994,12 +7034,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return _defineProperty({
+    var _ref;
+
+    return _ref = {
       url: "http://192.168.28.140:1234",
       nodes: []
-    }, "nodes", {});
+    }, _defineProperty(_ref, "nodes", {}), _defineProperty(_ref, "nodeDetailsMetadata", []), _defineProperty(_ref, "nodeDetailsSpec", []), _defineProperty(_ref, "nodeDetailsStatus", []), _ref;
   },
   methods: {
     getNodes: function getNodes() {
@@ -7028,6 +7108,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.nodes[i].metadata.managedFields[0].time = diferenca.toFixed(1);
         }
       });
+    },
+    detail: function detail(node) {
+      this.nodeDetailsMetadata = node.metadata;
+      this.nodeDetailsSpec = node.spec;
+      this.nodeDetailsStatus = node.status;
     }
   },
   mounted: function mounted() {
@@ -7047,10 +7132,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -52292,14 +52373,56 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c(
+            "div",
+            {
+              staticClass: "input-group mb-3",
+              staticStyle: { "margin-top": "10px", "margin-left": "5px" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass: "custom-select",
+                  attrs: { id: "inputGroupSelect01" }
+                },
+                _vm._l(_vm.namespaces, function(namespace) {
+                  return _c(
+                    "option",
+                    {
+                      domProps: { value: namespace.metadata.name },
+                      on: {
+                        click: function($event) {
+                          return _vm.changeNameSpace(namespace.metadata.name)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(namespace.metadata.name))]
+                  )
+                }),
+                0
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
           _c("div", { staticClass: "modal-header" }, [
             _c("h4", { staticClass: "modal-title" }, [
-              _vm._v("Create Deployment for namespace: "),
+              _vm._v(
+                "\n            Create Deployment from namespace:\n            "
+              ),
               _c("b", [_vm._v(_vm._s(this.$store.state.namespace))])
             ]),
             _vm._v(" "),
@@ -52339,6 +52462,32 @@ var render = function() {
                       return
                     }
                     _vm.$set(_vm.deployment, "name", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "label" } }, [_vm._v("Label")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.deployment.label,
+                    expression: "deployment.label"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.deployment.label },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.deployment, "label", $event.target.value)
                   }
                 }
               })
@@ -52424,35 +52573,14 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
+    _c("div", { staticClass: "card", staticStyle: { "margin-top": "10px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
         _c("div", [
-          _vm._v("\n        Deployments List of namespace:\n        "),
+          _vm._v("\n        Deployments list from namespace:\n        "),
           _c("b", { staticClass: "text-dark" }, [
             _vm._v(_vm._s(this.$store.state.namespace))
           ])
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "text-dark" }, [_vm._v("Change Namespace")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          _vm._l(_vm.namespaces, function(namespace) {
-            return _c(
-              "option",
-              {
-                domProps: { value: namespace.metadata.name },
-                on: {
-                  click: function($event) {
-                    return _vm.changeNameSpace(namespace.metadata.name)
-                  }
-                }
-              },
-              [_vm._v(_vm._s(namespace.metadata.name))]
-            )
-          }),
-          0
-        )
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
@@ -52460,7 +52588,7 @@ var render = function() {
           "table",
           { staticClass: "table table-hover" },
           [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _vm._l(_vm.deployments, function(deployment) {
               return _c("tbody", { key: deployment.metadata.name }, [
@@ -52563,15 +52691,93 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog modal-lg" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("b", [_vm._v("Name:")]),
-              _vm._v("  " + _vm._s(this.deploymentDetailsMetadata.name)),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsMetadata.name) +
+                  "\n          "
+              ),
               _c("br"),
               _vm._v(" "),
               _c("b", [_vm._v("uid:")]),
-              _vm._v("  " + _vm._s(this.deploymentDetailsMetadata.uid)),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsMetadata.uid) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("NameSpace:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsMetadata.namespace) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Labels:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsMetadata.labels) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Annotations:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsMetadata.annotations) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Creations time:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsMetadata.creationTimestamp) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Replicas:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsSpec.replicas) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              !_vm.deploymentDetailsStatus.readyReplicas
+                ? _c("b", [_vm._v("Ready Replicas:")])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.deploymentDetailsStatus.readyReplicas
+                ? _c("a", [_vm._v("0")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.deploymentDetailsStatus.readyReplicas
+                ? _c("b", [_vm._v("Ready Replicas:")])
+                : _vm._e(),
+              _vm._v(
+                "\n          " +
+                  _vm._s(_vm.deploymentDetailsStatus.readyReplicas) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Revision History Limit:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.deploymentDetailsSpec.revisionHistoryLimit) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
               _c("br")
             ])
           ])
@@ -52585,19 +52791,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "label",
+        {
+          staticClass: "input-group-text",
+          attrs: { for: "inputGroupSelect01" }
+        },
+        [_vm._v("Change Namespace")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
       _c(
         "button",
         {
           staticClass: "btn btn-outline-dark",
-          staticStyle: { "margin-top": "50px", "margin-left": "10px" },
+          staticStyle: { "margin-top": "10px", "margin-left": "10px" },
           attrs: {
             type: "submit",
             "data-toggle": "modal",
             "data-target": "#myModalPod"
           }
         },
-        [_vm._v("Create Deployment")]
+        [
+          _vm._v("\n          Create Deployment\n          "),
+          _c("i", { staticClass: "fa fa-plus-circle" })
+        ]
       )
     ])
   },
@@ -52626,7 +52850,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details ")]),
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details")]),
       _vm._v(" "),
       _c(
         "button",
@@ -53013,6 +53237,27 @@ var render = function() {
                     _vm._v(
                       _vm._s(node.metadata.managedFields[0].time) + " Hours"
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: {
+                          type: "button",
+                          name: "button",
+                          "data-toggle": "modal",
+                          "data-target": "#myModalDetail"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.detail(node)
+                          }
+                        }
+                      },
+                      [_vm._v("Details")]
+                    )
                   ])
                 ])
               ])
@@ -53021,7 +53266,60 @@ var render = function() {
           2
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { id: "myModalDetail", role: "dialog" } },
+      [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("b", [_vm._v("Name:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.nodeDetailsMetadata.name) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("uid:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.nodeDetailsMetadata.uid) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Labels:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.nodeDetailsMetadata.labels) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Creations time:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.nodeDetailsMetadata.creationTimestamp) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Pod CIDR:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.nodeDetailsSpec.podCIDR) +
+                  "\n        "
+              )
+            ])
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -53041,8 +53339,27 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("osImage")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Age")])
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]
@@ -53290,6 +53607,9 @@ var render = function() {
               _c("b", [_vm._v("Status:")]),
               _vm._v(" " + _vm._s(this.podDetailsStatus.phase)),
               _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("QoS Class:")]),
+              _vm._v(" " + _vm._s(this.podDetailsStatus.qosClass)),
               _c("br")
             ])
           ])
@@ -53593,6 +53913,7 @@ var render = function() {
                       expression: "service.protocol"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: { name: "protocolSelect" },
                   on: {
                     change: function($event) {

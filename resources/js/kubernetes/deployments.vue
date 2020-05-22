@@ -3,14 +3,18 @@
     <div style="margin-top:50px" class="card">
       <div class="row">
         <div class="col-md-4">
-            <div style="margin-top:10px;margin-left:5px;"class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Change Namespace</label>
-              </div>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)">{{namespace.metadata.name}}</option>
-              </select>
+          <div style="margin-top:10px;margin-left:5px;" class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Change Namespace</label>
             </div>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option
+                v-for="namespace in namespaces"
+                :value="namespace.metadata.name"
+                v-on:click="changeNameSpace(namespace.metadata.name)"
+              >{{namespace.metadata.name}}</option>
+            </select>
+          </div>
         </div>
 
         <div class="col-md-4">
@@ -20,7 +24,10 @@
             class="btn btn-outline-dark"
             data-toggle="modal"
             data-target="#myModalPod"
-          >Create Deployment <i class="fa fa-plus-circle"></i></button>
+          >
+            Create Deployment
+            <i class="fa fa-plus-circle"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -29,7 +36,10 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Deployment from namespace: <b>{{this.$store.state.namespace}}</b></h4>
+            <h4 class="modal-title">
+              Create Deployment from namespace:
+              <b>{{this.$store.state.namespace}}</b>
+            </h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
@@ -47,7 +57,7 @@
             </div>
             <div class="form-group">
               <label for="label">Label</label>
-              <input type="text" class="form-control" v-model="deployment.label">
+              <input type="text" class="form-control" v-model="deployment.label" />
             </div>
 
             <div class="form-group">
@@ -127,9 +137,14 @@
                   class="btn btn-primary"
                   v-on:click="editDeployment(deployment.metadata.name)"
                 >Edit</button>
-                   <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"
-        data-target="#myModalDetail" v-on:click="detail(deployment)">Details</button>
-              </td
+                <button
+                  type="button"
+                  name="button"
+                  class="btn btn-secondary"
+                  data-toggle="modal"
+                  data-target="#myModalDetail"
+                  v-on:click="detail(deployment)"
+                >Details</button>
               </td>
             </tr>
           </tbody>
@@ -137,24 +152,48 @@
         <!-- FIM tabela que lista os deployments -->
       </div>
     </div>
-     <div class="modal" id="myModalDetail" role="dialog">  
+    <div class="modal" id="myModalDetail" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Details </h4>
+            <h4 class="modal-title">Details</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-           <div class="modal-body">
-            <b>Name:</b>  {{this.deploymentDetailsMetadata.name}}<br>
-            <b>uid:</b>  {{this.deploymentDetailsMetadata.uid}}<br>
-           
-           
+          <div class="modal-body">
+            <b>Name:</b>
+            {{this.deploymentDetailsMetadata.name}}
+            <br />
+            <b>uid:</b>
+            {{this.deploymentDetailsMetadata.uid}}
+            <br />
+            <b>NameSpace:</b>
+            {{this.deploymentDetailsMetadata.namespace}}
+            <br />
+            <b>Labels:</b>
+            {{this.deploymentDetailsMetadata.labels}}
+            <br />
+            <b>Annotations:</b>
+            {{this.deploymentDetailsMetadata.annotations}}
+            <br />
+            <b>Creations time:</b>
+            {{this.deploymentDetailsMetadata.creationTimestamp}}
+            <br />
+            <br />
+            <b>Replicas:</b>
+            {{this.deploymentDetailsSpec.replicas}}
+            <br />
+            <b v-if="!deploymentDetailsStatus.readyReplicas">Ready Replicas:</b>
+            <a v-if="!deploymentDetailsStatus.readyReplicas">0</a>
+            <b v-if="deploymentDetailsStatus.readyReplicas">Ready Replicas:</b>
+            {{deploymentDetailsStatus.readyReplicas}}
+            <br />
 
-            
+            <b>Revision History Limit:</b>
+            {{this.deploymentDetailsSpec.revisionHistoryLimit}}
+            <br />
+            <br />
           </div>
-
-         
         </div>
       </div>
     </div>
@@ -171,14 +210,14 @@ export default {
         image: "",
         name: "",
         replicas: "",
-        label:null,
+        label: null
       },
       namespaces: [],
 
       //detail
       deploymentDetailsMetadata: [],
       deploymentDetailsSpec: [],
-      deploymentDetailsStatus:[]
+      deploymentDetailsStatus: []
     };
   },
   methods: {
@@ -233,52 +272,57 @@ export default {
     createDeployment() {
       var replica = this.deployment.replicas >>> 0;
       axios
-        .post(this.url + "/apis/apps/v1/namespaces/"+this.$store.state.namespace+"/deployments", {
-          kind: "Deployment",
-          apiVersion: "apps/v1",
-          metadata: {
-          name: this.deployment.name,
-          namespace : this.$store.state.namespace,
-          labels: {
-            app:  this.deployment.label
-          }
-        },
-        spec: {
-          replicas: replica,
-          selector: {
-            matchLabels: {
-              app:  this.deployment.name
-            }
-
-          },
-          template: {
+        .post(
+          this.url +
+            "/apis/apps/v1/namespaces/" +
+            this.$store.state.namespace +
+            "/deployments",
+          {
+            kind: "Deployment",
+            apiVersion: "apps/v1",
             metadata: {
+              name: this.deployment.name,
+              namespace: this.$store.state.namespace,
               labels: {
-                app: this.deployment.name
+                app: this.deployment.label
               }
             },
             spec: {
-              containers: [
-                {
-                  name: this.deployment.name,
-                  image: this.deployment.image,
-                  ports: [
-                    {
-                      containerPort: 80
-                    }
-                  ],
-                  resources: {
-                    limits: {
-                      memory: "128Mi",
-                      cpu: "500m"
-                    }
-                  }
+              replicas: replica,
+              selector: {
+                matchLabels: {
+                  app: this.deployment.name
                 }
-              ]
+              },
+              template: {
+                metadata: {
+                  labels: {
+                    app: this.deployment.name
+                  }
+                },
+                spec: {
+                  containers: [
+                    {
+                      name: this.deployment.name,
+                      image: this.deployment.image,
+                      ports: [
+                        {
+                          containerPort: 80
+                        }
+                      ],
+                      resources: {
+                        limits: {
+                          memory: "128Mi",
+                          cpu: "500m"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
-        }
-        })
+        )
         .then(response => {
           console.log(response.data);
           this.$toasted.show("Deployment Created");
@@ -309,9 +353,8 @@ export default {
     },
     detail(deployment) {
       this.deploymentDetailsMetadata = deployment.metadata;
-       this.deploymentDetailsSpec = deployment.spec;
-       this.deploymentDetailsStatus = deployment.status;
-
+      this.deploymentDetailsSpec = deployment.spec;
+      this.deploymentDetailsStatus = deployment.status;
     }
   },
   mounted() {

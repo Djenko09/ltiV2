@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
               <label for="protocol">Procotol</label>
-              <select class="" name="protocolSelect" v-model="service.protocol">
+              <select class="form-control" name="protocolSelect" v-model="service.protocol">
                 <option value="TCP">TCP</option>
                 <option value="UDP">UPD</option>
               </select>

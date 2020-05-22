@@ -14,6 +14,8 @@
   @yield('extrastyles')
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/1bce9209b1.js"></script>
 
 
@@ -196,7 +198,7 @@
             <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Services and discovery</p>
             <li class="active">
                 <router-link to="/services" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Services</router-link>
-              
+
             </li>
           </ul>
       </div>

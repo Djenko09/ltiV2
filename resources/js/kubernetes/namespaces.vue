@@ -157,7 +157,8 @@ export default {
     deleteNamespace(namespace){
       axios.delete(this.url + "/api/v1/namespaces/" + namespace).then(response=>{
         console.log(response.data);
-        this.$toasted.success('NameSpace Deleted!')
+        this.$toasted.success('NameSpace Deleted!');
+         this.getNamespaces();
       })
     },
     editNamespace(namespace){

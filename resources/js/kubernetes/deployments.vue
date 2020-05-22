@@ -220,6 +220,7 @@ export default {
             matchLabels: {
               app:  this.deployment.name
             }
+
           },
           template: {
             metadata: {

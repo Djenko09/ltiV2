@@ -63,8 +63,14 @@
         </div>
       </div>
     </div>
-    <div >
-      <button type="button" name="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModalService" >Create service</button>
+       <div>
+      <button
+       style="margin-top:50px;margin-left:10px"
+        type="submit"
+        class="btn btn-outline-dark"
+        data-toggle="modal"
+        data-target="#myModalService"
+      >Create Service</button>
     </div>
     <div style="margin-top:50px" class="card">
         <div class="card-header bg-primary text-white">

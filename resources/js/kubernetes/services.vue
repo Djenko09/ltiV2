@@ -112,13 +112,37 @@
               <td>{{service.metadata.managedFields[0].time}} Hours</td>
               <td>
                 <button type="button" name="button" class="btn btn-danger" v-on:click="deleteService(service.metadata.name)">Delete</button>
+                        <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"
+        data-target="#myModalDetail" v-on:click="detail(service)">Details</button>
               </td>
             </tr>
           </tbody>
         </table>
-        <!-- FIM tabela que lista os pods -->
       </div>
     </div>
+     <div class="modal" id="myModalDetail" role="dialog">  
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Details </h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+           <div class="modal-body">
+            <b>Name:</b>  {{this.serviceDetailsMetadata.name}}<br>
+            <b>uid:</b>  {{this.serviceDetailsMetadata.uid}}<br>
+            <b>NameSpace:</b> {{this.serviceDetailsMetadata.namespace}}<br>
+            <b>Labels:</b>  {{this.serviceDetailsMetadata.labels}}<br>
+            <b>Creations time:</b> {{this.serviceDetailsMetadata.creationTimestamp}}<br><br>
+            <b>Cluster IP:</b> {{this.serviceDetailsSpec.clusterIP}}<br>
+            <b>Type:</b> {{this.serviceDetailsSpec.type}}<br>
+            <b>Session Affinity:</b> {{this.serviceDetailsSpec.sessionAffinity}}<br><br>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </template>
 
@@ -135,7 +159,12 @@ export default {
         namespace:null,
         protocol:null,
       },
-      namespaces: []
+      namespaces: [],
+
+      //details
+      serviceDetailsMetadata : [],
+      serviceDetailsSpec : [],
+      serviceDetailsStatus : []
     }
   },
   methods: {
@@ -214,6 +243,12 @@ export default {
      this.$store.commit("setNameSpace", namespace);
      this.getServices();
   },
+  detail(service) {
+       this.serviceDetailsMetadata = service.metadata;
+       this.serviceDetailsSpec= service.spec;
+       this.serviceDetailsStatus = service.status;
+
+    }
 },
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes

@@ -6530,6 +6530,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6541,7 +6544,11 @@ __webpack_require__.r(__webpack_exports__);
         replicas: "",
         label: null
       },
-      namespaces: []
+      namespaces: [],
+      //detail
+      deploymentDetailsMetadata: [],
+      deploymentDetailsSpec: [],
+      deploymentDetailsStatus: []
     };
   },
   methods: {
@@ -6645,6 +6652,11 @@ __webpack_require__.r(__webpack_exports__);
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getDeployments();
+    },
+    detail: function detail(deployment) {
+      this.deploymentDetailsMetadata = deployment.metadata;
+      this.deploymentDetailsSpec = deployment.spec;
+      this.deploymentDetailsStatus = deployment.status;
     }
   },
   mounted: function mounted() {
@@ -7009,6 +7021,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return _defineProperty({
@@ -7171,6 +7186,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7180,6 +7221,10 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         containerName: null
       },
+      //details
+      podDetailsMetadata: [],
+      podDetailsSpec: [],
+      podDetailsStatus: [],
       namespaces: []
     };
   },
@@ -7267,6 +7312,11 @@ __webpack_require__.r(__webpack_exports__);
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getPods();
+    },
+    detail: function detail(pod) {
+      this.podDetailsMetadata = pod.metadata;
+      this.podDetailsSpec = pod.spec;
+      this.podDetailsStatus = pod.status;
     }
   },
   mounted: function mounted() {
@@ -7344,13 +7394,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.71:8080",
       replicas: [],
       replica: {},
-      namespaces: []
+      namespaces: [],
+      replicaDetailsMetadata: [],
+      replicaDetailsSpec: [],
+      replicaDetailsStatus: []
     };
   },
   methods: {
@@ -7389,6 +7479,11 @@ __webpack_require__.r(__webpack_exports__);
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getReplicas();
+    },
+    detail: function detail(replica) {
+      this.replicaDetailsMetadata = replica.metadata;
+      this.replicaDetailsSpec = replica.spec;
+      this.replicaDetailsStatus = replica.status;
     }
   },
   mounted: function mounted() {
@@ -7557,6 +7652,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7569,7 +7688,11 @@ __webpack_require__.r(__webpack_exports__);
         namespace: null,
         protocol: null
       },
-      namespaces: []
+      namespaces: [],
+      //details
+      serviceDetailsMetadata: [],
+      serviceDetailsSpec: [],
+      serviceDetailsStatus: []
     };
   },
   methods: {
@@ -7643,6 +7766,11 @@ __webpack_require__.r(__webpack_exports__);
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getServices();
+    },
+    detail: function detail(service) {
+      this.serviceDetailsMetadata = service.metadata;
+      this.serviceDetailsSpec = service.spec;
+      this.serviceDetailsStatus = service.status;
     }
   },
   mounted: function mounted() {
@@ -52438,7 +52566,9 @@ var render = function() {
         _c("div", { staticClass: "modal-content" }, [
           _c("div", { staticClass: "modal-header" }, [
             _c("h4", { staticClass: "modal-title" }, [
-              _vm._v("Create Deployment from namespace: "),
+              _vm._v(
+                "\n            Create Deployment from namespace:\n            "
+              ),
               _c("b", [_vm._v(_vm._s(this.$store.state.namespace))])
             ]),
             _vm._v(" "),
@@ -53206,6 +53336,26 @@ var render = function() {
             _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
               _c(
                 "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(this.$store.state.namespace) + "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
                 { staticClass: "nav-item active" },
                 [
                   _c(
@@ -53545,6 +53695,25 @@ var render = function() {
                               }
                             },
                             [_vm._v("Delete")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              attrs: {
+                                type: "button",
+                                name: "button",
+                                "data-toggle": "modal",
+                                "data-target": "#myModalDetail"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.detail(pod)
+                                }
+                              }
+                            },
+                            [_vm._v("Details")]
                           )
                         ])
                       ],
@@ -53555,6 +53724,65 @@ var render = function() {
               ],
               2
             )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal",
+          attrs: { id: "myModalDetail", role: "dialog" }
+        },
+        [
+          _c("div", { staticClass: "modal-dialog modal-lg" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("b", [_vm._v("Name:")]),
+                _vm._v("  " + _vm._s(this.podDetailsMetadata.name)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("uid:")]),
+                _vm._v("  " + _vm._s(this.podDetailsMetadata.uid)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("NameSpace:")]),
+                _vm._v(" " + _vm._s(this.podDetailsMetadata.namespace)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Labels:")]),
+                _vm._v("  " + _vm._s(this.podDetailsMetadata.labels)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Creations time:")]),
+                _vm._v(" " + _vm._s(this.podDetailsMetadata.creationTimestamp)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Node:")]),
+                _vm._v(" " + _vm._s(this.podDetailsSpec.nodeName)),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Pod IP:")]),
+                _vm._v(" " + _vm._s(this.podDetailsStatus.podIP)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Host IP:")]),
+                _vm._v(" " + _vm._s(this.podDetailsStatus.hostIP)),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Status:")]),
+                _vm._v(" " + _vm._s(this.podDetailsStatus.phase)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("QoS Class:")]),
+                _vm._v(" " + _vm._s(this.podDetailsStatus.qosClass)),
+                _c("br")
+              ])
+            ])
           ])
         ]
       )
@@ -53643,6 +53871,23 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details ")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]
@@ -53802,6 +54047,27 @@ var render = function() {
                         _vm._v(
                           _vm._s(replica.spec.template.spec.containers[0].image)
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary",
+                            attrs: {
+                              type: "button",
+                              name: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#myModalDetail"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.detail(replica)
+                              }
+                            }
+                          },
+                          [_vm._v("Details")]
+                        )
                       ])
                     ])
                   ])
@@ -53809,6 +54075,55 @@ var render = function() {
               ],
               2
             )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal",
+          attrs: { id: "myModalDetail", role: "dialog" }
+        },
+        [
+          _c("div", { staticClass: "modal-dialog modal-lg" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("b", [_vm._v("Name:")]),
+                _vm._v(
+                  "\n          " +
+                    _vm._s(this.replicaDetailsMetadata.name) +
+                    "\n          "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("uid:")]),
+                _vm._v(
+                  "\n          " +
+                    _vm._s(this.replicaDetailsMetadata.uid) +
+                    "\n          "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Labels:")]),
+                _vm._v(
+                  "\n          " +
+                    _vm._s(this.replicaDetailsMetadata.labels) +
+                    "\n          "
+                ),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Annotations:")]),
+                _vm._v(
+                  "\n          " +
+                    _vm._s(this.replicaDetailsMetadata.annotations) +
+                    "\n          "
+                ),
+                _c("br")
+              ])
+            ])
           ])
         ]
       )
@@ -53856,8 +54171,27 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Age")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Image")])
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]
@@ -54222,6 +54556,25 @@ var render = function() {
                             }
                           },
                           [_vm._v("Delete")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary",
+                            attrs: {
+                              type: "button",
+                              name: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#myModalDetail"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.detail(service)
+                              }
+                            }
+                          },
+                          [_vm._v("Details")]
                         )
                       ])
                     ])
@@ -54230,6 +54583,59 @@ var render = function() {
               ],
               2
             )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal",
+          attrs: { id: "myModalDetail", role: "dialog" }
+        },
+        [
+          _c("div", { staticClass: "modal-dialog modal-lg" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("b", [_vm._v("Name:")]),
+                _vm._v("  " + _vm._s(this.serviceDetailsMetadata.name)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("uid:")]),
+                _vm._v("  " + _vm._s(this.serviceDetailsMetadata.uid)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("NameSpace:")]),
+                _vm._v(" " + _vm._s(this.serviceDetailsMetadata.namespace)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Labels:")]),
+                _vm._v("  " + _vm._s(this.serviceDetailsMetadata.labels)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Creations time:")]),
+                _vm._v(
+                  " " + _vm._s(this.serviceDetailsMetadata.creationTimestamp)
+                ),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Cluster IP:")]),
+                _vm._v(" " + _vm._s(this.serviceDetailsSpec.clusterIP)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Type:")]),
+                _vm._v(" " + _vm._s(this.serviceDetailsSpec.type)),
+                _c("br"),
+                _vm._v(" "),
+                _c("b", [_vm._v("Session Affinity:")]),
+                _vm._v(" " + _vm._s(this.serviceDetailsSpec.sessionAffinity)),
+                _c("br"),
+                _c("br")
+              ])
+            ])
           ])
         ]
       )
@@ -54337,6 +54743,23 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details ")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]

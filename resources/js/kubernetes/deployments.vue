@@ -12,14 +12,6 @@
                 <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)">{{namespace.metadata.name}}</option>
               </select>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-              <option
-                v-for="namespace in namespaces"
-                :value="namespace.metadata.name"
-                v-on:click="changeNameSpace(namespace.metadata.name)"
-              >{{namespace.metadata.name}}</option>
-            </select>
-          </div>
         </div>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li style="color:#fff;margin-top:8px;margin-right:5px;">

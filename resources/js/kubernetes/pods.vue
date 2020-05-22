@@ -7,14 +7,14 @@
         class="btn btn-outline-dark"
         data-toggle="modal"
         data-target="#myModalPod"
-      >Create Pod</button>
+      >Create Pods</button>
     </div>
     <div class="modal" id="myModalPod">
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Pods</h4>
+            <h4 class="modal-title">Create Pods for namespace <b>{{this.$store.state.namespace}}</b></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
@@ -141,19 +141,19 @@ export default {
         });
     },
     deletePod(pod){
-      axios.delete(this.url + "/api/v1/namespaces/default/pods/" + pod ).then(response=>{
+      axios.delete(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/pods/" + pod ).then(response=>{
         this.$toasted.success('Pod ' + pod + ' eliminated !');
         this.getPods();
       })
     },
     createPod() {
       axios
-        .post(this.url + "/api/v1/namespaces/default/pods", {
+        .post(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/pods", {
           kind: "Pod",
           apiVersion: "v1",
           metadata: {
             name: this.pod.name,
-            namespace: "default",
+            namespace: this.$store.state.namespace,
             labels: {
               name:  "nginx4"
             }

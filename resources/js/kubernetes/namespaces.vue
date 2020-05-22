@@ -152,6 +152,9 @@ export default {
               "name": this.namespace.label
             }
           }
+      }).then(response=>{
+        this.$toasted.success('NameSpace Created!')
+        this.getNamespaces();
       })
     },
     deleteNamespace(namespace){

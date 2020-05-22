@@ -6545,7 +6545,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var replica = this.deployment.replicas >>> 0;
-      axios.post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
+      axios.post(this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/deployments", {
         kind: "Deployment",
         apiVersion: "apps/v1",
         metadata: {
@@ -6869,6 +6869,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createNamespace: function createNamespace() {
+      var _this2 = this;
+
       axios.post(this.url + "/api/v1/namespaces", {
         "apiVersion": "v1",
         "kind": "Namespace",
@@ -6878,15 +6880,19 @@ __webpack_require__.r(__webpack_exports__);
             "name": this.namespace.label
           }
         }
+      }).then(function (response) {
+        _this2.$toasted.success('NameSpace Created!');
+
+        _this2.getNamespaces();
       });
     },
     deleteNamespace: function deleteNamespace(namespace) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios["delete"](this.url + "/api/v1/namespaces/" + namespace).then(function (response) {
         console.log(response.data);
 
-        _this2.$toasted.success('NameSpace Deleted!');
+        _this3.$toasted.success('NameSpace Deleted!');
       });
     },
     editNamespace: function editNamespace(namespace) {
@@ -7140,7 +7146,7 @@ __webpack_require__.r(__webpack_exports__);
     deletePod: function deletePod(pod) {
       var _this2 = this;
 
-      axios["delete"](this.url + "/api/v1/namespaces/default/pods/" + pod).then(function (response) {
+      axios["delete"](this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/pods/" + pod).then(function (response) {
         _this2.$toasted.success('Pod ' + pod + ' eliminated !');
 
         _this2.getPods();
@@ -7149,12 +7155,12 @@ __webpack_require__.r(__webpack_exports__);
     createPod: function createPod() {
       var _this3 = this;
 
-      axios.post(this.url + "/api/v1/namespaces/default/pods", {
+      axios.post(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/pods", {
         kind: "Pod",
         apiVersion: "v1",
         metadata: {
           name: this.pod.name,
-          namespace: "default",
+          namespace: this.$store.state.namespace,
           labels: {
             name: "nginx4"
           }
@@ -52211,7 +52217,21 @@ var render = function() {
     _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(1),
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v("Create Deployment for namespace: "),
+              _c("b", [_vm._v(_vm._s(this.$store.state.namespace))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("×")]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -52360,7 +52380,7 @@ var render = function() {
           "table",
           { staticClass: "table table-hover" },
           [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _vm._l(_vm.deployments, function(deployment) {
               return _c("tbody", { key: deployment.metadata.name }, [
@@ -52457,23 +52477,6 @@ var staticRenderFns = [
           }
         },
         [_vm._v("Create Deployment")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Deployment")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
       )
     ])
   },
@@ -52932,7 +52935,21 @@ var render = function() {
     _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(1),
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v("Create Pods for namespace "),
+              _c("b", [_vm._v(_vm._s(this.$store.state.namespace))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("×")]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -53021,7 +53038,7 @@ var render = function() {
           "table",
           { staticClass: "table table-hover" },
           [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _vm._l(_vm.pods, function(pod) {
               return _c("tbody", [
@@ -53088,24 +53105,7 @@ var staticRenderFns = [
             "data-target": "#myModalPod"
           }
         },
-        [_vm._v("Create Pod")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Pods")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
+        [_vm._v("Create Pods")]
       )
     ])
   },

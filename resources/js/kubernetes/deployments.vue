@@ -14,7 +14,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Deployment</h4>
+            <h4 class="modal-title">Create Deployment for namespace: <b>{{this.$store.state.namespace}}</b></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
@@ -192,7 +192,7 @@ export default {
     createDeployment() {
       var replica = this.deployment.replicas >>> 0;
       axios
-        .post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
+        .post(this.url + "/apis/apps/v1/namespaces/"+this.$store.state.namespace+"/deployments", {
           kind: "Deployment",
           apiVersion: "apps/v1",
           metadata: {

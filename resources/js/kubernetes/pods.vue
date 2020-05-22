@@ -97,12 +97,38 @@
               <td>{{pod.metadata.managedFields[0].time}} Hours</td>
               <td>
                 <button type="button" name="button" class="btn btn-danger" v-on:click="deletePod(pod.metadata.name)">Delete</button>
+                 <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"
+        data-target="#myModalDetail" v-on:click="detail(pod)">Details</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+     <div class="modal" id="myModalDetail" role="dialog">  
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Details </h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+           <div class="modal-body">
+            <b>Name:</b>  {{this.podDetailsMetadata.name}}<br>
+            <b>uid:</b>  {{this.podDetailsMetadata.uid}}<br>
+            <b>NameSpace:</b> {{this.podDetailsMetadata.namespace}}<br>
+            <b>Labels:</b>  {{this.podDetailsMetadata.labels}}<br>
+            <b>Creations time:</b> {{this.podDetailsMetadata.creationTimestamp}}<br>
+            <b>Node:</b> {{this.podDetailsSpec.nodeName}}<br><br>
+            <b>Pod IP:</b> {{this.podDetailsStatus.podIP}}<br>
+            <b>Host IP:</b> {{this.podDetailsStatus.hostIP}}<br><br>
+            <b>Status:</b> {{this.podDetailsStatus.phase}}<br>
+            <b>QoS Class:</b> {{this.podDetailsStatus.qosClass}}<br>  
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
   </div>
 </template>
@@ -118,6 +144,11 @@ export default {
         containerName: null,
 
       },
+
+      //details
+      podDetailsMetadata: [],
+      podDetailsSpec: [],
+      podDetailsStatus: [],
       namespaces: [],
 
     };
@@ -208,6 +239,12 @@ export default {
     changeNameSpace(namespace){
        this.$store.commit("setNameSpace", namespace);
        this.getPods();
+    },
+    detail(pod) {
+      this.podDetailsMetadata = pod.metadata;
+       this.podDetailsSpec = pod.spec;
+       this.podDetailsStatus = pod.status;
+
     }
   },
   mounted() {

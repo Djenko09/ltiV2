@@ -12,6 +12,14 @@
                 <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)">{{namespace.metadata.name}}</option>
               </select>
             </div>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option
+                v-for="namespace in namespaces"
+                :value="namespace.metadata.name"
+                v-on:click="changeNameSpace(namespace.metadata.name)"
+              >{{namespace.metadata.name}}</option>
+            </select>
+          </div>
         </div>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li style="color:#fff;margin-top:8px;margin-right:5px;">
@@ -29,7 +37,10 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Deployment from namespace: <b>{{this.$store.state.namespace}}</b></h4>
+            <h4 class="modal-title">
+              Create Deployment from namespace:
+              <b>{{this.$store.state.namespace}}</b>
+            </h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
@@ -47,7 +58,7 @@
             </div>
             <div class="form-group">
               <label for="label">Label</label>
-              <input type="text" class="form-control" v-model="deployment.label">
+              <input type="text" class="form-control" v-model="deployment.label" />
             </div>
 
             <div class="form-group">
@@ -166,9 +177,14 @@ export default {
         image: "",
         name: "",
         replicas: "",
-        label:null,
+        label: null
       },
-      namespaces: []
+      namespaces: [],
+
+      //detail
+      deploymentDetailsMetadata: [],
+      deploymentDetailsSpec: [],
+      deploymentDetailsStatus: []
     };
   },
   methods: {
@@ -223,52 +239,57 @@ export default {
     createDeployment() {
       var replica = this.deployment.replicas >>> 0;
       axios
-        .post(this.url + "/apis/apps/v1/namespaces/"+this.$store.state.namespace+"/deployments", {
-          kind: "Deployment",
-          apiVersion: "apps/v1",
-          metadata: {
-          name: this.deployment.name,
-          namespace : this.$store.state.namespace,
-          labels: {
-            app:  this.deployment.label
-          }
-        },
-        spec: {
-          replicas: replica,
-          selector: {
-            matchLabels: {
-              app:  this.deployment.name
-            }
-
-          },
-          template: {
+        .post(
+          this.url +
+            "/apis/apps/v1/namespaces/" +
+            this.$store.state.namespace +
+            "/deployments",
+          {
+            kind: "Deployment",
+            apiVersion: "apps/v1",
             metadata: {
+              name: this.deployment.name,
+              namespace: this.$store.state.namespace,
               labels: {
-                app: this.deployment.name
+                app: this.deployment.label
               }
             },
             spec: {
-              containers: [
-                {
-                  name: this.deployment.name,
-                  image: this.deployment.image,
-                  ports: [
-                    {
-                      containerPort: 80
-                    }
-                  ],
-                  resources: {
-                    limits: {
-                      memory: "128Mi",
-                      cpu: "500m"
-                    }
-                  }
+              replicas: replica,
+              selector: {
+                matchLabels: {
+                  app: this.deployment.name
                 }
-              ]
+              },
+              template: {
+                metadata: {
+                  labels: {
+                    app: this.deployment.name
+                  }
+                },
+                spec: {
+                  containers: [
+                    {
+                      name: this.deployment.name,
+                      image: this.deployment.image,
+                      ports: [
+                        {
+                          containerPort: 80
+                        }
+                      ],
+                      resources: {
+                        limits: {
+                          memory: "128Mi",
+                          cpu: "500m"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
             }
           }
-        }
-        })
+        )
         .then(response => {
           console.log(response.data);
           this.$toasted.show("Deployment Created");
@@ -296,6 +317,11 @@ export default {
     changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getDeployments();
+    },
+    detail(deployment) {
+      this.deploymentDetailsMetadata = deployment.metadata;
+      this.deploymentDetailsSpec = deployment.spec;
+      this.deploymentDetailsStatus = deployment.status;
     }
   },
   mounted() {

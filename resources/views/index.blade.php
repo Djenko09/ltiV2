@@ -44,7 +44,6 @@
   }
 
   #sidebar-wrapper .list-group {
-    width: 15rem;
   }
 
   #page-content-wrapper {
@@ -68,6 +67,14 @@
     #wrapper.toggled #sidebar-wrapper {
       margin-left: -15rem;
     }
+    .row-full{
+      width: 100vw;
+      position: relative;
+      margin-left: -50vw;
+      height: 100px;
+      margin-top: 100px;
+      left: 50%;
+    }
   }
   </style>
 
@@ -80,9 +87,9 @@
     <!-- Sidebar -->
 
 
-    <div  v-if="this.$store.state.token || this.$store.state.user == 'kubernetes'" class="bg-light border-right" id="sidebar-wrapper">
+    <div  v-if="this.$store.state.token || this.$store.state.user == 'kubernetes'" class="bg-secondary" id="sidebar-wrapper">
       <div v-if="this.$store.state.token" class="sidebar-heading"><router-link to="/home" class="navbar-brand"><img src="{{URL::asset('/images/logo.png')}}" alt="some text" width=200 height=100/></router-link></div>
-      <div v-if="this.$store.state.user == 'kubernetes'"class="sidebar-heading"><router-link to="" class="navbar-brand"><img src="{{URL::asset('/images/kubernets.png')}}" alt="some text" width=200 height=100/></router-link></div>
+      <div v-if="this.$store.state.user == 'kubernetes'"class="sidebar-heading"><router-link to="" class="navbar-brand"><img src="{{URL::asset('/images/kubernetes.png')}}" alt="some text" width=200 height=100/></router-link></div>
       <div class="list-group list-group-flush">
         <p>
         <a v-if="this.$store.state.token"class="list-group-item list-group-item-action btn-outline-secondary  dropdown-toggle" data-toggle="collapse" href="#multiCollapseProject" role="button" aria-expanded="false" aria-controls="multiCollapseProject"
@@ -184,20 +191,20 @@
       <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Kubernetes a partir daqui<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Sidebar <<<<<<<<<<<<<<<<<<<<< -->
       <div v-if="this.$store.state.user == 'kubernetes'" class="list-group list-group-flush">
         <ul class="list-unstyled components">
-            <p style="background-color:#1aa3ff;color:#fff"class="text-center">Cluster</p>
+            <p style="background-color:#1aa3ff;color:#000"class="text-center">Cluster</p>
             <li class="active">
-              <router-link to="/namespaces" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Namespaces</router-link>
-              <router-link to="/nodes" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Nodes</router-link>
+              <router-link to="/namespaces" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Namespaces</router-link>
+              <router-link to="/nodes" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Nodes</router-link>
             </li>
-            <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Workload</p>
+            <p style="background-color:#1aa3ff;color:#000;margin-top:10px"class="text-center">Workload</p>
             <li class="active">
-            <router-link to="/deployments" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Deployments</router-link>
-                <router-link to="/pods" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Pods</router-link>
-                <router-link to="/replicaSets" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Replica Sets</router-link>
+            <router-link to="/deployments" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Deployments</router-link>
+                <router-link to="/pods" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Pods</router-link>
+                <router-link to="/replicaSets" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Replica Sets</router-link>
             </li>
-            <p style="background-color:#1aa3ff;color:#fff;margin-top:10px"class="text-center">Services and discovery</p>
+            <p style="background-color:#1aa3ff;color:#000;margin-top:10px"class="text-center">Services and discovery</p>
             <li class="active">
-                <router-link to="/services" href="#" class="list-group-item list-group-item-action bg-light" style="text-align:center">Services</router-link>
+                <router-link to="/services" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Services</router-link>
 
             </li>
           </ul>
@@ -208,7 +215,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <nav v-if="this.$store.state.token"class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
 
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -245,7 +252,7 @@
           </ul>
         </div>
       </nav>
-      <div class="container-fluid">
+      <div>
         <router-view>@yield('content')</router-view>
       </div>
     </div>

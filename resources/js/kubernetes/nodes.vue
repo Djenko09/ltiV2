@@ -1,31 +1,42 @@
 <template>
   <div>
-    <div style="margin-top:50px" class="card">
-      <div class="card-header bg-primary text-white">List of Nodes</div>
-      <div class="card-body">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th>Name</th>
-              <th>Labels</th>
-              <th>Ready</th>
-              <th>Opertating System</th>
-              <th>osImage</th>
-              <th>Age</th>
-            </tr>
-          </thead>
-          <tbody v-for="node in nodes">
-            <tr>
-              <td>{{node.metadata.name}}</td>
-              <td>{{node.metadata.labels}}</td>
-              <td>{{node.status.conditions[4].status}}</td>
-              <td>{{node.status.nodeInfo.operatingSystem}}</td>
-              <td>{{node.status.nodeInfo.osImage}}</td>
-              <td>{{node.metadata.managedFields[0].time}} Hours</td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- FIM tabela que lista os deployments -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <router-link class="nav-link" to="/"><i class="fa fa-sign-out" aria-hidden="true"></i>
+              Exit</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div style="margin-top:50px" class="card">
+        <div class="card-header bg-primary text-white">List of Nodes</div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>Name</th>
+                <th>Labels</th>
+                <th>Ready</th>
+                <th>Opertating System</th>
+                <th>osImage</th>
+                <th>Age</th>
+              </tr>
+            </thead>
+            <tbody v-for="node in nodes">
+              <tr>
+                <td>{{node.metadata.name}}</td>
+                <td>{{node.metadata.labels}}</td>
+                <td>{{node.status.conditions[4].status}}</td>
+                <td>{{node.status.nodeInfo.operatingSystem}}</td>
+                <td>{{node.status.nodeInfo.osImage}}</td>
+                <td>{{node.metadata.managedFields[0].time}} Hours</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

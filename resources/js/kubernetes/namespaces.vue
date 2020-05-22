@@ -1,13 +1,29 @@
 <template >
   <div>
-    <button
-      style="margin-top:50px;margin-left:10px"
-      type="submit"
-      class="btn btn-outline-dark"
-      data-toggle="modal"
-      data-target="#myModalNameSpace"
-    >Create Namespace</button>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <router-link class="nav-link" to="/"><i class="fa fa-sign-out" aria-hidden="true"></i>
+              Exit</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div style="margin-top:50px" class="card">
+        <div class="row">
+          <div class="col-md-4">
+            <button
+              style="margin-top:10px;margin-left:10px;margin-bottom:10px"
+              type="submit"
+              class="btn btn-outline-dark"
+              data-toggle="modal"
+              data-target="#myModalNameSpace"
+            >Create Namespace <i class="fa fa-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
     <div class="modal" id="myModalNameSpace">  <!-- [INICIO] Formulario para criar rede -->
       <div class="modal-dialog">
         <div class="modal-content">
@@ -53,7 +69,7 @@
         </div>
       </div>
     </div>
-    <div style="margin-top:50px"class="card">
+    <div style="margin-top:10px"class="card">
       <div class="card-header bg-primary text-white">
         List of Namespaces
       </div>
@@ -91,6 +107,7 @@
         </table>
       </div>
     </div>
+  </div>
   </div>
 </template>
 

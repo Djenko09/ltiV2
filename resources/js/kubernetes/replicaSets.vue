@@ -1,14 +1,33 @@
 <template>
   <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="col-auto mr-auto">
+            <div style="margin-top:10px;margin-left:5px;"class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-cubes" aria-hidden="true"></i></label>
+              </div>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>{{this.$store.state.namespace}}</option>
+                <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)">{{namespace.metadata.name}}</option>
+              </select>
+            </div>
+        </div>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li style="color:#fff;margin-top:8px;margin-right:5px;">
+            <i class="fa fa-cubes" aria-hidden="true"></i> {{this.$store.state.namespace}}
+          </li>
+          <li class="nav-item active">
+            <router-link class="nav-link" to="/"><i class="fa fa-sign-out" aria-hidden="true"></i>
+              Exit</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
     <div style="margin-top:50px" class="card">
        <div class="card-header bg-primary text-white">
-        
-          <div>Replica Sets List of namespace:  <b class="text-dark">{{this.$store.state.namespace}}</b> </div>
-           <a class="text-dark"> Change Namespace</a>
-          <select>
-            <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)"> {{namespace.metadata.name}}</option>
-          </select>
-        
+          <div>Replica Sets List</div>
       </div>
       <div class="card-body">
         <table class="table table-hover">
@@ -31,6 +50,7 @@
         </table>
         <!-- FIM tabela que lista os pods -->
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -82,10 +102,10 @@ export default {
       axios.get(this.url + "/api/v1/namespaces").then(response => {
         this.namespaces = response.data.items;
       });
-      
+
     },
     changeNameSpace(namespace){
-       this.$store.commit("setNameSpace", namespace); 
+       this.$store.commit("setNameSpace", namespace);
        this.getReplicas();
     }
   },

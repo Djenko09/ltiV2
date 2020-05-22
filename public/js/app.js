@@ -6511,6 +6511,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6834,6 +6853,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6894,6 +6930,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
 
         _this2.$toasted.success('NameSpace Deleted!');
+
+        _this2.getNamespaces();
       });
     },
     editNamespace: function editNamespace(namespace) {
@@ -6927,6 +6965,17 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7013,6 +7062,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7256,6 +7324,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7321,6 +7409,36 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52213,47 +52331,107 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "div",
-            {
-              staticClass: "input-group mb-3",
-              staticStyle: { "margin-top": "10px", "margin-left": "5px" }
-            },
-            [
-              _vm._m(0),
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
+          [
+            _c("div", { staticClass: "col-auto mr-auto" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "input-group mb-3",
+                  staticStyle: { "margin-top": "10px", "margin-left": "5px" }
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "custom-select",
+                      attrs: { id: "inputGroupSelect01" }
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Select Namespace")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.namespaces, function(namespace) {
+                        return _c(
+                          "option",
+                          {
+                            domProps: { value: namespace.metadata.name },
+                            on: {
+                              click: function($event) {
+                                return _vm.changeNameSpace(
+                                  namespace.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(namespace.metadata.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(this.$store.state.namespace) + "\n        "
+                  )
+                ]
+              ),
               _vm._v(" "),
               _c(
-                "select",
-                {
-                  staticClass: "custom-select",
-                  attrs: { id: "inputGroupSelect01" }
-                },
-                _vm._l(_vm.namespaces, function(namespace) {
-                  return _c(
-                    "option",
-                    {
-                      domProps: { value: namespace.metadata.name },
-                      on: {
-                        click: function($event) {
-                          return _vm.changeNameSpace(namespace.metadata.name)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(namespace.metadata.name))]
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\n            Exit")
+                    ]
                   )
-                }),
-                0
+                ],
+                1
               )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
-      ])
-    ]),
+            ])
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
@@ -52411,97 +52589,113 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "10px" } }, [
-      _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _c("div", [
-          _vm._v("\n        Deployments list from namespace:\n        "),
-          _c("b", { staticClass: "text-dark" }, [
-            _vm._v(_vm._s(this.$store.state.namespace))
-          ])
-        ])
-      ]),
+    _c("div", { staticClass: "container-fluid" }, [
+      _vm._m(1),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          [
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._l(_vm.deployments, function(deployment) {
-              return _c("tbody", { key: deployment.metadata.name }, [
-                _c("tr", [
-                  _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(deployment.metadata.labels.app))]),
-                  _vm._v(" "),
-                  !deployment.status.readyReplicas
-                    ? _c("td", [
-                        _vm._v("0/" + _vm._s(deployment.status.replicas))
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  deployment.status.readyReplicas
-                    ? _c("td", [
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        [
+          _c("div", { staticClass: "card-header bg-primary text-white" }, [
+            _c("div", [
+              _vm._v(
+                "\n          Deployments list from namespace:\n          "
+              ),
+              _c("b", { staticClass: "text-dark" }, [
+                _vm._v(_vm._s(this.$store.state.namespace))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._l(_vm.deployments, function(deployment) {
+                  return _c("tbody", { key: deployment.metadata.name }, [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(deployment.metadata.labels.app))
+                      ]),
+                      _vm._v(" "),
+                      !deployment.status.readyReplicas
+                        ? _c("td", [
+                            _vm._v("0/" + _vm._s(deployment.status.replicas))
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      deployment.status.readyReplicas
+                        ? _c("td", [
+                            _vm._v(
+                              _vm._s(deployment.status.readyReplicas) +
+                                "/" +
+                                _vm._s(deployment.status.replicas)
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", [
                         _vm._v(
-                          _vm._s(deployment.status.readyReplicas) +
-                            "/" +
-                            _vm._s(deployment.status.replicas)
+                          _vm._s(
+                            deployment.spec.template.spec.containers[0].image
+                          )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(deployment.metadata.managedFields[0].time) +
+                            " Hours"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button", name: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteDeployment(
+                                  deployment.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "button", name: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.editDeployment(
+                                  deployment.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
                         )
                       ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(deployment.spec.template.spec.containers[0].image)
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(deployment.metadata.managedFields[0].time) +
-                        " Hours"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button", name: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteDeployment(
-                              deployment.metadata.name
-                            )
-                          }
-                        }
-                      },
-                      [_vm._v("Delete")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button", name: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.editDeployment(deployment.metadata.name)
-                          }
-                        }
-                      },
-                      [_vm._v("Edit")]
-                    )
+                    ])
                   ])
-                ])
-              ])
-            })
-          ],
-          2
-        )
-      ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
@@ -52517,7 +52711,12 @@ var staticRenderFns = [
           staticClass: "input-group-text",
           attrs: { for: "inputGroupSelect01" }
         },
-        [_vm._v("Change Namespace")]
+        [
+          _c("i", {
+            staticClass: "fa fa-cubes",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
       )
     ])
   },
@@ -52525,24 +52724,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-dark",
-          staticStyle: { "margin-top": "10px", "margin-left": "10px" },
-          attrs: {
-            type: "submit",
-            "data-toggle": "modal",
-            "data-target": "#myModalPod"
-          }
-        },
-        [
-          _vm._v("Create Deployment "),
-          _c("i", { staticClass: "fa fa-plus-circle" })
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark",
+                staticStyle: {
+                  "margin-top": "10px",
+                  "margin-left": "10px",
+                  "margin-bottom": "10px"
+                },
+                attrs: {
+                  type: "submit",
+                  "data-toggle": "modal",
+                  "data-target": "#myModalPod"
+                }
+              },
+              [
+                _vm._v("Create Deployment "),
+                _c("i", { staticClass: "fa fa-plus-circle" })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -52691,167 +52902,238 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
-      "button",
+      "nav",
       {
-        staticClass: "btn btn-outline-dark",
-        staticStyle: { "margin-top": "50px", "margin-left": "10px" },
-        attrs: {
-          type: "submit",
-          "data-toggle": "modal",
-          "data-target": "#myModalNameSpace"
-        }
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
       },
-      [_vm._v("Create Namespace")]
+      [
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
+          [
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\n            Exit")
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ]
+        )
+      ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "modal", attrs: { id: "myModalNameSpace" } }, [
-      _c("div", { staticClass: "modal-dialog" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.namespace.name,
-                    expression: "namespace.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "name",
-                  placeholder: "eg: development"
-                },
-                domProps: { value: _vm.namespace.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.namespace, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Label *")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.namespace.label,
-                    expression: "namespace.label"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "name", placeholder: "eg: team" },
-                domProps: { value: _vm.namespace.label },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.namespace, "label", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-warning",
-                attrs: { type: "button", "data-dismiss": "modal" },
-                on: {
-                  click: function($event) {
-                    return _vm.createNamespace()
-                  }
-                }
-              },
-              [_vm._v("Create")]
-            )
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
-      _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("\n      List of Namespaces\n    ")
-      ]),
+    _c("div", { staticClass: "container-fluid" }, [
+      _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          [
+      _c("div", { staticClass: "modal", attrs: { id: "myModalNameSpace" } }, [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
             _vm._m(1),
             _vm._v(" "),
-            _vm._l(_vm.namespaces.items, function(namespace) {
-              return _c("tbody", { key: namespace.metadata.name }, [
-                _c("tr", [
-                  _c("td", [_vm._v(_vm._s(namespace.metadata.name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(namespace.status.phase))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(namespace.metadata.managedFields[0].time) +
-                        " Hours"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button", name: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteNamespace(namespace.metadata.name)
-                          }
-                        }
-                      },
-                      [_vm._v("Delete")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button", name: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.editNamespace(namespace.metadata.name)
-                          }
-                        }
-                      },
-                      [_vm._v("Edit")]
-                    )
-                  ])
-                ])
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.namespace.name,
+                      expression: "namespace.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "name",
+                    placeholder: "eg: development"
+                  },
+                  domProps: { value: _vm.namespace.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.namespace, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "name" } }, [_vm._v("Label *")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.namespace.label,
+                      expression: "namespace.label"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "name", placeholder: "eg: team" },
+                  domProps: { value: _vm.namespace.label },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.namespace, "label", $event.target.value)
+                    }
+                  }
+                })
               ])
-            })
-          ],
-          2
-        )
-      ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function($event) {
+                      return _vm.createNamespace()
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        [
+          _c("div", { staticClass: "card-header bg-primary text-white" }, [
+            _vm._v("\n      List of Namespaces\n    ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._l(_vm.namespaces.items, function(namespace) {
+                  return _c("tbody", { key: namespace.metadata.name }, [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(namespace.metadata.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(namespace.status.phase))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(namespace.metadata.managedFields[0].time) +
+                            " Hours"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button", name: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteNamespace(
+                                  namespace.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "button", name: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.editNamespace(
+                                  namespace.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        )
+                      ])
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark",
+                staticStyle: {
+                  "margin-top": "10px",
+                  "margin-left": "10px",
+                  "margin-bottom": "10px"
+                },
+                attrs: {
+                  type: "submit",
+                  "data-toggle": "modal",
+                  "data-target": "#myModalNameSpace"
+                }
+              },
+              [
+                _vm._v("Create Namespace "),
+                _c("i", { staticClass: "fa fa-plus-circle" })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -52908,45 +53190,91 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
-      _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _vm._v("List of Nodes")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
+      },
+      [
         _c(
-          "table",
-          { staticClass: "table table-hover" },
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
           [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._l(_vm.nodes, function(node) {
-              return _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v(_vm._s(node.metadata.name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(node.metadata.labels))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(node.status.conditions[4].status))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(node.status.nodeInfo.operatingSystem))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(node.status.nodeInfo.osImage))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(node.metadata.managedFields[0].time) + " Hours"
-                    )
-                  ])
-                ])
-              ])
-            })
-          ],
-          2
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\n            Exit")
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ]
         )
-      ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+        [
+          _c("div", { staticClass: "card-header bg-primary text-white" }, [
+            _vm._v("List of Nodes")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._l(_vm.nodes, function(node) {
+                  return _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(node.metadata.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(node.metadata.labels))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(node.status.conditions[4].status))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(node.status.nodeInfo.operatingSystem))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(node.status.nodeInfo.osImage))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(node.metadata.managedFields[0].time) + " Hours"
+                        )
+                      ])
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
@@ -52994,7 +53322,107 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
+          [
+            _c("div", { staticClass: "col-auto mr-auto" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "input-group mb-3",
+                  staticStyle: { "margin-top": "10px", "margin-left": "5px" }
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "custom-select",
+                      attrs: { id: "inputGroupSelect01" }
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Select Namespace")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.namespaces, function(namespace) {
+                        return _c(
+                          "option",
+                          {
+                            domProps: { value: namespace.metadata.name },
+                            on: {
+                              click: function($event) {
+                                return _vm.changeNameSpace(
+                                  namespace.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(namespace.metadata.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(this.$store.state.namespace) + "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\n            Exit")
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "modal", attrs: { id: "myModalPod" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
@@ -53066,89 +53494,70 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
-      _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _c("div", [
-          _vm._v("Pods List of namespace:  "),
-          _c("b", { staticClass: "text-dark" }, [
-            _vm._v(_vm._s(this.$store.state.namespace))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          _vm._l(_vm.namespaces, function(namespace) {
-            return _c(
-              "option",
-              {
-                domProps: { value: namespace.metadata.name },
-                on: {
-                  click: function($event) {
-                    return _vm.changeNameSpace(namespace.metadata.name)
-                  }
-                }
-              },
-              [_vm._v(" " + _vm._s(namespace.metadata.name))]
-            )
-          }),
-          0
-        )
-      ]),
+    _c("div", { staticClass: "container-fluid" }, [
+      _vm._m(1),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          [
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._l(_vm.pods, function(pod) {
-              return _c("tbody", [
-                _c(
-                  "tr",
-                  [
-                    _c("td", [_vm._v(_vm._s(pod.metadata.name))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(pod.spec.nodeName))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(pod.status.phase))]),
-                    _vm._v(" "),
-                    _vm._l(pod.status.containerStatuses, function(res) {
-                      return _c("td", [_vm._v(_vm._s(res.restartCount))])
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        _vm._s(pod.metadata.managedFields[0].time) + " Hours"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger",
-                          attrs: { type: "button", name: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.deletePod(pod.metadata.name)
-                            }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
-                    ])
-                  ],
-                  2
-                )
-              ])
-            })
-          ],
-          2
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._l(_vm.pods, function(pod) {
+                  return _c("tbody", [
+                    _c(
+                      "tr",
+                      [
+                        _c("td", [_vm._v(_vm._s(pod.metadata.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pod.spec.nodeName))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(pod.status.phase))]),
+                        _vm._v(" "),
+                        _vm._l(pod.status.containerStatuses, function(res) {
+                          return _c("td", [_vm._v(_vm._s(res.restartCount))])
+                        }),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(pod.metadata.managedFields[0].time) +
+                              " Hours"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button", name: "button" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deletePod(pod.metadata.name)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
+                      ],
+                      2
+                    )
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
@@ -53157,20 +53566,63 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "input-group-prepend" }, [
       _c(
-        "button",
+        "label",
         {
-          staticClass: "btn btn-outline-dark",
-          staticStyle: { "margin-top": "50px", "margin-left": "10px" },
-          attrs: {
-            type: "submit",
-            "data-toggle": "modal",
-            "data-target": "#myModalPod"
-          }
+          staticClass: "input-group-text",
+          attrs: { for: "inputGroupSelect01" }
         },
-        [_vm._v("Create Pods")]
+        [
+          _c("i", {
+            staticClass: "fa fa-cubes",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark",
+                staticStyle: {
+                  "margin-top": "10px",
+                  "margin-left": "10px",
+                  "margin-bottom": "10px"
+                },
+                attrs: {
+                  type: "submit",
+                  "data-toggle": "modal",
+                  "data-target": "#myModalPod"
+                }
+              },
+              [
+                _vm._v("Create Pod "),
+                _c("i", { staticClass: "fa fa-plus-circle" })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-primary text-white" }, [
+      _c("div", [_vm._v("Pods List")])
     ])
   },
   function() {
@@ -53216,73 +53668,182 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
-      _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _c("div", [
-          _vm._v("Replica Sets List of namespace:  "),
-          _c("b", { staticClass: "text-dark" }, [
-            _vm._v(_vm._s(this.$store.state.namespace))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
-        _vm._v(" "),
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
+      },
+      [
         _c(
-          "select",
-          _vm._l(_vm.namespaces, function(namespace) {
-            return _c(
-              "option",
-              {
-                domProps: { value: namespace.metadata.name },
-                on: {
-                  click: function($event) {
-                    return _vm.changeNameSpace(namespace.metadata.name)
-                  }
-                }
-              },
-              [_vm._v(" " + _vm._s(namespace.metadata.name))]
-            )
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "col-auto mr-auto" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "input-group mb-3",
+                  staticStyle: { "margin-top": "10px", "margin-left": "5px" }
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "custom-select",
+                      attrs: { id: "inputGroupSelect01" }
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v(_vm._s(this.$store.state.namespace))
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.namespaces, function(namespace) {
+                        return _c(
+                          "option",
+                          {
+                            domProps: { value: namespace.metadata.name },
+                            on: {
+                              click: function($event) {
+                                return _vm.changeNameSpace(
+                                  namespace.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(namespace.metadata.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]
+              )
+            ]),
             _vm._v(" "),
-            _vm._l(_vm.replicas, function(replica) {
-              return _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v(_vm._s(replica.metadata.name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(replica.metadata.labels))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(replica.metadata.managedFields[0].time) + " Hours"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(replica.spec.template.spec.containers[0].image)
-                    )
-                  ])
-                ])
-              ])
-            })
-          ],
-          2
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(this.$store.state.namespace) + "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\n            Exit")
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ]
         )
-      ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._l(_vm.replicas, function(replica) {
+                  return _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(replica.metadata.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(replica.metadata.labels))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(replica.metadata.managedFields[0].time) +
+                            " Hours"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(replica.spec.template.spec.containers[0].image)
+                        )
+                      ])
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "label",
+        {
+          staticClass: "input-group-text",
+          attrs: { for: "inputGroupSelect01" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-cubes",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-primary text-white" }, [
+      _c("div", [_vm._v("Replica Sets List")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -53322,10 +53883,112 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
+          [
+            _c("div", { staticClass: "col-auto mr-auto" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "input-group mb-3",
+                  staticStyle: { "margin-top": "10px", "margin-left": "5px" }
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "custom-select",
+                      attrs: { id: "inputGroupSelect01" }
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Select Namespace")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.namespaces, function(namespace) {
+                        return _c(
+                          "option",
+                          {
+                            domProps: { value: namespace.metadata.name },
+                            on: {
+                              click: function($event) {
+                                return _vm.changeNameSpace(
+                                  namespace.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(namespace.metadata.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(this.$store.state.namespace) + "\n          "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\n              Exit")
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "modal", attrs: { id: "myModalService" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -53480,121 +54143,120 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
-      _c("div", { staticClass: "card-header bg-primary text-white" }, [
-        _c("div", [
-          _vm._v("Services List of namespace:  "),
-          _c("b", { staticClass: "text-dark" }, [
-            _vm._v(_vm._s(this.$store.state.namespace))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "text-dark" }, [_vm._v(" Change Namespace")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          _vm._l(_vm.namespaces, function(namespace) {
-            return _c(
-              "option",
-              {
-                domProps: { value: namespace.metadata.name },
-                on: {
-                  click: function($event) {
-                    return _vm.changeNameSpace(namespace.metadata.name)
-                  }
-                }
-              },
-              [_vm._v(_vm._s(namespace.metadata.name))]
-            )
-          }),
-          0
-        )
-      ]),
+    _c("div", { staticClass: "container-fluid" }, [
+      _vm._m(2),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "table",
-          { staticClass: "table table-hover" },
-          [
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._l(_vm.services, function(service) {
-              return _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v(_vm._s(service.metadata.name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(service.metadata.labels))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(service.spec.clusterIP))]),
-                  _vm._v(" "),
-                  service.spec.ports[0].nodePort
-                    ? _c("td", [
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        [
+          _vm._m(3),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._l(_vm.services, function(service) {
+                  return _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(service.metadata.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(service.metadata.labels))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(service.spec.clusterIP))]),
+                      _vm._v(" "),
+                      service.spec.ports[0].nodePort
+                        ? _c("td", [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(service.metadata.name) +
+                                ": " +
+                                _vm._s(service.spec.ports[0].port) +
+                                "\\" +
+                                _vm._s(service.spec.ports[0].protocol) +
+                                " |\n                " +
+                                _vm._s(service.metadata.name) +
+                                ": " +
+                                _vm._s(service.spec.ports[0].nodePort) +
+                                "\\" +
+                                _vm._s(service.spec.ports[0].protocol) +
+                                "\n              "
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !service.spec.ports[0].nodePort
+                        ? _c("td", [
+                            _vm._v(
+                              _vm._s(service.metadata.name) +
+                                ": " +
+                                _vm._s(service.spec.ports[0].port) +
+                                "\\" +
+                                _vm._s(service.spec.ports[0].protocol)
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("x")]),
+                      _vm._v(" "),
+                      _c("td", [
                         _vm._v(
-                          "\n              " +
-                            _vm._s(service.metadata.name) +
-                            ": " +
-                            _vm._s(service.spec.ports[0].port) +
-                            "\\" +
-                            _vm._s(service.spec.ports[0].protocol) +
-                            " |\n              " +
-                            _vm._s(service.metadata.name) +
-                            ": " +
-                            _vm._s(service.spec.ports[0].nodePort) +
-                            "\\" +
-                            _vm._s(service.spec.ports[0].protocol) +
-                            "\n            "
+                          _vm._s(service.metadata.managedFields[0].time) +
+                            " Hours"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button", name: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteService(service.metadata.name)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
                         )
                       ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !service.spec.ports[0].nodePort
-                    ? _c("td", [
-                        _vm._v(
-                          _vm._s(service.metadata.name) +
-                            ": " +
-                            _vm._s(service.spec.ports[0].port) +
-                            "\\" +
-                            _vm._s(service.spec.ports[0].protocol)
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("x")]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(service.metadata.managedFields[0].time) + " Hours"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button", name: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteService(service.metadata.name)
-                          }
-                        }
-                      },
-                      [_vm._v("Delete")]
-                    )
+                    ])
                   ])
-                ])
-              ])
-            })
-          ],
-          2
-        )
-      ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "label",
+        {
+          staticClass: "input-group-text",
+          attrs: { for: "inputGroupSelect01" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-cubes",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -53616,20 +54278,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-dark",
-          attrs: {
-            type: "button",
-            name: "button",
-            "data-toggle": "modal",
-            "data-target": "#myModalService"
-          }
-        },
-        [_vm._v("Create service")]
-      )
+    return _c(
+      "div",
+      { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark",
+                staticStyle: {
+                  "margin-top": "10px",
+                  "margin-left": "10px",
+                  "margin-bottom": "10px"
+                },
+                attrs: {
+                  type: "submit",
+                  "data-toggle": "modal",
+                  "data-target": "#myModalService"
+                }
+              },
+              [
+                _vm._v("Create Service "),
+                _c("i", { staticClass: "fa fa-plus-circle" })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-primary text-white" }, [
+      _c("div", [_vm._v("Services list")])
     ])
   },
   function() {

@@ -105,7 +105,7 @@
         </table>
       </div>
     </div>
-     <div class="modal" id="myModalDetail" role="dialog">  
+     <div class="modal" id="myModalDetail" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -123,12 +123,12 @@
             <b>Pod IP:</b> {{this.podDetailsStatus.podIP}}<br>
             <b>Host IP:</b> {{this.podDetailsStatus.hostIP}}<br><br>
             <b>Status:</b> {{this.podDetailsStatus.phase}}<br>
-            <b>QoS Class:</b> {{this.podDetailsStatus.qosClass}}<br>  
+            <b>QoS Class:</b> {{this.podDetailsStatus.qosClass}}<br>
           </div>
         </div>
       </div>
     </div>
-    
+
   </div>
   </div>
 </template>

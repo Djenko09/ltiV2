@@ -6893,6 +6893,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
 
         _this3.$toasted.success('NameSpace Deleted!');
+
+        _this3.getNamespaces();
       });
     },
     editNamespace: function editNamespace(namespace) {

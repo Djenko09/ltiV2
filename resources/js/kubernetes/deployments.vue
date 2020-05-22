@@ -200,6 +200,7 @@ export default {
             labels: {
               app: "nginx"
             }
+
           },
           spec: {
             replicas: replica,

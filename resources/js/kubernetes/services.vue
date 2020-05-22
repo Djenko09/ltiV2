@@ -61,11 +61,10 @@ export default {
       services: [],
       service: {},
       namespaces: []
-    };
+    }
   },
   methods: {
     getServices() {
-      //função para obter os pods
       axios
         .get(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/services")
 
@@ -135,16 +134,16 @@ export default {
     axios.get(this.url + "/api/v1/namespaces").then(response => {
       this.namespaces = response.data.items;
     });
-
   },
   changeNameSpace(namespace){
      this.$store.commit("setNameSpace", namespace);
      this.getServices();
   },
+}
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServices();
     this.getNamespaces();
   }
-};
+}
 </script>

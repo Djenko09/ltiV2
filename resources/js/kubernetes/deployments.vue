@@ -29,7 +29,7 @@
                 placeholder="Insert name "
               />
             </div>
-            
+
             <div class="form-group">
               <label for="image">Image</label>
               <input
@@ -162,8 +162,8 @@ export default {
     createDeployment() {
         var replica = this.deployment.replicas >>>0;
       axios.post(this.url + "/apis/apps/v1/namespaces/default/deployments", {
-         
-         kind: "Deployment",
+
+        kind: "Deployment",
         apiVersion: "apps/v1",
         metadata: {
           name: this.deployment.name,
@@ -189,17 +189,8 @@ export default {
                 {
                   name: "ngnix",
                   image: this.deployment.image,
-                  ports: [
-                    {
-                      containerPort: 80
-                    }
-                  ],
                   resources: {
-                    limits: {
-                      memory: "128Mi",
-                      cpu: "500m"
-                    }
-                  }
+                  },
                 }
               ]
             }
@@ -225,6 +216,3 @@ export default {
   }
 };
 </script>
-
-
-    

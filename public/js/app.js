@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['projectName'],
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       project_name: null,
       user: {
         token: null
@@ -2032,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       showMessage: false,
       message: ""
     };
@@ -2169,7 +2169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       containers: [],
       container: {
         name: "",
@@ -2300,7 +2300,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       projects: [],
       instances: [],
       images: [],
@@ -2540,7 +2540,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       flavors: [],
       flavor: {
         name: "",
@@ -2787,7 +2787,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       floatingIPs: [],
       instances: [],
       networks: [],
@@ -3052,7 +3052,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234"
+      url: "http://192.168.232.71:8080"
     };
   },
   methods: {},
@@ -3249,7 +3249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       images: [],
       disk_formats: ["ami", "ari", "aki", "vhd", "vhdx", "vmdk", "raw", "qcow2", "vdi", "ploop", "iso"],
       image: {
@@ -3762,7 +3762,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       instances: [],
       subnets: [],
       keypairs: [],
@@ -4339,7 +4339,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       keypairs: [],
       newKeypair: {
         name: "",
@@ -4487,7 +4487,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       showMessage: false,
       message: ""
     };
@@ -4571,7 +4571,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.28.140:1234"
+      url: "http://192.168.232.71:8080"
     };
   },
   methods: {
@@ -4763,7 +4763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       networks: [],
       network: {
         name: ""
@@ -4967,7 +4967,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       projects: [],
       active_prj: this.$store.state.project,
       user: {
@@ -5199,7 +5199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       routers: [],
       router: {
         id: "",
@@ -5567,7 +5567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       securityGroups: [],
       securityGroup: {
         name: null,
@@ -5894,7 +5894,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       servers: [],
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       serversGroup: {
         name: null,
         policy: null
@@ -6179,7 +6179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       volumes: [],
       volume: {
         id: "",
@@ -6478,7 +6478,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       deployments: [],
       deployment: {
         image: "",
@@ -6545,15 +6545,7 @@ __webpack_require__.r(__webpack_exports__);
               containers: [{
                 name: "ngnix",
                 image: this.deployment.image,
-                ports: [{
-                  containerPort: 80
-                }],
-                resources: {
-                  limits: {
-                    memory: "128Mi",
-                    cpu: "500m"
-                  }
-                }
+                resources: {}
               }]
             }
           }
@@ -6625,7 +6617,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234"
+      url: "http://192.168.232.71:8080"
     };
   },
   methods: {
@@ -6664,7 +6656,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log("http://192.168.28.140:1234"); // /this.createPod();
+    console.log("http://192.168.232.71:8080"); // /this.createPod();
 
     this.getApi(); //this.$store.commit("setApp", "kubernetes");
 
@@ -6782,7 +6774,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       namespaces: [],
       namespacesItems: [],
       namespace: {
@@ -6909,7 +6901,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return _defineProperty({
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       nodes: []
     }, "nodes", {});
   },
@@ -7043,7 +7035,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       pods: [],
       pod: {
         name: null,
@@ -7183,10 +7175,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       services: [],
       service: {}
     };
@@ -7214,6 +7213,42 @@ __webpack_require__.r(__webpack_exports__);
           diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
 
           _this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+        }
+      });
+    },
+    deleteService: function deleteService(service) {
+      var _this2 = this;
+
+      axios["delete"](this.url + "/api/v1/namespaces/default/services/" + service).then(function (response) {
+        _this2.$toasted.show("Service " + " '" + service + "' " + " deleted");
+
+        _this2.getServices();
+      });
+    },
+    createService: function createService() {
+      axios.post(this.url + "/api/v1/namespaces/default/services", {
+        "kind": "Service",
+        "apiVersion": "v1",
+        "metadata": {
+          "name": "umnovoteste2",
+          "namespace": "default",
+          "labels": {
+            "app": "umnovoteste2"
+          }
+        },
+        "spec": {
+          "ports": [{
+            "name": "80-80",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 80
+          }],
+          "selector": {
+            "app": "umnovoteste2"
+          },
+          "type": "NodePort",
+          "sessionAffinity": "None",
+          "externalTrafficPolicy": "Cluster"
         }
       });
     }
@@ -52792,6 +52827,22 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button", name: "button" },
+          on: {
+            click: function($event) {
+              return _vm.createService()
+            }
+          }
+        },
+        [_vm._v("Create service")]
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { "margin-top": "50px" } }, [
       _c("div", { staticClass: "card-header bg-primary text-white" }, [
         _vm._v("List of Services")
@@ -52851,6 +52902,22 @@ var render = function() {
                     _vm._v(
                       _vm._s(service.metadata.managedFields[0].time) + " Hours"
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", name: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteService(service.metadata.name)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
                   ])
                 ])
               ])
@@ -52879,7 +52946,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("External endpoints")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Age")])
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
     ])
   }
@@ -71651,8 +71720,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

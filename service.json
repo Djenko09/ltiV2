@@ -1,0 +1,78 @@
+{
+    "kind": "ServiceList",
+    "apiVersion": "v1",
+    "metadata": {
+        "selfLink": "/api/v1/namespaces/default/services",
+        "resourceVersion": "237703"
+    },
+    "items": [
+        {
+            "metadata": {
+                "name": "asd",
+                "namespace": "default",
+                "selfLink": "/api/v1/namespaces/default/services/asd",
+                "uid": "c95810e7-f685-47a6-bc68-833269628dc9",
+                "resourceVersion": "234446",
+                "creationTimestamp": "2020-05-22T10:47:40Z",
+                "labels": {
+                    "app": "asd"
+                },
+                "managedFields": [
+                    {
+                        "manager": "kubectl",
+                        "operation": "Update",
+                        "apiVersion": "v1",
+                        "time": "2020-05-22T10:47:40Z",
+                        "fieldsType": "FieldsV1",
+                        "fieldsV1": {
+                            "f:metadata": {
+                                "f:labels": {
+                                    ".": {},
+                                    "f:app": {}
+                                }
+                            },
+                            "f:spec": {
+                                "f:externalTrafficPolicy": {},
+                                "f:ports": {
+                                    ".": {},
+                                    "k:{\"port\":443,\"protocol\":\"TCP\"}": {
+                                        ".": {},
+                                        "f:name": {},
+                                        "f:port": {},
+                                        "f:protocol": {},
+                                        "f:targetPort": {}
+                                    }
+                                },
+                                "f:selector": {
+                                    ".": {},
+                                    "f:app": {}
+                                },
+                                "f:sessionAffinity": {},
+                                "f:type": {}
+                            }
+                        }
+                    }
+                ]
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "443-443",
+                        "protocol": "TCP",
+                        "port": 443,
+                        "targetPort": 443,
+                        "nodePort": 31825
+                    }
+                ],
+                "selector": {
+                    "app": "asd"
+                },
+                "clusterIP": "10.107.196.5",
+                "type": "NodePort",
+                "sessionAffinity": "None",
+                "externalTrafficPolicy": "Cluster"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div >
+      <button type="button" name="button" class="btn btn-primary" v-on:click="createService()">Create service</button>
+    </div>
     <div style="margin-top:50px" class="card">
       <div class="card-header bg-primary text-white">List of Services</div>
       <div class="card-body">
@@ -12,6 +15,7 @@
               <th>Internal endpoints</th>
               <th>External endpoints</th>
               <th>Age</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody v-for="service in services">
@@ -29,6 +33,9 @@
               >{{service.metadata.name}}: {{service.spec.ports[0].port}}\{{service.spec.ports[0].protocol}}</td>
               <td>x</td>
               <td>{{service.metadata.managedFields[0].time}} Hours</td>
+              <td>
+                <button type="button" name="button" class="btn btn-danger" v-on:click="deleteService(service.metadata.name)">Delete</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -79,6 +86,41 @@ export default {
             this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
           }
         });
+    },
+    deleteService(service){
+      axios.delete(this.url + "/api/v1/namespaces/default/services/" + service).then(response=>{
+        this.$toasted.show("Service " + " '" + service  + "' "  + " deleted");
+        this.getServices();
+      });
+    },
+    createService(){
+      axios.post(this.url + "/api/v1/namespaces/default/services",{
+        "kind": "Service",
+        "apiVersion": "v1",
+        "metadata": {
+            "name": "umnovoteste2",
+            "namespace": "default",
+            "labels": {
+              "app": "umnovoteste2"
+            }
+        },
+        "spec": {
+           "ports": [
+            	{
+	            "name": "80-80",
+	            "protocol": "TCP",
+	            "port" : 80,
+	            "targetPort" : 80
+        		 }
+            ],
+                "selector": {
+                    "app": "umnovoteste2"
+                },
+                "type": "NodePort",
+                "sessionAffinity": "None",
+                "externalTrafficPolicy": "Cluster"
+            }
+      })
     }
   },
   mounted() {

@@ -18,6 +18,7 @@
               <th>Labels</th>
               <th>Age</th>
               <th>Image</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody v-for="replica in replicas">
@@ -26,10 +27,46 @@
               <td>{{replica.metadata.labels}}</td>
               <td>{{replica.metadata.managedFields[0].time}} Hours</td>
                <td>{{replica.spec.template.spec.containers[0].image}}</td>
+         <td>
+                <button
+                  type="button"
+                  name="button"
+                  class="btn btn-secondary"
+                  data-toggle="modal"
+                  data-target="#myModalDetail"
+                  v-on:click="detail(replica)"
+                >Details</button>
+              </td>
             </tr>
           </tbody>
         </table>
-        <!-- FIM tabela que lista os pods -->
+        <!-- FIM tabela que lista os deployments -->
+      </div>
+    </div>
+    <div class="modal" id="myModalDetail" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Details</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <b>Name:</b>
+            {{this.replicaDetailsMetadata.name}}
+            <br />
+            <b>uid:</b>
+            {{this.replicaDetailsMetadata.uid}}
+            <br />
+            <b>Labels:</b>
+            {{this.replicaDetailsMetadata.labels}}
+            <br />
+            <b>Annotations:</b>
+            {{this.replicaDetailsMetadata.annotations}}
+            <br />
+            
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -42,7 +79,10 @@ export default {
       url: process.env.MIX_URL,
       replicas: [],
       replica: {},
-      namespaces: []
+      namespaces: [],
+      replicaDetailsMetadata: [],
+      replicaDetailsSpec: [],
+      replicaDetailsStatus: [],
     };
   },
   methods: {
@@ -87,6 +127,12 @@ export default {
     changeNameSpace(namespace){
        this.$store.commit("setNameSpace", namespace); 
        this.getReplicas();
+    },
+     detail(replica) {
+      this.replicaDetailsMetadata = replica.metadata;
+       this.replicaDetailsSpec = replica.spec;
+       this.replicaDetailsStatus= replica.status;
+
     }
   },
   mounted() {

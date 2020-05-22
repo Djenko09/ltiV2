@@ -7410,13 +7410,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.28.140:1234",
       replicas: [],
       replica: {},
-      namespaces: []
+      namespaces: [],
+      replicaDetailsMetadata: [],
+      replicaDetailsSpec: [],
+      replicaDetailsStatus: []
     };
   },
   methods: {
@@ -7455,6 +7495,11 @@ __webpack_require__.r(__webpack_exports__);
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
       this.getReplicas();
+    },
+    detail: function detail(replica) {
+      this.replicaDetailsMetadata = replica.metadata;
+      this.replicaDetailsSpec = replica.spec;
+      this.replicaDetailsStatus = replica.status;
     }
   },
   mounted: function mounted() {
@@ -53787,6 +53832,27 @@ var render = function() {
                     _vm._v(
                       _vm._s(replica.spec.template.spec.containers[0].image)
                     )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: {
+                          type: "button",
+                          name: "button",
+                          "data-toggle": "modal",
+                          "data-target": "#myModalDetail"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.detail(replica)
+                          }
+                        }
+                      },
+                      [_vm._v("Details")]
+                    )
                   ])
                 ])
               ])
@@ -53795,7 +53861,53 @@ var render = function() {
           2
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "modal", attrs: { id: "myModalDetail", role: "dialog" } },
+      [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("b", [_vm._v("Name:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.replicaDetailsMetadata.name) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("uid:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.replicaDetailsMetadata.uid) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Labels:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.replicaDetailsMetadata.labels) +
+                  "\n          "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Annotations:")]),
+              _vm._v(
+                "\n          " +
+                  _vm._s(this.replicaDetailsMetadata.annotations) +
+                  "\n          "
+              ),
+              _c("br")
+            ])
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -53811,8 +53923,27 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Age")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Image")])
+        _c("th", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Options")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Details")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("×")]
+      )
     ])
   }
 ]

@@ -295,7 +295,7 @@ export default {
       axios
         .delete(
           this.url +
-            "/apis/apps/v1/namespaces/default/deployments/" +
+            "/apis/apps/v1/namespaces/"+this.$store.state.namespace+"/deployments/" +
             deployment
         )
         .then(response => {

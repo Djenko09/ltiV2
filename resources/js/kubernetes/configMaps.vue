@@ -142,10 +142,10 @@ export default {
        this.$store.commit("setNameSpace", namespace);
        this.getConfigs();
     },
-     detail(replica) {
-      this.configDetailsMetadata = replica.metadata;
-       this.configDetailsSpec= replica.spec;
-       this.configDetailsStatus= replica.status;
+     detail(config) {
+      this.configDetailsMetadata = config.metadata;
+       this.configDetailsSpec= config.spec;
+       this.configDetailsStatus= config.status;
 
     }
   },

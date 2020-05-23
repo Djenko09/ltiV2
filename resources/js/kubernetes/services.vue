@@ -29,21 +29,18 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Service</h4>
+            <h4 class="modal-title">Create Service for namespace: <b>{{this.$store.state.namespace}}</b></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
           <!-- Modal body -->
           <div class="modal-body">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                v-model="service.name"
-                id="name"
-                placeholder="Insert a name "
-              />
+           <div class="form-group">
+              
+              <label for="deploy">Deployment</label>
+              <select  class="form-control" name="deploySelectSelect" v-model="service.name">
+                <option v-for="deployment in deployments" :value="deployment.metadata.name">{{deployment.metadata.name}}</option>
+              </select>
             </div>
             <div class="form-group">
               <div class="row">
@@ -53,7 +50,7 @@
                     type="number"
                     class="form-control"
                     v-model="service.port"
-                    placeholder="80"
+                    placeholder="e.g. 80"
                   />
                 </div>
                 <div class="col">
@@ -62,7 +59,7 @@
                     type="number"
                     class="form-control"
                     v-model="service.targetPort"
-                    placeholder="80"
+                    placeholder="e.g. 80"
                   />
                 </div>
               </div>
@@ -185,6 +182,7 @@ export default {
         protocol:null,
       },
       namespaces: [],
+      deployments: [],
 
       //details
       serviceDetailsMetadata : [],
@@ -260,12 +258,14 @@ export default {
                 "sessionAffinity": "None",
                 "externalTrafficPolicy": "Cluster"
             }
+      }).then(response => {
+         this.getServices();
       })
     },
     getNamespaces() {
     axios.get(this.url + "/api/v1/namespaces").then(response => {
       this.namespaces = response.data.items;
-      this.getServices();
+     
     });
   },
   changeNameSpace(namespace){
@@ -279,12 +279,28 @@ export default {
        this.serviceDetailsSpec= service.spec;
        this.serviceDetailsStatus = service.status;
 
+    },
+    getDeployments() {
+      //função para obter os deployments
+      axios
+        .get(
+          this.url +
+            "/apis/apps/v1/namespaces/" +
+            this.$store.state.namespace +
+            "/deployments"
+        )
+
+        .then(response => {
+
+          this.deployments = response.data.items;
+        })
     }
 },
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServices();
     this.getNamespaces();
+    this.getDeployments();
   }
 }
 </script>

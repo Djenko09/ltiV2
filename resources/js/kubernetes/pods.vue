@@ -29,7 +29,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Pods for namespace <b>{{this.$store.state.namespace}}</b></h4>
+            <h4 class="modal-title">Create Pods for namespace: <b>{{this.$store.state.namespace}}</b></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 

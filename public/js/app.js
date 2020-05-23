@@ -8224,9 +8224,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8240,6 +8237,7 @@ __webpack_require__.r(__webpack_exports__);
         protocol: null
       },
       namespaces: [],
+      deployments: [],
       //details
       serviceDetailsMetadata: [],
       serviceDetailsSpec: [],
@@ -8284,6 +8282,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createService: function createService() {
+      var _this3 = this;
+
       axios.post(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/services", {
         "kind": "Service",
         "apiVersion": "v1",
@@ -8308,14 +8308,15 @@ __webpack_require__.r(__webpack_exports__);
           "sessionAffinity": "None",
           "externalTrafficPolicy": "Cluster"
         }
+      }).then(function (response) {
+        _this3.getServices();
       });
     },
     getNamespaces: function getNamespaces() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get(this.url + "/api/v1/namespaces").then(function (response) {
-        _this3.namespaces = response.data.items;
-        _this3.getServices;
+        _this4.namespaces = response.data.items;
       });
     },
     changeNameSpace: function changeNameSpace(namespace) {
@@ -8327,12 +8328,21 @@ __webpack_require__.r(__webpack_exports__);
       this.serviceDetailsMetadata = service.metadata;
       this.serviceDetailsSpec = service.spec;
       this.serviceDetailsStatus = service.status;
+    },
+    getDeployments: function getDeployments() {
+      var _this5 = this;
+
+      //função para obter os deployments
+      axios.get(this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/deployments").then(function (response) {
+        _this5.deployments = response.data.items;
+      });
     }
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
     this.getServices();
     this.getNamespaces();
+    this.getDeployments();
   }
 });
 
@@ -55106,7 +55116,7 @@ var render = function() {
         _c("div", { staticClass: "modal-content" }, [
           _c("div", { staticClass: "modal-header" }, [
             _c("h4", { staticClass: "modal-title" }, [
-              _vm._v("Create Pods for namespace "),
+              _vm._v("Create Pods for namespace: "),
               _c("b", [_vm._v(_vm._s(this.$store.state.namespace))])
             ]),
             _vm._v(" "),
@@ -56217,37 +56227,68 @@ var render = function() {
     _c("div", { staticClass: "modal", attrs: { id: "myModalService" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(1),
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v("Create Service for namespace: "),
+              _c("b", [_vm._v(_vm._s(this.$store.state.namespace))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("×")]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+              _c("label", { attrs: { for: "deploy" } }, [_vm._v("Deployment")]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.service.name,
-                    expression: "service.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "name",
-                  placeholder: "Insert a name "
-                },
-                domProps: { value: _vm.service.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.service.name,
+                      expression: "service.name"
                     }
-                    _vm.$set(_vm.service, "name", $event.target.value)
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "deploySelectSelect" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.service,
+                        "name",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
                   }
-                }
-              })
+                },
+                _vm._l(_vm.deployments, function(deployment) {
+                  return _c(
+                    "option",
+                    { domProps: { value: deployment.metadata.name } },
+                    [_vm._v(_vm._s(deployment.metadata.name))]
+                  )
+                }),
+                0
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56265,7 +56306,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "number", placeholder: "80" },
+                    attrs: { type: "number", placeholder: "e.g. 80" },
                     domProps: { value: _vm.service.port },
                     on: {
                       input: function($event) {
@@ -56293,7 +56334,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "number", placeholder: "80" },
+                    attrs: { type: "number", placeholder: "e.g. 80" },
                     domProps: { value: _vm.service.targetPort },
                     on: {
                       input: function($event) {
@@ -56373,13 +56414,13 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "container-fluid" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "card shadow", staticStyle: { "margin-top": "10px" } },
         [
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _vm.services.length
@@ -56387,7 +56428,7 @@ var render = function() {
                   "table",
                   { staticClass: "table table-hover shadow" },
                   [
-                    _vm._m(4),
+                    _vm._m(3),
                     _vm._v(" "),
                     _vm._l(_vm.services, function(service) {
                       return _c("tbody", [
@@ -56511,7 +56552,7 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-dialog modal-lg" }, [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(5),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("b", [_vm._v("Name:")]),
@@ -56575,23 +56616,6 @@ var staticRenderFns = [
             attrs: { "aria-hidden": "true" }
           })
         ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Create Service")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
       )
     ])
   },

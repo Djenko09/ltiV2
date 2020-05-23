@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['projectName'],
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       project_name: null,
       user: {
         token: null
@@ -2032,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       showMessage: false,
       message: ""
     };
@@ -2170,7 +2170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       containers: [],
       container: {
         name: "",
@@ -2301,7 +2301,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       projects: [],
       instances: [],
       images: [],
@@ -2541,7 +2541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       flavors: [],
       flavor: {
         name: "",
@@ -2788,7 +2788,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       floatingIPs: [],
       instances: [],
       networks: [],
@@ -3053,7 +3053,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {},
@@ -3250,7 +3250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       images: [],
       disk_formats: ["ami", "ari", "aki", "vhd", "vhdx", "vmdk", "raw", "qcow2", "vdi", "ploop", "iso"],
       image: {
@@ -3763,7 +3763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       instances: [],
       subnets: [],
       keypairs: [],
@@ -4340,7 +4340,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       keypairs: [],
       newKeypair: {
         name: "",
@@ -4488,7 +4488,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       showMessage: false,
       message: ""
     };
@@ -4572,7 +4572,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.196.110:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {
@@ -4764,7 +4764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       networks: [],
       network: {
         name: ""
@@ -4968,7 +4968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       projects: [],
       active_prj: this.$store.state.project,
       user: {
@@ -5200,7 +5200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       routers: [],
       router: {
         id: "",
@@ -5568,7 +5568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       securityGroups: [],
       securityGroup: {
         name: null,
@@ -5895,7 +5895,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       servers: [],
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       serversGroup: {
         name: null,
         policy: null
@@ -6180,7 +6180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       volumes: [],
       volume: {
         id: "",
@@ -6437,7 +6437,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       clusterRoles: [],
       //details
       roleDetails: []
@@ -6567,7 +6567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       configs: [],
       config: {},
       namespaces: [],
@@ -6796,7 +6796,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       deployments: [],
       deployment: {
         image: "",
@@ -7008,7 +7008,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       endpoints: [],
       namespaces: []
     };
@@ -7097,7 +7097,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080"
+      url: "http://192.168.28.140:1234"
     };
   },
   methods: {},
@@ -7251,7 +7251,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       namespaces: [],
       namespacesItems: [],
       namespace: {
@@ -7426,7 +7426,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       nodes: []
     }, _defineProperty(_ref, "nodes", {}), _defineProperty(_ref, "nodeDetailsMetadata", []), _defineProperty(_ref, "nodeDetailsSpec", []), _defineProperty(_ref, "nodeDetailsStatus", []), _ref;
   },
@@ -7622,7 +7622,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       pods: [],
       pod: {
         name: null,
@@ -7841,7 +7841,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       replicas: [],
       replica: {},
       namespaces: [],
@@ -8005,7 +8005,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       namespaces: [],
       secrets: [],
       secretDetailsMetadata: [],
@@ -8230,7 +8230,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.28.140:1234",
       services: [],
       service: {
         name: null,
@@ -8315,6 +8315,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.url + "/api/v1/namespaces").then(function (response) {
         _this3.namespaces = response.data.items;
+        _this3.getServices;
       });
     },
     changeNameSpace: function changeNameSpace(namespace) {

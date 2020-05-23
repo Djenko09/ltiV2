@@ -265,6 +265,7 @@ export default {
     getNamespaces() {
     axios.get(this.url + "/api/v1/namespaces").then(response => {
       this.namespaces = response.data.items;
+      this.getServices
     });
   },
   changeNameSpace(namespace){

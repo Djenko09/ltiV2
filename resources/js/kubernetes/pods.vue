@@ -91,10 +91,13 @@
           <tbody v-for="pod in pods">
             <tr>
               <td>{{pod.metadata.name}}</td>
-              <td>{{pod.spec.nodeName}}</td>
+              <td v-if="pod.spec.nodeName">{{pod.spec.nodeName}}</td>
+              <td v-else>----</td>
               <td>{{pod.status.phase}}</td>
-              <td v-for="res in pod.status.containerStatuses">{{res.restartCount}}</td>
-              <td>{{pod.metadata.managedFields[0].time}} Hours</td>
+              <td v-for="res in pod.status.containerStatuses" v-if="res.restartCount">{{res.restartCount}}</td>
+              <td>----</td>
+              <td v-if="pod.metadata.managedFields[0].time">{{pod.metadata.managedFields[0].time}} Hours</td>
+              <td v-else>----</td>
               <td>
                 <button type="button" name="button" class="btn btn-danger" v-on:click="deletePod(pod.metadata.name)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                  <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"

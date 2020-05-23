@@ -6559,6 +6559,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6607,10 +6612,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit("setNameSpace", namespace);
       this.getConfigs();
     },
-    detail: function detail(replica) {
-      this.configDetailsMetadata = replica.metadata;
-      this.configDetailsSpec = replica.spec;
-      this.configDetailsStatus = replica.status;
+    detail: function detail(config) {
+      this.configDetailsMetadata = config.metadata;
+      this.configDetailsSpec = config.spec;
+      this.configDetailsStatus = config.status;
     }
   },
   mounted: function mounted() {
@@ -6888,7 +6893,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteDeployment: function deleteDeployment(deployment) {
       var _this3 = this;
 
-      axios["delete"](this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(function (response) {
+      axios["delete"](this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/deployments/" + deployment).then(function (response) {
         _this3.getDeployments();
 
         _this3.$toasted.success("Deployment " + deployment + " eliminated !");
@@ -7220,6 +7225,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7229,7 +7257,9 @@ __webpack_require__.r(__webpack_exports__);
       namespace: {
         name: null,
         label: null
-      }
+      },
+      namespaceMetadata: [],
+      namespaceManaged: []
     };
   },
   methods: {
@@ -7271,6 +7301,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+    },
+    details: function details(namespace) {
+      this.namespaceMetadata = namespace.metadata;
+      this.namespaceManaged = namespace.metadata.managedFields[0];
+      console.log(this.namespaceManaged);
     },
     deleteNamespace: function deleteNamespace(namespace) {
       var _this2 = this;
@@ -7442,6 +7477,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -7934,12 +7972,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       url: "http://192.168.232.71:8080",
       namespaces: [],
-      secrets: []
+      secrets: [],
+      secretDetailsMetadata: [],
+      secretDetailsData: []
     };
   },
   methods: {
@@ -7949,6 +8019,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.url + '/api/v1/namespaces/' + this.$store.state.namespace + '/secrets').then(function (response) {
         _this.secrets = response.data.items;
       });
+    },
+    details: function details(secret) {
+      this.secretDetailsMetadata = secret.metadata;
+      this.secretDetailsData = secret.data;
     },
     getNamespaces: function getNamespaces() {
       var _this2 = this;
@@ -53247,55 +53321,65 @@ var render = function() {
           _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover shadow" },
-              [
-                _vm._m(2),
-                _vm._v(" "),
-                _vm._l(_vm.configs, function(config) {
-                  return _c("tbody", [
-                    _c("tr", [
-                      _c("td", [_vm._v(_vm._s(config.metadata.name))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(config.metadata.managedFields[0].time) +
-                            " Hours"
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary",
-                            attrs: {
-                              type: "button",
-                              name: "button",
-                              "data-toggle": "modal",
-                              "data-target": "#myModalDetail"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.detail(config)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-info-circle",
-                              attrs: { "aria-hidden": "true" }
-                            })
-                          ]
-                        )
+            _vm.configs.length
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover shadow" },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _vm._l(_vm.configs, function(config) {
+                      return _c("tbody", [
+                        _c("tr", [
+                          _c("td", [_vm._v(_vm._s(config.metadata.name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(config.metadata.managedFields[0].time) +
+                                " Hours"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-secondary",
+                                attrs: {
+                                  type: "button",
+                                  name: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#myModalDetail"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.detail(config)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-info-circle",
+                                  attrs: { "aria-hidden": "true" }
+                                })
+                              ]
+                            )
+                          ])
+                        ])
                       ])
-                    ])
+                    })
+                  ],
+                  2
+                )
+              : _c("div", { staticClass: "jumbotron shadow" }, [
+                  _c("h2", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "Nothing to show. Namespace " +
+                        _vm._s(this.$store.state.namespace) +
+                        " has no Configuration Maps"
+                    )
                   ])
-                })
-              ],
-              2
-            )
+                ])
           ])
         ]
       ),
@@ -54484,12 +54568,15 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn btn-secondary",
-                            attrs: { type: "button", name: "button" },
+                            attrs: {
+                              type: "button",
+                              name: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#myModalDetail"
+                            },
                             on: {
                               click: function($event) {
-                                return _vm.deleteNamespace(
-                                  namespace.metadata.name
-                                )
+                                return _vm.details(namespace)
                               }
                             }
                           },
@@ -54509,7 +54596,62 @@ var render = function() {
             )
           ])
         ]
-      )
+      ),
+      _vm._v(" "),
+      this.namespaceMetadata
+        ? _c(
+            "div",
+            {
+              staticClass: "modal",
+              attrs: { id: "myModalDetail", role: "dialog" }
+            },
+            [
+              _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h4", { staticClass: "modal-title" }, [
+                      _vm._v("Namespace " + _vm._s(this.namespaceMetadata.name))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("×")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "container" }, [
+                      _c("label", [_vm._v("Id:")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-control" }, [
+                        _vm._v(_vm._s(this.namespaceMetadata.uid))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "container",
+                        staticStyle: { "margin-top": "25px" }
+                      },
+                      [
+                        _c("label", [_vm._v("Manager")]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-control" }, [
+                          _vm._v(_vm._s(this.namespaceManaged.manager))
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        : _vm._e()
     ])
   ])
 }
@@ -55052,22 +55194,28 @@ var render = function() {
                           [
                             _c("td", [_vm._v(_vm._s(pod.metadata.name))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(pod.spec.nodeName))]),
+                            pod.spec.nodeName
+                              ? _c("td", [_vm._v(_vm._s(pod.spec.nodeName))])
+                              : _c("td", [_vm._v("----")]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(pod.status.phase))]),
                             _vm._v(" "),
                             _vm._l(pod.status.containerStatuses, function(res) {
-                              return _c("td", [
-                                _vm._v(_vm._s(res.restartCount))
-                              ])
+                              return res.restartCount
+                                ? _c("td", [_vm._v(_vm._s(res.restartCount))])
+                                : _vm._e()
                             }),
                             _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                _vm._s(pod.metadata.managedFields[0].time) +
-                                  " Hours"
-                              )
-                            ]),
+                            _c("td", [_vm._v("----")]),
+                            _vm._v(" "),
+                            pod.metadata.managedFields[0].time
+                              ? _c("td", [
+                                  _vm._v(
+                                    _vm._s(pod.metadata.managedFields[0].time) +
+                                      " Hours"
+                                  )
+                                ])
+                              : _c("td", [_vm._v("----")]),
                             _vm._v(" "),
                             _c("td", [
                               _c(
@@ -55760,7 +55908,31 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(secret.metadata.namespace))]),
                           _vm._v(" "),
-                          _c("td")
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-secondary",
+                                attrs: {
+                                  type: "button",
+                                  name: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#myModalDetail"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.details(secret)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-info-circle",
+                                  attrs: { "aria-hidden": "true" }
+                                })
+                              ]
+                            )
+                          ])
                         ])
                       ])
                     })
@@ -55775,7 +55947,98 @@ var render = function() {
                         " has no secrets"
                     )
                   ])
+                ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal",
+                attrs: { id: "myModalDetail", role: "dialog" }
+              },
+              [
+                _c("div", { staticClass: "modal-dialog modal-lg" }, [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h4", { staticClass: "modal-title" }, [
+                        _vm._v(
+                          "Secret " + _vm._s(this.secretDetailsMetadata.name)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v("×")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("div", { staticClass: "container" }, [
+                        _c("label", { attrs: { for: "nameKeyPair" } }, [
+                          _vm._v("Id:")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-control",
+                            attrs: { for: "nameKeyPair" }
+                          },
+                          [_vm._v(_vm._s(this.secretDetailsMetadata.uid))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "container",
+                          staticStyle: { "margin-top": "25px" }
+                        },
+                        [
+                          _c("label", { attrs: { for: "nameKeyPair" } }, [
+                            _vm._v("Token:")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-control",
+                              attrs: { for: "nameKeyPair" }
+                            },
+                            [_vm._v(_vm._s(this.secretDetailsData.token))]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "container",
+                          staticStyle: { "margin-top": "25px" }
+                        },
+                        [
+                          _c("label", { attrs: { for: "nameKeyPair" } }, [
+                            _vm._v("Ca.crt: ")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-control",
+                              attrs: { for: "nameKeyPair" }
+                            },
+                            [_vm._v(_vm._s(this.secretDetailsData["ca.crt"]))]
+                          )
+                        ]
+                      )
+                    ])
+                  ])
                 ])
+              ]
+            )
           ])
         ]
       )
@@ -75287,15 +75550,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./resources/js/kubernetes/secrets.vue ***!
   \*********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _secrets_vue_vue_type_template_id_43ba2010_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./secrets.vue?vue&type=template&id=43ba2010&scoped=true& */ "./resources/js/kubernetes/secrets.vue?vue&type=template&id=43ba2010&scoped=true&");
 /* harmony import */ var _secrets_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./secrets.vue?vue&type=script&lang=js& */ "./resources/js/kubernetes/secrets.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _secrets_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _secrets_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -75325,7 +75587,7 @@ component.options.__file = "resources/js/kubernetes/secrets.vue"
 /*!**********************************************************************!*\
   !*** ./resources/js/kubernetes/secrets.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

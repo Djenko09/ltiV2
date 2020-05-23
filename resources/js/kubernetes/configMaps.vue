@@ -30,7 +30,7 @@
           <div>Config Maps List</div>
       </div>
       <div class="card-body">
-        <table class="table table-hover shadow">
+        <table v-if="configs.length" class="table table-hover shadow">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
@@ -56,7 +56,11 @@
           </tbody>
         </table>
         <!-- FIM tabela que lista os deployments -->
+        <div v-else class="jumbotron shadow">
+          <h2 class="text-center">Nothing to show. Namespace {{this.$store.state.namespace}} has no Configuration Maps</h2>
+        </div>
       </div>
+
     </div>
     <div class="modal" id="myModalDetail" role="dialog">
       <div class="modal-dialog modal-lg">
@@ -82,6 +86,7 @@
         </div>
       </div>
     </div>
+
     </div>
   </div>
 </template>

@@ -42,12 +42,42 @@
             <tr>
               <td>{{secret.metadata.name}}</td>
               <td>{{secret.metadata.namespace}}</td>
-              <td></td>
+              <td>
+                <button type="button" name="button" data-toggle="modal" data-target="#myModalDetail" v-on:click="details(secret)"class="btn btn-secondary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+              </td>
             </tr>
           </tbody>
         </table>
         <div v-else class="jumbotron shadow">
           <h2 class="text-center">Nothing to show. Namespace {{this.$store.state.namespace}} has no secrets</h2>
+        </div>
+        <div class="modal" id="myModalDetail" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Secret {{this.secretDetailsMetadata.name}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+
+                <div class="container">
+                  <label for="nameKeyPair">Id:</label>
+                  <div for="nameKeyPair" class="form-control">{{this.secretDetailsMetadata.uid}}</div>
+                </div>
+
+                <div style="margin-top:25px" class="container">
+                  <label for="nameKeyPair">Token:</label>
+                  <div for="nameKeyPair" class="form-control">{{this.secretDetailsData.token}}</div>
+                </div>
+
+                <div style="margin-top:25px" class="container">
+                  <label for="nameKeyPair">Ca.crt: </label>
+                  <div for="nameKeyPair" class="form-control">{{this.secretDetailsData["ca.crt"]}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- FIM tabela que lista os deployments -->
       </div>
@@ -65,6 +95,8 @@ export default {
       url:process.env.MIX_URL,
       namespaces:[],
       secrets:[],
+      secretDetailsMetadata:[],
+      secretDetailsData:[]
     }
   },
   methods:{
@@ -74,6 +106,10 @@ export default {
       this.secrets = response.data.items;
 
     })
+  },
+  details(secret){
+    this.secretDetailsMetadata = secret.metadata;
+    this.secretDetailsData = secret.data;
   },
 
   getNamespaces() {

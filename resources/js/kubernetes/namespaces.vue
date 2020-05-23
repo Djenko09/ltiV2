@@ -94,11 +94,34 @@
               <td>{{namespace.metadata.managedFields[0].time}} Hours</td>
               <td>
                 <button type="button" name="button"class="btn btn-danger" v-on:click="deleteNamespace(namespace.metadata.name)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                <button type="button" name="button"class="btn btn-secondary" v-on:click="deleteNamespace(namespace.metadata.name)"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                <button type="button" name="button"class="btn btn-secondary" data-toggle="modal" data-target="#myModalDetail" v-on:click="details(namespace)"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    <div v-if="this.namespaceMetadata" class="modal" id="myModalDetail" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Namespace {{this.namespaceMetadata.name}}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+
+            <div class="container">
+              <label>Id:</label>
+              <div class="form-control">{{this.namespaceMetadata.uid}}</div>
+            </div>
+
+            <div style="margin-top:25px" class="container">
+              <label>Manager</label>
+              <div class="form-control">{{this.namespaceManaged.manager}}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -115,7 +138,10 @@ export default {
       namespace:{
         name:null,
         label:null
-      }
+      },
+      namespaceMetadata:[],
+      namespaceManaged:[],
+
     }
   },
 
@@ -165,6 +191,11 @@ export default {
             }
           }
       })
+    },
+    details(namespace){
+      this.namespaceMetadata = namespace.metadata;
+      this.namespaceManaged = namespace.metadata.managedFields[0];
+      console.log(this.namespaceManaged);
     },
     deleteNamespace(namespace){
       axios.delete(this.url + "/api/v1/namespaces/" + namespace).then(response=>{

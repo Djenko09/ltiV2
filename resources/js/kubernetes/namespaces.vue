@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <div style="margin-top:10px"class="card">
+    <div style="margin-top:10px" class="card">
       <div class="card-header bg-primary text-white">
         List of Namespaces
       </div>
@@ -88,13 +88,6 @@
             <tr>
               <td>{{ namespace.metadata.name }}</td>
               <td>{{ namespace.status.phase}}</td>
-              <!--<td>
-                <button
-                  type="button"
-                  class="btn btn-sm btn-danger"
-                  v-on:click="deleteContainer(container)"
-                >Delete</button>
-              </td>-->
               <td>{{namespace.metadata.managedFields[0].time}} Hours</td>
               <td>
                 <button type="button" name="button"
@@ -139,10 +132,7 @@ export default {
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
           var horas = divideHoraZ[0].split(":");
-          //var hour = res[1].split("Z")
-          //console.log(res);
-
-          //console.log(hour);
+          
 
           var data = new Date(dia[0],dia[1]-1,dia[2],horas[0],horas[1],horas[2],0);
 
@@ -153,10 +143,10 @@ export default {
           diferenca = (diferenca / (1000*60*60)) - 1
 
 
-          //vidaNamespace = vidaNamespace / 36000;
+         
           this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(0);
         }
-      //  console.log(this.namespaces.items[0].metadata.managedFields[0].time);
+  
       })
     },
     createNamespace(){
@@ -173,7 +163,7 @@ export default {
     },
     deleteNamespace(namespace){
       axios.delete(this.url + "/api/v1/namespaces/" + namespace).then(response=>{
-        console.log(response.data);
+       
         this.$toasted.success('NameSpace Deleted!');
          this.getNamespaces();
       })

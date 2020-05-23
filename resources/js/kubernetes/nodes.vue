@@ -105,7 +105,7 @@ export default {
         .get(this.url + "/api/v1/nodes")
 
         .then(response => {
-          console.log(response.data);
+        
           this.nodes = response.data.items;
 
           var arrayLength = this.nodes.length;
@@ -115,10 +115,7 @@ export default {
             var dia = divideDiaHora[0].split("-");
             var divideHoraZ = divideDiaHora[1].split("Z");
             var horas = divideHoraZ[0].split(":");
-            //var hour = res[1].split("Z")
-            //console.log(res);
-
-            //console.log(hour);
+           
 
             var data = new Date(
               dia[0],

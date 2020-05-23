@@ -3,6 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li style="color:#fff;margin-top:8px;margin-right:5px;">
+            <i class="fa fa-cubes" aria-hidden="true"></i> {{this.$store.state.namespace}}
+          </li>
           <li class="nav-item active">
             <router-link class="nav-link" to="/"><i class="fa fa-sign-out" aria-hidden="true"></i>
               Exit</router-link>
@@ -69,7 +72,7 @@
         </div>
       </div>
     </div>
-    <div style="margin-top:10px" class="card">
+    <div style="margin-top:10px" class="card shadow">
       <div class="card-header bg-primary text-white">
         List of Namespaces
       </div>
@@ -132,7 +135,7 @@ export default {
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
           var horas = divideHoraZ[0].split(":");
-          
+
 
           var data = new Date(dia[0],dia[1]-1,dia[2],horas[0],horas[1],horas[2],0);
 
@@ -143,11 +146,15 @@ export default {
           diferenca = (diferenca / (1000*60*60)) - 1
 
 
-         
+
           this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(0);
         }
-  
+
       })
+    },
+    changeNameSpace(namespace){
+       this.$store.commit("setNameSpace", namespace);
+       this.$toasted.info('Changed namespace to: ' + namespace);
     },
     createNamespace(){
       axios.post(this.url + "/api/v1/namespaces",{
@@ -163,23 +170,12 @@ export default {
     },
     deleteNamespace(namespace){
       axios.delete(this.url + "/api/v1/namespaces/" + namespace).then(response=>{
-       
+
         this.$toasted.success('NameSpace Deleted!');
          this.getNamespaces();
       })
     },
-    editNamespace(namespace){
-      axios.patch(this.url + "/api/v1/namespaces/" + namespace,{
-        "apiVersion": "v1",
-        "kind": "Namespace",
-        "metadata": {
-          "name": "teste",
-          "labels": {
-            "name": "teste",
-          }
-        }
-      })
-    }
+
   },
   mounted(){
     this.getNamespaces();

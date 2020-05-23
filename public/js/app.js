@@ -6557,7 +6557,6 @@ __webpack_require__.r(__webpack_exports__);
 
       //função para obter os pods
       axios.get(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/configmaps").then(function (response) {
-        console.log(response.data);
         _this.configs = response.data.items;
         var arrayLength = _this.configs.length;
 
@@ -6612,6 +6611,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -6873,8 +6875,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios["delete"](this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(function (response) {
-        console.log(response.data);
-
         _this3.getDeployments();
 
         _this3.$toasted.success("Deployment " + deployment + " eliminated !");
@@ -6889,6 +6889,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
+      this.$toasted.info('Changed namespace to: ' + namespace);
       this.getDeployments();
     },
     detail: function detail(deployment) {
@@ -6899,7 +6900,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
-    console.log(this.$store.state);
     this.getDeployments();
     this.getNamespaces();
   }
@@ -7012,6 +7012,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
+      this.$toasted.info('Changed to namespace: ' + namespace);
       this.getServices();
     }
   },
@@ -7067,48 +7068,10 @@ __webpack_require__.r(__webpack_exports__);
       url: "http://192.168.232.71:8080"
     };
   },
-  methods: {
-    createPod: function createPod() {
-      axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods", {
-        "kind": "Pod",
-        "apiVersion": "v1",
-        "metadata": {
-          "name": "nginx2",
-          "namespace": "default",
-          "labels": {
-            "name": "nginx2"
-          }
-        },
-        "spec": {
-          "containers": [{
-            "name": "nginx",
-            "image": "nginx",
-            "ports": [{
-              "containerPort": 80
-            }],
-            "resources": {
-              "limits": {
-                "memory": "128Mi",
-                "cpu": "500m"
-              }
-            }
-          }]
-        }
-      }).then(function (response) {
-        console.log(response.data);
-      });
-    },
-    getApi: function getApi() {
-      axios.get(this.url + "/api/v1/pods");
-    }
-  },
+  methods: {},
   mounted: function mounted() {
-    console.log("http://192.168.232.71:8080"); // /this.createPod();
-
-    this.getApi(); //this.$store.commit("setApp", "kubernetes");
-
     this.$store.commit("setUser", "kubernetes");
-    this.$store.commit("setNameSpace", "default"); //console.log(this.$store.state.app);
+    this.$store.commit("setNameSpace", "default");
   }
 });
 
@@ -7123,10 +7086,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -7262,20 +7221,19 @@ __webpack_require__.r(__webpack_exports__);
           var divideDiaHora = date.split("T");
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
-          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
-          //console.log(res);
-          //console.log(hour);
-
+          var horas = divideHoraZ[0].split(":");
           var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
           var hoje = new Date().getTime();
           var segundosNamespace = data.getTime();
           var diferenca = hoje - data;
-          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
-
+          diferenca = diferenca / (1000 * 60 * 60) - 1;
           _this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(0);
-        } //  console.log(this.namespaces.items[0].metadata.managedFields[0].time);
-
+        }
       });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.$toasted.info('Changed namespace to: ' + namespace);
     },
     createNamespace: function createNamespace() {
       axios.post(this.url + "/api/v1/namespaces", {
@@ -7293,23 +7251,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios["delete"](this.url + "/api/v1/namespaces/" + namespace).then(function (response) {
-        console.log(response.data);
-
         _this2.$toasted.success('NameSpace Deleted!');
 
         _this2.getNamespaces();
-      });
-    },
-    editNamespace: function editNamespace(namespace) {
-      axios.patch(this.url + "/api/v1/namespaces/" + namespace, {
-        "apiVersion": "v1",
-        "kind": "Namespace",
-        "metadata": {
-          "name": "teste",
-          "labels": {
-            "name": "teste"
-          }
-        }
       });
     }
   },
@@ -7434,7 +7378,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       //função para obter os nodes
       axios.get(this.url + "/api/v1/nodes").then(function (response) {
-        console.log(response.data);
         _this.nodes = response.data.items;
         var arrayLength = _this.nodes.length;
 
@@ -7443,10 +7386,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           var divideDiaHora = date.split("T");
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
-          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
-          //console.log(res);
-          //console.log(hour);
-
+          var horas = divideHoraZ[0].split(":");
           var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
           var hoje = new Date().getTime();
           var diferenca = hoje - data;
@@ -7479,6 +7419,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -7697,8 +7640,6 @@ __webpack_require__.r(__webpack_exports__);
           }]
         }
       }).then(function (response) {
-        console.log(response.data);
-
         _this3.$toasted.show("Pod Created");
 
         _this3.getPods();
@@ -7713,6 +7654,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
+      this.$toasted.info('Changed namespace to: ' + namespace);
       this.getPods();
     },
     detail: function detail(pod) {
@@ -7739,6 +7681,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -7880,6 +7825,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
+      this.$toasted.info('Changed namespace to: ' + namespace);
       this.getReplicas();
     },
     detail: function detail(replica) {
@@ -7906,6 +7852,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -8181,6 +8130,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeNameSpace: function changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
+      this.$toasted.info('Changed namespace to: ' + namespace);
       this.getServices();
     },
     detail: function detail(service) {
@@ -52938,7 +52888,7 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "10px" } },
         [
           _vm._m(0),
           _vm._v(" "),
@@ -52975,7 +52925,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-primary text-white" }, [
-      _c("div", [_vm._v("Services list")])
+      _c("div", [_vm._v("Cluster Roles")])
     ])
   },
   function() {
@@ -53572,96 +53522,110 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "10px" } },
         [
           _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              [
-                _vm._m(3),
-                _vm._v(" "),
-                _vm._l(_vm.deployments, function(deployment) {
-                  return _c("tbody", { key: deployment.metadata.name }, [
-                    _c("tr", [
-                      _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(deployment.metadata.labels.app))
-                      ]),
-                      _vm._v(" "),
-                      !deployment.status.readyReplicas
-                        ? _c("td", [
-                            _vm._v("0/" + _vm._s(deployment.status.replicas))
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      deployment.status.readyReplicas
-                        ? _c("td", [
+            _vm.deployments.length
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._l(_vm.deployments, function(deployment) {
+                      return _c("tbody", { key: deployment.metadata.name }, [
+                        _c("tr", [
+                          _c("td", [_vm._v(_vm._s(deployment.metadata.name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(deployment.metadata.labels.app))
+                          ]),
+                          _vm._v(" "),
+                          !deployment.status.readyReplicas
+                            ? _c("td", [
+                                _vm._v(
+                                  "0/" + _vm._s(deployment.status.replicas)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          deployment.status.readyReplicas
+                            ? _c("td", [
+                                _vm._v(
+                                  _vm._s(deployment.status.readyReplicas) +
+                                    "/" +
+                                    _vm._s(deployment.status.replicas)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("td", [
                             _vm._v(
-                              _vm._s(deployment.status.readyReplicas) +
-                                "/" +
-                                _vm._s(deployment.status.replicas)
+                              _vm._s(
+                                deployment.spec.template.spec.containers[0]
+                                  .image
+                              )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                deployment.metadata.managedFields[0].time
+                              ) + " Hours"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { type: "button", name: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteDeployment(
+                                      deployment.metadata.name
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { type: "button", name: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editDeployment(
+                                      deployment.metadata.name
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Edit")]
                             )
                           ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            deployment.spec.template.spec.containers[0].image
-                          )
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(deployment.metadata.managedFields[0].time) +
-                            " Hours"
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button", name: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteDeployment(
-                                  deployment.metadata.name
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Delete")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: { type: "button", name: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.editDeployment(
-                                  deployment.metadata.name
-                                )
-                              }
-                            }
-                          },
-                          [_vm._v("Edit")]
-                        )
+                        ])
                       ])
-                    ])
+                    })
+                  ],
+                  2
+                )
+              : _c("div", { staticClass: "jumbotron shadow" }, [
+                  _c("h2", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "Nothing to show. Namespace " +
+                        _vm._s(this.$store.state.namespace) +
+                        " has no deployments!"
+                    )
                   ])
-                })
-              ],
-              2
-            )
+                ])
           ])
         ]
       )
@@ -53882,7 +53846,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "10px" } },
         [
           _vm._m(2),
           _vm._v(" "),
@@ -54133,6 +54097,26 @@ var render = function() {
             _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
               _c(
                 "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(this.$store.state.namespace) + "\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
                 { staticClass: "nav-item active" },
                 [
                   _c(
@@ -54242,7 +54226,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "10px" } },
         [
           _c("div", { staticClass: "card-header bg-primary text-white" }, [
             _vm._v("\n      List of Namespaces\n    ")
@@ -54469,7 +54453,7 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "50px" } },
         [
           _c("div", { staticClass: "card-header bg-primary text-white" }, [
             _vm._v("List of Nodes")
@@ -54833,81 +54817,93 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "10px" } },
         [
           _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              [
-                _vm._m(3),
-                _vm._v(" "),
-                _vm._l(_vm.pods, function(pod) {
-                  return _c("tbody", [
-                    _c(
-                      "tr",
-                      [
-                        _c("td", [_vm._v(_vm._s(pod.metadata.name))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(pod.spec.nodeName))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(pod.status.phase))]),
-                        _vm._v(" "),
-                        _vm._l(pod.status.containerStatuses, function(res) {
-                          return _c("td", [_vm._v(_vm._s(res.restartCount))])
-                        }),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(pod.metadata.managedFields[0].time) +
-                              " Hours"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              attrs: { type: "button", name: "button" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.deletePod(pod.metadata.name)
-                                }
-                              }
-                            },
-                            [_vm._v("Delete")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-secondary",
-                              attrs: {
-                                type: "button",
-                                name: "button",
-                                "data-toggle": "modal",
-                                "data-target": "#myModalDetail"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.detail(pod)
-                                }
-                              }
-                            },
-                            [_vm._v("Details")]
-                          )
-                        ])
-                      ],
-                      2
+            _vm.pods.length
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._l(_vm.pods, function(pod) {
+                      return _c("tbody", [
+                        _c(
+                          "tr",
+                          [
+                            _c("td", [_vm._v(_vm._s(pod.metadata.name))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(pod.spec.nodeName))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(pod.status.phase))]),
+                            _vm._v(" "),
+                            _vm._l(pod.status.containerStatuses, function(res) {
+                              return _c("td", [
+                                _vm._v(_vm._s(res.restartCount))
+                              ])
+                            }),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(pod.metadata.managedFields[0].time) +
+                                  " Hours"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  attrs: { type: "button", name: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deletePod(pod.metadata.name)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-secondary",
+                                  attrs: {
+                                    type: "button",
+                                    name: "button",
+                                    "data-toggle": "modal",
+                                    "data-target": "#myModalDetail"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.detail(pod)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Details")]
+                              )
+                            ])
+                          ],
+                          2
+                        )
+                      ])
+                    })
+                  ],
+                  2
+                )
+              : _c("div", { staticClass: "jumbotron shadow" }, [
+                  _c("h2", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "Nothing to show. Namespace " +
+                        _vm._s(this.$store.state.namespace) +
+                        " has no pods"
                     )
                   ])
-                })
-              ],
-              2
-            )
+                ])
           ])
         ]
       ),
@@ -55128,7 +55124,7 @@ var render = function() {
                     },
                     [
                       _c("option", { attrs: { selected: "" } }, [
-                        _vm._v(_vm._s(this.$store.state.namespace))
+                        _vm._v("Select Namespace")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.namespaces, function(namespace) {
@@ -55202,63 +55198,75 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "50px" } },
         [
           _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              [
-                _vm._m(2),
-                _vm._v(" "),
-                _vm._l(_vm.replicas, function(replica) {
-                  return _c("tbody", [
-                    _c("tr", [
-                      _c("td", [_vm._v(_vm._s(replica.metadata.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(replica.metadata.labels))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(replica.metadata.managedFields[0].time) +
-                            " Hours"
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(replica.spec.template.spec.containers[0].image)
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary",
-                            attrs: {
-                              type: "button",
-                              name: "button",
-                              "data-toggle": "modal",
-                              "data-target": "#myModalDetail"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.detail(replica)
-                              }
-                            }
-                          },
-                          [_vm._v("Details")]
-                        )
+            _vm.replicas.length
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _vm._l(_vm.replicas, function(replica) {
+                      return _c("tbody", [
+                        _c("tr", [
+                          _c("td", [_vm._v(_vm._s(replica.metadata.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(replica.metadata.labels))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(replica.metadata.managedFields[0].time) +
+                                " Hours"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                replica.spec.template.spec.containers[0].image
+                              )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-secondary",
+                                attrs: {
+                                  type: "button",
+                                  name: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#myModalDetail"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.detail(replica)
+                                  }
+                                }
+                              },
+                              [_vm._v("Details")]
+                            )
+                          ])
+                        ])
                       ])
-                    ])
+                    })
+                  ],
+                  2
+                )
+              : _c("div", { staticClass: "jumbotron shadow" }, [
+                  _c("h2", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "Nothing to show. Namespace " +
+                        _vm._s(this.$store.state.namespace) +
+                        " has no replicas"
+                    )
                   ])
-                })
-              ],
-              2
-            )
+                ])
           ])
         ]
       ),
@@ -55666,107 +55674,119 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        { staticClass: "card shadow", staticStyle: { "margin-top": "10px" } },
         [
           _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              { staticClass: "table table-hover" },
-              [
-                _vm._m(4),
-                _vm._v(" "),
-                _vm._l(_vm.services, function(service) {
-                  return _c("tbody", [
-                    _c("tr", [
-                      _c("td", [_vm._v(_vm._s(service.metadata.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(service.metadata.labels))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(service.spec.clusterIP))]),
-                      _vm._v(" "),
-                      service.spec.ports[0].nodePort
-                        ? _c("td", [
+            _vm.services.length
+              ? _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _vm._l(_vm.services, function(service) {
+                      return _c("tbody", [
+                        _c("tr", [
+                          _c("td", [_vm._v(_vm._s(service.metadata.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(service.metadata.labels))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(service.spec.clusterIP))]),
+                          _vm._v(" "),
+                          service.spec.ports[0].nodePort
+                            ? _c("td", [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(service.metadata.name) +
+                                    ": " +
+                                    _vm._s(service.spec.ports[0].port) +
+                                    "\\" +
+                                    _vm._s(service.spec.ports[0].protocol) +
+                                    " |\n                " +
+                                    _vm._s(service.metadata.name) +
+                                    ": " +
+                                    _vm._s(service.spec.ports[0].nodePort) +
+                                    "\\" +
+                                    _vm._s(service.spec.ports[0].protocol) +
+                                    "\n              "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !service.spec.ports[0].nodePort
+                            ? _c("td", [
+                                _vm._v(
+                                  _vm._s(service.metadata.name) +
+                                    ": " +
+                                    _vm._s(service.spec.ports[0].port) +
+                                    "\\" +
+                                    _vm._s(service.spec.ports[0].protocol)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("td", [_vm._v("x")]),
+                          _vm._v(" "),
+                          _c("td", [
                             _vm._v(
-                              "\n                " +
-                                _vm._s(service.metadata.name) +
-                                ": " +
-                                _vm._s(service.spec.ports[0].port) +
-                                "\\" +
-                                _vm._s(service.spec.ports[0].protocol) +
-                                " |\n                " +
-                                _vm._s(service.metadata.name) +
-                                ": " +
-                                _vm._s(service.spec.ports[0].nodePort) +
-                                "\\" +
-                                _vm._s(service.spec.ports[0].protocol) +
-                                "\n              "
+                              _vm._s(service.metadata.managedFields[0].time) +
+                                " Hours"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { type: "button", name: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteService(
+                                      service.metadata.name
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-secondary",
+                                attrs: {
+                                  type: "button",
+                                  name: "button",
+                                  "data-toggle": "modal",
+                                  "data-target": "#myModalDetail"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.detail(service)
+                                  }
+                                }
+                              },
+                              [_vm._v("Details")]
                             )
                           ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !service.spec.ports[0].nodePort
-                        ? _c("td", [
-                            _vm._v(
-                              _vm._s(service.metadata.name) +
-                                ": " +
-                                _vm._s(service.spec.ports[0].port) +
-                                "\\" +
-                                _vm._s(service.spec.ports[0].protocol)
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("x")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(service.metadata.managedFields[0].time) +
-                            " Hours"
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button", name: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteService(service.metadata.name)
-                              }
-                            }
-                          },
-                          [_vm._v("Delete")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-secondary",
-                            attrs: {
-                              type: "button",
-                              name: "button",
-                              "data-toggle": "modal",
-                              "data-target": "#myModalDetail"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.detail(service)
-                              }
-                            }
-                          },
-                          [_vm._v("Details")]
-                        )
+                        ])
                       ])
-                    ])
+                    })
+                  ],
+                  2
+                )
+              : _c("div", { staticClass: "jumbotron shadow" }, [
+                  _c("h2", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "Nothing to show. Namespace " +
+                        _vm._s(this.$store.state.namespace) +
+                        " has no services"
+                    )
                   ])
-                })
-              ],
-              2
-            )
+                ])
           ])
         ]
       ),
@@ -72533,7 +72553,7 @@ Vue.filter('formatDate', function (value) {
 
 Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_3___default.a, {
   theme: "bubble",
-  position: "top-right",
+  position: "top-center",
   duration: 5000,
   type: 'success'
 });

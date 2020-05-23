@@ -79,8 +79,8 @@
             <b>Labels:</b>
             {{this.configDetailsMetadata.labels}}
             <br />
-          
-            
+
+
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@ export default {
         .get(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/configmaps")
 
         .then(response => {
-          
+
           this.configs = response.data.items;
           var arrayLength = this.configs.length;
           for(var i = 0; i<arrayLength; i++){

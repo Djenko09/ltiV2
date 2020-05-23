@@ -17,7 +17,7 @@
       </div>
     </nav>
     <div class="container-fluid">
-      <div style="margin-top:50px" class="card">
+      <div style="margin-top:50px" class="card shadow">
         <div class="card-header bg-primary text-white">List of Nodes</div>
         <div class="card-body">
           <table class="table table-hover">
@@ -105,7 +105,7 @@ export default {
         .get(this.url + "/api/v1/nodes")
 
         .then(response => {
-        
+
           this.nodes = response.data.items;
 
           var arrayLength = this.nodes.length;
@@ -115,7 +115,7 @@ export default {
             var dia = divideDiaHora[0].split("-");
             var divideHoraZ = divideDiaHora[1].split("Z");
             var horas = divideHoraZ[0].split(":");
-           
+
 
             var data = new Date(
               dia[0],

@@ -71,13 +71,13 @@
           </div>
         </div>
       </div>
-    <div style="margin-top:10px" class="card">
+    <div style="margin-top:10px" class="card shadow">
         <div class="card-header bg-primary text-white">
 
           <div>Pods List</div>
       </div>
       <div class="card-body">
-        <table class="table table-hover">
+        <table v-if="pods.length" class="table table-hover">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
@@ -103,6 +103,9 @@
             </tr>
           </tbody>
         </table>
+        <div v-else class="jumbotron shadow">
+          <h2 class="text-center">Nothing to show. Namespace {{this.$store.state.namespace}} has no pods</h2>
+        </div>
       </div>
     </div>
      <div class="modal" id="myModalDetail" role="dialog">
@@ -238,6 +241,7 @@ export default {
     },
     changeNameSpace(namespace){
        this.$store.commit("setNameSpace", namespace);
+       this.$toasted.info('Changed namespace to: ' + namespace);
        this.getPods();
     },
     detail(pod) {

@@ -17,9 +17,9 @@
     </div>
   </nav>
   <div class="container-fluid">
-    <div style="margin-top:10px" class="card">
+    <div style="margin-top:10px" class="card shadow">
         <div class="card-header bg-primary text-white">
-          <div>Services list</div>
+          <div>Cluster Roles</div>
       </div>
       <div class="card-body">
         <table class="table table-hover">

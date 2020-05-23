@@ -23,7 +23,7 @@ Vue.filter('formatDate', function(value) {
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
     theme: "bubble",
-    position: "top-right",
+    position: "top-center",
     duration: 5000,
     type: 'success'
 });
@@ -127,7 +127,6 @@ const routes = [
     { path: '/configMaps', component:configMaps, name:"configMaps"},
     { path: '/endpoints', component:endpoints, name:"endpoints"},
     { path: '/clusterRoles', component:clusterRoles, name:"clusterRoles"}
-
 
 ];
 

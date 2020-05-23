@@ -104,14 +104,14 @@
           </div>
         </div>
       </div>
-      <div style="margin-top:10px" class="card">
+      <div style="margin-top:10px" class="card shadow">
         <div class="card-header bg-primary text-white">
           <div>
             Deployments list
           </div>
         </div>
         <div class="card-body">
-          <table class="table table-hover">
+          <table v-if="deployments.length" class="table table-hover">
             <thead class="thead-dark">
               <tr>
                 <th>Name</th>
@@ -149,6 +149,9 @@
               </tr>
             </tbody>
           </table>
+          <div v-else class="jumbotron shadow">
+            <h2 class="text-center">Nothing to show. Namespace {{this.$store.state.namespace}} has no deployments!</h2>
+          </div>
           <!-- FIM tabela que lista os deployments -->
         </div>
       </div>
@@ -192,7 +195,7 @@ export default {
         .then(response => {
 
           this.deployments = response.data.items;
-        
+
 
           var arrayLength = this.deployments.length;
           for (var i = 0; i < arrayLength; i++) {
@@ -296,7 +299,7 @@ export default {
             deployment
         )
         .then(response => {
-         
+
           this.getDeployments();
           this.$toasted.success("Deployment " + deployment + " eliminated !");
         });
@@ -308,6 +311,7 @@ export default {
     },
     changeNameSpace(namespace) {
       this.$store.commit("setNameSpace", namespace);
+      this.$toasted.info('Changed namespace to: ' + namespace);
       this.getDeployments();
     },
     detail(deployment) {
@@ -318,7 +322,7 @@ export default {
   },
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
-   
+
     this.getDeployments();
     this.getNamespaces();
   }

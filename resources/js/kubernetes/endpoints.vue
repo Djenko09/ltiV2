@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div style="margin-top:10px" class="card">
+    <div style="margin-top:10px" class="card shadow">
         <div class="card-header bg-primary text-white">
           <div>Endpoints available</div>
       </div>
@@ -92,6 +92,7 @@ export default {
   },
   changeNameSpace(namespace){
      this.$store.commit("setNameSpace", namespace);
+     this.$toasted.info('Changed to namespace: '+ namespace);
      this.getServices();
   },
   },

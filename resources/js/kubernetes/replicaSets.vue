@@ -8,7 +8,7 @@
                 <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-cubes" aria-hidden="true"></i></label>
               </div>
               <select class="custom-select" id="inputGroupSelect01">
-                <option selected>{{this.$store.state.namespace}}</option>
+                <option selected>Select Namespace</option>
                 <option v-for="namespace in namespaces" :value="namespace.metadata.name" v-on:click="changeNameSpace(namespace.metadata.name)">{{namespace.metadata.name}}</option>
               </select>
             </div>
@@ -25,12 +25,12 @@
       </div>
     </nav>
     <div class="container-fluid">
-    <div style="margin-top:50px" class="card">
+    <div style="margin-top:50px" class="card shadow">
        <div class="card-header bg-primary text-white">
           <div>Replica Sets List</div>
       </div>
       <div class="card-body">
-        <table class="table table-hover">
+        <table v-if="replicas.length" class="table table-hover">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
@@ -59,6 +59,9 @@
             </tr>
           </tbody>
         </table>
+        <div v-else class="jumbotron shadow">
+          <h2 class="text-center">Nothing to show. Namespace {{this.$store.state.namespace}} has no replicas</h2>
+        </div>
         <!-- FIM tabela que lista os deployments -->
       </div>
     </div>
@@ -83,7 +86,7 @@
             <b>Annotations:</b>
             {{this.replicaDetailsMetadata.annotations}}
             <br />
-            
+
           </div>
         </div>
       </div>
@@ -146,6 +149,7 @@ export default {
     },
     changeNameSpace(namespace){
        this.$store.commit("setNameSpace", namespace);
+       this.$toasted.info('Changed namespace to: ' + namespace);
        this.getReplicas();
     },
      detail(replica) {

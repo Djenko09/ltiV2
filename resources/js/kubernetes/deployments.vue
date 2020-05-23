@@ -295,7 +295,7 @@ export default {
             deployment
         )
         .then(response => {
-          console.log(response.data);
+         
           this.getDeployments();
           this.$toasted.success("Deployment " + deployment + " eliminated !");
         });
@@ -317,7 +317,7 @@ export default {
   },
   mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
-    console.log(this.$store.state);
+   
     this.getDeployments();
     this.getNamespaces();
   }

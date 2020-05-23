@@ -225,7 +225,7 @@ export default {
           }
         })
         .then(response => {
-          console.log(response.data);
+
           this.$toasted.show("Pod Created");
           this.getPods();
         });

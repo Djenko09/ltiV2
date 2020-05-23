@@ -109,7 +109,7 @@ export default {
         .get(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/configmaps")
 
         .then(response => {
-          console.log(response.data);
+          
           this.configs = response.data.items;
           var arrayLength = this.configs.length;
           for(var i = 0; i<arrayLength; i++){

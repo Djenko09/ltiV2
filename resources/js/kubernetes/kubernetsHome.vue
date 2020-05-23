@@ -35,48 +35,15 @@ export default {
     }
   },
   methods:{
-    createPod(){
-      axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods",{
-
-     "kind": "Pod",
-     "apiVersion": "v1",
-     "metadata":{
-         "name": "nginx2",
-         "namespace": "default",
-         "labels": {
-             "name": "nginx2"
-         }
-     },
-     "spec": {
-         "containers": [{
-             "name": "nginx",
-             "image": "nginx",
-             "ports": [{"containerPort": 80}],
-             "resources": {
-                 "limits": {
-                     "memory": "128Mi",
-                     "cpu": "500m"
-                 }
-             }
-         }]
-     }
-
-      }).then(response=>{
-        console.log(response.data);
-      })
-    },
-    getApi(){
-      axios.get(this.url + "/api/v1/pods")
-    }
+   
   },
   mounted(){
-    console.log(process.env.MIX_URL);
-    // /this.createPod();
-   this.getApi();
-    //this.$store.commit("setApp", "kubernetes");
+    
+  
+  
     this.$store.commit("setUser", "kubernetes");
     this.$store.commit("setNameSpace", "default");
-    //console.log(this.$store.state.app);
+    
   }
 
 }

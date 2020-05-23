@@ -6481,7 +6481,6 @@ __webpack_require__.r(__webpack_exports__);
 
       //função para obter os pods
       axios.get(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/configmaps").then(function (response) {
-        console.log(response.data);
         _this.configs = response.data.items;
         var arrayLength = _this.configs.length;
 
@@ -6798,8 +6797,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios["delete"](this.url + "/apis/apps/v1/namespaces/default/deployments/" + deployment).then(function (response) {
-        console.log(response.data);
-
         _this3.getDeployments();
 
         _this3.$toasted.success("Deployment " + deployment + " eliminated !");
@@ -6824,7 +6821,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     //a pagina ao ser carregada executa as seguintes funcoes
-    console.log(this.$store.state);
     this.getDeployments();
     this.getNamespaces();
   }
@@ -6876,48 +6872,10 @@ __webpack_require__.r(__webpack_exports__);
       url: "http://192.168.28.140:1234"
     };
   },
-  methods: {
-    createPod: function createPod() {
-      axios.post("http://192.168.232.71:8080/api/v1/namespaces/default/pods", {
-        "kind": "Pod",
-        "apiVersion": "v1",
-        "metadata": {
-          "name": "nginx2",
-          "namespace": "default",
-          "labels": {
-            "name": "nginx2"
-          }
-        },
-        "spec": {
-          "containers": [{
-            "name": "nginx",
-            "image": "nginx",
-            "ports": [{
-              "containerPort": 80
-            }],
-            "resources": {
-              "limits": {
-                "memory": "128Mi",
-                "cpu": "500m"
-              }
-            }
-          }]
-        }
-      }).then(function (response) {
-        console.log(response.data);
-      });
-    },
-    getApi: function getApi() {
-      axios.get(this.url + "/api/v1/pods");
-    }
-  },
+  methods: {},
   mounted: function mounted() {
-    console.log("http://192.168.28.140:1234"); // /this.createPod();
-
-    this.getApi(); //this.$store.commit("setApp", "kubernetes");
-
     this.$store.commit("setUser", "kubernetes");
-    this.$store.commit("setNameSpace", "default"); //console.log(this.$store.state.app);
+    this.$store.commit("setNameSpace", "default");
   }
 });
 
@@ -6932,13 +6890,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7071,19 +7022,14 @@ __webpack_require__.r(__webpack_exports__);
           var divideDiaHora = date.split("T");
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
-          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
-          //console.log(res);
-          //console.log(hour);
-
+          var horas = divideHoraZ[0].split(":");
           var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
           var hoje = new Date().getTime();
           var segundosNamespace = data.getTime();
           var diferenca = hoje - data;
-          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
-
+          diferenca = diferenca / (1000 * 60 * 60) - 1;
           _this.namespacesItems[i].metadata.managedFields[0].time = diferenca.toFixed(0);
-        } //  console.log(this.namespaces.items[0].metadata.managedFields[0].time);
-
+        }
       });
     },
     createNamespace: function createNamespace() {
@@ -7102,8 +7048,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios["delete"](this.url + "/api/v1/namespaces/" + namespace).then(function (response) {
-        console.log(response.data);
-
         _this2.$toasted.success('NameSpace Deleted!');
 
         _this2.getNamespaces();
@@ -7243,7 +7187,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       //função para obter os nodes
       axios.get(this.url + "/api/v1/nodes").then(function (response) {
-        console.log(response.data);
         _this.nodes = response.data.items;
         var arrayLength = _this.nodes.length;
 
@@ -7252,10 +7195,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           var divideDiaHora = date.split("T");
           var dia = divideDiaHora[0].split("-");
           var divideHoraZ = divideDiaHora[1].split("Z");
-          var horas = divideHoraZ[0].split(":"); //var hour = res[1].split("Z")
-          //console.log(res);
-          //console.log(hour);
-
+          var horas = divideHoraZ[0].split(":");
           var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
           var hoje = new Date().getTime();
           var diferenca = hoje - data;
@@ -7506,8 +7446,6 @@ __webpack_require__.r(__webpack_exports__);
           }]
         }
       }).then(function (response) {
-        console.log(response.data);
-
         _this3.$toasted.show("Pod Created");
 
         _this3.getPods();

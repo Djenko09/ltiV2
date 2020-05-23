@@ -53732,7 +53732,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "replicas" } }, [_vm._v("replicas")]),
+              _c("label", { attrs: { for: "replicas" } }, [_vm._v("Replicas")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -53747,7 +53747,7 @@ var render = function() {
                 attrs: {
                   type: "number",
                   id: "replicas",
-                  placeholder: "Insert name "
+                  placeholder: "Insert a number "
                 },
                 domProps: { value: _vm.deployment.replicas },
                 on: {

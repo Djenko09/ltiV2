@@ -65,13 +65,13 @@
             </div>
 
             <div class="form-group">
-              <label for="replicas">replicas</label>
+              <label for="replicas">Replicas</label>
               <input
                 type="number"
                 class="form-control"
                 v-model="deployment.replicas"
                 id="replicas"
-                placeholder="Insert name "
+                placeholder="Insert a number "
               />
             </div>
 

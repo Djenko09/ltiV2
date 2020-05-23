@@ -25,25 +25,22 @@
       </div>
     </nav>
     <div class="container-fluid">
-    <div style="margin-top:50px" class="card">
+    <div style="margin-top:50px" class="card shadow">
        <div class="card-header bg-primary text-white">
           <div>Config Maps List</div>
       </div>
       <div class="card-body">
-        <table class="table table-hover">
+        <table class="table table-hover shadow">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
-              <th>Labels</th>
               <th>Age</th>
-              <th>Options</th>
+              <th></th>
             </tr>
           </thead>
           <tbody v-for="config in configs">
             <tr>
               <td>{{config.metadata.name}}</td>
-              <td v-if="config.metadata.labels">{{config.metadata.labels}}</td>
-              <td v-if="!config.metadata.labels">----</td>
               <td>{{config.metadata.managedFields[0].time}} Hours</td>
          <td>
                 <button
@@ -53,7 +50,7 @@
                   data-toggle="modal"
                   data-target="#myModalDetail"
                   v-on:click="detail(config)"
-                >Details</button>
+                ><i class="fa fa-info-circle" aria-hidden="true"></i></button>
               </td>
             </tr>
           </tbody>

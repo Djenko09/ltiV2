@@ -30,23 +30,21 @@
           <div>Replica Sets List</div>
       </div>
       <div class="card-body">
-        <table v-if="replicas.length" class="table table-hover">
+        <table v-if="replicas.length" class="table table-hover shadow">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
-              <th>Labels</th>
               <th>Age</th>
               <th>Image</th>
-              <th>Options</th>
+              <th></th>
             </tr>
           </thead>
           <tbody v-for="replica in replicas">
             <tr>
               <td>{{replica.metadata.name}}</td>
-              <td>{{replica.metadata.labels}}</td>
               <td>{{replica.metadata.managedFields[0].time}} Hours</td>
                <td>{{replica.spec.template.spec.containers[0].image}}</td>
-         <td>
+               <td>
                 <button
                   type="button"
                   name="button"
@@ -54,7 +52,7 @@
                   data-toggle="modal"
                   data-target="#myModalDetail"
                   v-on:click="detail(replica)"
-                >Details</button>
+                ><i class="fa fa-info-circle" aria-hidden="true"></i></button>
               </td>
             </tr>
           </tbody>

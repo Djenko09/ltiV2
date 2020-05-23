@@ -77,7 +77,7 @@
           <div>Pods List</div>
       </div>
       <div class="card-body">
-        <table v-if="pods.length" class="table table-hover">
+        <table v-if="pods.length" class="table table-hover shadow">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
@@ -96,9 +96,10 @@
               <td v-for="res in pod.status.containerStatuses">{{res.restartCount}}</td>
               <td>{{pod.metadata.managedFields[0].time}} Hours</td>
               <td>
-                <button type="button" name="button" class="btn btn-danger" v-on:click="deletePod(pod.metadata.name)">Delete</button>
+                <button type="button" name="button" class="btn btn-danger" v-on:click="deletePod(pod.metadata.name)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                  <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"
-        data-target="#myModalDetail" v-on:click="detail(pod)">Details</button>
+        data-target="#myModalDetail" v-on:click="detail(pod)"><i class="fa fa-info-circle" aria-hidden="true"></i>
+</button>
               </td>
             </tr>
           </tbody>
@@ -246,8 +247,8 @@ export default {
     },
     detail(pod) {
       this.podDetailsMetadata = pod.metadata;
-       this.podDetailsSpec = pod.spec;
-       this.podDetailsStatus = pod.status;
+      this.podDetailsSpec = pod.spec;
+      this.podDetailsStatus = pod.status;
 
     }
   },

@@ -78,13 +78,13 @@
       </div>
 
       <div class="card-body">
-        <table class="table table-hover">
+        <table class="table table-hover shadow">
           <thead class="thead-dark" >
             <tr>
               <th>Name</th>
               <th>Status</th>
               <th>Age</th>
-              <th>Options</th>
+              <th></th>
             </tr>
           </thead>
           <tbody v-for="namespace in namespaces.items" :key="namespace.metadata.name">
@@ -93,10 +93,8 @@
               <td>{{ namespace.status.phase}}</td>
               <td>{{namespace.metadata.managedFields[0].time}} Hours</td>
               <td>
-                <button type="button" name="button"
-                class="btn btn-danger" v-on:click="deleteNamespace(namespace.metadata.name)">Delete</button>
-                <button type="button" name="button"
-                class="btn btn-primary" v-on:click="editNamespace(namespace.metadata.name)">Edit</button>
+                <button type="button" name="button"class="btn btn-danger" v-on:click="deleteNamespace(namespace.metadata.name)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button type="button" name="button"class="btn btn-secondary" v-on:click="deleteNamespace(namespace.metadata.name)"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
               </td>
             </tr>
           </tbody>

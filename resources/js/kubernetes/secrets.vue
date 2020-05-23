@@ -25,67 +25,58 @@
     </div>
   </nav>
   <div class="container-fluid">
-    <div style="margin-top:50px" class="card">
-      <div class="row">
-        <div class="col-md-4">
-          <button
-            style="margin-top:10px;margin-left:10px;margin-bottom:10px"
-            type="submit"
-            class="btn btn-outline-dark"
-            data-toggle="modal"
-            data-target="#myModalService"
-          >Create Endpoint <i class="fa fa-plus-circle"></i></button>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:10px" class="card shadow">
-        <div class="card-header bg-primary text-white">
-          <div>Endpoints available</div>
+    <div style="margin-top:50px" class="card shadow">
+       <div class="card-header bg-primary text-white">
+          <div>Secrets List</div>
       </div>
       <div class="card-body">
-        <table class="table table-hover shadow">
+        <table v-if="secrets.length" class="table table-hover shadow">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
               <th>Namespace</th>
-              <th>Domain</th>
+              <th></th>
             </tr>
           </thead>
-          <tbody v-for="endpoint in endpoints">
+          <tbody v-for="secret in secrets">
             <tr>
-              <td>{{endpoint.metadata.name}}</td>
-              <td>{{endpoint.metadata.namespace}}</td>
-              <td>{{endpoint.metadata.selfLink}}</td>
+              <td>{{secret.metadata.name}}</td>
+              <td>{{secret.metadata.namespace}}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>
+        <div v-else class="jumbotron shadow">
+          <h2 class="text-center">Nothing to show. Namespace {{this.$store.state.namespace}} has no secrets</h2>
+        </div>
+        <!-- FIM tabela que lista os deployments -->
       </div>
     </div>
+
   </div>
 
 </div>
-
-
 </template>
 
 <script>
 export default {
   data:function(){
     return{
-      url: process.env.MIX_URL,
-      endpoints:[],
-      namespaces: [],
-
+      url:process.env.MIX_URL,
+      namespaces:[],
+      secrets:[],
     }
   },
   methods:{
-    getEndpoints(){
-      axios.get(this.url + "/api/v1/endpoints").then(response=>{
-        this.endpoints = response.data.items;
-        console.log(this.endpoints);
-      })
-    },
-    getNamespaces() {
+
+  getSecrets(){
+    axios.get(this.url + '/api/v1/namespaces/'+ this.$store.state.namespace + '/secrets').then(response=>{
+      this.secrets = response.data.items;
+
+    })
+  },
+
+  getNamespaces() {
     axios.get(this.url + "/api/v1/namespaces").then(response => {
       this.namespaces = response.data.items;
     });
@@ -93,12 +84,12 @@ export default {
   changeNameSpace(namespace){
      this.$store.commit("setNameSpace", namespace);
      this.$toasted.info('Changed to namespace: '+ namespace);
-     this.getServices();
+     this.getSecrets();
   },
   },
   mounted(){
     this.getNamespaces();
-    this.getEndpoints();
+    this.getSecrets();
   }
 }
 </script>

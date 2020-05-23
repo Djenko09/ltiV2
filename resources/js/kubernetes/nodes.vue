@@ -20,22 +20,20 @@
       <div style="margin-top:50px" class="card shadow">
         <div class="card-header bg-primary text-white">List of Nodes</div>
         <div class="card-body">
-          <table class="table table-hover">
+          <table class="table table-hover shadow">
             <thead class="thead-dark">
               <tr>
                 <th>Name</th>
-                <th>Labels</th>
-                <th>Ready</th>
+                <th>Status</th>
                 <th>Opertating System</th>
                 <th>osImage</th>
                 <th>Age</th>
-                <th>Options</th>
+                <th></th>
               </tr>
             </thead>
             <tbody v-for="node in nodes">
               <tr>
                 <td>{{node.metadata.name}}</td>
-                <td>{{node.metadata.labels}}</td>
                 <td>{{node.status.conditions[4].status}}</td>
                 <td>{{node.status.nodeInfo.operatingSystem}}</td>
                 <td>{{node.status.nodeInfo.osImage}}</td>
@@ -48,7 +46,7 @@
                     data-toggle="modal"
                     data-target="#myModalDetail"
                     v-on:click="detail(node)"
-                  >Details</button>
+                  ><i class="fa fa-info-circle" aria-hidden="true"></i></button>
                 </td>
               </tr>
             </tbody>

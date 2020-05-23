@@ -1,5 +1,19 @@
 <template>
-  <div class="jumbotron">
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li style="color:#fff;margin-top:8px;margin-right:5px;">
+          <i class="fa fa-cubes" aria-hidden="true"></i> {{this.$store.state.namespace}}
+        </li>
+        <li class="nav-item active">
+          <router-link class="nav-link" to="/"><i class="fa fa-sign-out" aria-hidden="true"></i>
+            Exit</router-link>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="jumbotron container-fluid">
 
     <h1 style="text-align:center">
       <b >
@@ -23,9 +37,8 @@
       <h3 style="text-align:center" >Luis Filipe Farinha Mateus</h3><br>
       <h3 style="text-align:center" >Paulo Miguel Veríssimo Custodio</h3><br>
     </div>
-    <button type="button" v-on:click="getApi()" name="button">VAI</button>
-
   </div>
+</div>
 </template>
 <script>
 export default {
@@ -35,15 +48,15 @@ export default {
     }
   },
   methods:{
-   
+
   },
   mounted(){
-    
-  
-  
+
+
+
     this.$store.commit("setUser", "kubernetes");
     this.$store.commit("setNameSpace", "default");
-    
+
   }
 
 }

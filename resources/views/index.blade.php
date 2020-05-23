@@ -89,7 +89,7 @@
 
     <div  v-if="this.$store.state.token || this.$store.state.user == 'kubernetes'" class="bg-secondary" id="sidebar-wrapper">
       <div v-if="this.$store.state.token" class="sidebar-heading"><router-link to="/home" class="navbar-brand"><img src="{{URL::asset('/images/logo.png')}}" alt="some text" width=200 height=100/></router-link></div>
-      <div v-if="this.$store.state.user == 'kubernetes'"class="sidebar-heading"><router-link to="" class="navbar-brand"><img src="{{URL::asset('/images/kubernetes.png')}}" alt="some text" width=200 height=100/></router-link></div>
+      <div v-if="this.$store.state.user == 'kubernetes'"class="sidebar-heading"><router-link to="/kubernetsHome" class="navbar-brand"><img src="{{URL::asset('/images/kubernetes.png')}}" alt="some text" width=200 height=100/></router-link></div>
       <div class="list-group list-group-flush">
         <p>
         <a v-if="this.$store.state.token"class="list-group-item list-group-item-action btn-outline-secondary  dropdown-toggle" data-toggle="collapse" href="#multiCollapseProject" role="button" aria-expanded="false" aria-controls="multiCollapseProject"
@@ -211,7 +211,7 @@
             <p style="background-color:#1aa3ff;color:#000;margin-top:10px"class="text-center">Config and Storage</p>
             <li class="active">
                 <router-link to="/configMaps" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Config Maps</router-link>
-
+                <router-link to="/secrets" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Secrets</router-link>
             </li>
           </ul>
       </div>

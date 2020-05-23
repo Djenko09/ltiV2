@@ -111,7 +111,7 @@
           </div>
         </div>
         <div class="card-body">
-          <table v-if="deployments.length" class="table table-hover">
+          <table v-if="deployments.length" class="table table-hover shadow">
             <thead class="thead-dark">
               <tr>
                 <th>Name</th>
@@ -138,13 +138,7 @@
                     name="button"
                     class="btn btn-danger"
                     v-on:click="deleteDeployment(deployment.metadata.name)"
-                  >Delete</button>
-                  <button
-                    type="button"
-                    name="button"
-                    class="btn btn-primary"
-                    v-on:click="editDeployment(deployment.metadata.name)"
-                  >Edit</button>
+                  ><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
               </tr>
             </tbody>

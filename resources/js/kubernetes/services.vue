@@ -106,11 +106,10 @@
           <div>Services list</div>
       </div>
       <div class="card-body">
-        <table v-if="services.length" class="table table-hover">
+        <table v-if="services.length" class="table table-hover shadow">
           <thead class="thead-dark">
             <tr>
               <th>Name</th>
-              <th>Labels</th>
               <th>Cluster IP</th>
               <th>Internal endpoints</th>
               <th>External endpoints</th>
@@ -121,7 +120,6 @@
           <tbody v-for="service in services">
             <tr>
               <td>{{service.metadata.name}}</td>
-              <td>{{service.metadata.labels}}</td>
               <td>{{service.spec.clusterIP}}</td>
               <td v-if="service.spec.ports[0].nodePort">
                 {{service.metadata.name}}: {{service.spec.ports[0].port}}\{{service.spec.ports[0].protocol}} |
@@ -134,9 +132,9 @@
               <td>x</td>
               <td>{{service.metadata.managedFields[0].time}} Hours</td>
               <td>
-                <button type="button" name="button" class="btn btn-danger" v-on:click="deleteService(service.metadata.name)">Delete</button>
-                        <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"
-        data-target="#myModalDetail" v-on:click="detail(service)">Details</button>
+                <button type="button" name="button" class="btn btn-danger" v-on:click="deleteService(service.metadata.name)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button type="button" name="button" class="btn btn-secondary" data-toggle="modal"
+                data-target="#myModalDetail" v-on:click="detail(service)"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
               </td>
             </tr>
           </tbody>
@@ -202,17 +200,6 @@ export default {
         .then(response => {
 
           this.services = response.data.items;
-          var servicosLength = this.services.length;
-          for (var i = 0; i < servicosLength; j++) {
-                //for (var j = 0; j < this.services[i].metadata.labels.length; j++) {
-                  //console.log("Numero de elementos de labels : " + j);
-
-                //}
-          }
-          var cena = this.services[0].metadata.labels.component;
-          var cena = this.services[0].metadata.labels.provider;
-          console.log(cena);
-          console.log(cena.replace(/\"/g, ""));
           this.calculoIdade();
         });
     },

@@ -61,6 +61,7 @@ import replicaSetsComponent from "./kubernetes/replicaSets.vue";
 import configMapsComponent from "./kubernetes/configMaps.vue";
 import endpointsComponent from "./kubernetes/endpoints.vue";
 import clusterRolesComponent from "./kubernetes/clusterRoles.vue";
+import secretsComponent from "./kubernetes/secrets.vue";
 
 
 const home = Vue.component('home', homeComponent);
@@ -95,6 +96,7 @@ const replicaSets = Vue.component('replicaSets', replicaSetsComponent);
 const configMaps = Vue.component('configMaps', configMapsComponent);
 const endpoints = Vue.component('endpoints', endpointsComponent);
 const clusterRoles = Vue.component('clusterRoles', clusterRolesComponent);
+const secrets = Vue.component('secrets', secretsComponent);
 //kubernetes
 const routes = [
     { path: '/', component: chooseApp },  //alterado para TL2
@@ -126,7 +128,8 @@ const routes = [
     { path: '/replicaSets', component:replicaSets, name:"replicaSets"},
     { path: '/configMaps', component:configMaps, name:"configMaps"},
     { path: '/endpoints', component:endpoints, name:"endpoints"},
-    { path: '/clusterRoles', component:clusterRoles, name:"clusterRoles"}
+    { path: '/clusterRoles', component:clusterRoles, name:"clusterRoles"},
+    { path: '/secrets', component:secrets, name:"secrets"},
 
 ];
 

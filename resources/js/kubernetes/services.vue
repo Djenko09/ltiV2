@@ -29,7 +29,7 @@
         <div class="modal-content">
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Create Deployment</h4>
+            <h4 class="modal-title">Create Service</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 

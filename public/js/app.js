@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['projectName'],
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       project_name: null,
       user: {
         token: null
@@ -2032,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       showMessage: false,
       message: ""
     };
@@ -2170,7 +2170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       containers: [],
       container: {
         name: "",
@@ -2301,7 +2301,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       projects: [],
       instances: [],
       images: [],
@@ -2541,7 +2541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       flavors: [],
       flavor: {
         name: "",
@@ -2788,7 +2788,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       floatingIPs: [],
       instances: [],
       networks: [],
@@ -3053,7 +3053,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234"
+      url: "http://192.168.232.71:8080"
     };
   },
   methods: {},
@@ -3250,7 +3250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       images: [],
       disk_formats: ["ami", "ari", "aki", "vhd", "vhdx", "vmdk", "raw", "qcow2", "vdi", "ploop", "iso"],
       image: {
@@ -3763,7 +3763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       instances: [],
       subnets: [],
       keypairs: [],
@@ -4340,7 +4340,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       keypairs: [],
       newKeypair: {
         name: "",
@@ -4488,7 +4488,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       showMessage: false,
       message: ""
     };
@@ -4572,7 +4572,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.28.140:1234"
+      url: "http://192.168.232.71:8080"
     };
   },
   methods: {
@@ -4764,7 +4764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       networks: [],
       network: {
         name: ""
@@ -4968,7 +4968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       projects: [],
       active_prj: this.$store.state.project,
       user: {
@@ -5200,7 +5200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       routers: [],
       router: {
         id: "",
@@ -5568,7 +5568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       securityGroups: [],
       securityGroup: {
         name: null,
@@ -5895,7 +5895,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       servers: [],
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       serversGroup: {
         name: null,
         policy: null
@@ -6180,7 +6180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       volumes: [],
       volume: {
         id: "",
@@ -6363,6 +6363,82 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/clusterRoles.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/clusterRoles.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: "http://192.168.232.71:8080",
+      clusterRoles: []
+    };
+  },
+  methods: {
+    getClusterRoles: function getClusterRoles() {
+      var _this = this;
+
+      axios.get(this.url + "/apis/rbac.authorization.k8s.io/v1/clusterroles").then(function (response) {
+        _this.clusterRoles = response.data.items;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getClusterRoles();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/configMaps.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/configMaps.vue?vue&type=script&lang=js& ***!
@@ -6466,7 +6542,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       configs: [],
       config: {},
       namespaces: [],
@@ -6699,7 +6775,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       deployments: [],
       deployment: {
         image: "",
@@ -6720,7 +6796,6 @@ __webpack_require__.r(__webpack_exports__);
 
       //função para obter os deployments
       axios.get(this.url + "/apis/apps/v1/namespaces/" + this.$store.state.namespace + "/deployments").then(function (response) {
-        console.log(response.data);
         _this.deployments = response.data.items;
         var arrayLength = _this.deployments.length;
 
@@ -6832,6 +6907,122 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/endpoints.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/endpoints.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      url: "http://192.168.232.71:8080",
+      endpoints: [],
+      namespaces: []
+    };
+  },
+  methods: {
+    getEndpoints: function getEndpoints() {
+      var _this = this;
+
+      axios.get(this.url + "/api/v1/endpoints").then(function (response) {
+        _this.endpoints = response.data.items;
+        console.log(_this.endpoints);
+      });
+    },
+    getNamespaces: function getNamespaces() {
+      var _this2 = this;
+
+      axios.get(this.url + "/api/v1/namespaces").then(function (response) {
+        _this2.namespaces = response.data.items;
+      });
+    },
+    changeNameSpace: function changeNameSpace(namespace) {
+      this.$store.commit("setNameSpace", namespace);
+      this.getServices();
+    }
+  },
+  mounted: function mounted() {
+    this.getNamespaces();
+    this.getEndpoints();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/kubernetsHome.vue?vue&type=script&lang=js& ***!
@@ -6873,7 +7064,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234"
+      url: "http://192.168.232.71:8080"
     };
   },
   methods: {
@@ -6912,7 +7103,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log("http://192.168.28.140:1234"); // /this.createPod();
+    console.log("http://192.168.232.71:8080"); // /this.createPod();
 
     this.getApi(); //this.$store.commit("setApp", "kubernetes");
 
@@ -7048,7 +7239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       namespaces: [],
       namespacesItems: [],
       namespace: {
@@ -7233,7 +7424,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       nodes: []
     }, _defineProperty(_ref, "nodes", {}), _defineProperty(_ref, "nodeDetailsMetadata", []), _defineProperty(_ref, "nodeDetailsSpec", []), _defineProperty(_ref, "nodeDetailsStatus", []), _ref;
   },
@@ -7426,7 +7617,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       pods: [],
       pod: {
         name: null,
@@ -7645,7 +7836,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       replicas: [],
       replica: {},
       namespaces: [],
@@ -7890,7 +8081,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.28.140:1234",
+      url: "http://192.168.232.71:8080",
       services: [],
       service: {
         name: null,
@@ -7911,25 +8102,39 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.url + "/api/v1/namespaces/" + this.$store.state.namespace + "/services").then(function (response) {
-        console.log(response.data);
         _this.services = response.data.items;
-        var arrayLength = _this.services.length;
+        var servicosLength = _this.services.length;
 
-        for (var i = 0; i < arrayLength; i++) {
-          var date = _this.services[i].metadata.managedFields[0].time;
-          var divideDiaHora = date.split("T");
-          var dia = divideDiaHora[0].split("-");
-          var divideHoraZ = divideDiaHora[1].split("Z");
-          var horas = divideHoraZ[0].split(":");
-          var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
-          var hoje = new Date().getTime();
-          var segundosNamespace = data.getTime();
-          var diferenca = hoje - data;
-          diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
-
-          _this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+        for (var i = 0; i < servicosLength; j++) {//for (var j = 0; j < this.services[i].metadata.labels.length; j++) {
+          //console.log("Numero de elementos de labels : " + j);
+          //}
         }
+
+        var cena = _this.services[0].metadata.labels.component;
+        var cena = _this.services[0].metadata.labels.provider;
+        console.log(cena);
+        console.log(cena.replace(/\"/g, ""));
+
+        _this.calculoIdade();
       });
+    },
+    calculoIdade: function calculoIdade() {
+      var arrayLength = this.services.length;
+
+      for (var i = 0; i < arrayLength; i++) {
+        var date = this.services[i].metadata.managedFields[0].time;
+        var divideDiaHora = date.split("T");
+        var dia = divideDiaHora[0].split("-");
+        var divideHoraZ = divideDiaHora[1].split("Z");
+        var horas = divideHoraZ[0].split(":");
+        var data = new Date(dia[0], dia[1] - 1, dia[2], horas[0], horas[1], horas[2], 0);
+        var hoje = new Date().getTime();
+        var segundosNamespace = data.getTime();
+        var diferenca = hoje - data;
+        diferenca = diferenca / (1000 * 60 * 60) - 1; //vidaNamespace = vidaNamespace / 36000;
+
+        this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+      }
     },
     deleteService: function deleteService(service) {
       var _this2 = this;
@@ -52654,6 +52859,144 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
+          [
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    "\r\n          " +
+                      _vm._s(this.$store.state.namespace) +
+                      "\r\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\r\n            Exit\r\n          ")
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(_vm.clusterRoles, function(role) {
+                  return _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(role.metadata.name))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(_vm._s(role.metadata.managedFields[0].manager))
+                      ])
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-primary text-white" }, [
+      _c("div", [_vm._v("Services list")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Manager")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/configMaps.vue?vue&type=template&id=2e8b9ad4&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/configMaps.vue?vue&type=template&id=2e8b9ad4& ***!
@@ -53386,7 +53729,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-primary text-white" }, [
-      _c("div", [_vm._v("\n          Deployments list \n        ")])
+      _c("div", [_vm._v("\n          Deployments list\n        ")])
     ])
   },
   function() {
@@ -53406,6 +53749,245 @@ var staticRenderFns = [
         _c("th", [_vm._v("Age")]),
         _vm._v(" "),
         _c("th", [_vm._v("Options")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/endpoints.vue?vue&type=template&id=eb93561a&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/kubernetes/endpoints.vue?vue&type=template&id=eb93561a&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" }
+          },
+          [
+            _c("div", { staticClass: "col-auto mr-auto" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "input-group mb-3",
+                  staticStyle: { "margin-top": "10px", "margin-left": "5px" }
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "custom-select",
+                      attrs: { id: "inputGroupSelect01" }
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Select Namespace")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.namespaces, function(namespace) {
+                        return _c(
+                          "option",
+                          {
+                            domProps: { value: namespace.metadata.name },
+                            on: {
+                              click: function($event) {
+                                return _vm.changeNameSpace(
+                                  namespace.metadata.name
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(namespace.metadata.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "navbar-nav ml-auto mt-2 mt-lg-0" }, [
+              _c(
+                "li",
+                {
+                  staticStyle: {
+                    color: "#fff",
+                    "margin-top": "8px",
+                    "margin-right": "5px"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-cubes",
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(
+                    " " + _vm._s(this.$store.state.namespace) + "\r\n        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-sign-out",
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v("\r\n            Exit")
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "margin-top": "10px" } },
+        [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._l(_vm.endpoints, function(endpoint) {
+                  return _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v(_vm._s(endpoint.metadata.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(endpoint.metadata.namespace))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(endpoint.metadata.selfLink))])
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "label",
+        {
+          staticClass: "input-group-text",
+          attrs: { for: "inputGroupSelect01" }
+        },
+        [
+          _c("i", {
+            staticClass: "fa fa-cubes",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card", staticStyle: { "margin-top": "50px" } },
+      [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark",
+                staticStyle: {
+                  "margin-top": "10px",
+                  "margin-left": "10px",
+                  "margin-bottom": "10px"
+                },
+                attrs: {
+                  type: "submit",
+                  "data-toggle": "modal",
+                  "data-target": "#myModalService"
+                }
+              },
+              [
+                _vm._v("Create Endpoint "),
+                _c("i", { staticClass: "fa fa-plus-circle" })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-primary text-white" }, [
+      _c("div", [_vm._v("Endpoints available")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Namespace")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Domain")])
       ])
     ])
   }
@@ -71930,6 +72512,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _kubernetes_nodes_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./kubernetes/nodes.vue */ "./resources/js/kubernetes/nodes.vue");
 /* harmony import */ var _kubernetes_replicaSets_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./kubernetes/replicaSets.vue */ "./resources/js/kubernetes/replicaSets.vue");
 /* harmony import */ var _kubernetes_configMaps_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./kubernetes/configMaps.vue */ "./resources/js/kubernetes/configMaps.vue");
+/* harmony import */ var _kubernetes_endpoints_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./kubernetes/endpoints.vue */ "./resources/js/kubernetes/endpoints.vue");
+/* harmony import */ var _kubernetes_clusterRoles_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./kubernetes/clusterRoles.vue */ "./resources/js/kubernetes/clusterRoles.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //import 'bootstrap';
 
 
@@ -71983,7 +72567,8 @@ Vue.use(vue_toasted__WEBPACK_IMPORTED_MODULE_3___default.a, {
 
 
 
-var gps = Vue.component('gps', _components_gps_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+
 var home = Vue.component('home', _components_homeComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 var login = Vue.component('login', _components_loginComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 var logout = Vue.component('logout', _components_logout_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
@@ -72012,7 +72597,9 @@ var services = Vue.component('services', _kubernetes_services_vue__WEBPACK_IMPOR
 var namespaces = Vue.component('namespaces', _kubernetes_namespaces_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
 var nodes = Vue.component('nodes', _kubernetes_nodes_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
 var replicaSets = Vue.component('replicaSets', _kubernetes_replicaSets_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
-var configMaps = Vue.component('configMaps', _kubernetes_configMaps_vue__WEBPACK_IMPORTED_MODULE_31__["default"]); //kubernetes
+var configMaps = Vue.component('configMaps', _kubernetes_configMaps_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
+var endpoints = Vue.component('endpoints', _kubernetes_endpoints_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
+var clusterRoles = Vue.component('clusterRoles', _kubernetes_clusterRoles_vue__WEBPACK_IMPORTED_MODULE_33__["default"]); //kubernetes
 
 var routes = [{
   path: '/',
@@ -72121,6 +72708,14 @@ var routes = [{
   path: '/configMaps',
   component: configMaps,
   name: "configMaps"
+}, {
+  path: '/endpoints',
+  component: endpoints,
+  name: "endpoints"
+}, {
+  path: '/clusterRoles',
+  component: clusterRoles,
+  name: "clusterRoles"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes
@@ -73595,6 +74190,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/kubernetes/clusterRoles.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/kubernetes/clusterRoles.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _clusterRoles_vue_vue_type_template_id_430cdcfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true& */ "./resources/js/kubernetes/clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true&");
+/* harmony import */ var _clusterRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clusterRoles.vue?vue&type=script&lang=js& */ "./resources/js/kubernetes/clusterRoles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _clusterRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _clusterRoles_vue_vue_type_template_id_430cdcfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _clusterRoles_vue_vue_type_template_id_430cdcfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "430cdcfe",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/kubernetes/clusterRoles.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/clusterRoles.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/kubernetes/clusterRoles.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_clusterRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./clusterRoles.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/clusterRoles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_clusterRoles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/kubernetes/clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_clusterRoles_vue_vue_type_template_id_430cdcfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/clusterRoles.vue?vue&type=template&id=430cdcfe&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_clusterRoles_vue_vue_type_template_id_430cdcfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_clusterRoles_vue_vue_type_template_id_430cdcfe_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/kubernetes/configMaps.vue":
 /*!************************************************!*\
   !*** ./resources/js/kubernetes/configMaps.vue ***!
@@ -73728,6 +74392,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_deployments_vue_vue_type_template_id_b9141afa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_deployments_vue_vue_type_template_id_b9141afa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/endpoints.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/kubernetes/endpoints.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _endpoints_vue_vue_type_template_id_eb93561a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./endpoints.vue?vue&type=template&id=eb93561a&scoped=true& */ "./resources/js/kubernetes/endpoints.vue?vue&type=template&id=eb93561a&scoped=true&");
+/* harmony import */ var _endpoints_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./endpoints.vue?vue&type=script&lang=js& */ "./resources/js/kubernetes/endpoints.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _endpoints_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _endpoints_vue_vue_type_template_id_eb93561a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _endpoints_vue_vue_type_template_id_eb93561a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "eb93561a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/kubernetes/endpoints.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/endpoints.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/kubernetes/endpoints.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_endpoints_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./endpoints.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/endpoints.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_endpoints_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/kubernetes/endpoints.vue?vue&type=template&id=eb93561a&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/kubernetes/endpoints.vue?vue&type=template&id=eb93561a&scoped=true& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_endpoints_vue_vue_type_template_id_eb93561a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./endpoints.vue?vue&type=template&id=eb93561a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/kubernetes/endpoints.vue?vue&type=template&id=eb93561a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_endpoints_vue_vue_type_template_id_eb93561a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_endpoints_vue_vue_type_template_id_eb93561a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -74301,8 +75034,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

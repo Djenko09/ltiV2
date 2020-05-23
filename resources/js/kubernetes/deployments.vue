@@ -107,7 +107,7 @@
       <div style="margin-top:10px" class="card">
         <div class="card-header bg-primary text-white">
           <div>
-            Deployments list 
+            Deployments list
           </div>
         </div>
         <div class="card-body">
@@ -190,8 +190,9 @@ export default {
         )
 
         .then(response => {
-          console.log(response.data);
+
           this.deployments = response.data.items;
+        
 
           var arrayLength = this.deployments.length;
           for (var i = 0; i < arrayLength; i++) {

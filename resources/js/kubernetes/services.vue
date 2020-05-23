@@ -143,7 +143,7 @@
         </table>
       </div>
     </div>
-     <div class="modal" id="myModalDetail" role="dialog">  
+     <div class="modal" id="myModalDetail" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- Modal Header -->
@@ -165,7 +165,7 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 </div>
 </template>
@@ -197,31 +197,45 @@ export default {
         .get(this.url + "/api/v1/namespaces/"+this.$store.state.namespace+"/services")
 
         .then(response => {
-          console.log(response.data);
+
           this.services = response.data.items;
-          var arrayLength = this.services.length;
-          for(var i = 0; i<arrayLength; i++){
+          var servicosLength = this.services.length;
+          for (var i = 0; i < servicosLength; j++) {
+                //for (var j = 0; j < this.services[i].metadata.labels.length; j++) {
+                  //console.log("Numero de elementos de labels : " + j);
 
-            var date = this.services[i].metadata.managedFields[0].time;
-            var divideDiaHora = date.split("T");
-            var dia = divideDiaHora[0].split("-");
-            var divideHoraZ = divideDiaHora[1].split("Z");
-            var horas = divideHoraZ[0].split(":");
-
-
-            var data = new Date(dia[0],dia[1]-1,dia[2],horas[0],horas[1],horas[2],0);
-
-            var hoje = new Date().getTime();
-            var segundosNamespace = data.getTime();
-
-            var diferenca = hoje-data;
-            diferenca = (diferenca / (1000*60*60)) - 1
-
-
-            //vidaNamespace = vidaNamespace / 36000;
-            this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+                //}
           }
+          var cena = this.services[0].metadata.labels.component;
+          var cena = this.services[0].metadata.labels.provider;
+          console.log(cena);
+          console.log(cena.replace(/\"/g, ""));
+          this.calculoIdade();
         });
+    },
+    calculoIdade(){
+      var arrayLength = this.services.length;
+      for(var i = 0; i<arrayLength; i++){
+
+        var date = this.services[i].metadata.managedFields[0].time;
+        var divideDiaHora = date.split("T");
+        var dia = divideDiaHora[0].split("-");
+        var divideHoraZ = divideDiaHora[1].split("Z");
+        var horas = divideHoraZ[0].split(":");
+
+
+        var data = new Date(dia[0],dia[1]-1,dia[2],horas[0],horas[1],horas[2],0);
+
+        var hoje = new Date().getTime();
+        var segundosNamespace = data.getTime();
+
+        var diferenca = hoje-data;
+        diferenca = (diferenca / (1000*60*60)) - 1
+
+
+        //vidaNamespace = vidaNamespace / 36000;
+        this.services[i].metadata.managedFields[0].time = diferenca.toFixed(1);
+      }
     },
     deleteService(service){
       axios.delete(this.url + "/api/v1/namespaces/default/services/" + service).then(response=>{

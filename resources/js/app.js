@@ -59,9 +59,10 @@ import namespacesHomeComponent from "./kubernetes/namespaces.vue";
 import nodesComponent from "./kubernetes/nodes.vue";
 import replicaSetsComponent from "./kubernetes/replicaSets.vue";
 import configMapsComponent from "./kubernetes/configMaps.vue";
+import endpointsComponent from "./kubernetes/endpoints.vue";
+import clusterRolesComponent from "./kubernetes/clusterRoles.vue";
 
 
-const gps = Vue.component('gps', gpsComponent);
 const home = Vue.component('home', homeComponent);
 const login = Vue.component('login', loginComponent);
 const logout = Vue.component('logout', logoutComponent);
@@ -85,15 +86,15 @@ const containers = Vue.component('containers', containersComponent); //parte 2 p
 //Trabalho laboratorial 2
 const chooseApp = Vue.component('chooseApp', chooseAppComponent);
 const kubernetsHome = Vue.component('kubernetsHome', kubernetsHomeComponent);
-const pods = Vue.component('pods', podsComponent); 
-const deployments = Vue.component('deployments', deploymentsComponent); 
-const services = Vue.component('services', servicesComponent); 
+const pods = Vue.component('pods', podsComponent);
+const deployments = Vue.component('deployments', deploymentsComponent);
+const services = Vue.component('services', servicesComponent);
 const namespaces = Vue.component('namespaces', namespacesHomeComponent);
 const nodes = Vue.component('nodes', nodesComponent);
-const replicaSets = Vue.component('replicaSets', replicaSetsComponent); 
-const configMaps = Vue.component('configMaps', configMapsComponent); 
-
-
+const replicaSets = Vue.component('replicaSets', replicaSetsComponent);
+const configMaps = Vue.component('configMaps', configMapsComponent);
+const endpoints = Vue.component('endpoints', endpointsComponent);
+const clusterRoles = Vue.component('clusterRoles', clusterRolesComponent);
 //kubernetes
 const routes = [
     { path: '/', component: chooseApp },  //alterado para TL2
@@ -124,6 +125,8 @@ const routes = [
     { path: '/nodes', component:nodes, name:"nodes"},
     { path: '/replicaSets', component:replicaSets, name:"replicaSets"},
     { path: '/configMaps', component:configMaps, name:"configMaps"},
+    { path: '/endpoints', component:endpoints, name:"endpoints"},
+    { path: '/clusterRoles', component:clusterRoles, name:"clusterRoles"}
 
 
 ];

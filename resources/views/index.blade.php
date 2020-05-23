@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title v-if="this.$store.state.user == 'kuberneasdates'">Kubernetes</title>
+  <title>Kubernetes</title>
   <title v-else>OpenStack</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   @yield('extrastyles')
@@ -195,6 +195,7 @@
             <li class="active">
               <router-link to="/namespaces" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Namespaces</router-link>
               <router-link to="/nodes" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Nodes</router-link>
+              <router-link to="/clusterRoles" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Cluster Roles</router-link>
             </li>
             <p style="background-color:#1aa3ff;color:#000;margin-top:10px"class="text-center">Workload</p>
             <li class="active">
@@ -205,7 +206,7 @@
             <p style="background-color:#1aa3ff;color:#000;margin-top:10px"class="text-center">Services and discovery</p>
             <li class="active">
                 <router-link to="/services" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">Services</router-link>
-
+                <router-link to="/endpoints" href="#" class="list-group-item list-group-item-action bg-secondary" style="text-align:center;color:#fff">API Endpoints</router-link>
             </li>
             <p style="background-color:#1aa3ff;color:#000;margin-top:10px"class="text-center">Config and Storage</p>
             <li class="active">

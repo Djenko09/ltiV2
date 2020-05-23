@@ -6587,10 +6587,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit("setNameSpace", namespace);
       this.getConfigs();
     },
-    detail: function detail(replica) {
-      this.configDetailsMetadata = replica.metadata;
-      this.configDetailsSpec = replica.spec;
-      this.configDetailsStatus = replica.status;
+    detail: function detail(config) {
+      this.configDetailsMetadata = config.metadata;
+      this.configDetailsSpec = config.spec;
+      this.configDetailsStatus = config.status;
     }
   },
   mounted: function mounted() {

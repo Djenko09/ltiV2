@@ -67,7 +67,7 @@
             <div class="form-group">
               <label for="replicas">Replicas</label>
               <input
-                type="number"
+                type="number" min="1"
                 class="form-control"
                 v-model="deployment.replicas"
                 id="replicas"

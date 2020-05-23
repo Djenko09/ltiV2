@@ -53746,6 +53746,7 @@ var render = function() {
                 staticClass: "form-control",
                 attrs: {
                   type: "number",
+                  min: "1",
                   id: "replicas",
                   placeholder: "Insert a number "
                 },

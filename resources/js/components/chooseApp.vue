@@ -5,8 +5,8 @@
                 <div class="col login-form-1">
 
                         <div class="row">
-                            <div class="col"><img class="center" v-bind:src="'/images/logologin.png'" width=100 height=200/></div>
-                            <div class="col"><img class="center" v-bind:src="'/images/kubernets.png'" width=300 height=200/></div>
+                            <div class="col"><img class="center" v-bind:src="'/images/logologin.png'"></div>
+                            <div class="col"><img class="center" v-bind:src="'/images/kubernets.png'"></div>
                         </div>
 
                    <br>
@@ -19,7 +19,7 @@
 
                              <div class="col" align="center"><input type="submit" class="btnSubmit" value="Go to Openstack" v-on:click.prevent="toOpenstack()"/></div>
 
-                             <div class="col" align="center"><input type="submit" class="btnSubmit" value="Go to Kubernets" style="background-color: blue" v-on:click.prevent="toKubernets()"/></div>
+                             <div class="col" align="center"><input type="submit" class="btnSubmit" value="Go to Kubernetes" style="background-color: blue" v-on:click.prevent="toKubernets()"/></div>
 
                         </div>
                 </div>

@@ -23,7 +23,7 @@
     <br>
     <br>
       <div>
-         <img class="center" v-bind:src="'/images/kubernets.png'" width=100 height=300/>
+         <img class="center" v-bind:src="'/images/kubernets.png'" />
      </div>
      <br><br>
      <div class="center">

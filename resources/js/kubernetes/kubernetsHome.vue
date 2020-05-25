@@ -13,11 +13,11 @@
       </ul>
     </div>
   </nav>
-  <div class="jumbotron container-fluid">
+  <div class=" container-fluid">
 
     <h1 style="text-align:center">
       <b >
-        Welcome to Kubernets
+        Welcome to Kubernetes
       </b>
     </h1>
     <br>

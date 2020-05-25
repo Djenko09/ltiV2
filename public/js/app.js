@@ -1916,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['projectName'],
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       project_name: null,
       user: {
         token: null
@@ -2032,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       showMessage: false,
       message: ""
     };
@@ -2170,7 +2170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       containers: [],
       container: {
         name: "",
@@ -2301,7 +2301,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       projects: [],
       instances: [],
       images: [],
@@ -2541,7 +2541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       flavors: [],
       flavor: {
         name: "",
@@ -2788,7 +2788,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       floatingIPs: [],
       instances: [],
       networks: [],
@@ -3053,7 +3053,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080"
+      url: "http://192.168.232.20"
     };
   },
   methods: {},
@@ -3250,7 +3250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       images: [],
       disk_formats: ["ami", "ari", "aki", "vhd", "vhdx", "vmdk", "raw", "qcow2", "vdi", "ploop", "iso"],
       image: {
@@ -3763,7 +3763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       instances: [],
       subnets: [],
       keypairs: [],
@@ -4340,7 +4340,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       keypairs: [],
       newKeypair: {
         name: "",
@@ -4488,7 +4488,7 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       },
       header: new XMLHttpRequest(),
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       showMessage: false,
       message: ""
     };
@@ -4572,7 +4572,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //tokens:'',
-      url: "http://192.168.196.110:8080"
+      url: "http://192.168.232.20"
     };
   },
   methods: {
@@ -4764,7 +4764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       networks: [],
       network: {
         name: ""
@@ -4968,7 +4968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       projects: [],
       active_prj: this.$store.state.project,
       user: {
@@ -5200,7 +5200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       routers: [],
       router: {
         id: "",
@@ -5568,7 +5568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       securityGroups: [],
       securityGroup: {
         name: null,
@@ -5895,7 +5895,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       servers: [],
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       serversGroup: {
         name: null,
         policy: null
@@ -6180,7 +6180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       volumes: [],
       volume: {
         id: "",
@@ -6437,7 +6437,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       clusterRoles: [],
       //details
       roleDetails: []
@@ -6567,7 +6567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       configs: [],
       config: {},
       namespaces: [],
@@ -6796,7 +6796,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       deployments: [],
       deployment: {
         image: "",
@@ -7008,7 +7008,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       endpoints: [],
       namespaces: []
     };
@@ -7097,7 +7097,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080"
+      url: "http://192.168.232.20"
     };
   },
   methods: {},
@@ -7251,7 +7251,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       namespaces: [],
       namespacesItems: [],
       namespace: {
@@ -7426,7 +7426,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _ref;
 
     return _ref = {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       nodes: []
     }, _defineProperty(_ref, "nodes", {}), _defineProperty(_ref, "nodeDetailsMetadata", []), _defineProperty(_ref, "nodeDetailsSpec", []), _defineProperty(_ref, "nodeDetailsStatus", []), _ref;
   },
@@ -7622,7 +7622,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       pods: [],
       pod: {
         name: null,
@@ -7841,7 +7841,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       replicas: [],
       replica: {},
       namespaces: [],
@@ -8005,7 +8005,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       namespaces: [],
       secrets: [],
       secretDetailsMetadata: [],
@@ -8227,7 +8227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      url: "http://192.168.196.110:8080",
+      url: "http://192.168.232.20",
       services: [],
       service: {
         name: null,
@@ -54282,7 +54282,7 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "jumbotron container-fluid" }, [
+    _c("div", { staticClass: " container-fluid" }, [
       _vm._m(0),
       _vm._v(" "),
       _c("br"),
@@ -54312,7 +54312,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h1", { staticStyle: { "text-align": "center" } }, [
-      _c("b", [_vm._v("\r\n        Welcome to Kubernets\r\n      ")])
+      _c("b", [_vm._v("\r\n        Welcome to Kubernetes\r\n      ")])
     ])
   },
   function() {
@@ -75856,8 +75856,8 @@ var vuexLocalStorage = new vuex_persist__WEBPACK_IMPORTED_MODULE_2__["default"](
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\ltiV2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\ltiV2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\lti\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\lti\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

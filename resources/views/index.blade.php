@@ -85,11 +85,8 @@
   <div class="d-flex" id="app">
 
     <!-- Sidebar -->
-
-
-    <div  v-if="this.$store.state.token || this.$store.state.user == 'kubernetes'" class="bg-secondary" id="sidebar-wrapper">
+    <div  v-if="this.$store.state.token" class="bg-light" id="sidebar-wrapper">
       <div v-if="this.$store.state.token" class="sidebar-heading"><router-link to="/home" class="navbar-brand"><img src="{{URL::asset('/images/logo.png')}}" alt="some text" width=200 height=100/></router-link></div>
-      <div v-if="this.$store.state.user == 'kubernetes'"class="sidebar-heading"><router-link to="/kubernetsHome" class="navbar-brand"><img src="{{URL::asset('/images/kubernetes.png')}}" alt="some text" width=200 height=100/></router-link></div>
       <div class="list-group list-group-flush">
         <p>
         <a v-if="this.$store.state.token"class="list-group-item list-group-item-action btn-outline-secondary  dropdown-toggle" data-toggle="collapse" href="#multiCollapseProject" role="button" aria-expanded="false" aria-controls="multiCollapseProject"
@@ -188,6 +185,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div  v-if="this.$store.state.user == 'kubernetes'" class="bg-secondary" id="sidebar-wrapper">
+      <div v-if="this.$store.state.user == 'kubernetes'"class="sidebar-heading"><router-link to="/kubernetsHome" class="navbar-brand"><img src="{{URL::asset('/images/kubernetes.png')}}" alt="some text" width=200 height=100/></router-link></div>
       <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Kubernetes a partir daqui<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Sidebar <<<<<<<<<<<<<<<<<<<<< -->
       <div v-if="this.$store.state.user == 'kubernetes'" class="list-group list-group-flush">
         <ul class="list-unstyled components">
@@ -221,7 +221,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav v-if="this.$store.state.token"class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+      <nav v-if="this.$store.state.token" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -230,10 +230,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <i style="margin-right:5px;margin-top:11px"class="fa fa-user" aria-hidden="true"></i>
             <li v-if="this.$store.state.token" class="nav-item">
-              <a v-html="this.$store.state.user.name" class="nav-link" href="#"></a>
-                <i class="fa fa-user" aria-hidden="true"></i>
+              <a v-html="this.$store.state.user.name" class="nav-link" href="#"> </a>
             </li>
+
             <li v-if="this.$store.state.token" class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-html="this.$store.state.projectName">
               </a>
@@ -258,7 +259,10 @@
           </ul>
         </div>
       </nav>
-      <div>
+      <div v-if="this.$store.state.token" class="container-fluid">
+        <router-view>@yield('content')</router-view>
+      </div>
+      <div v-if="!this.$store.state.token">
         <router-view>@yield('content')</router-view>
       </div>
     </div>
